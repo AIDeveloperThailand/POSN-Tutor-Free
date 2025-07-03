@@ -1,0 +1,97 @@
+/* General Styles & Fonts */
+body {
+    font-family: 'Kanit', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+:root {
+    --primary-color: #0d6efd;
+    --dark-bg: #212529;
+    --light-bg: #f8f9fa;
+    --dark-card-bg: #343a40;
+    --light-card-bg: #ffffff;
+    --dark-text: #f8f9fa;
+    --light-text: #212529;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+body.dark-mode .bg-light {
+    background-color: var(--dark-bg) !important;
+}
+
+body.dark-mode .card {
+    background-color: var(--dark-card-bg);
+    border-color: #495057;
+}
+
+body.dark-mode .form-control {
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text);
+    border-color: #495057;
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #a0a0a0;
+}
+
+body.dark-mode .input-group-text {
+    background-color: var(--dark-card-bg);
+    border-color: #495057;
+    color: var(--dark-text);
+}
+
+/* Navbar */
+.navbar-brand {
+    font-weight: 700;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8c2NpZW5jZSx0ZWNobm9sb2d5fHx8fHx8MTY4MTM4NjM1OQ&ixlib=rb-4.0.3&q=80&w=1080') no-repeat center center;
+    background-size: cover;
+}
+
+/* Subject Cards */
+.subject-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.subject-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.subject-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+/* Search Results Card */
+.result-card {
+    border: 1px solid #dee2e6;
+    border-left: 5px solid var(--primary-color);
+    transition: background-color 0.2s ease;
+}
+
+body.dark-mode .result-card {
+     border-color: #495057;
+}
+
+.result-card:hover {
+    background-color: #f1f3f5;
+}
+
+body.dark-mode .result-card:hover {
+     background-color: #495057;
+}
+
+.subject-badge {
+    font-size: 0.9rem;
+}
