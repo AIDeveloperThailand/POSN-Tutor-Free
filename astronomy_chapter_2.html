@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>บทที่ 2 (ละเอียด): กลศาสตร์วงโคจรและแรงโน้มถ่วง - สอวน. Hub</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <i class="bi bi-stars"></i> สอวน. ดาราศาสตร์ Hub
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">หน้าแรก</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="astronomy_topics.html">เนื้อหาดาราศาสตร์</a>
+        </li>
+        <li class="nav-item ms-lg-2">
+          <button id="darkModeToggle" class="btn btn-outline-light btn-sm">
+            <i class="bi bi-moon-stars-fill"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="py-5">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="astronomy_topics.html">เนื้อหาทั้งหมด</a></li>
+        <li class="breadcrumb-item active" aria-current="page">บทที่ 2 (ละเอียด): กลศาสตร์วงโคจรและแรงโน้มถ่วง</li>
+      </ol>
+    </nav>
+
+    <h1 class="display-6 mb-4">บทที่ 2 (ละเอียด): กลศาสตร์วงโคจรและแรงโน้มถ่วง</h1>
+
+    <article>
+      <section class="mb-5">
+        <h2 class="border-bottom pb-2 mb-3">2.1 กฎของเคปเลอร์ (Kepler's Laws)</h2>
+        <p>กฎของเคปเลอร์เป็นกฎที่ได้จากการสังเกตการณ์จริง ไม่ได้มาจากการคำนวณโดยตรง แต่สามารถอธิบายลักษณะของการเคลื่อนที่ของดาวเคราะห์ได้อย่างแม่นยำ กฎทั้งสามข้อเป็นดังนี้:</p>
+
+        <h5>กฎข้อที่ 1: ดาวเคราะห์โคจรเป็นวงรี</h5>
+        <p>วงโคจรของดาวเคราะห์ไม่ใช่วงกลม แต่เป็น <strong>วงรี (Ellipse)</strong> โดยมี <strong>ดวงอาทิตย์อยู่ที่จุดโฟกัสจุดหนึ่งของวงรี</strong> ทำให้ระยะห่างระหว่างดาวเคราะห์กับดวงอาทิตย์เปลี่ยนแปลงอยู่เสมอ นี่คือเหตุผลที่อธิบายว่าทำไมดาวเคราะห์จึงเคลื่อนที่ด้วยความเร็วที่ไม่คงที่</p>
+
+        <h5>กฎข้อที่ 2: พื้นที่กวาดเท่ากันในเวลาเท่ากัน</h5>
+        <p>เส้นที่ลากจากดวงอาทิตย์ไปยังดาวเคราะห์จะกวาดพื้นที่เท่ากันในช่วงเวลาเท่ากัน หมายความว่า <strong>เมื่อดาวเคราะห์อยู่ใกล้ดวงอาทิตย์ มันจะเคลื่อนที่เร็วขึ้น</strong> และ <strong>เมื่ออยู่ไกล มันจะเคลื่อนที่ช้าลง</strong> เพื่อให้พื้นที่กวาดยังคงเท่าเดิมในแต่ละช่วงเวลา</p>
+
+        <h5>กฎข้อที่ 3: คาบกำลังสองแปรผันตรงกับระยะห่างกำลังสาม</h5>
+        <p>สำหรับดาวเคราะห์ในระบบสุริยะ ความสัมพันธ์ระหว่าง <strong>คาบการโคจร</strong> (T) และ <strong>กึ่งแกนเอก</strong> (a) ของวงโคจรเป็นไปตามสมการ:</p>
+        <div class="text-center bg-light p-3 rounded">
+          <h3 style="font-family: 'Times New Roman', serif;">$$ T^2 \propto a^3 $$</h3>
+        </div>
+        <p>โดยที่ T วัดเป็นหน่วยปี และ a วัดเป็นหน่วย AU (หน่วยระยะทางระหว่างโลกกับดวงอาทิตย์) สมการนี้ช่วยให้นักดาราศาสตร์สามารถประเมินคาบการโคจรของดาวเคราะห์หรือวัตถุอื่น ๆ ได้อย่างแม่นยำ</p>
+      </section>
+
+      <section class="mb-5">
+        <h2 class="border-bottom pb-2 mb-3">2.2 กฎแรงโน้มถ่วงสากลของนิวตัน</h2>
+        <p>Sir Isaac Newton ได้พัฒนากฎแรงโน้มถ่วงที่อธิบายว่ามวลทุกก้อนในจักรวาลดึงดูดกันและกันด้วยแรง ซึ่งคำนวณได้จากสูตร:</p>
+
+        <div class="text-center bg-light p-3 rounded">
+          <h3 style="font-family: 'Times New Roman', serif;">$$ F = \frac{G M m}{r^2} $$</h3>
+        </div>
+
+        <p>โดยที่:</p>
+        <ul>
+          <li>$F$ คือแรงโน้มถ่วงระหว่างวัตถุทั้งสอง (หน่วย: นิวตัน)</li>
+          <li>$G$ คือค่าคงที่แรงโน้มถ่วง $6.674 \times 10^{-11}~\mathrm{Nm^2/kg^2}$</li>
+          <li>$M$ และ $m$ คือมวลของวัตถุทั้งสอง</li>
+          <li>$r$ คือระยะทางระหว่างศูนย์กลางของวัตถุทั้งสอง</li>
+        </ul>
+
+        <p>กฎนี้ไม่เพียงใช้กับโลกและดวงจันทร์เท่านั้น แต่ยังสามารถใช้อธิบายการโคจรของดาวเคราะห์ ดวงดาว ดาวเทียม และแม้แต่กาแล็กซีขนาดใหญ่ได้อีกด้วย</p>
+      </section>
+
+      <section class="mb-5">
+        <h2 class="border-bottom pb-2 mb-3">2.3 วงโคจรของดาวเทียมและความเร็ววงโคจร</h2>
+        <p>ในการโคจรรอบโลก หรือวัตถุศูนย์กลางอื่น ๆ วัตถุจำเป็นต้องมี <strong>ความเร็ววงโคจร</strong> ที่เหมาะสมจึงจะสามารถรักษาระยะทางได้โดยไม่ตกลงมา</p>
+        <p>ความเร็ววงโคจรขึ้นกับมวลของวัตถุศูนย์กลางและระยะห่างจากจุดศูนย์กลาง โดยมีสูตร:</p>
+
+        <div class="text-center bg-light p-3 rounded">
+          <h3 style="font-family: 'Times New Roman', serif;">$$ v = \sqrt{\frac{G M}{r}} $$</h3>
+        </div>
+
+        <p>สูตรนี้ได้จากการตั้งสมการแรงโน้มถ่วงเท่ากับแรงสู่ศูนย์กลางของการเคลื่อนที่เป็นวงกลม ($F = \frac{mv^2}{r}$)</p>
+      </section>
+
+      <section class="mb-5">
+        <h2 class="border-bottom pb-2 mb-3">2.4 ความเร็วหลุดพ้น (Escape Velocity)</h2>
+        <p>ถ้าต้องการยิงวัตถุให้ออกไปจากแรงดึงดูดของโลก หรือดาวเคราะห์ดวงใด ๆ วัตถุนั้นต้องมีความเร็วสูงพอที่จะ <strong>หลุดพ้นจากแรงโน้มถ่วง</strong> ซึ่งเรียกว่า <strong>ความเร็วหลุดพ้น</strong></p>
+
+        <div class="text-center bg-light p-3 rounded">
+          <h3 style="font-family: 'Times New Roman', serif;">$$ v_{\text{esc}} = \sqrt{\frac{2GM}{r}} $$</h3>
+        </div>
+
+        <p>จะเห็นว่าเป็น $\sqrt{2}$ เท่าของความเร็ววงโคจร ดังนั้น หากวัตถุเร็วพอ มันจะไม่ย้อนกลับเข้ามาสู่แรงโน้มถ่วงเดิมอีกเลย</p>
+      </section>
+
+      <section class="mb-5">
+        <h2 class="border-bottom pb-2 mb-3">2.5 การประยุกต์: การโคจรของดวงจันทร์และสุริยุปราคา</h2>
+        <p>ดวงจันทร์โคจรรอบโลกโดยใช้เวลาประมาณ 27.3 วัน (เดือนดาราคติ) การเคลื่อนที่เช่นนี้ทำให้เกิดปรากฏการณ์:</p>
+        <ul>
+          <li><strong>สุริยุปราคา:</strong> ดวงจันทร์บังแสงอาทิตย์เมื่ออยู่ระหว่างโลกกับดวงอาทิตย์</li>
+          <li><strong>จันทรุปราคา:</strong> ดวงจันทร์เคลื่อนเข้าไปในเงาของโลกเมื่อโลกอยู่ระหว่างดวงอาทิตย์และดวงจันทร์</li>
+        </ul>
+        <p>เงามี 2 ส่วน:</p>
+        <ul>
+          <li><strong>อุมบรา (Umbra):</strong> เงาส่วนมืดสุด ทำให้เกิดสุริยุปราคาเต็มดวง</li>
+          <li><strong>เพนุมบรา (Penumbra):</strong> เงาส่วนรอบนอก ทำให้เกิดสุริยุปราคาบางส่วน</li>
+        </ul>
+        <p>สิ่งเหล่านี้แสดงถึงการนำความรู้เรื่องแรงโน้มถ่วงและวงโคจรมาใช้อธิบายปรากฏการณ์ทางธรรมชาติได้อย่างแม่นยำ</p>
+      </section>
+
+    </article>
+  </div>
+</main>
+
+<footer class="bg-dark text-white text-center py-3">
+  <div class="container">
+    <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>
