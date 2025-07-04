@@ -67,51 +67,25 @@
     .trend-card:hover {
       transform: translateY(-5px);
     }
-    .periodic-table {
+    .periodic-table-container {
       background-color: white;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      overflow-x: auto;
+      margin-bottom: 30px;
     }
-    .dark-mode .periodic-table {
+    .dark-mode .periodic-table-container {
       background-color: #1e1e1e;
     }
-    .element {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 60px;
-      border: 1px solid #dee2e6;
-      border-radius: 5px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      text-align: center;
-      padding: 5px;
-      transition: all 0.3s ease;
-    }
-    .dark-mode .element {
-      border-color: #444;
-    }
-    .element:hover {
-      transform: scale(1.05);
-      z-index: 10;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    }
-    .element.s-block { background-color: #ffcdd2; }
-    .element.p-block { background-color: #c8e6c9; }
-    .element.d-block { background-color: #bbdefb; }
-    .element.f-block { background-color: #e1bee7; }
-    .dark-mode .element.s-block { background-color: #b71c1c; }
-    .dark-mode .element.p-block { background-color: #1b5e20; }
-    .dark-mode .element.d-block { background-color: #0d47a1; }
-    .dark-mode .element.f-block { background-color: #4a148c; }
-    .element .symbol {
-      font-size: 1.2rem;
-      font-weight: bold;
-    }
-    .element .number {
-      font-size: 0.6rem;
+    .periodic-table-img {
+      width: 100%;
+      max-width: 1000px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     .diagram {
       background-color: white;
@@ -129,34 +103,29 @@
     .section-title {
       position: relative;
       padding-left: 15px;
+      border-bottom: 2px solid #0d6efd;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
     }
-    .section-title::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 5px;
-      background: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
-      border-radius: 3px;
-    }
-    .dark-mode .section-title::before {
-      background: linear-gradient(to bottom, #0d6efd 0%, #6610f2 100%);
+    .dark-mode .section-title {
+      border-color: #90caf9;
     }
     .orbital-diagram {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       margin: 20px 0;
+      gap: 20px;
     }
     .orbital {
-      display: inline-flex;
+      display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 0 10px;
+      width: 120px;
     }
     .orbital-box {
-      width: 80px;
-      height: 80px;
+      width: 100px;
+      height: 100px;
       border: 2px solid #4facfe;
       border-radius: 10px;
       display: flex;
@@ -181,6 +150,91 @@
     .dark-mode .electron {
       background: #ff6b6b;
       box-shadow: 0 0 12px #ff6b6b;
+    }
+    .chem-highlight {
+      background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 4px solid #0d6efd;
+      margin: 20px 0;
+    }
+    .dark-mode .chem-highlight {
+      background: linear-gradient(120deg, #0d3a5c 0%, #1a237e 100%);
+      border-left: 4px solid #90caf9;
+    }
+    .model-card {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      height: 100%;
+    }
+    .model-card:hover {
+      transform: translateY(-10px);
+    }
+    .model-card-header {
+      padding: 15px;
+      color: white;
+      font-weight: 500;
+    }
+    .model-card-body {
+      padding: 20px;
+    }
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 40px auto;
+    }
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background-color: #0d6efd;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+    }
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+    .timeline-item:nth-child(odd) {
+      left: 0;
+    }
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+    .timeline-content {
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .dark-mode .timeline-content {
+      background-color: #1e1e1e;
+    }
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #0d6efd;
+      border: 4px solid white;
+      border-radius: 50%;
+      top: 20px;
+      z-index: 1;
+    }
+    .timeline-item:nth-child(odd)::after {
+      right: -12px;
+    }
+    .timeline-item:nth-child(even)::after {
+      left: -12px;
+    }
+    .dark-mode .timeline-item::after {
+      border-color: #121212;
     }
   </style>
 </head>
@@ -225,63 +279,111 @@
 <article>
 
   <section class="mb-5">
-    <h2 class="section-title border-bottom pb-2 mb-3">1. แบบจำลองอะตอม: จากโบร์ถึงกลศาสตร์ควอนตัม</h2>
+    <h2 class="section-title">1. แบบจำลองอะตอม: จากโบร์ถึงกลศาสตร์ควอนตัม</h2>
     <div class="chem-model">
       <h4><i class="bi bi-lightbulb"></i> การวิวัฒนาการของแบบจำลองอะตอม</h4>
       <p>แบบจำลองอะตอมได้พัฒนามาอย่างต่อเนื่องตั้งแต่อดีตจนถึงปัจจุบัน เพื่ออธิบายโครงสร้างและพฤติกรรมของอะตอม</p>
     </div>
 
-    <h4 class="mt-4">1.1 แบบจำลองอะตอมของรัทเทอร์ฟอร์ด (Rutherford Model)</h4>
-    <p>
-      จากการทดลองยิงอนุภาคแอลฟา (α) ไปยังแผ่นทองคำบาง (Gold Foil Experiment) ในปี 1911 เออร์เนสต์ รัทเทอร์ฟอร์ด พบว่า:
-      <ul>
-        <li>อะตอมส่วนใหญ่เป็นพื้นที่ว่าง</li>
-        <li>มีนิวเคลียสขนาดเล็กมากอยู่ตรงกลางที่มีประจุบวก</li>
-        <li>อิเล็กตรอนโคจรรอบนิวเคลียส</li>
-      </ul>
-      แบบจำลองนี้สามารถอธิบายผลการทดลองได้ดี แต่มีข้อจำกัดคือ ไม่สามารถอธิบายสเปกตรัมการดูดกลืนและการคายพลังงานของอะตอมไฮโดรเจนได้
-    </p>
+    <div class="row mt-4">
+      <div class="col-md-4 mb-4">
+        <div class="model-card">
+          <div class="model-card-header bg-primary">
+            <h5>รัทเทอร์ฟอร์ด</h5>
+            <p class="mb-0">1911</p>
+          </div>
+          <div class="model-card-body">
+            <p><strong>การค้นพบ:</strong> นิวเคลียสขนาดเล็ก</p>
+            <p><strong>การทดลอง:</strong> ยิงอนุภาคแอลฟาผ่านแผ่นทองคำ</p>
+            <p><strong>จุดอ่อน:</strong> ไม่สามารถอธิบายเสถียรภาพของอะตอม</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="model-card">
+          <div class="model-card-header bg-success">
+            <h5>นีลส์ โบร์</h5>
+            <p class="mb-0">1913</p>
+          </div>
+          <div class="model-card-body">
+            <p><strong>แนวคิด:</strong> วงโคจรควอนตัม</p>
+            <p><strong>สมการ:</strong> $L = n\frac{h}{2\pi}$</p>
+            <p><strong>พลังงาน:</strong> $E_n = -\frac{13.6}{n^2}$ eV</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="model-card">
+          <div class="model-card-header bg-info">
+            <h5>กลศาสตร์ควอนตัม</h5>
+            <p class="mb-0">1925-1926</p>
+          </div>
+          <div class="model-card-body">
+            <p><strong>แนวคิด:</strong> ออร์บิทัลและฟังก์ชันคลื่น</p>
+            <p><strong>หลักการ:</strong> ความไม่แน่นอนของไฮเซนเบิร์ก</p>
+            <p><strong>สมการ:</strong> สมการชเรอดิงเงอร์</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <h4 class="mt-4">1.2 แบบจำลองอะตอมของโบร์ (Bohr Model)</h4>
-    <p>
-      ในปี 1913 นีลส์ โบร์ เสนอแบบจำลองอะตอมใหม่เพื่อแก้ปัญหาของรัทเทอร์ฟอร์ด โดยมีสมมติฐานสำคัญ:
-      <ol>
-        <li>อิเล็กตรอนโคจรรอบนิวเคลียสเป็นวงโคจรวงกลมที่มีรัศมีแน่นอน โดยไม่มีการแผ่รังสี</li>
-        <li>โมเมนตัมเชิงมุมของอิเล็กตรอนมีค่าเป็นจำนวนเต็มเท่าของ $\frac{h}{2\pi}$:
-          $$L = mvr = n\frac{h}{2\pi} \quad (n=1,2,3,\dots)$$
-        </li>
-        <li>เมื่ออิเล็กตรอนเปลี่ยนวงโคจร จะมีการดูดกลืนหรือคายพลังงานเป็นโฟตอน:
-          $$\Delta E = E_2 - E_1 = h\nu$$
-          โดยที่ $\nu$ คือความถี่ของรังสี
-        </li>
-      </ol>
-      พลังงานของอิเล็กตรอนในอะตอมไฮโดรเจน:
-      $$E_n = -\frac{13.6}{n^2} \text{ eV} \quad (n=1,2,3,\dots)$$
-      แบบจำลองโบร์ประสบความสำเร็จในการอธิบายสเปกตรัมของไฮโดรเจน แต่ไม่สามารถอธิบายอะตอมที่มีหลายอิเล็กตรอนหรือเอฟเฟกต์อื่นๆ ได้
-    </p>
-
-    <h4 class="mt-4">1.3 แบบจำลองกลศาสตร์ควอนตัม (Quantum Mechanical Model)</h4>
-    <p>
-      ในช่วงทศวรรษ 1920 นักวิทยาศาสตร์ได้พัฒนากลศาสตร์ควอนตัมเพื่ออธิบายพฤติกรรมของอนุภาคในระดับอะตอม:
-      <ul>
-        <li><strong>สมการชเรอดิงเงอร์ (Schrödinger Equation):</strong> 
-          $$i\hbar\frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \hat{H}\Psi(\mathbf{r},t)$$
-          โดยที่ $\Psi$ คือฟังก์ชันคลื่นที่บรรยายสถานะของระบบ
-        </li>
-        <li><strong>หลักความไม่แน่นอนของไฮเซนเบิร์ก (Heisenberg Uncertainty Principle):</strong>
-          $$\Delta x \cdot \Delta p \geq \frac{\hbar}{2}$$
-          ไม่สามารถทราบทั้งตำแหน่งและโมเมนตัมของอิเล็กตรอนได้อย่างแม่นยำในเวลาเดียวกัน
-        </li>
-        <li><strong>ความน่าจะเป็นในการพบอิเล็กตรอน:</strong> $|\Psi|^2$ ให้ความหนาแน่นของความน่าจะเป็นในการพบอิเล็กตรอน</li>
-      </ul>
-      แบบจำลองนี้แทนที่แนวคิดวงโคจร (orbit) ด้วยออร์บิทัล (orbital) ซึ่งเป็นพื้นที่ที่มีความน่าจะเป็นสูงที่จะพบอิเล็กตรอน
-    </p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h5>แบบจำลองอะตอมของรัทเทอร์ฟอร์ด (1911)</h5>
+          <p>จากการทดลองยิงอนุภาคแอลฟา (α) ไปยังแผ่นทองคำบาง (Gold Foil Experiment) เออร์เนสต์ รัทเทอร์ฟอร์ด พบว่า:</p>
+          <ul>
+            <li>อะตอมส่วนใหญ่เป็นพื้นที่ว่าง</li>
+            <li>มีนิวเคลียสขนาดเล็กมากอยู่ตรงกลางที่มีประจุบวก</li>
+            <li>อิเล็กตรอนโคจรรอบนิวเคลียส</li>
+          </ul>
+          <p>แบบจำลองนี้สามารถอธิบายผลการทดลองได้ดี แต่มีข้อจำกัดคือ ไม่สามารถอธิบายสเปกตรัมการดูดกลืนและการคายพลังงานของอะตอมไฮโดรเจนได้</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h5>แบบจำลองอะตอมของโบร์ (1913)</h5>
+          <p>นีลส์ โบร์ เสนอแบบจำลองอะตอมใหม่โดยมีสมมติฐานสำคัญ:</p>
+          <ol>
+            <li>อิเล็กตรอนโคจรรอบนิวเคลียสเป็นวงโคจรวงกลมที่มีรัศมีแน่นอน โดยไม่มีการแผ่รังสี</li>
+            <li>โมเมนตัมเชิงมุมของอิเล็กตรอนมีค่าเป็นจำนวนเต็มเท่าของ $\frac{h}{2\pi}$:
+              $$L = mvr = n\frac{h}{2\pi} \quad (n=1,2,3,\dots)$$
+            </li>
+            <li>เมื่ออิเล็กตรอนเปลี่ยนวงโคจร จะมีการดูดกลืนหรือคายพลังงานเป็นโฟตอน:
+              $$\Delta E = E_2 - E_1 = h\nu$$
+              โดยที่ $\nu$ คือความถี่ของรังสี
+            </li>
+          </ol>
+          <p>พลังงานของอิเล็กตรอนในอะตอมไฮโดรเจน:
+            $$E_n = -\frac{13.6}{n^2} \text{ eV} \quad (n=1,2,3,\dots)$$
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h5>แบบจำลองกลศาสตร์ควอนตัม</h5>
+          <p>ในช่วงทศวรรษ 1920 นักวิทยาศาสตร์ได้พัฒนากลศาสตร์ควอนตัมเพื่ออธิบายพฤติกรรมของอนุภาคในระดับอะตอม:</p>
+          <ul>
+            <li><strong>สมการชเรอดิงเงอร์ (Schrödinger Equation):</strong> 
+              $$i\hbar\frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \hat{H}\Psi(\mathbf{r},t)$$
+              โดยที่ $\Psi$ คือฟังก์ชันคลื่นที่บรรยายสถานะของระบบ
+            </li>
+            <li><strong>หลักความไม่แน่นอนของไฮเซนเบิร์ก (Heisenberg Uncertainty Principle):</strong>
+              $$\Delta x \cdot \Delta p \geq \frac{\hbar}{2}$$
+              ไม่สามารถทราบทั้งตำแหน่งและโมเมนตัมของอิเล็กตรอนได้อย่างแม่นยำในเวลาเดียวกัน
+            </li>
+            <li><strong>ความน่าจะเป็นในการพบอิเล็กตรอน:</strong> $|\Psi|^2$ ให้ความหนาแน่นของความน่าจะเป็นในการพบอิเล็กตรอน</li>
+          </ul>
+          <p>แบบจำลองนี้แทนที่แนวคิดวงโคจร (orbit) ด้วยออร์บิทัล (orbital) ซึ่งเป็นพื้นที่ที่มีความน่าจะเป็นสูงที่จะพบอิเล็กตรอน</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <hr class="my-5">
 
   <section class="mb-5">
-    <h2 class="section-title border-bottom pb-2 mb-3">2. โครงสร้างอิเล็กตรอน: ระดับพลังงาน, ออร์บิทัล, การจัดเรียงอิเล็กตรอน</h2>
+    <h2 class="section-title">2. โครงสร้างอิเล็กตรอน: ระดับพลังงาน, ออร์บิทัล, การจัดเรียงอิเล็กตรอน</h2>
     
     <h4 class="mt-4">2.1 จำนวนควอนตัม (Quantum Numbers)</h4>
     <p>
@@ -328,16 +430,16 @@
     <div class="orbital-diagram">
       <div class="orbital">
         <div class="orbital-box">
-          <div class="electron" style="top: 30px; left: 30px;"></div>
+          <div class="electron" style="top: 40px; left: 40px;"></div>
         </div>
-        <div class="mt-2">s-orbital (ทรงกลม)</div>
+        <div class="mt-2">s-orbital (ทรงกลม)<br>$\ell = 0$</div>
       </div>
       <div class="orbital">
         <div class="orbital-box">
           <div class="electron" style="top: 20px; left: 20px;"></div>
           <div class="electron" style="bottom: 20px; right: 20px;"></div>
         </div>
-        <div class="mt-2">p-orbital (ดัมเบล)</div>
+        <div class="mt-2">p-orbital (ดัมเบล)<br>$\ell = 1$</div>
       </div>
       <div class="orbital">
         <div class="orbital-box">
@@ -346,81 +448,128 @@
           <div class="electron" style="bottom: 15px; left: 15px;"></div>
           <div class="electron" style="bottom: 15px; right: 15px;"></div>
         </div>
-        <div class="mt-2">d-orbital (คลובר)</div>
+        <div class="mt-2">d-orbital (คล็อเวอร์)<br>$\ell = 2$</div>
       </div>
     </div>
     
     <h4 class="mt-4">2.3 การจัดเรียงอิเล็กตรอน (Electron Configuration)</h4>
-    <p>
-      การจัดเรียงอิเล็กตรอนเป็นวิธีการบรรยายการกระจายตัวของอิเล็กตรอนในออร์บิทัลต่างๆ โดยยึดหลัก:
+    <div class="chem-highlight">
+      <h5><i class="bi bi-stars"></i> หลักการสำคัญในการจัดเรียงอิเล็กตรอน</h5>
       <ol>
         <li><strong>หลักของเอาฟบาว (Aufbau Principle):</strong> อิเล็กตรอนจะเข้าสู่ออร์บิทัลที่มีพลังงานต่ำที่สุดก่อน</li>
         <li><strong>กฎของเพาลี (Pauli Exclusion Principle):</strong> ในออร์บิทัลหนึ่งๆ จะมีอิเล็กตรอนได้ไม่เกิน 2 ตัว และต้องมีสปินตรงข้ามกัน</li>
         <li><strong>กฎของฮุนด์ (Hund's Rule):</strong> การจัดเรียงอิเล็กตรอนในออร์บิทัลย่อยที่มีพลังงานเท่ากัน จะจัดให้มีสปินขนานกันมากที่สุดก่อน</li>
       </ol>
-      ลำดับการบรรจุอิเล็กตรอน (Aufbau Sequence):
-      <div class="diagram">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Aufbau_Principle.svg/800px-Aufbau_Principle.svg.png" alt="Aufbau Principle" class="img-fluid">
-      </div>
-    </p>
+    </div>
     
-    <h4 class="mt-4">ตัวอย่างการจัดเรียงอิเล็กตรอน</h4>
-    <ul>
-      <li><strong>ออกซิเจน (O, Z=8):</strong> $1s^2 2s^2 2p^4$</li>
-      <li><strong>โซเดียม (Na, Z=11):</strong> $1s^2 2s^2 2p^6 3s^1$ หรือ [Ne] $3s^1$</li>
-      <li><strong>เหล็ก (Fe, Z=26):</strong> $1s^2 2s^2 2p^6 3s^2 3p^6 4s^2 3d^6$ หรือ [Ar] $4s^2 3d^6$</li>
-    </ul>
+    <h5>ลำดับการบรรจุอิเล็กตรอน (Aufbau Sequence):</h5>
+    <div class="diagram text-center">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Aufbau_Principle.svg/800px-Aufbau_Principle.svg.png" alt="Aufbau Principle" class="img-fluid" style="max-height: 300px;">
+    </div>
+    
+    <h5 class="mt-4">ตัวอย่างการจัดเรียงอิเล็กตรอน</h5>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-header bg-warning">
+            ออกซิเจน (O, Z=8)
+          </div>
+          <div class="card-body">
+            <p class="text-center display-6">$1s^2 2s^2 2p^4$</p>
+            <p>ไดอะแกรมออร์บิทัล:</p>
+            <div class="text-center">
+              <img src="https://www.chemistrylearner.com/wp-content/uploads/2018/08/Oxygen-Electron-Configuration.jpg" alt="Oxygen electron configuration" class="img-fluid" style="max-height: 150px;">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-header bg-danger text-white">
+            โซเดียม (Na, Z=11)
+          </div>
+          <div class="card-body">
+            <p class="text-center display-6">$1s^2 2s^2 2p^6 3s^1$</p>
+            <p>หรือ [Ne] $3s^1$</p>
+            <div class="text-center">
+              <img src="https://www.chemistrylearner.com/wp-content/uploads/2018/08/Sodium-Electron-Configuration.jpg" alt="Sodium electron configuration" class="img-fluid" style="max-height: 150px;">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-header bg-success text-white">
+            เหล็ก (Fe, Z=26)
+          </div>
+          <div class="card-body">
+            <p class="text-center display-6">$1s^2 2s^2 2p^6 3s^2 3p^6 4s^2 3d^6$</p>
+            <p>หรือ [Ar] $4s^2 3d^6$</p>
+            <div class="text-center">
+              <img src="https://www.chemistrylearner.com/wp-content/uploads/2018/08/Iron-Electron-Configuration.jpg" alt="Iron electron configuration" class="img-fluid" style="max-height: 150px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <hr class="my-5">
 
   <section class="mb-5">
-    <h2 class="section-title border-bottom pb-2 mb-3">3. ตารางธาตุและแนวโน้มสมบัติของธาตุ</h2>
+    <h2 class="section-title">3. ตารางธาตุและแนวโน้มสมบัติของธาตุ</h2>
     
     <h4 class="mt-4">3.1 โครงสร้างตารางธาตุ</h4>
     <p>
       ตารางธาตุสมัยใหม่จัดเรียงธาตุตามเลขอะตอม (Z) และการจัดเรียงอิเล็กตรอนชั้นนอกสุด:
-      <div class="periodic-table">
-        <div class="row mb-1">
-          <div class="col-1 offset-1"><div class="element s-block"><span class="number">1</span><span class="symbol">H</span></div></div>
-          <div class="col-1 offset-10"><div class="element s-block"><span class="number">2</span><span class="symbol">He</span></div></div>
-        </div>
-        <div class="row mb-1">
-          <div class="col-1"><div class="element s-block"><span class="number">3</span><span class="symbol">Li</span></div></div>
-          <div class="col-1"><div class="element s-block"><span class="number">4</span><span class="symbol">Be</span></div></div>
-          <div class="col-1 offset-8"><div class="element p-block"><span class="number">5</span><span class="symbol">B</span></div></div>
-          <div class="col-1"><div class="element p-block"><span class="number">6</span><span class="symbol">C</span></div></div>
-          <div class="col-1"><div class="element p-block"><span class="number">7</span><span class="symbol">N</span></div></div>
-          <div class="col-1"><div class="element p-block"><span class="number">8</span><span class="symbol">O</span></div></div>
-          <div class="col-1"><div class="element p-block"><span class="number">9</span><span class="symbol">F</span></div></div>
-          <div class="col-1"><div class="element p-block"><span class="number">10</span><span class="symbol">Ne</span></div></div>
-        </div>
-        <div class="row mb-1">
-          <div class="col-1"><div class="element s-block"><span class="number">11</span><span class="symbol">Na</span></div></div>
-          <div class="col-1"><div class="element s-block"><span class="number">12</span><span class="symbol">Mg</span></div></div>
-          <div class="col-1 offset-8"><div class="element p-block"><span class="number">13</span><span class="symbol">Al</span></div></div>
-          <div class="col-1"><div class="element p-block"><span class="number">14</span><span class="symbol">Si</span></div></div>
-          <div class="col-1"><div class="element p-block"><span class="number">15</span><span class="symbol">P</span></div></div>
-          <div class="col-1"><div class="element p-block"><span class="number">16</span><span class="symbol">S</span></div></div>
-          <div class="col-1"><div class="element p-block"><span class="number">17</span><span class="symbol">Cl</span></div></div>
-          <div class="col-1"><div class="element p-block"><span class="number">18</span><span class="symbol">Ar</span></div></div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="row">
-              <div class="col-1"><div class="element d-block"><span class="number">21</span><span class="symbol">Sc</span></div></div>
-              <div class="col-1"><div class="element d-block"><span class="number">22</span><span class="symbol">Ti</span></div></div>
-              <div class="col-1"><div class="element d-block"><span class="number">23</span><span class="symbol">V</span></div></div>
-              <div class="col-1"><div class="element d-block"><span class="number">24</span><span class="symbol">Cr</span></div></div>
-              <div class="col-1"><div class="element d-block"><span class="number">25</span><span class="symbol">Mn</span></div></div>
-              <div class="col-1"><div class="element d-block"><span class="number">26</span><span class="symbol">Fe</span></div></div>
-              <div class="col-1"><div class="element d-block"><span class="number">27</span><span class="symbol">Co</span></div></div>
-              <div class="col-1"><div class="element d-block"><span class="number">28</span><span class="symbol">Ni</span></div></div>
+    </p>
+    
+    <div class="periodic-table-container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Periodic_table_large.svg/1014px-Periodic_table_large.svg.png" alt="Periodic Table" class="periodic-table-img">
+    </div>
+    
+    <div class="row">
+      <div class="col-md-3 mb-3">
+        <div class="card h-100">
+          <div class="card-body text-center p-2">
+            <div class="element s-block p-3">
+              <span class="symbol">s-block</span>
             </div>
+            <p class="mt-2 mb-0">หมู่ 1-2 และ He</p>
           </div>
         </div>
       </div>
-    </p>
+      <div class="col-md-3 mb-3">
+        <div class="card h-100">
+          <div class="card-body text-center p-2">
+            <div class="element p-block p-3">
+              <span class="symbol">p-block</span>
+            </div>
+            <p class="mt-2 mb-0">หมู่ 13-18 (ไม่รวม He)</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="card h-100">
+          <div class="card-body text-center p-2">
+            <div class="element d-block p-3">
+              <span class="symbol">d-block</span>
+            </div>
+            <p class="mt-2 mb-0">หมู่ 3-12 (โลหะทรานซิชัน)</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="card h-100">
+          <div class="card-body text-center p-2">
+            <div class="element f-block p-3">
+              <span class="symbol">f-block</span>
+            </div>
+            <p class="mt-2 mb-0">แลนทาไนด์และแอกทิไนด์</p>
+          </div>
+        </div>
+      </div>
+    </div>
     
     <h4 class="mt-4">3.2 แนวโน้มสมบัติธาตุตามคาบและหมู่</h4>
     <div class="row">
@@ -432,6 +581,9 @@
           <div class="card-body">
             <p><strong>แนวโน้มตามคาบ:</strong> ลดลงจากซ้ายไปขวา เนื่องจากประจุนิวเคลียร์มีประสิทธิภาพเพิ่มขึ้น</p>
             <p><strong>แนวโน้มตามหมู่:</strong> เพิ่มลงจากบนลงล่าง เนื่องจากจำนวนระดับพลังงานเพิ่มขึ้น</p>
+            <div class="text-center mt-3">
+              <img src="https://www.chemistrylearner.com/wp-content/uploads/2018/08/Atomic-Radius-Trend.jpg" alt="Atomic Radius Trend" class="img-fluid" style="max-height: 150px;">
+            </div>
           </div>
         </div>
       </div>
@@ -443,6 +595,9 @@
           <div class="card-body">
             <p><strong>แนวโน้มตามคาบ:</strong> เพิ่มขึ้นจากซ้ายไปขวา เนื่องจากรัศมีอะตอมลดลง</p>
             <p><strong>แนวโน้มตามหมู่:</strong> ลดลงจากบนลงล่าง เนื่องจากอิเล็กตรอนชั้นนอกอยู่ห่างจากนิวเคลียส</p>
+            <div class="text-center mt-3">
+              <img src="https://www.chemistrylearner.com/wp-content/uploads/2018/08/Ionization-Energy-Trend.jpg" alt="Ionization Energy Trend" class="img-fluid" style="max-height: 150px;">
+            </div>
           </div>
         </div>
       </div>
@@ -454,19 +609,65 @@
           <div class="card-body">
             <p><strong>แนวโน้มตามคาบ:</strong> เพิ่มขึ้นจากซ้ายไปขวา เนื่องจากแนวโน้มในการรับอิเล็กตรอนเพิ่มขึ้น</p>
             <p><strong>แนวโน้มตามหมู่:</strong> ลดลงจากบนลงล่าง เนื่องจากรัศมีอะตอมเพิ่มขึ้น</p>
+            <div class="text-center mt-3">
+              <img src="https://www.chemistrylearner.com/wp-content/uploads/2018/08/Electronegativity-Trend.jpg" alt="Electronegativity Trend" class="img-fluid" style="max-height: 150px;">
+            </div>
           </div>
         </div>
       </div>
     </div>
     
     <h4 class="mt-4">3.3 กลุ่มธาตุสำคัญ</h4>
-    <ul>
-      <li><strong>โลหะอัลคาไล (หมู่ 1):</strong> มีเวเลนซ์อิเล็กตรอน 1 ตัว ทำปฏิกิริยารุนแรงกับน้ำ</li>
-      <li><strong>โลหะอัลคาไลน์เอิร์ท (หมู่ 2):</strong> มีเวเลนซ์อิเล็กตรอน 2 ตัว แข็งแรงกว่าโลหะอัลคาไล</li>
-      <li><strong>แฮโลเจน (หมู่ 17):</strong> มีเวเลนซ์อิเล็กตรอน 7 ตัว มีอิเล็กโทรเนกาติวิตีสูง</li>
-      <li><strong>แก๊สมีตระกูล (หมู่ 18):</strong> มีเวเลนซ์อิเล็กตรอน 8 ตัว (เต็มวง) มีเสถียรภาพสูง</li>
-      <li><strong>โลหะทรานซิชัน (หมู่ 3-12):</strong> มีอิเล็กตรอนใน d-ออร์บิทัล สร้างสารประกอบสีได้</li>
-    </ul>
+    <div class="row">
+      <div class="col-md-3 mb-4">
+        <div class="card h-100">
+          <div class="card-header bg-danger text-white">
+            โลหะอัลคาไล (หมู่ 1)
+          </div>
+          <div class="card-body">
+            <p>มีเวเลนซ์อิเล็กตรอน 1 ตัว</p>
+            <p>ทำปฏิกิริยารุนแรงกับน้ำ</p>
+            <p>ตัวอย่าง: Li, Na, K</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="card h-100">
+          <div class="card-header bg-warning">
+            โลหะอัลคาไลน์เอิร์ท (หมู่ 2)
+          </div>
+          <div class="card-body">
+            <p>มีเวเลนซ์อิเล็กตรอน 2 ตัว</p>
+            <p>แข็งแรงกว่าโลหะอัลคาไล</p>
+            <p>ตัวอย่าง: Mg, Ca, Ba</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="card h-100">
+          <div class="card-header bg-success text-white">
+            แฮโลเจน (หมู่ 17)
+          </div>
+          <div class="card-body">
+            <p>มีเวเลนซ์อิเล็กตรอน 7 ตัว</p>
+            <p>มีอิเล็กโทรเนกาติวิตีสูง</p>
+            <p>ตัวอย่าง: F, Cl, Br</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="card h-100">
+          <div class="card-header bg-primary text-white">
+            แก๊สมีตระกูล (หมู่ 18)
+          </div>
+          <div class="card-body">
+            <p>มีเวเลนซ์อิเล็กตรอน 8 ตัว (เต็มวง)</p>
+            <p>มีเสถียรภาพสูง</p>
+            <p>ตัวอย่าง: Ne, Ar, Kr</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
 </article>
@@ -493,16 +694,6 @@
       icon.classList.remove('bi-sun-fill');
       icon.classList.add('bi-moon-stars-fill');
     }
-  });
-  
-  // Add hover effect to elements
-  document.querySelectorAll('.element').forEach(el => {
-    el.addEventListener('mouseenter', function() {
-      this.style.zIndex = '10';
-    });
-    el.addEventListener('mouseleave', function() {
-      this.style.zIndex = '1';
-    });
   });
 </script>
 
