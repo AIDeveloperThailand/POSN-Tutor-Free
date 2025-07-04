@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>บทที่ 3: ปริมาณสารสัมพันธ์ - เคมี Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3a0ca3;
+      --accent: #f72585;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --dark-bg: #121212;
+      --dark-card: #1e1e1e;
+    }
+    
+    body {
+      font-family: 'Kanit', sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    .dark-mode {
+      background-color: var(--dark-bg);
+      color: #e0e0e0;
+    }
+    .dark-mode .card {
+      background-color: var(--dark-card);
+      border-color: #333;
+    }
+    .navbar {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .stoich-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .concept-card {
+      transition: transform 0.3s ease;
+      height: 100%;
+      margin-bottom: 20px;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .concept-card:hover {
+      transform: translateY(-7px);
+    }
+    .concept-header {
+      padding: 15px 20px;
+      color: white;
+      font-weight: 500;
+    }
+    .formula-box {
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 15px;
+      margin: 15px 0;
+      text-align: center;
+    }
+    .section-title {
+      position: relative;
+      padding-left: 15px;
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 12px;
+      margin: 25px 0 20px;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+    .dark-mode .section-title {
+      border-color: var(--secondary);
+    }
+    .calculation-box {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .dark-mode .calculation-box {
+      background-color: var(--dark-card);
+    }
+    .example-card {
+      border-left: 4px solid var(--accent);
+      padding: 15px;
+      margin: 15px 0;
+      background-color: rgba(247, 37, 133, 0.05);
+    }
+    .dark-mode .example-card {
+      background-color: rgba(247, 37, 133, 0.1);
+    }
+    .mole-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: var(--accent);
+    }
+    .equation-flow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 25px 0;
+      gap: 10px;
+    }
+    .equation-step {
+      text-align: center;
+      padding: 15px;
+      min-width: 120px;
+      border-radius: 8px;
+      background-color: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .dark-mode .equation-step {
+      background-color: var(--dark-card);
+    }
+    .concentration-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 150px;
+      margin: 20px 0;
+      position: relative;
+    }
+    .flask {
+      width: 80px;
+      height: 120px;
+      border: 3px solid var(--primary);
+      border-radius: 0 0 30px 30px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .solution {
+      height: 60%;
+      background: linear-gradient(to top, #4361ee, #4cc9f0);
+      border-radius: 0 0 30px 30px;
+    }
+    .concentration-label {
+      position: absolute;
+      bottom: -30px;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+    }
+    
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .stoich-header {
+        padding: 15px;
+      }
+      .equation-flow {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .equation-step {
+        width: 100%;
+        max-width: 300px;
+      }
+      .concept-card {
+        margin-bottom: 15px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .section-title {
+        font-size: 1.3rem;
+        margin: 20px 0 15px;
+      }
+      .concept-header {
+        padding: 12px 15px;
+      }
+      .formula-box {
+        padding: 10px;
+      }
+      .calculation-box {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <i class="bi bi-flask"></i> เคมี Hub
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">หน้าแรก</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="chemistry_topics.html">เนื้อหาเคมี</a>
+        </li>
+        <li class="nav-item ms-lg-2">
+          <button id="darkModeToggle" class="btn btn-outline-light btn-sm">
+            <i class="bi bi-moon-stars-fill"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="py-4">
+  <div class="container">
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="chemistry_topics.html">เนื้อหาทั้งหมด</a></li>
+        <li class="breadcrumb-item active" aria-current="page">บทที่ 3: ปริมาณสารสัมพันธ์</li>
+      </ol>
+    </nav>
+    
+    <div class="stoich-header text-center">
+      <h1 class="display-5 mb-3">บทที่ 3: ปริมาณสารสัมพันธ์</h1>
+      <p class="lead mb-0">การศึกษาความสัมพันธ์เชิงปริมาณระหว่างสารในปฏิกิริยาเคมี</p>
+    </div>
+
+    <article>
+
+      <section class="mb-5">
+        <h2 class="section-title">โมลและมวลโมเลกุล</h2>
+        <p class="mb-4">โมล (Mole) เป็นหน่วยพื้นฐานในเคมีสำหรับวัดปริมาณของสาร โดย 1 โมลมีค่าเท่ากับ $6.022 \times 10^{23}$ อนุภาค (เลขอาโวกาโดร)</p>
+        
+        <div class="row">
+          <div class="col-md-4">
+            <div class="concept-card">
+              <div class="concept-header bg-primary">
+                <div class="text-center">
+                  <i class="bi bi-123 mole-icon"></i>
+                  <h4>โมล (Mole)</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p><strong>นิยาม:</strong> 1 โมลของสารใด ๆ มีจำนวนอนุภาคเท่ากับจำนวนอะตอมในคาร์บอน-12 จำนวน 12 กรัม</p>
+                <p><strong>เลขอาโวกาโดร ($N_A$):</strong> $6.022 \times 10^{23}$ อนุภาค/โมล</p>
+                
+                <div class="formula-box">
+                  <p>จำนวนโมล = $\frac{\text{จำนวนอนุภาค}}{N_A}$</p>
+                  <p>$n = \frac{N}{6.022 \times 10^{23}}$</p>
+                </div>
+                
+                <div class="example-card">
+                  <p><strong>ตัวอย่าง:</strong> จงหาจำนวนโมลของน้ำ $3.011 \times 10^{24}$ โมเลกุล</p>
+                  <p><strong>วิธีทำ:</strong></p>
+                  <p>$n = \frac{3.011 \times 10^{24}}{6.022 \times 10^{23}} = 5$ โมล</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="concept-card">
+              <div class="concept-header bg-success">
+                <div class="text-center">
+                  <i class="bi bi-speedometer2 mole-icon"></i>
+                  <h4>มวลโมเลกุล</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p><strong>นิยาม:</strong> ผลรวมของมวลอะตอมของธาตุทั้งหมดในโมเลกุล</p>
+                <p><strong>หน่วย:</strong> กรัมต่อโมล (g/mol) หรือ amu (atomic mass unit)</p>
+                
+                <div class="formula-box">
+                  <p>มวลโมเลกุล = $\sum (\text{มวลอะตอม} \times \text{จำนวนอะตอม})$</p>
+                </div>
+                
+                <div class="example-card">
+                  <p><strong>ตัวอย่าง:</strong> จงหามวลโมเลกุลของ H₂SO₄</p>
+                  <p><strong>วิธีทำ:</strong></p>
+                  <p>H: 1.008 × 2 = 2.016</p>
+                  <p>S: 32.06 × 1 = 32.06</p>
+                  <p>O: 16.00 × 4 = 64.00</p>
+                  <p>รวม = 2.016 + 32.06 + 64.00 = 98.076 g/mol</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="concept-card">
+              <div class="concept-header bg-info">
+                <div class="text-center">
+                  <i class="bi bi-arrow-repeat mole-icon"></i>
+                  <h4>การแปลงหน่วย</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p><strong>ความสัมพันธ์:</strong> จำนวนโมล ↔ มวล ↔ จำนวนอนุภาค</p>
+                
+                <div class="text-center my-4">
+                  <img src="https://www.chemistrysteps.com/wp-content/uploads/2019/08/mole-conversions.png" alt="Mole conversions" class="img-fluid rounded">
+                </div>
+                
+                <div class="formula-box">
+                  <p>จำนวนโมล = $\frac{\text{มวล (g)}}{\text{มวลโมเลกุล (g/mol)}}$</p>
+                  <p>มวล = จำนวนโมล × มวลโมเลกุล</p>
+                  <p>จำนวนอนุภาค = จำนวนโมล × $N_A$</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-5">
+        <h2 class="section-title">สูตรเคมีและร้อยละโดยมวล</h2>
+        
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="calculation-box">
+              <h4><i class="bi bi-pencil"></i> ประเภทของสูตรเคมี</h4>
+              <ul>
+                <li><strong>สูตรเอมพิริคัล (Empirical Formula):</strong> สูตรที่แสดงอัตราส่วนอย่างต่ำของจำนวนอะตอมของธาตุต่างๆ ในสารประกอบ</li>
+                <li><strong>สูตรโมเลกุล (Molecular Formula):</strong> สูตรที่แสดงจำนวนอะตอมจริงของธาตุต่างๆ ในโมเลกุลหนึ่งๆ</li>
+                <li><strong>สูตรโครงสร้าง (Structural Formula):</strong> สูตรที่แสดงการจัดเรียงตัวและพันธะระหว่างอะตอม</li>
+              </ul>
+              
+              <div class="example-card">
+                <p><strong>ตัวอย่าง:</strong> กลูโคสมีสูตรโมเลกุล C₆H₁₂O₆</p>
+                <p><strong>สูตรเอมพิริคัล:</strong> CH₂O (อัตราส่วน C:H:O = 1:2:1)</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 mb-4">
+            <div class="calculation-box">
+              <h4><i class="bi bi-percent"></i> ร้อยละโดยมวล</h4>
+              <p>ร้อยละโดยมวลคือเปอร์เซ็นต์ของมวลที่แต่ละธาตุมีอยู่ในสารประกอบ</p>
+              
+              <div class="formula-box">
+                <p>% ธาตุ = $\frac{\text{มวลของธาตุในสารประกอบ}}{\text{มวลของสารประกอบ}} \times 100$</p>
+              </div>
+              
+              <div class="example-card">
+                <p><strong>ตัวอย่าง:</strong> จงหาร้อยละโดยมวลของ C และ H ใน CH₄</p>
+                <p><strong>วิธีทำ:</strong></p>
+                <p>มวลโมเลกุล CH₄ = 12.01 + (1.008×4) = 16.042 g/mol</p>
+                <p>%C = $\frac{12.01}{16.042} \times 100 = 74.87\%$</p>
+                <p>%H = $\frac{4.032}{16.042} \times 100 = 25.13\%$</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="calculation-box">
+          <h4><i class="bi bi-calculator"></i> การคำนวณสูตรเอมพิริคัล</h4>
+          <p>ขั้นตอนการคำนวณสูตรเอมพิริคัลจากร้อยละโดยมวล:</p>
+          <ol>
+            <li>สมมติสารประกอบ 100 กรัม จะได้มวลของแต่ละธาตุ</li>
+            <li>คำนวณจำนวนโมลของแต่ละธาตุ</li>
+            <li>หารจำนวนโมลทั้งหมดด้วยจำนวนโมลที่น้อยที่สุด</li>
+            <li>ปรับตัวเลขให้เป็นจำนวนเต็ม</li>
+          </ol>
+          
+          <div class="example-card">
+            <p><strong>ตัวอย่าง:</strong> สารประกอบหนึ่งประกอบด้วย C 40.0%, H 6.7%, O 53.3% จงหาสูตรเอมพิริคัล</p>
+            <p><strong>วิธีทำ:</strong></p>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>ธาตุ</th>
+                  <th>มวล (g)</th>
+                  <th>จำนวนโมล</th>
+                  <th>หารด้วย 3.33</th>
+                  <th>อัตราส่วน</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>C</td>
+                  <td>40.0</td>
+                  <td>40.0/12.01 = 3.33</td>
+                  <td>3.33/3.33 = 1.00</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <td>H</td>
+                  <td>6.7</td>
+                  <td>6.7/1.008 = 6.65</td>
+                  <td>6.65/3.33 = 2.00</td>
+                  <td>2</td>
+                </tr>
+                <tr>
+                  <td>O</td>
+                  <td>53.3</td>
+                  <td>53.3/16.00 = 3.33</td>
+                  <td>3.33/3.33 = 1.00</td>
+                  <td>1</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="mt-2"><strong>สูตรเอมพิริคัล:</strong> CH₂O</p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-5">
+        <h2 class="section-title">สมการเคมีและการคำนวณ</h2>
+        
+        <div class="calculation-box">
+          <h4><i class="bi bi-arrow-left-right"></i> การดุลสมการเคมี</h4>
+          <p>สมการเคมีที่ดุลแล้วต้องมีจำนวนอะตอมของแต่ละธาตุเท่ากันทั้งสองด้าน</p>
+          
+          <div class="equation-flow">
+            <div class="equation-step bg-primary text-white">
+              <p>สารตั้งต้น</p>
+              <h4>CH₄ + O₂</h4>
+            </div>
+            <div class="equation-arrow">
+              <i class="bi bi-arrow-right" style="font-size: 2rem;"></i>
+            </div>
+            <div class="equation-step bg-success text-white">
+              <p>ผลิตภัณฑ์</p>
+              <h4>CO₂ + H₂O</h4>
+            </div>
+          </div>
+          
+          <div class="example-card">
+            <p><strong>ตัวอย่างการดุลสมการ:</strong> CH₄ + O₂ → CO₂ + H₂O</p>
+            <p><strong>ขั้นตอน:</strong></p>
+            <ol>
+              <li>ดุล C: CH₄ → CO₂ (C ดุลแล้ว)</li>
+              <li>ดุล H: CH₄ → 2H₂O (H: 4 vs 4)</li>
+              <li>ดุล O: 2O₂ → CO₂ + 2H₂O (O: 4 vs 4)</li>
+            </ol>
+            <p><strong>สมการดุลแล้ว:</strong> CH₄ + 2O₂ → CO₂ + 2H₂O</p>
+          </div>
+        </div>
+        
+        <div class="calculation-box">
+          <h4><i class="bi bi-calculator"></i> การคำนวณปริมาณสารในปฏิกิริยา</h4>
+          <p>สโตอิชิโอเมทรีใช้ในการคำนวณปริมาณสารตั้งต้นและผลิตภัณฑ์ในปฏิกิริยาเคมี</p>
+          
+          <div class="equation-flow">
+            <div class="equation-step">
+              <p>มวลสารตั้งต้น</p>
+              <i class="bi bi-arrow-down"></i>
+            </div>
+            <div class="equation-step">
+              <p>โมลสารตั้งต้น</p>
+              <i class="bi bi-arrow-down"></i>
+            </div>
+            <div class="equation-step">
+              <p>โมลผลิตภัณฑ์</p>
+              <i class="bi bi-arrow-down"></i>
+            </div>
+            <div class="equation-step">
+              <p>มวลผลิตภัณฑ์</p>
+            </div>
+          </div>
+          
+          <div class="example-card">
+            <p><strong>ตัวอย่าง:</strong> ในการเผาไหม้ CH₄ 16 กรัม จะได้น้ำกี่กรัม?</p>
+            <p><strong>สมการดุล:</strong> CH₄ + 2O₂ → CO₂ + 2H₂O</p>
+            <p><strong>วิธีทำ:</strong></p>
+            <ol>
+              <li>โมล CH₄ = $\frac{16}{16} = 1$ โมล</li>
+              <li>อัตราส่วนโมล CH₄ : H₂O = 1 : 2</li>
+              <li>โมล H₂O = 2 × 1 = 2 โมล</li>
+              <li>มวล H₂O = 2 × 18 = 36 กรัม</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-5">
+        <h2 class="section-title">ความเข้มข้นของสารละลาย</h2>
+        
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="calculation-box">
+              <h4><i class="bi bi-droplet"></i> ร้อยละโดยมวล/ปริมาตร</h4>
+              <p>ความเข้มข้นในหน่วยร้อยละ</p>
+              
+              <div class="formula-box">
+                <p>% โดยมวล = $\frac{\text{มวลตัวถูกละลาย}}{\text{มวลสารละลาย}} \times 100$</p>
+                <p>% โดยปริมาตร = $\frac{\text{ปริมาตรตัวถูกละลาย}}{\text{ปริมาตรสารละลาย}} \times 100$</p>
+              </div>
+              
+              <div class="concentration-visual">
+                <div class="flask">
+                  <div class="solution"></div>
+                </div>
+                <div class="concentration-label">10% w/v</div>
+              </div>
+              
+              <div class="example-card">
+                <p><strong>ตัวอย่าง:</strong> สารละลาย NaCl 10% โดยมวล หมายถึง NaCl 10 กรัม ในสารละลาย 100 กรัม</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 mb-4">
+            <div class="calculation-box">
+              <h4><i class="bi bi-vial"></i> โมลาริตี (Molarity)</h4>
+              <p>ความเข้มข้นในหน่วยโมลต่อลิตร</p>
+              
+              <div class="formula-box">
+                <p>โมลาริตี (M) = $\frac{\text{จำนวนโมลตัวถูกละลาย}}{\text{ปริมาตรสารละลาย (ลิตร)}}$</p>
+              </div>
+              
+              <div class="concentration-visual">
+                <div class="flask">
+                  <div class="solution" style="height: 70%;"></div>
+                </div>
+                <div class="concentration-label">2.0 M</div>
+              </div>
+              
+              <div class="example-card">
+                <p><strong>ตัวอย่าง:</strong> สารละลาย NaOH 0.5 M ปริมาตร 2 ลิตร มี NaOH กี่กรัม?</p>
+                <p><strong>วิธีทำ:</strong></p>
+                <ol>
+                  <li>โมล NaOH = 0.5 mol/L × 2 L = 1 mol</li>
+                  <li>มวล NaOH = 1 mol × 40 g/mol = 40 กรัม</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="calculation-box">
+          <h4><i class="bi bi-arrow-repeat"></i> การเตรียมสารละลายและการเจือจาง</h4>
+          <p>สูตรการเจือจางสารละลาย: $C_1V_1 = C_2V_2$</p>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <div class="example-card">
+                <p><strong>การเตรียมสารละลาย:</strong></p>
+                <p>ต้องการเตรียมสารละลาย NaCl 0.1 M ปริมาตร 500 mL</p>
+                <p>มวล NaCl = M × V × MW = 0.1 × 0.5 × 58.44 = 2.922 กรัม</p>
+                <p>นำไปละลายน้ำแล้วปรับปริมาตรให้ครบ 500 mL</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="example-card">
+                <p><strong>การเจือจาง:</strong></p>
+                <p>ต้องการเตรียม HCl 0.1 M 100 mL จาก HCl 1 M</p>
+                <p>$C_1V_1 = C_2V_2$</p>
+                <p>$1 \times V_1 = 0.1 \times 100$</p>
+                <p>$V_1 = 10$ mL</p>
+                <p>นำ HCl 1 M จำนวน 10 mL เติมน้ำให้ได้ 100 mL</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </div>
+</main>
+
+<footer class="bg-dark text-white text-center py-3">
+  <div class="container">
+    <p class="mb-0">&copy; 2025 เคมี Hub. สร้างสรรค์เพื่อการศึกษา</p>
+    <p class="small mb-0">บทที่ 3: ปริมาณสารสัมพันธ์ - โมล, มวลโมเลกุล, สูตรเคมี, สมการเคมี, ร้อยละโดยมวล, ความเข้มข้น</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Dark mode toggle
+  document.getElementById('darkModeToggle').addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    
+    const icon = this.querySelector('i');
+    if (document.body.classList.contains('dark-mode')) {
+      icon.classList.remove('bi-moon-stars-fill');
+      icon.classList.add('bi-sun-fill');
+    } else {
+      icon.classList.remove('bi-sun-fill');
+      icon.classList.add('bi-moon-stars-fill');
+    }
+  });
+</script>
+
+</body>
+</html>
