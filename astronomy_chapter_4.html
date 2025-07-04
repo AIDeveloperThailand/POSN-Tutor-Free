@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>บทที่ 4 (ละเอียด): คุณสมบัติของดาวฤกษ์ - สอวน. Hub</title>  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\', '\']],
+        displayMath: [['$$', '$$'], ['\', '\']]
+      }
+    };
+  </script>  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head>
+<body><nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <i class="bi bi-stars"></i> สอวน. ดาราศาสตร์ Hub
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">หน้าแรก</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="astronomy_topics.html">เนื้อหาดาราศาสตร์</a>
+        </li>
+        <li class="nav-item ms-lg-2">
+          <button id="darkModeToggle" class="btn btn-outline-light btn-sm">
+            <i class="bi bi-moon-stars-fill"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav><main class="py-5">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="astronomy_topics.html">เนื้อหาทั้งหมด</a></li>
+        <li class="breadcrumb-item active" aria-current="page">บทที่ 4 (ละเอียด): คุณสมบัติของดาวฤกษ์</li>
+      </ol>
+    </nav><h1 class="display-6 mb-4">บทที่ 4 (ละเอียด): คุณสมบัติทางกายภาพที่ใช้อธิบายและจำแนกประเภทของดาวฤกษ์</h1>
+
+<article>
+
+  <!-- Section 4.1 Magnitude -->
+  <section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-3">4.1 โชติมาตร (Magnitude)</h2>
+    <!-- history -->
+    <p>
+      โชติมาตรถูกนำมาใช้ครั้งแรกโดยไทโค บราเฮในศตวรรษที่ 16 เพื่อจัดลำดับความสว่างของดาวที่เห็นด้วยตาเปล่าเป็น 6 ระดับ โดยดาวที่สว่างที่สุดได้ระดับ 1 และดาวที่สว่างที่สุดที่มองเห็นได้ชัดเจนต่ำสุดได้ระดับ 6. ปัจจุบันระบบนี้พัฒนาเป็นสเกลลอการิทึมที่แม่นยำยิ่งขึ้น ใช้ในงานดาราศาสตร์สมัยใหม่เพื่อเปรียบเทียบความสว่างโดยตรงจากการวัดค่าพื้นฐาน.  
+    </p>
+    <!-- apparent magnitude detailed -->
+    <p>
+      <strong>โชติมาตรปรากฏ (Apparent Magnitude, $m$):</strong> ค่านี้แสดงถึงความสว่างที่มองเห็นจากโลกหรือจุดสังเกต โดยสัมพันธ์กับฟลักซ์ที่ตรวจวัดได้ผ่านกล้องโทรทรรศน์ ระบบสเกลลบ: ดาวที่มีค่ามากจะดูมืดกว่า และค่าที่เป็นลบหมายถึงดาวหรือวัตถุที่สว่างมาก เช่น ดวงจันทร์เต็มดวงประมาณ $m = -12.7$. สเกลนี้นิยามโดยสมการ:
+    </p>
+    <div class="text-center bg-light p-3 rounded">
+      <h3>$$ m = -2.5 \log_{10} \left( \frac{F}{F_0} \right) $$</h3>
+    </div>
+    <p>
+      โดยที่ $F$ คือฟลักซ์ที่วัดได้ และ $F_0$ คือฟลักซ์มาตรฐานที่กำหนดเป็นศูนย์เพื่อสร้างมาตรฐานสากล. 
+    </p>
+    <!-- absolute magnitude detailed -->
+    <p>
+      <strong>โชติมาตรสัมบูรณ์ (Absolute Magnitude, $M$):</strong> เป็นค่าที่เปรียบเทียบความสว่างแท้จริงของดาว หากตั้งอยู่ที่ระยะ 10 พาร์เซก (ประมาณ 32.6 ปีแสง) จากเรา ซึ่งเป็นวิธีที่ช่วยให้เปรียบเทียบตัวดาวได้โดยไม่ขึ้นกับระยะห่างจริง. ดวงอาทิตย์มีค่าความสว่างสัมบูรณ์ประมาณ $M = +4.83$.  
+    </p>
+    <p>
+      ผลต่างระหว่าง $m$ และ $M$ ยังนำไปสู่การคำนวณระยะทางผ่านสมการ distance modulus (ดูหัวข้อ 4.2) ซึ่งสำคัญมากในการศึกษาวัตถุที่อยู่ไกลออกไปในกาแลกซีหรือวงแหวนดาว.  
+    </p>
+  </section>
+
+  <!-- Section 4.2 Distance Modulus -->
+  <section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-3">4.2 สมการระยะทาง (Distance Modulus)</h2>
+    <p>
+      สมการ distance modulus เป็นสะพานเชื่อมระหว่างความสว่างที่สังเกตได้และความสว่างแท้จริงของดาว เพื่อหาค่าระยะทาง $d$ (พาร์เซก). นิยาม:
+    </p>
+    <div class="text-center bg-light p-3 rounded">
+      <h3>$$ m - M = 5 \log_{10}(d) - 5 $$</h3>
+    </div>
+    <p>
+      โดยที่:
+    </p>
+    <ul>
+      <li>$m$ = โชติมาตรปรากฏ</li>
+      <li>$M$ = โชติมาตรสัมบูรณ์</li>
+      <li>$d$ = ระยะทางเป็นพาร์เซก (pc)</li>
+    </ul>
+    <p>
+      ตัวอย่าง: สมมติดาวดวงหนึ่งมี $m = 8.0$ และ $M = 3.0$ แทนค่าสมการจะได้:
+    </p>
+    <div class="text-center bg-light p-3 rounded">
+      <h3>$$ 8.0 - 3.0 = 5 \log_{10}(d) - 5 \quad\Rightarrow\quad 5 = 5\log_{10}(d) - 5 $$</h3>
+      <h3>$$ 10 = 5\log_{10}(d) \quad\Rightarrow\quad \log_{10}(d) = 2 \quad\Rightarrow\quad d = 100 \text{ pc} $$</h3>
+    </div>
+    <p>
+      วิธีนี้ใช้กันทั่วไปในดาราศาสตร์ภาคสนามและงานวิจัยเพื่อศึกษาระยะทางของดาวแต่ละกลุ่มและกาแลกซีระยะไกล.  
+    </p>
+  </section>
+
+  <!-- Section 4.3 Luminosity & Flux -->
+  <section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-3">4.3 กำลังส่องสว่างและฟลักซ์ (Luminosity & Flux)</h2>
+    <p>
+      ในดาราศาสตร์ เราจำแนกสองแนวคิดหลักเกี่ยวกับพลังงานที่ดาวปล่อยออกมา:  
+    </p>
+    <p>
+      <strong>ฟลักซ์ (Flux, $F$):</strong> ปริมาณพลังงานที่ตกกระทบต่อพื้นที่หนึ่งต่อหน่วยเวลา ณ จุดสังเกตบนโลก หรือบนกล้องโทรทรรศน์หน่วยเป็น $W/m^2$. มันลดลงตามระยะทางสี่เหลี่ยมกำลังสองเนื่องจากการกระจายพลังงานเป็นทรงกลม.   
+    </p>
+    <p>
+      <strong>กำลังส่องสว่าง (Luminosity, $L$):</strong> ปริมาณพลังงานทั้งหมดที่ดาวปล่อยออกมาต่อหน่วยเวลา เป็นคุณสมบัติแท้จริงของดาว ไม่ขึ้นกับระยะทาง วัดเป็น Watt (W).  
+    </p>
+    <p>
+      ความสัมพันธ์ระหว่าง $L$ และ $F$ กำหนดโดยสมการ:
+    </p>
+    <div class="text-center bg-light p-3 rounded">
+      <h3>$$ F = \frac{L}{4\pi d^2} $$</h3>
+    </div>
+    <p>
+      โดยที่ $d$ คือระยะทางจากดาวถึงจุดสังเกต สามารถสลับใช้กับค่าระยะทางจาก distance modulus เพื่อวัด $L$ ของดาวได้ถ้าจำเป็น.  
+    </p>
+    <p>
+      ตัวอย่าง: หากดาวมี Luminosity $L = 3.8 \times 10^{26} W$ (เท่าดวงอาทิตย์) และอยู่ห่าง $d = 1$ AU (1.496e11 m) จะได้ฟลักซ์ประมาณ $F = 1361 W/m^2$ ซึ่งเป็นค่าความเข้มแสงที่โลกได้รับจากดวงอาทิตย์.  
+    </p>
+  </section>
+
+  <!-- Section 4.4 Stefan-Boltzmann Law -->
+  <section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-3">4.4 กฎของสเตฟาน-โบลทซ์มันน์ (Stefan-Boltzmann Law)</h2>
+    <p>
+      กฎ Stefan-Boltzmann อธิบายว่าการแผ่รังสีพลังงานจากวัตถุดำสมบูรณ์ (blackbody) โดยความหนาแน่นพลังงานขึ้นอยู่กับอุณหภูมิ ยิ่งอุณหภูมิสูงยิ่งแผ่รังสีได้มาก. สำหรับดาวซึ่งใกล้เคียงกับ blackbody ให้ใช้สมการ:
+    </p>
+    <div class="text-center bg-light p-3 rounded">
+      <h3>$$ L = 4\pi R^2 \sigma T^4 $$</h3>
+    </div>
+    <ul>
+      <li>$R$ = รัศมีดาว (m)</li>
+      <li>$T$ = อุณหภูมิผิวดาว (K)</li>
+      <li>$\sigma$ = ค่าคงที่ Stefan-Boltzmann $= 5.670374419 \times 10^{-8} W m^{-2} K^{-4}$</li>
+    </ul>
+    <p>
+      สมการนี้แสดงให้เห็นว่า Luminosity เติบโตตามกำลังสองของรัศมีและกำลังสี่ของอุณหภูมิ ถ้าดาวร้อนขึ้นเล็กน้อยก็จะส่องสว่างเพิ่มขึ้นมาก.  
+    </p>
+    <p>
+      ตัวอย่าง: ดาวขนาดเท่าดวงอาทิตย์ ($R = 6.96 \times 10^8 m, T = 5778 K$) จะมี Luminosity ประมาณ $3.828 \times 10^{26} W$.  
+    </p>
+  </section>
+
+  <!-- Section 4.5 Spectral Types -->
+  <section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-3">4.5 ประเภทสเปกตรัม (Spectral Types)</h2>
+    <p>
+      ดาวถูกจำแนกตามสเปกตรัมของแสงที่ปล่อยออกมาเชื่อมโยงกับอุณหภูมิผิวและองค์ประกอบทางเคมี วิธีที่ใช้กันทั่วไปเรียกว่าระบบ Morgan–Keenan (MK) แบ่งเป็นหลัก 7 ประเภทใหญ่: O, B, A, F, G, K, M และมีการขยายด้วยตัวเลขย่อย 0–9 เช่น G2 สำหรับดวงอาทิตย์.  
+    </p>
+    <p>
+      ตารางสรุปคุณสมบัติหลักของแต่ละประเภท:
+    </p>
+    <ul>
+      <li><strong>O:</strong> $T > 30{,}000 K$; สีฟ้าขาว; เส้นอีออนไฮโดรเจนและเฮลียมเด่น</li>
+      <li><strong>B:</strong> $10{,}000 < T < 30{,}000 K$; สีน้ำเงิน; ไอออนเบาลง, เส้น HE II ชัด</li>
+      <li><strong>A:</strong> $7{,}500 < T < 10{,}000 K$; สีขาว; เส้นแรงดันไฮโดรเจน (Balmer) เด่นมาก</li>
+      <li><strong>F:</strong> $6{,}000 < T < 7{,}500 K$; ขาวอมเหลือง; เส้นไอออนแคลเซียม II เริ่มชัด</li>
+      <li><strong>G:</strong> $5{,}200 < T < 6{,}000 K$; สีเหลือง; เส้นไอออนโลหะและโมเลกุลดินเด่น, ดวงอาทิตย์คือ G2</li>
+      <li><strong>K:</strong> $3{,}700 < T < 5{,}200 K$; สีส้ม; เส้นโมเลกุล CH, CN ชัด</li>
+      <li><strong>M:</strong> $T < 3{,}700 K$; สีแดง; แถบโมเลกุลดิน TiO เด่นมาก</li>
+    </ul>
+    <p>
+      การศึกษาสเปกตรัมยังช่วยในการวัดความเร็วรอบตัวดาวและองค์ประกอบทางเคมีโดยใช้ Doppler shift และความเข้มของเส้นดูดกลืน.  
+    </p>
+  </section>
+
+  <!-- Section 4.6 H-R Diagram -->
+  <section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-3">4.6 แผนภาพเฮิรตซ์สปรุง-รัสเซล (Hertzsprung–Russell Diagram)</h2>
+    <p>
+      แผนภาพ H-R เป็นเครื่องมือสำคัญที่แสดงความสัมพันธ์ระหว่าง Luminosity หรือ Absolute Magnitude กับอุณหภูมิผิวหรือประเภทสเปกตรัมของดาว ทำให้เห็นวิวัฒนาการและสภาวะของดาวในแต่ละช่วง.  
+    </p>
+    <p>
+      แกน x แสดง Temperature (ลดจากซ้ายไปขวา) หรือ Spectral Type (O→M) และแกน y แสดง Luminosity (เพิ่มขึ้นจากล่างขึ้นบน) หรือ Absolute Magnitude (ลดลงจากล่างขึ้นบน).  
+    </p>
+    <p>
+      บริเวณหลักบน H-R Diagram ประกอบด้วย:
+    </p>
+    <ul>
+      <li><strong>Main Sequence:</strong> ลาดยาวจากมุมซ้ายบน (ร้อน-สว่าง) ถึงมุมขวาล่าง (เย็น-มืด) ดาวส่วนใหญ่ (ประมาณ 90%) อยู่ในช่วงนี้ รวมถึงดวงอาทิตย์</li>
+      <li><strong>Giants / Supergiants:</strong> อยู่เหนือ main sequence ด้านขวา ได้แก่ดาวแดงยักษ์ (Red Giants) และดาวยักษ์แดง (Red Supergiants) ที่มีรัศมีใหญ่ แต่พื้นผิวเย็น</li>
+      <li><strong>White Dwarfs:</strong> อยู่ด้านล่างซ้าย เป็นซากดาวแกนกลางอุณหภูมิสูง แต่ส่องสว่างน้อยเนื่องจากรัศมีเล็ก</li>
+    </ul>
+    <p>
+      จากตำแหน่งบน H-R Diagram สามารถอนุมานขั้นวิวัฒนาการ การสูบบุหรี่เชื้อเพลิงไฮโดรเจน การเผาไหม้เฮลียม และสถานะสุดท้ายของดาว เช่น การระเบิดซูเปอร์โนวา หรือการกลายเป็นดาวแคระขาว.  
+    </p>
+    <p>
+      นักดาราศาสตร์ยังใช้ isochrones ซึ่งเป็นเส้นที่แสดงจุดวิวัฒนาการของกลุ่มดาวที่มีอายุเท่ากัน ช่วยประเมินอายุของกระจุกดาวเปิดหรือกระจุกดาวทรงกลม.  
+    </p>
+  </section>
+
+</article>
+
+  </div>
+</main><footer class="bg-dark text-white text-center py-3">
+  <div class="container">
+    <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+  </div>
+</footer><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="js/script.js"></script></body>
+           </html>
