@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>บทที่ 2: พันธะเคมี - เคมี Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --primary: #4e54c8;
+      --secondary: #8f94fb;
+      --accent: #ff6b6b;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --dark-bg: #121212;
+      --dark-card: #1e1e1e;
+    }
+    
+    body {
+      font-family: 'Kanit', sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    .dark-mode {
+      background-color: var(--dark-bg);
+      color: #e0e0e0;
+    }
+    .dark-mode .card {
+      background-color: var(--dark-card);
+      border-color: #333;
+    }
+    .navbar {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .chem-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .bond-card {
+      transition: transform 0.3s ease;
+      height: 100%;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .bond-card:hover {
+      transform: translateY(-7px);
+    }
+    .bond-card-header {
+      padding: 15px 20px;
+      color: white;
+      font-weight: 500;
+    }
+    .bond-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+    .section-title {
+      position: relative;
+      padding-left: 15px;
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 12px;
+      margin: 25px 0 20px;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+    .dark-mode .section-title {
+      border-color: var(--secondary);
+    }
+    .molecule-diagram {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 25px 0;
+      gap: 20px;
+    }
+    .molecule {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 300px;
+      width: 100%;
+    }
+    .molecule-img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+    .energy-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    .energy-table th {
+      background-color: var(--primary);
+      color: white;
+      padding: 12px;
+      text-align: left;
+    }
+    .energy-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #dee2e6;
+    }
+    .dark-mode .energy-table td {
+      border-color: #444;
+    }
+    .vsepr-card {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+      height: 100%;
+    }
+    .vsepr-card:hover {
+      transform: scale(1.03);
+    }
+    .vsepr-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 1px solid #dee2e6;
+    }
+    .dark-mode .vsepr-img {
+      border-color: #444;
+    }
+    .imf-diagram {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .imf-item {
+      flex: 1;
+      min-width: 250px;
+      max-width: 350px;
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .dark-mode .imf-item {
+      background-color: var(--dark-card);
+    }
+    .bond-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 150px;
+      margin: 20px 0;
+      position: relative;
+    }
+    .atom {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      position: relative;
+      z-index: 2;
+    }
+    .bond-line {
+      height: 8px;
+      background: #4e54c8;
+      position: absolute;
+      z-index: 1;
+    }
+    .dark-mode .bond-line {
+      background: #8f94fb;
+    }
+    
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .chem-header {
+        padding: 15px;
+      }
+      .molecule {
+        max-width: 100%;
+      }
+      .vsepr-card {
+        margin-bottom: 20px;
+      }
+      .bond-visual {
+        height: 120px;
+      }
+      .atom {
+        width: 50px;
+        height: 50px;
+        font-size: 0.9rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .section-title {
+        font-size: 1.3rem;
+        margin: 20px 0 15px;
+      }
+      .bond-card-header {
+        padding: 12px 15px;
+      }
+      .imf-item {
+        min-width: 100%;
+      }
+      .molecule-img {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <i class="bi bi-flask"></i> เคมี Hub
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">หน้าแรก</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="chemistry_topics.html">เนื้อหาเคมี</a>
+        </li>
+        <li class="nav-item ms-lg-2">
+          <button id="darkModeToggle" class="btn btn-outline-light btn-sm">
+            <i class="bi bi-moon-stars-fill"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="py-4">
+  <div class="container">
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="chemistry_topics.html">เนื้อหาทั้งหมด</a></li>
+        <li class="breadcrumb-item active" aria-current="page">บทที่ 2: พันธะเคมี</li>
+      </ol>
+    </nav>
+    
+    <div class="chem-header text-center">
+      <h1 class="display-5 mb-3">บทที่ 2: พันธะเคมี</h1>
+      <p class="lead mb-0">การศึกษาแรงยึดเหนี่ยวที่ทำให้อะตอมรวมตัวกันเป็นโมเลกุลและสารประกอบ</p>
+    </div>
+
+    <article>
+
+      <section class="mb-5">
+        <h2 class="section-title">พันธะเคมีพื้นฐาน</h2>
+        <p class="mb-4">พันธะเคมีคือแรงยึดเหนี่ยวที่ทำให้อะตอมหรือไอออนอยู่รวมกันเป็นโมเลกุลหรือผลึก พันธะเคมีหลักมีสามประเภท:</p>
+        
+        <div class="row">
+          <div class="col-md-4">
+            <div class="bond-card">
+              <div class="bond-card-header bg-primary">
+                <div class="bond-icon text-center">
+                  <i class="bi bi-lightning-charge"></i>
+                </div>
+                <h4 class="text-center">พันธะไอออนิก</h4>
+              </div>
+              <div class="card-body">
+                <p><strong>การเกิด:</strong> ระหว่างโลหะกับอโลหะ โดยโลหะให้อิเล็กตรอน อโลหะรับอิเล็กตรอน</p>
+                <p><strong>ตัวอย่าง:</strong> NaCl, CaO, MgCl₂</p>
+                <p><strong>สมบัติ:</strong></p>
+                <ul>
+                  <li>จุดหลอมเหลวและจุดเดือดสูง</li>
+                  <li>นำไฟฟ้าได้เมื่อหลอมเหลวหรือละลายน้ำ</li>
+                  <li>มักเป็นของแข็งผลึกที่อุณหภูมิห้อง</li>
+                </ul>
+                
+                <div class="bond-visual">
+                  <div class="atom bg-danger text-white">Na⁺</div>
+                  <div class="bond-line" style="width: 80px;"></div>
+                  <div class="atom bg-primary text-white">Cl⁻</div>
+                </div>
+                
+                <p><strong>ปฏิกิริยา:</strong> $2Na + Cl_2 \rightarrow 2Na^+Cl^-$</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="bond-card">
+              <div class="bond-card-header bg-success">
+                <div class="bond-icon text-center">
+                  <i class="bi bi-share"></i>
+                </div>
+                <h4 class="text-center">พันธะโคเวเลนต์</h4>
+              </div>
+              <div class="card-body">
+                <p><strong>การเกิด:</strong> ระหว่างอโลหะกับอโลหะ โดยใช้อิเล็กตรอนร่วมกัน</p>
+                <p><strong>ตัวอย่าง:</strong> H₂O, CO₂, CH₄</p>
+                <p><strong>สมบัติ:</strong></p>
+                <ul>
+                  <li>จุดหลอมเหลวและจุดเดือดต่ำ</li>
+                  <li>ไม่นำไฟฟ้า (ส่วนใหญ่)</li>
+                  <li>พบได้ทั้งสถานะแก๊ส ของเหลว และของแข็ง</li>
+                </ul>
+                
+                <div class="bond-visual">
+                  <div class="atom bg-info text-white">O</div>
+                  <div class="bond-line" style="width: 40px;"></div>
+                  <div class="atom" style="background-color: #a1c4fd;">H</div>
+                  <div class="bond-line" style="width: 40px; transform: rotate(110deg);"></div>
+                  <div class="atom" style="background-color: #a1c4fd; margin-top: 40px;">H</div>
+                </div>
+                
+                <p><strong>ประเภท:</strong> พันธะเดี่ยว (C-C), พันธะคู่ (C=C), พันธะสาม (N≡N)</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="bond-card">
+              <div class="bond-card-header bg-warning">
+                <div class="bond-icon text-center">
+                  <i class="bi bi-grid-3x3"></i>
+                </div>
+                <h4 class="text-center">พันธะโลหะ</h4>
+              </div>
+              <div class="card-body">
+                <p><strong>การเกิด:</strong> ระหว่างอะตอมของโลหะ อิเล็กตรอนเคลื่อนที่อย่างอิสระ</p>
+                <p><strong>ตัวอย่าง:</strong> Fe, Cu, Ag, Au</p>
+                <p><strong>สมบัติ:</strong></p>
+                <ul>
+                  <li>นำไฟฟ้าและความร้อนได้ดี</li>
+                  <li>มีความมันวาว</li>
+                  <li>ดึงเป็นเส้นและตีเป็นแผ่นได้</li>
+                  <li>จุดหลอมเหลวสูง</li>
+                </ul>
+                
+                <div class="text-center my-3">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Metallic_bonding.svg/800px-Metallic_bonding.svg.png" alt="Metallic bonding" class="img-fluid rounded" style="max-height: 120px;">
+                </div>
+                
+                <p><strong>แบบจำลอง:</strong> ทะเลอิเล็กตรอน (Electron sea model)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-5">
+        <h2 class="section-title">พลังงานพันธะ</h2>
+        <p>พลังงานพันธะคือพลังงานที่ใช้ในการทำลายพันธะเคมีระหว่างอะตอมสองอะตอมในสถานะแก๊ส</p>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <div class="card-header bg-info text-white">
+                <i class="bi bi-lightning"></i> นิยามและความสำคัญ
+              </div>
+              <div class="card-body">
+                <p>พลังงานพันธะแสดงถึงความแข็งแรงของพันธะเคมี:</p>
+                <p class="text-center">$ \text{พลังงานพันธะ} = \Delta H \text{ สำหรับปฏิกิริยา} \quad X-Y_{(g)} \rightarrow X_{(g)} + Y_{(g)} $</p>
+                <p><strong>ความสำคัญ:</strong></p>
+                <ul>
+                  <li>ทำนายความเสถียรของโมเลกุล</li>
+                  <li>คำนวณพลังงานปฏิกิริยา</li>
+                  <li>อธิบายความสามารถในการเกิดปฏิกิริยา</li>
+                </ul>
+                <p><strong>พลังงานพันธะเฉลี่ยในสารประกอบ:</strong></p>
+                <p class="text-center">$ \Delta H_{\text{reaction}} = \sum (\text{พลังงานพันธะที่ขาด}) - \sum (\text{พลังงานพันธะที่เกิด}) $</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-info text-white">
+                <i class="bi bi-table"></i> พลังงานพันธะของพันธะทั่วไป (kJ/mol)
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="energy-table table">
+                    <thead>
+                      <tr>
+                        <th>พันธะ</th>
+                        <th>พลังงาน</th>
+                        <th>พันธะ</th>
+                        <th>พลังงาน</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>H-H</td>
+                        <td>436</td>
+                        <td>C-C</td>
+                        <td>347</td>
+                      </tr>
+                      <tr>
+                        <td>C=C</td>
+                        <td>614</td>
+                        <td>C≡C</td>
+                        <td>839</td>
+                      </tr>
+                      <tr>
+                        <td>C-H</td>
+                        <td>413</td>
+                        <td>O-H</td>
+                        <td>463</td>
+                      </tr>
+                      <tr>
+                        <td>N-H</td>
+                        <td>391</td>
+                        <td>C-O</td>
+                        <td>358</td>
+                      </tr>
+                      <tr>
+                        <td>C=O</td>
+                        <td>799</td>
+                        <td>O=O</td>
+                        <td>495</td>
+                      </tr>
+                      <tr>
+                        <td>N≡N</td>
+                        <td>941</td>
+                        <td>C-Cl</td>
+                        <td>339</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="alert alert-primary">
+          <h5><i class="bi bi-lightbulb"></i> ข้อสังเกตเกี่ยวกับพลังงานพันธะ</h5>
+          <ul>
+            <li>พันธะสาม > พันธะคู่ > พันธะเดี่ยว (ในอะตอมคู่เดียวกัน)</li>
+            <li>พันธะที่สั้นกว่ามักแข็งแรงกว่า</li>
+            <li>พลังงานพันธะลดลงเมื่อจำนวนพันธะระหว่างอะตอมคู่เดียวกันเพิ่มขึ้น</li>
+          </ul>
+        </div>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-5">
+        <h2 class="section-title">ทฤษฎี VSEPR (รูปร่างโมเลกุล)</h2>
+        <p>ทฤษฎี VSEPR (Valence Shell Electron Pair Repulsion) ใช้อธิบายรูปร่างสามมิติของโมเลกุลโดยพิจารณาจากการผลักกันของคู่อิเล็กตรอนรอบอะตอมกลาง</p>
+        
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <div class="vsepr-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/VSEPR_linear.svg/800px-VSEPR_linear.svg.png" alt="Linear" class="vsepr-img">
+              <div class="card-body">
+                <h5>เชิงเส้น (Linear)</h5>
+                <p><strong>คู่อิเล็กตรอน:</strong> 2 คู่</p>
+                <p><strong>มุมพันธะ:</strong> 180°</p>
+                <p><strong>ตัวอย่าง:</strong> CO₂, BeCl₂</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-4">
+            <div class="vsepr-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/VSEPR_trigonal_planar.svg/800px-VSEPR_trigonal_planar.svg.png" alt="Trigonal Planar" class="vsepr-img">
+              <div class="card-body">
+                <h5>สามเหลี่ยมแบน (Trigonal Planar)</h5>
+                <p><strong>คู่อิเล็กตรอน:</strong> 3 คู่</p>
+                <p><strong>มุมพันธะ:</strong> 120°</p>
+                <p><strong>ตัวอย่าง:</strong> BF₃, SO₃</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-4">
+            <div class="vsepr-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/VSEPR_tetrahedral.svg/800px-VSEPR_tetrahedral.svg.png" alt="Tetrahedral" class="vsepr-img">
+              <div class="card-body">
+                <h5>ทรงสี่หน้า (Tetrahedral)</h5>
+                <p><strong>คู่อิเล็กตรอน:</strong> 4 คู่</p>
+                <p><strong>มุมพันธะ:</strong> 109.5°</p>
+                <p><strong>ตัวอย่าง:</strong> CH₄, CCl₄</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-4">
+            <div class="vsepr-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/VSEPR_trigonal_bipyramidal.svg/800px-VSEPR_trigonal_bipyramidal.svg.png" alt="Trigonal Bipyramidal" class="vsepr-img">
+              <div class="card-body">
+                <h5>พีระมิดคู่ฐานสามเหลี่ยม (Trigonal Bipyramidal)</h5>
+                <p><strong>คู่อิเล็กตรอน:</strong> 5 คู่</p>
+                <p><strong>มุมพันธะ:</strong> 90°, 120°</p>
+                <p><strong>ตัวอย่าง:</strong> PCl₅</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-4">
+            <div class="vsepr-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/VSEPR_octahedral.svg/800px-VSEPR_octahedral.svg.png" alt="Octahedral" class="vsepr-img">
+              <div class="card-body">
+                <h5>ทรงแปดหน้า (Octahedral)</h5>
+                <p><strong>คู่อิเล็กตรอน:</strong> 6 คู่</p>
+                <p><strong>มุมพันธะ:</strong> 90°</p>
+                <p><strong>ตัวอย่าง:</strong> SF₆</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-4">
+            <div class="vsepr-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/VSEPR_bent.svg/800px-VSEPR_bent.svg.png" alt="Bent" class="vsepr-img">
+              <div class="card-body">
+                <h5>รูปมุม (Bent)</h5>
+                <p><strong>คู่อิเล็กตรอน:</strong> 4 คู่ (2 คู่พันธะ, 2 คู่โดดเดี่ยว)</p>
+                <p><strong>มุมพันธะ:</strong> ~104.5°</p>
+                <p><strong>ตัวอย่าง:</strong> H₂O, SO₂</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="alert alert-info">
+          <h5><i class="bi bi-info-circle"></i> กฎการคาดการณ์รูปร่างโมเลกุลด้วย VSEPR</h5>
+          <ol>
+            <li>นับจำนวนคู่อิเล็กตรอนรอบอะตอมกลาง (พันธะเดี่ยว = 1 คู่, พันธะคู่ = 1 คู่, พันธะสาม = 1 คู่)</li>
+            <li>คู่อิเล็กตรอนโดดเดี่ยวผลักกันมากกว่าคู่อิเล็กตรอนพันธะ</li>
+            <li>ลำดับการผลัก: คู่โดดเดี่ยว-คู่โดดเดี่ยว > คู่โดดเดี่ยว-พันธะ > พันธะ-พันธะ</li>
+            <li>รูปร่างโมเลกุลถูกกำหนดโดยตำแหน่งของนิวเคลียสของอะตอม ไม่ใช่ตำแหน่งของอิเล็กตรอน</li>
+          </ol>
+        </div>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-5">
+        <h2 class="section-title">แรงยึดเหนี่ยวระหว่างโมเลกุล (IMFs)</h2>
+        <p>แรงยึดเหนี่ยวระหว่างโมเลกุลเป็นแรงที่เกิดขึ้นระหว่างโมเลกุล มีผลต่อสมบัติทางกายภาพของสาร เช่น จุดหลอมเหลว จุดเดือด ความหนืด</p>
+        
+        <div class="imf-diagram">
+          <div class="imf-item">
+            <h4><i class="bi bi-droplet"></i> แรงลอนดอน (London Dispersion Forces)</h4>
+            <p><strong>เกิดใน:</strong> สารทุกชนิด</p>
+            <p><strong>กลไก:</strong> การกระจายตัวของอิเล็กตรอนชั่วขณะทำให้เกิดไดโพลชั่วคราว</p>
+            <p><strong>ความแข็งแรง:</strong> แรงอ่อนสุด</p>
+            <p><strong>ขึ้นกับ:</strong> มวลโมเลกุลและรูปร่าง</p>
+            <div class="text-center my-3">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/London_dispersion_force.svg/800px-London_dispersion_force.svg.png" alt="London forces" class="img-fluid rounded" style="max-height: 150px;">
+            </div>
+          </div>
+          
+          <div class="imf-item">
+            <h4><i class="bi bi-magnet"></i> แรงดึงดูดระหว่างขั้ว (Dipole-Dipole Forces)</h4>
+            <p><strong>เกิดใน:</strong> โมเลกุลมีขั้ว</p>
+            <p><strong>กลไก:</strong> แรงดึงดูดระหว่างขั้วบวกของโมเลกุลหนึ่งกับขั้วลบของอีกโมเลกุล</p>
+            <p><strong>ความแข็งแรง:</strong> ปานกลาง</p>
+            <p><strong>ตัวอย่าง:</strong> HCl, SO₂</p>
+            <div class="text-center my-3">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Dipole-dipole-interaction-in-HCl-2D.png/800px-Dipole-dipole-interaction-in-HCl-2D.png" alt="Dipole forces" class="img-fluid rounded" style="max-height: 150px;">
+            </div>
+          </div>
+          
+          <div class="imf-item">
+            <h4><i class="bi bi-water"></i> พันธะไฮโดรเจน (Hydrogen Bonding)</h4>
+            <p><strong>เกิดใน:</strong> โมเลกุลที่มี H กับ F, O, N</p>
+            <p><strong>กลไก:</strong> แรงดึงดูดระหว่าง H (δ+) กับอะตอมอิเล็กโทรเนกาทีฟสูง (F, O, N)</p>
+            <p><strong>ความแข็งแรง:</strong> แรงที่สุดใน IMFs (แต่ยังอ่อนกว่าพันธะเคมี)</p>
+            <p><strong>ตัวอย่าง:</strong> H₂O, NH₃, DNA</p>
+            <div class="text-center my-3">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Hydrogen-bonding-in-water-2D.png/800px-Hydrogen-bonding-in-water-2D.png" alt="Hydrogen bonding" class="img-fluid rounded" style="max-height: 150px;">
+            </div>
+          </div>
+        </div>
+        
+        <div class="card mt-4">
+          <div class="card-header bg-primary text-white">
+            <i class="bi bi-graph-up"></i> การเปรียบเทียบความแข็งแรงของแรงระหว่างโมเลกุล
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-8">
+                <ul>
+                  <li>พันธะไอออนิก/พันธะโคเวเลนต์ (200-1000 kJ/mol)</li>
+                  <li>พันธะไฮโดรเจน (10-40 kJ/mol)</li>
+                  <li>แรงระหว่างขั้ว (5-25 kJ/mol)</li>
+                  <li>แรงลอนดอน (0.05-40 kJ/mol)</li>
+                </ul>
+                <p><strong>ผลต่อสมบัติของสาร:</strong></p>
+                <ol>
+                  <li>จุดหลอมเหลว/จุดเดือด: สูงขึ้นเมื่อแรงระหว่างโมเลกุลแข็งแรงขึ้น</li>
+                  <li>ความหนืด: สูงขึ้นเมื่อแรงระหว่างโมเลกุลแข็งแรงขึ้น</li>
+                  <li>ความดันไอ: ต่ำลงเมื่อแรงระหว่างโมเลกุลแข็งแรงขึ้น</li>
+                  <li>การละลาย: "คล้ายคล้ายกันจึงละลายได้"</li>
+                </ol>
+              </div>
+              <div class="col-md-4">
+                <img src="https://www.chem.purdue.edu/gchelp/liquids/boilpt.gif" alt="Boiling point comparison" class="img-fluid rounded">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </div>
+</main>
+
+<footer class="bg-dark text-white text-center py-3">
+  <div class="container">
+    <p class="mb-0">&copy; 2025 เคมี Hub. สร้างสรรค์เพื่อการศึกษา</p>
+    <p class="small mb-0">บทที่ 2: พันธะเคมี - พันธะไอออนิก, โคเวเลนต์, โลหะ, พลังงานพันธะ, รูปร่างโมเลกุล (VSEPR), แรงยึดเหนี่ยวระหว่างโมเลกุล (IMFs)</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Dark mode toggle
+  document.getElementById('darkModeToggle').addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    
+    const icon = this.querySelector('i');
+    if (document.body.classList.contains('dark-mode')) {
+      icon.classList.remove('bi-moon-stars-fill');
+      icon.classList.add('bi-sun-fill');
+    } else {
+      icon.classList.remove('bi-sun-fill');
+      icon.classList.add('bi-moon-stars-fill');
+    }
+  });
+</script>
+
+</body>
+              </html>
