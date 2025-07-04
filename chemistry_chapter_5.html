@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>บทที่ 5: อุณหพลศาสตร์เคมี - เคมี Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --primary: #3a86ff;
+      --secondary: #8338ec;
+      --accent: #ff006e;
+      --exo: #ff9e00;
+      --endo: #3a86ff;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --dark-bg: #121212;
+      --dark-card: #1e1e1e;
+    }
+    
+    body {
+      font-family: 'Kanit', sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    .dark-mode {
+      background-color: var(--dark-bg);
+      color: #e0e0e0;
+    }
+    .dark-mode .card {
+      background-color: var(--dark-card);
+      border-color: #333;
+    }
+    .navbar {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .thermo-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .law-card {
+      transition: transform 0.3s ease;
+      height: 100%;
+      margin-bottom: 20px;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .law-card:hover {
+      transform: translateY(-7px);
+    }
+    .law-header {
+      padding: 15px 20px;
+      color: white;
+      font-weight: 500;
+    }
+    .formula-box {
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 15px;
+      margin: 15px 0;
+      text-align: center;
+    }
+    .section-title {
+      position: relative;
+      padding-left: 15px;
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 12px;
+      margin: 25px 0 20px;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+    .dark-mode .section-title {
+      border-color: var(--secondary);
+    }
+    .graph-box {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .dark-mode .graph-box {
+      background-color: var(--dark-card);
+    }
+    .example-card {
+      border-left: 4px solid var(--accent);
+      padding: 15px;
+      margin: 15px 0;
+      background-color: rgba(255, 0, 110, 0.05);
+    }
+    .dark-mode .example-card {
+      background-color: rgba(255, 0, 110, 0.1);
+    }
+    .thermo-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: var(--accent);
+    }
+    .reaction-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 180px;
+      margin: 20px 0;
+      position: relative;
+    }
+    .reaction-path {
+      width: 80%;
+      height: 4px;
+      background: #ddd;
+      position: relative;
+    }
+    .reactant, .product {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: white;
+    }
+    .exothermic-arrow {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 20px solid var(--exo);
+    }
+    .endothermic-arrow {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 20px solid var(--endo);
+    }
+    .system-card {
+      border-radius: 10px;
+      padding: 15px;
+      margin: 15px 0;
+      text-align: center;
+    }
+    .exo-card {
+      background-color: rgba(255, 158, 0, 0.1);
+      border: 2px solid var(--exo);
+    }
+    .endo-card {
+      background-color: rgba(58, 134, 255, 0.1);
+      border: 2px solid var(--endo);
+    }
+    
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .thermo-header {
+        padding: 15px;
+      }
+      .law-card {
+        margin-bottom: 15px;
+      }
+      .reaction-visual {
+        height: 150px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .section-title {
+        font-size: 1.3rem;
+        margin: 20px 0 15px;
+      }
+      .law-header {
+        padding: 12px 15px;
+      }
+      .formula-box {
+        padding: 10px;
+      }
+      .graph-box {
+        padding: 15px;
+      }
+      .reactant, .product {
+        width: 50px;
+        height: 50px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <i class="bi bi-flask"></i> เคมี Hub
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">หน้าแรก</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="chemistry_topics.html">เนื้อหาเคมี</a>
+        </li>
+        <li class="nav-item ms-lg-2">
+          <button id="darkModeToggle" class="btn btn-outline-light btn-sm">
+            <i class="bi bi-moon-stars-fill"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="py-4">
+  <div class="container">
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="chemistry_topics.html">เนื้อหาทั้งหมด</a></li>
+        <li class="breadcrumb-item active" aria-current="page">บทที่ 5: อุณหพลศาสตร์เคมี</li>
+      </ol>
+    </nav>
+    
+    <div class="thermo-header text-center">
+      <h1 class="display-5 mb-3">บทที่ 5: อุณหพลศาสตร์เคมี</h1>
+      <p class="lead mb-0">การศึกษาเกี่ยวกับพลังงานและการเปลี่ยนแปลงพลังงานในปฏิกิริยาเคมี</p>
+    </div>
+
+    <article>
+
+      <section class="mb-5">
+        <h2 class="section-title">กฎข้อที่หนึ่งของอุณหพลศาสตร์</h2>
+        <p class="mb-4">กฎข้อที่หนึ่งของอุณหพลศาสตร์ (First Law of Thermodynamics) กล่าวถึงการอนุรักษ์พลังงานในระบบ</p>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="law-card">
+              <div class="law-header bg-primary">
+                <div class="text-center">
+                  <i class="bi bi-arrow-repeat thermo-icon"></i>
+                  <h4>คำกล่าวของกฎข้อที่หนึ่ง</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p>"พลังงานในเอกภพมีค่าคงที่ พลังงานไม่สามารถสร้างขึ้นใหม่หรือทำลายให้สูญหายไปได้ แต่สามารถเปลี่ยนรูปจากรูปหนึ่งไปเป็นอีกรูปหนึ่งได้"</p>
+                
+                <div class="formula-box">
+                  <h3>$\Delta U = q + w$</h3>
+                </div>
+                <p><strong>ตัวแปร:</strong></p>
+                <ul>
+                  <li>$\Delta U$ = การเปลี่ยนแปลงพลังงานภายในระบบ (J)</li>
+                  <li>$q$ = พลังงานความร้อนที่ระบบได้รับหรือคาย (J)</li>
+                  <li>$w$ = งานที่ระบบได้รับหรือกระทำ (J)</li>
+                </ul>
+                
+                <div class="example-card">
+                  <p><strong>ข้อตกลงเครื่องหมาย:</strong></p>
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>กระบวนการ</th>
+                        <th>$q$</th>
+                        <th>$w$</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>ระบบดูดความร้อน</td>
+                        <td>+</td>
+                        <td>-</td>
+                      </tr>
+                      <tr>
+                        <td>ระบบคายความร้อน</td>
+                        <td>-</td>
+                        <td>+</td>
+                      </tr>
+                      <tr>
+                        <td>ระบบถูกทำงาน</td>
+                        <td>-</td>
+                        <td>+</td>
+                      </tr>
+                      <tr>
+                        <td>ระบบทำงาน</td>
+                        <td>-</td>
+                        <td>-</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="law-card">
+              <div class="law-header bg-success">
+                <div class="text-center">
+                  <i class="bi bi-gear thermo-icon"></i>
+                  <h4>ระบบและสิ่งแวดล้อม</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p><strong>ระบบ (System):</strong> ส่วนที่เราสนใจศึกษา</p>
+                <p><strong>สิ่งแวดล้อม (Surroundings):</strong> ทุกสิ่งทุกอย่างนอกระบบ</p>
+                
+                <div class="text-center mt-4">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/System_boundary.svg/800px-System_boundary.svg.png" alt="System and surroundings" class="img-fluid rounded">
+                </div>
+                
+                <p><strong>ประเภทของระบบ:</strong></p>
+                <ol>
+                  <li><strong>ระบบเปิด:</strong> แลกเปลี่ยนทั้งพลังงานและสสารกับสิ่งแวดล้อม</li>
+                  <li><strong>ระบบปิด:</strong> แลกเปลี่ยนพลังงานแต่ไม่แลกเปลี่ยนสสารกับสิ่งแวดล้อม</li>
+                  <li><strong>ระบบโดดเดี่ยว:</strong> ไม่แลกเปลี่ยนทั้งพลังงานและสสารกับสิ่งแวดล้อม</li>
+                </ol>
+                
+                <div class="example-card">
+                  <p><strong>ตัวอย่าง:</strong></p>
+                  <ul>
+                    <li>ระบบเปิด: กระป๋องน้ำอัดลมเปิดฝา</li>
+                    <li>ระบบปิด: กระป๋องน้ำอัดลมปิดฝา</li>
+                    <li>ระบบโดดเดี่ยว: กระติกน้ำแข็ง</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card mt-4">
+          <div class="card-header bg-info text-white">
+            <i class="bi bi-lightning"></i> พลังงานภายใน (Internal Energy)
+          </div>
+          <div class="card-body">
+            <p>พลังงานภายใน ($U$) ของระบบคือผลรวมของพลังงานทั้งหมดในระบบ ทั้งพลังงานจลน์และพลังงานศักย์ของอนุภาคทั้งหมดในระบบ</p>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <p><strong>การเปลี่ยนแปลงพลังงานภายใน ($\Delta U$):</strong></p>
+                <ul>
+                  <li>$\Delta U = U_{final} - U_{initial}$</li>
+                  <li>$\Delta U > 0$: พลังงานภายในเพิ่มขึ้น (อุณหภูมิเพิ่ม)</li>
+                  <li>$\Delta U < 0$: พลังงานภายในลดลง (อุณหภูมิลด)</li>
+                </ul>
+                
+                <div class="example-card">
+                  <p><strong>ตัวอย่าง:</strong> ระบบดูดความร้อน 500 J และทำงาน 300 J จงหา $\Delta U$</p>
+                  <p><strong>วิธีทำ:</strong></p>
+                  <p>$q = +500$ J (ดูดความร้อน)</p>
+                  <p>$w = -300$ J (ทำงาน)</p>
+                  <p>$\Delta U = q + w = 500 + (-300) = 200$ J</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="text-center">
+                  <img src="https://www.researchgate.net/profile/Amir-Reza-Kashani-Poor/publication/333933877/figure/fig1/AS:772501475241984@1561192992876/Internal-energy-of-a-system.png" alt="Internal energy" class="img-fluid rounded">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-5">
+        <h2 class="section-title">เอนทัลปี (Enthalpy) และปฏิกิริยาเอกซ์โซเทอร์มิก/เอนโดเทอร์มิก</h2>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="law-card">
+              <div class="law-header bg-warning">
+                <div class="text-center">
+                  <i class="bi bi-fire thermo-icon"></i>
+                  <h4>เอนทัลปี (H)</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p><strong>นิยาม:</strong> เอนทัลปี ($H$) คือปริมาณทางอุณหพลศาสตร์ที่นิยามโดย $H = U + PV$</p>
+                
+                <div class="formula-box">
+                  <p>$\Delta H = \Delta U + P\Delta V$</p>
+                </div>
+                
+                <p><strong>ความสำคัญ:</strong> $\Delta H$ คือความร้อนที่แลกเปลี่ยนที่ความดันคงที่ ($q_P$)</p>
+                <p>$\Delta H = q_P$</p>
+                
+                <div class="example-card">
+                  <p><strong>เอนทัลปีมาตรฐาน ($\Delta H^\circ$):</strong></p>
+                  <p>การเปลี่ยนแปลงเอนทัลปีที่สารตั้งต้นและผลิตภัณฑ์อยู่ในสถานะมาตรฐาน (1 atm, 25°C)</p>
+                </div>
+                
+                <div class="reaction-visual">
+                  <div class="reaction-path"></div>
+                  <div class="reactant bg-primary" style="left: 10%;">สารตั้งต้น</div>
+                  <div class="product bg-success" style="right: 10%;">ผลิตภัณฑ์</div>
+                  <div class="exothermic-arrow" style="top: 50px; left: 50%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="law-card">
+              <div class="law-header bg-danger">
+                <div class="text-center">
+                  <i class="bi bi-thermometer-high thermo-icon"></i>
+                  <h4>ปฏิกิริยาเอกซ์โซเทอร์มิกและเอนโดเทอร์มิก</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="system-card exo-card">
+                  <h4><i class="bi bi-fire"></i> ปฏิกิริยาเอกซ์โซเทอร์มิก (Exothermic)</h4>
+                  <p>$\Delta H < 0$ (คายความร้อน)</p>
+                  <p>พลังงานของผลิตภัณฑ์ < พลังงานของสารตั้งต้น</p>
+                </div>
+                
+                <div class="system-card endo-card">
+                  <h4><i class="bi bi-snow"></i> ปฏิกิริยาเอนโดเทอร์มิก (Endothermic)</h4>
+                  <p>$\Delta H > 0$ (ดูดความร้อน)</p>
+                  <p>พลังงานของผลิตภัณฑ์ > พลังงานของสารตั้งต้น</p>
+                </div>
+                
+                <div class="graph-box">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Endothermic_vs_exothermic_reactions.svg/800px-Endothermic_vs_exothermic_reactions.svg.png" alt="Exo vs endo" class="img-fluid">
+                </div>
+                
+                <div class="example-card">
+                  <p><strong>ตัวอย่าง:</strong></p>
+                  <ul>
+                    <li>เอกซ์โซเทอร์มิก: การเผาไหม้, การเกิดสนิมเหล็ก</li>
+                    <li>เอนโดเทอร์มิก: การระเหย, การละลายน้ำแข็ง</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card mt-4">
+          <div class="card-header bg-primary text-white">
+            <i class="bi bi-clipboard-data"></i> ประเภทของเอนทัลปีมาตรฐาน
+          </div>
+          <div class="card-body">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>ประเภท</th>
+                  <th>สัญลักษณ์</th>
+                  <th>ความหมาย</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>เอนทัลปีการเกิด</td>
+                  <td>$\Delta H_f^\circ$</td>
+                  <td>การเกิดสารประกอบ 1 โมล จากธาตุพื้นฐาน</td>
+                </tr>
+                <tr>
+                  <td>เอนทัลปีการเผาไหม้</td>
+                  <td>$\Delta H_c^\circ$</td>
+                  <td>การเผาไหม้สาร 1 โมล กับออกซิเจน</td>
+                </tr>
+                <tr>
+                  <td>เอนทัลปีการละลาย</td>
+                  <td>$\Delta H_{sol}^\circ$</td>
+                  <td>การละลายสาร 1 โมล ในตัวทำละลาย</td>
+                </tr>
+                <tr>
+                  <td>เอนทัลปีการทำลายพันธะ</td>
+                  <td>$\Delta H_{bond}$</td>
+                  <td>พลังงานที่ใช้ในการทำลายพันธะ 1 โมล</td>
+                </tr>
+                <tr>
+                  <td>เอนทัลปีปฏิกิริยา</td>
+                  <td>$\Delta H_{rxn}^\circ$</td>
+                  <td>การเปลี่ยนแปลงเอนทัลปีในปฏิกิริยาเคมี</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <div class="example-card">
+              <p><strong>ค่า $\Delta H_f^\circ$ มาตรฐาน:</strong></p>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>สาร</th>
+                    <th>$\Delta H_f^\circ$ (kJ/mol)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>H₂O(l)</td>
+                    <td>-285.8</td>
+                  </tr>
+                  <tr>
+                    <td>CO₂(g)</td>
+                    <td>-393.5</td>
+                  </tr>
+                  <tr>
+                    <td>CH₄(g)</td>
+                    <td>-74.8</td>
+                  </tr>
+                  <tr>
+                    <td>C₂H₅OH(l)</td>
+                    <td>-277.6</td>
+                  </tr>
+                  <tr>
+                    <td>O₂(g)</td>
+                    <td>0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-5">
+        <h2 class="section-title">กฎของเฮสส์ (Hess's Law)</h2>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="law-card">
+              <div class="law-header bg-info">
+                <div class="text-center">
+                  <i class="bi bi-diagram-3 thermo-icon"></i>
+                  <h4>คำกล่าวของกฎเฮสส์</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p>"การเปลี่ยนแปลงเอนทัลปีรวมของปฏิกิริยาเคมีจะเท่ากันเสมอ ไม่ว่าปฏิกิริยานั้นจะเกิดขึ้นในขั้นตอนเดียวหรือหลายขั้นตอน ภายใต้สภาวะเดียวกัน"</p>
+                
+                <div class="formula-box">
+                  <p>$\Delta H_{total} = \sum \Delta H_{steps}$</p>
+                </div>
+                
+                <div class="text-center my-4">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/HessLawDiagram.svg/800px-HessLawDiagram.svg.png" alt="Hess's Law" class="img-fluid rounded">
+                </div>
+                
+                <p><strong>หลักการใช้งาน:</strong></p>
+                <ol>
+                  <li>เขียนปฏิกิริยารวมที่ต้องการ</li>
+                  <li>จัดชุดปฏิกิริยาที่รู้ค่า $\Delta H$</li>
+                  <li>ปรับสัมประสิทธิ์และทิศทางของปฏิกิริยาย่อย</li>
+                  <li>รวมปฏิกิริยาย่อยให้ได้ปฏิกิริยารวม</li>
+                  <li>รวมค่า $\Delta H$ ตามการเปลี่ยนแปลง</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="law-card">
+              <div class="law-header bg-success">
+                <div class="text-center">
+                  <i class="bi bi-calculator thermo-icon"></i>
+                  <h4>ตัวอย่างการคำนวณ</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p><strong>โจทย์:</strong> จงหา $\Delta H$ สำหรับปฏิกิริยา $C(s) + 2H_2(g) \rightarrow CH_4(g)$</p>
+                <p><strong>ข้อมูล:</strong></p>
+                <ol>
+                  <li>$CH_4(g) + 2O_2(g) \rightarrow CO_2(g) + 2H_2O(l)$ $\Delta H = -890.4$ kJ</li>
+                  <li>$C(s) + O_2(g) \rightarrow CO_2(g)$ $\Delta H = -393.5$ kJ</li>
+                  <li>$H_2(g) + \frac{1}{2}O_2(g) \rightarrow H_2O(l)$ $\Delta H = -285.8$ kJ</li>
+                </ol>
+                
+                <p><strong>วิธีทำ:</strong></p>
+                <p>1. กลับสมการที่ 1: $CO_2(g) + 2H_2O(l) \rightarrow CH_4(g) + 2O_2(g)$ $\Delta H = +890.4$ kJ</p>
+                <p>2. นำสมการที่ 2 มาใช้: $C(s) + O_2(g) \rightarrow CO_2(g)$ $\Delta H = -393.5$ kJ</p>
+                <p>3. นำสมการที่ 3 คูณด้วย 2: $2H_2(g) + O_2(g) \rightarrow 2H_2O(l)$ $\Delta H = -571.6$ kJ</p>
+                
+                <p>รวมสมการ:</p>
+                <p>$CO_2(g) + 2H_2O(l) \rightarrow CH_4(g) + 2O_2(g)$</p>
+                <p>$C(s) + O_2(g) \rightarrow CO_2(g)$</p>
+                <p>$2H_2(g) + O_2(g) \rightarrow 2H_2O(l)$</p>
+                <p>-------------------------------</p>
+                <p>$C(s) + 2H_2(g) \rightarrow CH_4(g)$</p>
+                
+                <p>รวม $\Delta H = 890.4 - 393.5 - 571.6 = -74.7$ kJ</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card mt-4">
+          <div class="card-header bg-warning">
+            <i class="bi bi-lightbulb"></i> การประยุกต์ใช้กฎเฮสส์
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <p><strong>ประโยชน์ของกฎเฮสส์:</strong></p>
+                <ul>
+                  <li>คำนวณ $\Delta H$ ของปฏิกิริยาที่วัดโดยตรงได้ยาก</li>
+                  <li>คำนวณ $\Delta H_f$ ของสารประกอบที่ไม่เสถียร</li>
+                  <li>ตรวจสอบความถูกต้องของข้อมูลการเปลี่ยนแปลงเอนทัลปี</li>
+                  <li>คำนวณพลังงานพันธะ</li>
+                </ul>
+                
+                <div class="example-card">
+                  <p><strong>ข้อควรระวัง:</strong></p>
+                  <ul>
+                    <li>ต้องระบุสถานะของสารให้ชัดเจน</li>
+                    <li>ต้องปรับสัมประสิทธิ์ให้ตรงกัน</li>
+                    <li>เมื่อกลับสมการ ต้องเปลี่ยนเครื่องหมาย $\Delta H$</li>
+                    <li>เมื่อคูณสมการ ต้องคูณ $\Delta H$ ด้วยตัวเดียวกัน</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="text-center">
+                  <img src="https://www.chemistrylearner.com/wp-content/uploads/2018/08/Hesss-Law.jpg" alt="Hess's Law application" class="img-fluid rounded">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-5">
+        <h2 class="section-title">พลังงานพันธะและความร้อนจำเพาะ</h2>
+        
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="law-card">
+              <div class="law-header bg-danger">
+                <div class="text-center">
+                  <i class="bi bi-link-45deg thermo-icon"></i>
+                  <h4>พลังงานพันธะ (Bond Energy)</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p><strong>นิยาม:</strong> พลังงานที่ใช้ในการทำลายพันธะ 1 โมล ในสถานะแก๊ส</p>
+                
+                <div class="formula-box">
+                  <p>$\Delta H_{rxn} = \sum (\text{พลังงานพันธะที่ขาด}) - \sum (\text{พลังงานพันธะที่เกิด})$</p>
+                </div>
+                
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>พันธะ</th>
+                      <th>พลังงาน (kJ/mol)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>C-C</td>
+                      <td>347</td>
+                    </tr>
+                    <tr>
+                      <td>C=C</td>
+                      <td>614</td>
+                    </tr>
+                    <tr>
+                      <td>C≡C</td>
+                      <td>839</td>
+                    </tr>
+                    <tr>
+                      <td>C-H</td>
+                      <td>413</td>
+                    </tr>
+                    <tr>
+                      <td>O-H</td>
+                      <td>463</td>
+                    </tr>
+                    <tr>
+                      <td>H-H</td>
+                      <td>436</td>
+                    </tr>
+                    <tr>
+                      <td>O=O</td>
+                      <td>495</td>
+                    </tr>
+                  </tbody>
+                </table>
+                
+                <div class="example-card">
+                  <p><strong>ตัวอย่าง:</strong> จงหา $\Delta H$ สำหรับ $CH_4(g) + 2O_2(g) \rightarrow CO_2(g) + 2H_2O(g)$</p>
+                  <p><strong>วิธีทำ:</strong></p>
+                  <p>พันธะขาด: 4×C-H (4×413) + 2×O=O (2×495) = 1652 + 990 = 2642 kJ</p>
+                  <p>พันธะเกิด: 2×C=O (2×799) + 4×O-H (4×463) = 1598 + 1852 = 3450 kJ</p>
+                  <p>$\Delta H = 2642 - 3450 = -808$ kJ</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 mb-4">
+            <div class="law-card">
+              <div class="law-header bg-primary">
+                <div class="text-center">
+                  <i class="bi bi-thermometer-sun thermo-icon"></i>
+                  <h4>ความร้อนจำเพาะ (Specific Heat)</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p><strong>นิยาม:</strong> ปริมาณความร้อนที่ทำให้สาร 1 กรัม มีอุณหภูมิเปลี่ยนแปลง 1°C</p>
+                
+                <div class="formula-box">
+                  <p>$q = m \cdot c \cdot \Delta T$</p>
+                </div>
+                <p><strong>ตัวแปร:</strong></p>
+                <ul>
+                  <li>$q$ = ความร้อน (J)</li>
+                  <li>$m$ = มวล (g)</li>
+                  <li>$c$ = ความร้อนจำเพาะ (J/g°C)</li>
+                  <li>$\Delta T$ = การเปลี่ยนแปลงอุณหภูมิ (°C)</li>
+                </ul>
+                
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>สาร</th>
+                      <th>ความร้อนจำเพาะ (J/g°C)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>น้ำ</td>
+                      <td>4.184</td>
+                    </tr>
+                    <tr>
+                      <td>น้ำแข็ง</td>
+                      <td>2.09</td>
+                    </tr>
+                    <tr>
+                      <td>อลูมิเนียม</td>
+                      <td>0.897</td>
+                    </tr>
+                    <tr>
+                      <td>เหล็ก</td>
+                      <td>0.449</td>
+                    </tr>
+                    <tr>
+                      <td>ทองแดง</td>
+                      <td>0.385</td>
+                    </tr>
+                    <tr>
+                      <td>ตะกั่ว</td>
+                      <td>0.129</td>
+                    </tr>
+                  </tbody>
+                </table>
+                
+                <div class="example-card">
+                  <p><strong>ตัวอย่าง:</strong> ต้องใช้ความร้อนเท่าไรในการทำให้น้ำ 500 g จาก 25°C เป็น 100°C?</p>
+                  <p><strong>วิธีทำ:</strong></p>
+                  <p>$q = m \cdot c \cdot \Delta T = 500 \times 4.184 \times (100 - 25) = 500 \times 4.184 \times 75 = 156,900$ J</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card mt-4">
+          <div class="card-header bg-success text-white">
+            <i class="bi bi-calculator"></i> คาลอรีมิเตอร์และการวัดความร้อน
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <p><strong>คาลอรีมิเตอร์ (Calorimeter):</strong> อุปกรณ์สำหรับวัดความร้อนที่เกี่ยวข้องกับปฏิกิริยาเคมีหรือการเปลี่ยนแปลงทางกายภาพ</p>
+                
+                <div class="text-center my-3">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/CoffeeCupCalorimeter.png/800px-CoffeeCupCalorimeter.png" alt="Calorimeter" class="img-fluid rounded" style="max-height: 200px;">
+                </div>
+                
+                <p><strong>สมการคาลอรีมิเตอร์:</strong></p>
+                <div class="formula-box">
+                  <p>$q_{rxn} + q_{cal} = 0$</p>
+                  <p>$q_{rxn} = -q_{cal}$</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="example-card">
+                  <p><strong>ตัวอย่าง:</strong> เมื่อละลาย NaOH 10 g ในน้ำ 200 g ในคาลอรีมิเตอร์ อุณหภูมิเพิ่มจาก 25°C เป็น 38°C จงหา $\Delta H$ (cน้ำ = 4.184 J/g°C)</p>
+                  <p><strong>วิธีทำ:</strong></p>
+                  <p>$\Delta T = 38 - 25 = 13°C$</p>
+                  <p>$m_{total} = 10 + 200 = 210$ g</p>
+                  <p>$q = m \cdot c \cdot \Delta T = 210 \times 4.184 \times 13 = 11,418.72$ J</p>
+                  <p>โมล NaOH = 10/40 = 0.25 mol</p>
+                  <p>$\Delta H = -\frac{11,418.72}{0.25} = -45,674.88$ J/mol = -45.67 kJ/mol</p>
+                  <p>(เครื่องหมายลบแสดงว่าเป็นปฏิกิริยาเอกซ์โซเทอร์มิก)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </div>
+</main>
+
+<footer class="bg-dark text-white text-center py-3">
+  <div class="container">
+    <p class="mb-0">&copy; 2025 เคมี Hub. สร้างสรรค์เพื่อการศึกษา</p>
+    <p class="small mb-0">บทที่ 5: อุณหพลศาสตร์เคมี - กฎข้อที่หนึ่ง, เอนทัลปี, กฎเฮสส์, พลังงานพันธะ, ความร้อนจำเพาะ</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Dark mode toggle
+  document.getElementById('darkModeToggle').addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    
+    const icon = this.querySelector('i');
+    if (document.body.classList.contains('dark-mode')) {
+      icon.classList.remove('bi-moon-stars-fill');
+      icon.classList.add('bi-sun-fill');
+    } else {
+      icon.classList.remove('bi-sun-fill');
+      icon.classList.add('bi-moon-stars-fill');
+    }
+  });
+
+  // Create exothermic/endothermic reaction visuals
+  function createReactionVisuals() {
+    const containers = document.querySelectorAll('.reaction-visual');
+    containers.forEach(container => {
+      const path = container.querySelector('.reaction-path');
+      const exoArrow = container.querySelector('.exothermic-arrow');
+      const endoArrow = container.querySelector('.endothermic-arrow');
+      
+      if (exoArrow) {
+        exoArrow.style.top = `${path.offsetHeight/2 - 10}px`;
+        exoArrow.style.left = `${path.offsetWidth/2 - 10}px`;
+      }
+      
+      if (endoArrow) {
+        endoArrow.style.top = `${path.offsetHeight/2 + 10}px`;
+        endoArrow.style.left = `${path.offsetWidth/2 - 10}px`;
+      }
+    });
+  }
+
+  // Initialize visuals
+  window.addEventListener('load', createReactionVisuals);
+  window.addEventListener('resize', createReactionVisuals);
+</script>
+
+</body>
+</html>
