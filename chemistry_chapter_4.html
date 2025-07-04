@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>บทที่ 4: แก๊สและสมบัติของแก๊ส - เคมี Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --primary: #3a86ff;
+      --secondary: #8338ec;
+      --accent: #ff006e;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --dark-bg: #121212;
+      --dark-card: #1e1e1e;
+    }
+    
+    body {
+      font-family: 'Kanit', sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    .dark-mode {
+      background-color: var(--dark-bg);
+      color: #e0e0e0;
+    }
+    .dark-mode .card {
+      background-color: var(--dark-card);
+      border-color: #333;
+    }
+    .navbar {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .gas-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .law-card {
+      transition: transform 0.3s ease;
+      height: 100%;
+      margin-bottom: 20px;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .law-card:hover {
+      transform: translateY(-7px);
+    }
+    .law-header {
+      padding: 15px 20px;
+      color: white;
+      font-weight: 500;
+    }
+    .formula-box {
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 15px;
+      margin: 15px 0;
+      text-align: center;
+    }
+    .section-title {
+      position: relative;
+      padding-left: 15px;
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 12px;
+      margin: 25px 0 20px;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+    .dark-mode .section-title {
+      border-color: var(--secondary);
+    }
+    .graph-box {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .dark-mode .graph-box {
+      background-color: var(--dark-card);
+    }
+    .example-card {
+      border-left: 4px solid var(--accent);
+      padding: 15px;
+      margin: 15px 0;
+      background-color: rgba(255, 0, 110, 0.05);
+    }
+    .dark-mode .example-card {
+      background-color: rgba(255, 0, 110, 0.1);
+    }
+    .gas-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: var(--accent);
+    }
+    .kinetic-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+      margin: 20px 0;
+      position: relative;
+      background-color: #e0f7fa;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .dark-mode .kinetic-visual {
+      background-color: #004d40;
+    }
+    .molecule {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      animation: moveMolecule linear infinite;
+    }
+    .dark-mode .molecule {
+      background-color: var(--secondary);
+    }
+    @keyframes moveMolecule {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(300px, 150px); }
+    }
+    
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .gas-header {
+        padding: 15px;
+      }
+      .law-card {
+        margin-bottom: 15px;
+      }
+      .kinetic-visual {
+        height: 150px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .section-title {
+        font-size: 1.3rem;
+        margin: 20px 0 15px;
+      }
+      .law-header {
+        padding: 12px 15px;
+      }
+      .formula-box {
+        padding: 10px;
+      }
+      .graph-box {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <i class="bi bi-flask"></i> เคมี Hub
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">หน้าแรก</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="chemistry_topics.html">เนื้อหาเคมี</a>
+        </li>
+        <li class="nav-item ms-lg-2">
+          <button id="darkModeToggle" class="btn btn-outline-light btn-sm">
+            <i class="bi bi-moon-stars-fill"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="py-4">
+  <div class="container">
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="chemistry_topics.html">เนื้อหาทั้งหมด</a></li>
+        <li class="breadcrumb-item active" aria-current="page">บทที่ 4: แก๊สและสมบัติของแก๊ส</li>
+      </ol>
+    </nav>
+    
+    <div class="gas-header text-center">
+      <h1 class="display-5 mb-3">บทที่ 4: แก๊สและสมบัติของแก๊ส</h1>
+      <p class="lead mb-0">การศึกษาสมบัติและพฤติกรรมของแก๊สในสภาวะต่างๆ</p>
+    </div>
+
+    <article>
+
+      <section class="mb-5">
+        <h2 class="section-title">สมการแก๊สอุดมคติ: PV = nRT</h2>
+        <p class="mb-4">สมการแก๊สอุดมคติ (Ideal Gas Equation) เป็นสมการพื้นฐานที่ใช้บรรยายพฤติกรรมของแก๊สอุดมคติ ซึ่งเป็นแบบจำลองทางคณิตศาสตร์ของแก๊สที่ไม่มีแรงระหว่างโมเลกุลและมีปริมาตรโมเลกุลเป็นศูนย์</p>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="law-card">
+              <div class="law-header bg-primary">
+                <div class="text-center">
+                  <i class="bi bi-calculator gas-icon"></i>
+                  <h4>สมการแก๊สอุดมคติ</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="formula-box">
+                  <h3>$PV = nRT$</h3>
+                </div>
+                <p><strong>ตัวแปร:</strong></p>
+                <ul>
+                  <li>$P$ = ความดัน (atm, Pa, mmHg)</li>
+                  <li>$V$ = ปริมาตร (L, m³)</li>
+                  <li>$n$ = จำนวนโมลของแก๊ส (mol)</li>
+                  <li>$R$ = ค่าคงที่แก๊สสากล</li>
+                  <li>$T$ = อุณหภูมิสัมบูรณ์ (K)</li>
+                </ul>
+                
+                <p><strong>ค่าคงที่แก๊สสากล (R):</strong></p>
+                <ul>
+                  <li>$R = 0.0821 \frac{L \cdot atm}{mol \cdot K}$</li>
+                  <li>$R = 8.314 \frac{J}{mol \cdot K}$</li>
+                  <li>$R = 62.36 \frac{L \cdot mmHg}{mol \cdot K}$</li>
+                </ul>
+                
+                <div class="example-card">
+                  <p><strong>ตัวอย่าง:</strong> แก๊สออกซิเจน 2 โมล ที่อุณหภูมิ 27°C มีปริมาตร 10 L จงหาความดัน</p>
+                  <p><strong>วิธีทำ:</strong></p>
+                  <p>$T = 27 + 273 = 300$ K</p>
+                  <p>$PV = nRT$</p>
+                  <p>$P \times 10 = 2 \times 0.0821 \times 300$</p>
+                  <p>$P = \frac{2 \times 0.0821 \times 300}{10} = 4.926$ atm</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="law-card">
+              <div class="law-header bg-success">
+                <div class="text-center">
+                  <i class="bi bi-lightbulb gas-icon"></i>
+                  <h4>สมมติฐานของแก๊สอุดมคติ</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p>แก๊สอุดมคติมีสมมติฐานดังนี้:</p>
+                <ol>
+                  <li>โมเลกุลของแก๊สเป็นทรงกลมเล็กมาก ไม่มีปริมาตร</li>
+                  <li>ไม่มีแรงดึงดูดหรือแรงผลักระหว่างโมเลกุล</li>
+                  <li>การเคลื่อนที่เป็นเส้นตรงอย่างสุ่มและไม่มีการสูญเสียพลังงาน</li>
+                  <li>การชนกันของโมเลกุลเป็นการชนแบบยืดหยุ่นสมบูรณ์</li>
+                  <li>พลังงานจลน์เฉลี่ยแปรผันตรงกับอุณหภูมิสัมบูรณ์</li>
+                </ol>
+                
+                <div class="example-card">
+                  <p><strong>ข้อจำกัดของแก๊สอุดมคติ:</strong></p>
+                  <p>แก๊สจริงจะเบี่ยงเบนจากพฤติกรรมอุดมคติเมื่อ:</p>
+                  <ul>
+                    <li>ความดันสูงมาก</li>
+                    <li>อุณหภูมิต่ำมาก</li>
+                    <li>โมเลกุลมีขนาดใหญ่</li>
+                    <li>มีแรงระหว่างโมเลกุลมาก</li>
+                  </ul>
+                </div>
+                
+                <div class="text-center mt-3">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Ideal_gas_law_relationships.svg/800px-Ideal_gas_law_relationships.svg.png" alt="Ideal gas law relationships" class="img-fluid rounded">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-5">
+        <h2 class="section-title">กฎพื้นฐานของแก๊ส</h2>
+        
+        <div class="row">
+          <div class="col-md-4">
+            <div class="law-card">
+              <div class="law-header bg-info">
+                <div class="text-center">
+                  <i class="bi bi-arrow-left-right gas-icon"></i>
+                  <h4>กฎของบอยล์ (Boyle's Law)</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p><strong>คำกล่าว:</strong> ที่อุณหภูมิคงที่ ปริมาตรของแก๊สแปรผกผันกับความดัน</p>
+                <div class="formula-box">
+                  <p>$P \propto \frac{1}{V}$</p>
+                  <p>$P_1V_1 = P_2V_2$</p>
+                </div>
+                
+                <div class="graph-box">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Boyles_Law.svg/800px-Boyles_Law.svg.png" alt="Boyle's Law" class="img-fluid">
+                  <p class="text-center mt-2">กราฟระหว่าง P กับ V ที่อุณหภูมิคงที่</p>
+                </div>
+                
+                <div class="example-card">
+                  <p><strong>ตัวอย่าง:</strong> แก๊สมีปริมาตร 2 L ที่ความดัน 1 atm หากเพิ่มความดันเป็น 2 atm จะมีปริมาตรเท่าไร?</p>
+                  <p><strong>วิธีทำ:</strong></p>
+                  <p>$P_1V_1 = P_2V_2$</p>
+                  <p>$1 \times 2 = 2 \times V_2$</p>
+                  <p>$V_2 = 1$ L</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="law-card">
+              <div class="law-header bg-warning">
+                <div class="text-center">
+                  <i class="bi bi-thermometer-high gas-icon"></i>
+                  <h4>กฎของชาร์ลส์ (Charles's Law)</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p><strong>คำกล่าว:</strong> ที่ความดันคงที่ ปริมาตรของแก๊สแปรผันตรงกับอุณหภูมิสัมบูรณ์</p>
+                <div class="formula-box">
+                  <p>$V \propto T$</p>
+                  <p>$\frac{V_1}{T_1} = \frac{V_2}{T_2}$</p>
+                </div>
+                
+                <div class="graph-box">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Charles_and_Gay-Lussac%27s_Law.svg/800px-Charles_and_Gay-Lussac%27s_Law.svg.png" alt="Charles's Law" class="img-fluid">
+                  <p class="text-center mt-2">กราฟระหว่าง V กับ T ที่ความดันคงที่</p>
+                </div>
+                
+                <div class="example-card">
+                  <p><strong>ตัวอย่าง:</strong> แก๊สมีปริมาตร 2 L ที่ 27°C หากเพิ่มอุณหภูมิเป็น 127°C จะมีปริมาตรเท่าไร?</p>
+                  <p><strong>วิธีทำ:</strong></p>
+                  <p>$T_1 = 27 + 273 = 300$ K</p>
+                  <p>$T_2 = 127 + 273 = 400$ K</p>
+                  <p>$\frac{V_1}{T_1} = \frac{V_2}{T_2}$</p>
+                  <p>$\frac{2}{300} = \frac{V_2}{400}$</p>
+                  <p>$V_2 = \frac{2 \times 400}{300} = 2.67$ L</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="law-card">
+              <div class="law-header bg-danger">
+                <div class="text-center">
+                  <i class="bi bi-people gas-icon"></i>
+                  <h4>กฎของอาโวกาโดร (Avogadro's Law)</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p><strong>คำกล่าว:</strong> ที่ความดันและอุณหภูมิคงที่ ปริมาตรของแก๊สแปรผันตรงกับจำนวนโมล</p>
+                <div class="formula-box">
+                  <p>$V \propto n$</p>
+                  <p>$\frac{V_1}{n_1} = \frac{V_2}{n_2}$</p>
+                </div>
+                
+                <div class="graph-box">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Avogadro%27s_Law.svg/800px-Avogadro%27s_Law.svg.png" alt="Avogadro's Law" class="img-fluid">
+                  <p class="text-center mt-2">กราฟระหว่าง V กับ n ที่ P และ T คงที่</p>
+                </div>
+                
+                <div class="example-card">
+                  <p><strong>ตัวอย่าง:</strong> แก๊ส 0.5 โมล มีปริมาตร 12 L ที่ P และ T คงที่ หากเพิ่มแก๊สเป็น 1 โมล จะมีปริมาตรเท่าไร?</p>
+                  <p><strong>วิธีทำ:</strong></p>
+                  <p>$\frac{V_1}{n_1} = \frac{V_2}{n_2}$</p>
+                  <p>$\frac{12}{0.5} = \frac{V_2}{1}$</p>
+                  <p>$V_2 = 24$ L</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card mt-4">
+          <div class="card-header bg-primary text-white">
+            <i class="bi bi-arrow-repeat"></i> การรวมกฎแก๊ส
+          </div>
+          <div class="card-body">
+            <p>กฎแก๊สรวม (Combined Gas Law) ใช้เมื่อมีตัวแปรมากกว่าหนึ่งตัวเปลี่ยนแปลง:</p>
+            <div class="formula-box">
+              <p>$\frac{P_1V_1}{T_1} = \frac{P_2V_2}{T_2}$</p>
+            </div>
+            
+            <div class="example-card">
+              <p><strong>ตัวอย่าง:</strong> แก๊สมีปริมาตร 5 L ที่ 1 atm และ 27°C หากเปลี่ยนเป็น 2 atm และ 127°C จงหาปริมาตรใหม่</p>
+              <p><strong>วิธีทำ:</strong></p>
+              <p>$T_1 = 27 + 273 = 300$ K</p>
+              <p>$T_2 = 127 + 273 = 400$ K</p>
+              <p>$\frac{P_1V_1}{T_1} = \frac{P_2V_2}{T_2}$</p>
+              <p>$\frac{1 \times 5}{300} = \frac{2 \times V_2}{400}$</p>
+              <p>$V_2 = \frac{1 \times 5 \times 400}{300 \times 2} = \frac{2000}{600} = 3.33$ L</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-5">
+        <h2 class="section-title">การแพร่และความเร็วของโมเลกุล</h2>
+        
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="law-card">
+              <div class="law-header bg-success">
+                <div class="text-center">
+                  <i class="bi bi-wind gas-icon"></i>
+                  <h4>การแพร่ (Diffusion)</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p><strong>นิยาม:</strong> การเคลื่อนที่ของโมเลกุลแก๊สจากบริเวณที่มีความหนาแน่นสูงไปยังบริเวณที่มีความหนาแน่นต่ำจนกระทั่งกระจายตัวเท่าๆ กัน</p>
+                
+                <div class="kinetic-visual">
+                  <div class="molecule" style="top: 50px; left: 50px; animation-duration: 5s;"></div>
+                  <div class="molecule" style="top: 30px; left: 150px; animation-duration: 8s;"></div>
+                  <div class="molecule" style="top: 100px; left: 80px; animation-duration: 6s;"></div>
+                  <div class="molecule" style="top: 70px; left: 200px; animation-duration: 7s;"></div>
+                </div>
+                
+                <p><strong>ปัจจัยที่มีผลต่อการแพร่:</strong></p>
+                <ul>
+                  <li>มวลโมเลกุล (ยิ่งน้อยยิ่งแพร่เร็ว)</li>
+                  <li>อุณหภูมิ (ยิ่งสูงยิ่งแพร่เร็ว)</li>
+                  <li>ขนาดโมเลกุล (ยิ่งเล็กยิ่งแพร่เร็ว)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 mb-4">
+            <div class="law-card">
+              <div class="law-header bg-info">
+                <div class="text-center">
+                  <i class="bi bi-speedometer2 gas-icon"></i>
+                  <h4>การไหลซึม (Effusion)</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p><strong>นิยาม:</strong> การเคลื่อนที่ของโมเลกุลแก๊สผ่านรูเล็กๆ ออกจากภาชนะ</p>
+                
+                <div class="text-center my-3">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Graham%27s_Law_of_Effusion.svg/800px-Graham%27s_Law_of_Effusion.svg.png" alt="Effusion" class="img-fluid rounded">
+                </div>
+                
+                <p><strong>กฎของเกรแฮม (Graham's Law):</strong></p>
+                <div class="formula-box">
+                  <p>$\frac{\text{อัตราการไหลซึมของแก๊ส A}}{\text{อัตราการไหลซึมของแก๊ส B}} = \sqrt{\frac{M_B}{M_A}}$</p>
+                </div>
+                
+                <div class="example-card">
+                  <p><strong>ตัวอย่าง:</strong> แก๊สฮีเลียม (M=4) และแก๊สออกซิเจน (M=32) ที่อุณหภูมิเดียวกัน อัตราส่วนการไหลซึมเป็นเท่าใด?</p>
+                  <p><strong>วิธีทำ:</strong></p>
+                  <p>$\frac{r_{He}}{r_{O_2}} = \sqrt{\frac{32}{4}} = \sqrt{8} = 2.828$</p>
+                  <p>ฮีเลียมไหลซึมเร็วกว่าออกซิเจน 2.828 เท่า</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header bg-warning">
+            <i class="bi bi-graph-up-arrow"></i> ความเร็วของโมเลกุลแก๊ส
+          </div>
+          <div class="card-body">
+            <p>พลังงานจลน์เฉลี่ยของโมเลกุลแก๊ส: $\overline{KE} = \frac{3}{2} kT$</p>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <p><strong>ความเร็วรากที่สองของกำลังสองเฉลี่ย (Root Mean Square Speed):</strong></p>
+                <div class="formula-box">
+                  <p>$v_{rms} = \sqrt{\frac{3RT}{M}}$</p>
+                </div>
+                <p>เมื่อ $M$ คือมวลโมลาร์ (kg/mol)</p>
+                
+                <div class="example-card">
+                  <p><strong>ตัวอย่าง:</strong> จงหา $v_{rms}$ ของ O₂ ที่ 27°C (M=0.032 kg/mol)</p>
+                  <p><strong>วิธีทำ:</strong></p>
+                  <p>$T = 27 + 273 = 300$ K</p>
+                  <p>$R = 8.314$ J/mol·K</p>
+                  <p>$v_{rms} = \sqrt{\frac{3 \times 8.314 \times 300}{0.032}} = \sqrt{\frac{7482.6}{0.032}} = \sqrt{233,831.25} = 484$ m/s</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <p><strong>การกระจายความเร็วของแมกซ์เวลล์-โบลต์ซมันน์:</strong></p>
+                <div class="text-center">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/MaxwellBoltzmann-en.svg/800px-MaxwellBoltzmann-en.svg.png" alt="Maxwell-Boltzmann distribution" class="img-fluid rounded">
+                </div>
+                <p class="text-center">การกระจายความเร็วที่อุณหภูมิต่างกัน</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-5">
+        <h2 class="section-title">แรงระหว่างโมเลกุลในแก๊ส</h2>
+        
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="law-card">
+              <div class="law-header bg-primary">
+                <div class="text-center">
+                  <i class="bi bi-magnet gas-icon"></i>
+                  <h4>แรงระหว่างโมเลกุล (IMFs)</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p>แรงระหว่างโมเลกุลมีผลต่อพฤติกรรมของแก๊สจริง โดยเฉพาะที่อุณหภูมิต่ำและความดันสูง</p>
+                
+                <p><strong>ประเภทของแรงระหว่างโมเลกุล:</strong></p>
+                <ul>
+                  <li><strong>แรงลอนดอน (London Dispersion Forces):</strong> เกิดในทุกโมเลกุล จากไดโพลชั่วคราว</li>
+                  <li><strong>แรงดึงดูดระหว่างขั้ว (Dipole-Dipole Forces):</strong> เกิดระหว่างโมเลกุลมีขั้วถาวร</li>
+                  <li><strong>พันธะไฮโดรเจน (Hydrogen Bonding):</strong> แรงระหว่างโมเลกุลที่มี H กับ F, O, N</li>
+                </ul>
+                
+                <div class="text-center my-3">
+                  <img src="https://www.chem.purdue.edu/gchelp/liquids/compare.gif" alt="Intermolecular forces comparison" class="img-fluid rounded">
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 mb-4">
+            <div class="law-card">
+              <div class="law-header bg-danger">
+                <div class="text-center">
+                  <i class="bi bi-thermometer-snow gas-icon"></i>
+                  <h4>สมการของวานเดอร์วาลส์</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p>สำหรับแก๊สจริง ใช้สมการของวานเดอร์วาลส์ (van der Waals Equation) ที่ปรับแก้จากแก๊สอุดมคติ:</p>
+                
+                <div class="formula-box">
+                  <p>$\left(P + \frac{a n^2}{V^2}\right)(V - nb) = nRT$</p>
+                </div>
+                
+                <p><strong>พารามิเตอร์:</strong></p>
+                <ul>
+                  <li>$a$: ค่าคงที่วัดแรงดึงดูดระหว่างโมเลกุล</li>
+                  <li>$b$: ค่าคงที่วัดปริมาตรโมเลกุล</li>
+                </ul>
+                
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>แก๊ส</th>
+                      <th>$a$ (L²·atm/mol²)</th>
+                      <th>$b$ (L/mol)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>He</td>
+                      <td>0.034</td>
+                      <td>0.0237</td>
+                    </tr>
+                    <tr>
+                      <td>H₂</td>
+                      <td>0.244</td>
+                      <td>0.0266</td>
+                    </tr>
+                    <tr>
+                      <td>N₂</td>
+                      <td>1.39</td>
+                      <td>0.0391</td>
+                    </tr>
+                    <tr>
+                      <td>CO₂</td>
+                      <td>3.59</td>
+                      <td>0.0427</td>
+                    </tr>
+                    <tr>
+                      <td>H₂O</td>
+                      <td>5.46</td>
+                      <td>0.0305</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header bg-success text-white">
+            <i class="bi bi-clipboard-data"></i> การเบี่ยงเบนจากความเป็นอุดมคติ
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <p><strong>ปัจจัยที่ทำให้แก๊สจริงเบี่ยงเบน:</strong></p>
+                <ol>
+                  <li>โมเลกุลมีปริมาตร (ทำให้ PV > nRT ที่ความดันสูง)</li>
+                  <li>มีแรงดึงดูดระหว่างโมเลกุล (ทำให้ PV < nRT ที่ความดันปานกลาง)</li>
+                </ol>
+                
+                <div class="example-card">
+                  <p><strong>อุณหภูมิบอยล์ (Boyle Temperature):</strong></p>
+                  <p>อุณหภูมิที่แก๊สจริงมีพฤติกรรมใกล้เคียงแก๊สอุดมคติมากที่สุด</p>
+                  <p>$T_B = \frac{a}{bR}$</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="text-center">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Real_gas_comparison.svg/800px-Real_gas_comparison.svg.png" alt="Real gas deviation" class="img-fluid rounded">
+                </div>
+                <p class="text-center">กราฟเปรียบเทียบแก๊สจริงและแก๊สอุดมคติ</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </div>
+</main>
+
+<footer class="bg-dark text-white text-center py-3">
+  <div class="container">
+    <p class="mb-0">&copy; 2025 เคมี Hub. สร้างสรรค์เพื่อการศึกษา</p>
+    <p class="small mb-0">บทที่ 4: แก๊สและสมบัติของแก๊ส - สมการแก๊สอุดมคติ, กฎของบอยล์, ชาร์ลส์, อาโวกาโดร, การแพร่, ความเร็วโมเลกุล, แรงระหว่างโมเลกุล</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Dark mode toggle
+  document.getElementById('darkModeToggle').addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    
+    const icon = this.querySelector('i');
+    if (document.body.classList.contains('dark-mode')) {
+      icon.classList.remove('bi-moon-stars-fill');
+      icon.classList.add('bi-sun-fill');
+    } else {
+      icon.classList.remove('bi-sun-fill');
+      icon.classList.add('bi-moon-stars-fill');
+    }
+  });
+
+  // Create moving molecules
+  function createMolecules() {
+    const container = document.querySelector('.kinetic-visual');
+    if (!container) return;
+    
+    // Clear existing molecules
+    container.innerHTML = '';
+    
+    // Create new molecules
+    for (let i = 0; i < 12; i++) {
+      const molecule = document.createElement('div');
+      molecule.classList.add('molecule');
+      
+      // Random position
+      const left = Math.random() * 90;
+      const top = Math.random() * 80;
+      molecule.style.left = `${left}%`;
+      molecule.style.top = `${top}%`;
+      
+      // Random animation
+      const duration = 2 + Math.random() * 8;
+      molecule.style.animationDuration = `${duration}s`;
+      
+      container.appendChild(molecule);
+    }
+  }
+
+  // Initialize molecules
+  window.addEventListener('load', createMolecules);
+</script>
+
+</body>
+</html>
