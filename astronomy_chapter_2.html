@@ -7,9 +7,10 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-
+  
   <script>
     MathJax = {
       tex: {
@@ -19,6 +20,389 @@
     };
   </script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <style>
+    :root {
+        --astronomy: #0b3d91;
+        --astronomy-light: #4fc3f7;
+        --astronomy-dark: #0d47a1;
+        --nebula: #6a0dad;
+    }
+    
+    body {
+        font-family: 'Kanit', sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230b3d91' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
+    
+    .navbar {
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .header-bg {
+        background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+        padding: 3rem 0;
+        color: white;
+        margin-bottom: 2rem;
+        border-radius: 0 0 30px 30px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .header-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='20' cy='20' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='10' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='90' cy='10' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='55' cy='35' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3C/svg%3E");
+        background-size: 300px;
+        opacity: 0.3;
+    }
+    
+    .chapter-banner {
+        background: linear-gradient(90deg, rgba(11, 61, 145, 0.1), rgba(106, 13, 173, 0.1));
+        border-left: 4px solid var(--astronomy);
+        padding: 15px;
+        border-radius: 0 10px 10px 0;
+        margin-bottom: 30px;
+    }
+    
+    .formula-box {
+        background-color: rgba(79, 195, 247, 0.1);
+        border-left: 3px solid var(--astronomy);
+        padding: 15px;
+        border-radius: 0 8px 8px 0;
+        margin: 20px 0;
+        font-family: monospace;
+    }
+    
+    .section-card {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        margin-bottom: 30px;
+    }
+    
+    .section-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(11, 61, 145, 0.15);
+    }
+    
+    .section-header {
+        background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+        color: white;
+        padding: 20px;
+        cursor: pointer;
+    }
+    
+    .section-body {
+        padding: 25px;
+        background-color: white;
+    }
+    
+    .section-icon {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 1.5rem;
+    }
+    
+    .topic-list {
+        padding-left: 20px;
+    }
+    
+    .topic-list li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 15px;
+        line-height: 1.6;
+    }
+    
+    .topic-list li:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--astronomy);
+        font-size: 1.2rem;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+        border: none;
+        transition: all 0.3s;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(11, 61, 145, 0.3);
+    }
+    
+    .chapter-header {
+        display: flex;
+        align-items: center;
+    }
+    
+    .chapter-title {
+        flex-grow: 1;
+    }
+    
+    .completed-badge {
+        background: linear-gradient(135deg, #4fc3f7, #29b6f6);
+        color: white;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+    }
+    
+    footer {
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .breadcrumb {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 10px 15px;
+        border-radius: 8px;
+    }
+    
+    .breadcrumb-item a {
+        color: #e0e0ff;
+    }
+    
+    .breadcrumb-item.active {
+        color: white;
+    }
+    
+    .breadcrumb-item+.breadcrumb-item::before {
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .chapter-content {
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        margin-bottom: 30px;
+    }
+    
+    .visual-guide {
+        background: linear-gradient(135deg, #f0f7ff, #e6f2ff);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+        border-left: 3px solid var(--astronomy);
+    }
+    
+    .visual-guide h5 {
+        color: var(--astronomy);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .visual-guide h5 i {
+        margin-right: 10px;
+    }
+    
+    .telescope-diagram {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 15px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .section-title {
+        border-bottom: 2px solid var(--astronomy);
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        color: var(--astronomy);
+        position: relative;
+    }
+    
+    .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 80px;
+        height: 3px;
+        background: var(--nebula);
+        border-radius: 3px;
+    }
+    
+    .example-box {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border-left: 3px solid var(--astronomy);
+        padding: 15px;
+        border-radius: 0 8px 8px 0;
+        margin: 20px 0;
+    }
+    
+    .example-box h6 {
+        color: var(--astronomy);
+        margin-bottom: 10px;
+    }
+    
+    .key-point {
+        background: linear-gradient(135deg, rgba(79, 195, 247, 0.15), rgba(106, 13, 173, 0.1));
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+        border: 1px solid rgba(11, 61, 145, 0.1);
+    }
+    
+    .key-point h5 {
+        color: var(--astronomy);
+        margin-bottom: 10px;
+    }
+    
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    
+    .comparison-table th {
+        background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+        color: white;
+        padding: 12px;
+        text-align: center;
+    }
+    
+    .comparison-table td {
+        padding: 12px;
+        border: 1px solid #dee2e6;
+    }
+    
+    .comparison-table tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+    
+    .specs-box {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin: 20px 0;
+        gap: 15px;
+    }
+    
+    .spec-item {
+        background: linear-gradient(135deg, rgba(79, 195, 247, 0.1), rgba(106, 13, 173, 0.05));
+        border-radius: 10px;
+        padding: 15px;
+        flex: 1;
+        min-width: 200px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    
+    .spec-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--astronomy);
+        margin: 10px 0;
+    }
+    
+    .interactive-diagram {
+        position: relative;
+        width: 100%;
+        height: 300px;
+        background: linear-gradient(135deg, #f0f8ff, #e6f0ff);
+        border-radius: 10px;
+        margin: 20px 0;
+        overflow: hidden;
+        border: 1px solid rgba(11, 61, 145, 0.1);
+    }
+    
+    .telescope-part {
+        position: absolute;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .telescope-part:hover {
+        transform: scale(1.05);
+        z-index: 10;
+    }
+    
+    .part-label {
+        position: absolute;
+        background: rgba(11, 61, 145, 0.8);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    
+    .telescope-part:hover .part-label {
+        opacity: 1;
+    }
+    
+    .telescope-controls {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+        justify-content: center;
+    }
+    
+    .telescope-btn {
+        background: var(--astronomy);
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .telescope-btn:hover {
+        background: var(--astronomy-dark);
+        transform: translateY(-2px);
+    }
+    
+    .spec-highlight {
+        background-color: rgba(255, 215, 0, 0.2);
+        border-left: 3px solid gold;
+        padding: 10px 15px;
+        margin: 15px 0;
+        border-radius: 0 8px 8px 0;
+    }
+    
+    .wavelength-spectrum {
+        height: 40px;
+        background: linear-gradient(90deg, #9400D3, #4B0082, #0000FF, #00FF00, #FFFF00, #FF7F00, #FF0000);
+        border-radius: 8px;
+        margin: 15px 0;
+        position: relative;
+    }
+    
+    .wavelength-label {
+        position: absolute;
+        top: -25px;
+        font-size: 0.8rem;
+        color: var(--astronomy);
+    }
+    
+    .spectrum-bar {
+        position: absolute;
+        height: 50px;
+        width: 2px;
+        background: black;
+        top: -5px;
+    }
+  </style>
 </head>
 <body>
 
@@ -48,116 +432,534 @@
   </div>
 </nav>
 
-<main class="py-5">
-  <div class="container">
+<div class="header-bg">
+  <div class="container position-relative">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="astronomy_topics.html">เนื้อหาทั้งหมด</a></li>
         <li class="breadcrumb-item active" aria-current="page">บทที่ 2 (ละเอียด): กล้องโทรทรรศน์และทัศนูปกรณ์</li>
       </ol>
     </nav>
+    <h1 class="display-6 mb-3 text-center">บทที่ 2 (ละเอียด): กล้องโทรทรรศน์และทัศนูปกรณ์</h1>
+    <div class="text-center mb-3">
+      <span class="badge bg-light text-astronomy me-2">กล้องโทรทรรศน์</span>
+      <span class="badge bg-light text-astronomy me-2">กำลังขยาย</span>
+      <span class="badge bg-light text-astronomy me-2">กำลังรวมแสง</span>
+      <span class="badge bg-light text-astronomy">กำลังแยกภาพ</span>
+    </div>
+  </div>
+</div>
 
-    <h1 class="display-6 mb-4">บทที่ 2 (ละเอียด): กล้องโทรทรรศน์และทัศนูปกรณ์</h1>
-
-    <article>
-
-      <section class="mb-5">
-        <h2 class="border-bottom pb-2 mb-3">2.1 บทนำ</h2>
-        <p>
-          กล้องโทรทรรศน์เป็นเครื่องมือหลักของนักดาราศาสตร์สำหรับการตรวจจับ รวบรวม และวิเคราะห์แสงจากวัตถุท้องฟ้า 
-          เนื่องจากวัตถุเหล่านี้อยู่ห่างไกลมาก แสงที่ส่งมายังโลกจึงมีความเข้มต่ำมาก การใช้กล้องโทรทรรศน์จึงจำเป็นต่อการเพิ่มขนาดภาพ เพิ่มแสงที่ตรวจจับได้ 
-          และแยกรายละเอียดของวัตถุที่อยู่ใกล้กันมากได้อย่างชัดเจน
-        </p>
-        <p>
-          กล้องโทรทรรศน์ไม่ได้มีไว้ใช้เฉพาะช่วงแสงที่ตามองเห็น (Visible light) เท่านั้น แต่ยังสามารถออกแบบเพื่อใช้งานในช่วงคลื่นอื่น ๆ 
-          เช่น คลื่นอินฟราเรด อัลตราไวโอเลต หรือรังสีเอกซ์ ทั้งนี้ บทนี้จะเน้นที่กล้องโทรทรรศน์แบบใช้แสง (Optical Telescopes)
-        </p>
-      </section>
-
-      <section class="mb-5">
-        <h2 class="border-bottom pb-2 mb-3">2.2 ประเภทของกล้องโทรทรรศน์</h2>
-        <p>
-          กล้องโทรทรรศน์แบ่งได้เป็น 2 ประเภทหลักตามกลไกในการรวมแสง:
-        </p>
-        <ul>
-          <li>
-            <strong>กล้องโทรทรรศน์แบบหักเหแสง (Refracting Telescope):</strong> 
-            ใช้เลนส์นูน (Convex Lens) เป็นวัตถุประสงค์ (Objective Lens) ในการหักเหแสงให้มารวมกันที่จุดโฟกัส กล้องชนิดนี้ให้ภาพคมชัดสูง 
-            แต่มีข้อเสียคือเกิดความคลาดสี (Chromatic Aberration) จากการที่เลนส์หักเหแสงแต่ละความยาวคลื่นไม่เท่ากัน
-          </li>
-          <li>
-            <strong>กล้องโทรทรรศน์แบบสะท้อนแสง (Reflecting Telescope):</strong> 
-            ใช้กระจกเว้า (Concave Mirror) สะท้อนแสงมายังจุดโฟกัส ซึ่งไม่ก่อให้เกิดความคลาดสี และสามารถผลิตในขนาดใหญ่ได้ง่ายกว่ากล้องหักเห
-          </li>
-        </ul>
-        <p>
-          นอกจากนี้ยังมีกล้องแบบผสม (Catadioptric) ที่รวมข้อดีของทั้งเลนส์และกระจกเข้าด้วยกัน เช่น แบบ Schmidt-Cassegrain
-        </p>
-      </section>
-
-      <section class="mb-5">
-        <h2 class="border-bottom pb-2 mb-3">2.3 กำลังขยาย (Magnification)</h2>
-        <p>
-          กำลังขยายของกล้องโทรทรรศน์หมายถึงอัตราส่วนของขนาดภาพที่เห็นผ่านกล้องเทียบกับที่ตาเปล่าเห็น 
-          คำนวณจากความยาวโฟกัสของเลนส์วัตถุ (เลนส์หลัก) และเลนส์ตา (Eyepiece) ดังนี้:
-        </p>
-        <div class="text-center bg-light p-3 rounded">
-          <h3 style="font-family: 'Times New Roman', serif;">$$ M = \frac{f_o}{f_e} $$</h3>
+<main class="py-3">
+  <div class="container">
+    <div class="chapter-banner">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-check-circle-fill text-info fs-3 me-3"></i>
+        <div>
+            <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+            <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
         </div>
-        <ul>
-          <li>$f_o$: ความยาวโฟกัสของเลนส์วัตถุ (Objective focal length)</li>
-          <li>$f_e$: ความยาวโฟกัสของเลนส์ตา (Eyepiece focal length)</li>
-        </ul>
-        <p>
-          การเลือกกำลังขยายต้องสมดุลกับขนาดหน้ากล้องและคุณภาพของภาพ เพราะการขยายมากเกินไปอาจทำให้ภาพเบลอหรือมืดเกินไปได้
-        </p>
-      </section>
-
-      <section class="mb-5">
-        <h2 class="border-bottom pb-2 mb-3">2.4 กำลังรวมแสง (Light-gathering Power)</h2>
-        <p>
-          กล้องโทรทรรศน์ที่ดีต้องสามารถรวมแสงได้มากเพื่อใช้สังเกตวัตถุที่มีความสว่างต่ำ เช่น เนบิวลา หรือกาแล็กซีที่อยู่ไกล 
-          กำลังรวมแสงมีความสัมพันธ์กับพื้นที่หน้าตัดของเลนส์/กระจกหลัก ซึ่งแปรผันตามกำลังสองของเส้นผ่านศูนย์กลาง:
-        </p>
-        <div class="text-center bg-light p-3 rounded">
-          <h3 style="font-family: 'Times New Roman', serif;">$$ \text{Light-gathering Power} \propto D^2 $$</h3>
+      </div>
+    </div>
+    
+    <div class="chapter-content">
+      <div class="section-card">
+        <div class="section-header" data-bs-toggle="collapse" data-bs-target="#telescope-intro">
+          <div class="d-flex align-items-center">
+            <div class="section-icon">
+              <i class="bi bi-info-circle"></i>
+            </div>
+            <div>
+              <h2 class="mb-0">2.1 บทนำ: ความสำคัญของกล้องโทรทรรศน์</h2>
+            </div>
+          </div>
         </div>
-        <p>
-          กล้องขนาด 20 ซม. จะรวมแสงได้มากกว่ากล้องขนาด 10 ซม. ถึง 4 เท่า ช่วยให้สามารถเห็นรายละเอียดที่ตามนุษย์มองไม่เห็นได้
-        </p>
-      </section>
-
-      <section class="mb-5">
-        <h2 class="border-bottom pb-2 mb-3">2.5 กำลังแยกภาพ (Resolving Power)</h2>
-        <p>
-          กำลังแยกภาพหมายถึงความสามารถในการแยกวัตถุสองดวงที่อยู่ใกล้กันในท้องฟ้าให้เห็นเป็นสองจุดชัดเจน 
-          ใช้สูตรประมาณค่าความละเอียดเชิงมุม (Angular Resolution) ดังนี้:
-        </p>
-        <div class="text-center bg-light p-3 rounded">
-          <h3 style="font-family: 'Times New Roman', serif;">$$ \theta \approx \frac{1.22 \lambda}{D} $$</h3>
+        <div id="telescope-intro" class="collapse show">
+          <div class="section-body">
+            <p class="lead">
+              กล้องโทรทรรศน์เป็นเครื่องมือสำคัญที่ปฏิวัติการศึกษาดาราศาสตร์ ทำให้เราสามารถสังเกตวัตถุท้องฟ้าที่อยู่ไกลเกินกว่าที่ตามนุษย์จะมองเห็นได้
+            </p>
+            
+            <div class="key-point">
+              <h5><i class="bi bi-lightbulb"></i> ทำไมต้องใช้กล้องโทรทรรศน์?</h5>
+              <p>วัตถุท้องฟ้าส่วนใหญ่อยู่ห่างไกลมาก แสงที่ส่งมายังโลกจึงมีความเข้มต่ำมากจนตามนุษย์ไม่สามารถมองเห็นได้ กล้องโทรทรรศน์ช่วยแก้ปัญหานี้โดย:</p>
+              <ul>
+                <li><strong>เพิ่มปริมาณแสง:</strong> กระจกหรือเลนส์ขนาดใหญ่รวบรวมแสงได้มากกว่าตามนุษย์หลายพันเท่า</li>
+                <li><strong>เพิ่มกำลังขยาย:</strong> ทำให้เห็นรายละเอียดของวัตถุที่อยู่ไกล</li>
+                <li><strong>เพิ่มความละเอียด:</strong> แยกวัตถุที่อยู่ใกล้กันให้เห็นเป็นอิสระต่อกัน</li>
+              </ul>
+            </div>
+            
+            <div class="specs-box">
+              <div class="spec-item">
+                <i class="bi bi-eye fs-1 text-astronomy"></i>
+                <h5>ตามนุษย์</h5>
+                <div class="spec-value">~7 mm</div>
+                <p>เส้นผ่านศูนย์กลางรูม่านตา</p>
+              </div>
+              
+              <div class="spec-item">
+                <i class="bi bi-telescope fs-1 text-astronomy"></i>
+                <h5>กล้องสมัครเล่น</h5>
+                <div class="spec-value">100-300 mm</div>
+                <p>เส้นผ่านศูนย์กลาง</p>
+              </div>
+              
+              <div class="spec-item">
+                <i class="bi bi-building fs-1 text-astronomy"></i>
+                <h5>กล้องโทรทรรศน์ขนาดใหญ่</h5>
+                <div class="spec-value">8-10 m</div>
+                <p>เส้นผ่านศูนย์กลาง</p>
+              </div>
+              
+              <div class="spec-item">
+                <i class="bi bi-rocket-takeoff fs-1 text-astronomy"></i>
+                <h5>กล้องโทรทรรศน์อวกาศ</h5>
+                <div class="spec-value">2.4-6.5 m</div>
+                <p>เส้นผ่านศูนย์กลาง</p>
+              </div>
+            </div>
+            
+            <div class="alert alert-info" role="alert">
+              <h4 class="alert-heading"><i class="bi bi-info-circle"></i> กล้องโทรทรรศน์กับความยาวคลื่น</h4>
+              <p>กล้องโทรทรรศน์ไม่ได้ใช้เฉพาะแสงที่ตามองเห็นเท่านั้น แต่ยังสามารถออกแบบเพื่อใช้งานในช่วงคลื่นอื่น ๆ:</p>
+              
+              <div class="wavelength-spectrum">
+                <div class="wavelength-label" style="left: 0;">รังสีแกมมา</div>
+                <div class="wavelength-label" style="left: 15%;">รังสีเอกซ์</div>
+                <div class="wavelength-label" style="left: 30%;">อัลตราไวโอเลต</div>
+                <div class="wavelength-label" style="left: 45%;">แสงที่มองเห็น</div>
+                <div class="wavelength-label" style="left: 60%;">อินฟราเรด</div>
+                <div class="wavelength-label" style="left: 75%;">ไมโครเวฟ</div>
+                <div class="wavelength-label" style="left: 90%;">คลื่นวิทยุ</div>
+              </div>
+              
+              <p class="mb-0">แต่ละประเภทให้ข้อมูลที่แตกต่างกันเกี่ยวกับวัตถุท้องฟ้า</p>
+            </div>
+          </div>
         </div>
-        <ul>
-          <li>$\theta$: ความละเอียดเชิงมุม (เรเดียน)</li>
-          <li>$\lambda$: ความยาวคลื่นของแสงที่ใช้ (เมตร)</li>
-          <li>$D$: เส้นผ่านศูนย์กลางของเลนส์หรือกระจก (เมตร)</li>
-        </ul>
-        <p>
-          ยิ่ง $D$ ใหญ่ จะทำให้ $\theta$ เล็กลง หมายถึงสามารถแยกวัตถุที่อยู่ใกล้กันได้ดีขึ้น กล้องโทรทรรศน์อวกาศฮับเบิลสามารถแยกดาวคู่ที่ห่างกันเพียง 0.05 พิลลิอาร์กวินาทีได้
-        </p>
-      </section>
+      </div>
 
-    </article>
+      <div class="section-card">
+        <div class="section-header" data-bs-toggle="collapse" data-bs-target="#telescope-types">
+          <div class="d-flex align-items-center">
+            <div class="section-icon">
+              <i class="bi bi-diagram-3"></i>
+            </div>
+            <div>
+              <h2 class="mb-0">2.2 ประเภทของกล้องโทรทรรศน์</h2>
+            </div>
+          </div>
+        </div>
+        <div id="telescope-types" class="collapse show">
+          <div class="section-body">
+            <p class="lead">
+              กล้องโทรทรรศน์แบ่งได้เป็น 2 ประเภทหลักตามกลไกในการรวมแสง แต่ละประเภทมีข้อดีข้อเสียที่แตกต่างกัน
+            </p>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card h-100">
+                  <div class="card-header bg-astronomy text-white">
+                    <h5><i class="bi bi-lens"></i> กล้องโทรทรรศน์แบบหักเหแสง (Refractor)</h5>
+                  </div>
+                  <div class="card-body">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Cpath d='M50,100 L150,100 M150,70 L150,130 M170,100 L350,100' stroke='%230b3d91' stroke-width='2' fill='none'/%3E%3Ccircle cx='150' cy='100' r='20' fill='%234fc3f7' opacity='0.3'/%3E%3Ccircle cx='180' cy='100' r='5' fill='%230b3d91'/%3E%3Ccircle cx='220' cy='100' r='5' fill='%230b3d91'/%3E%3Ccircle cx='260' cy='100' r='5' fill='%230b3d91'/%3E%3Ccircle cx='300' cy='100' r='5' fill='%230b3d91'/%3E%3Ctext x='50' y='90' text-anchor='middle' fill='%230b3d91' font-size='12'%3Eแสงจากดาว%3C/text%3E%3Ctext x='350' y='90' text-anchor='middle' fill='%230b3d91' font-size='12'%3Eเลนส์ตา%3C/text%3E%3Ctext x='150' y='60' text-anchor='middle' fill='%230b3d91' font-size='12'%3Eเลนส์วัตถุ%3C/text%3E%3C/svg%3E" alt="Refracting Telescope" class="telescope-diagram">
+                    <ul>
+                      <li>ใช้เลนส์นูน (Convex Lens) เป็นเลนส์วัตถุ (Objective)</li>
+                      <li>แสงหักเหผ่านเลนส์และรวมกันที่จุดโฟกัส</li>
+                      <li>ให้ภาพคมชัดสูง มีคอนทราสต์ดี</li>
+                      <li>เหมาะสำหรับการสังเกตดาวเคราะห์และดาวคู่</li>
+                      <li><strong>ข้อเสีย:</strong> เกิดความคลาดสี (Chromatic Aberration)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="card h-100">
+                  <div class="card-header bg-astronomy text-white">
+                    <h5><i class="bi bi-mirror"></i> กล้องโทรทรรศน์แบบสะท้อนแสง (Reflector)</h5>
+                  </div>
+                  <div class="card-body">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Cpath d='M50,100 L100,100 M100,100 Q200,150 300,100 M300,100 L350,100' stroke='%230b3d91' stroke-width='2' fill='none'/%3E%3Cpath d='M100,50 L100,150' stroke='%230b3d91' stroke-width='1' stroke-dasharray='5,5'/%3E%3Cellipse cx='200' cy='100' rx='100' ry='50' fill='%234fc3f7' opacity='0.3'/%3E%3Ccircle cx='300' cy='100' r='5' fill='%230b3d91'/%3E%3Ccircle cx='280' cy='80' r='5' fill='%230b3d91'/%3E%3Ccircle cx='280' cy='120' r='5' fill='%230b3d91'/%3E%3Ctext x='50' y='90' text-anchor='middle' fill='%230b3d91' font-size='12'%3Eแสงจากดาว%3C/text%3E%3Ctext x='350' y='90' text-anchor='middle' fill='%230b3d91' font-size='12'%3Eเลนส์ตา%3C/text%3E%3Ctext x='200' y='170' text-anchor='middle' fill='%230b3d91' font-size='12'%3Eกระจกเว้าหลัก%3C/text%3E%3C/svg%3E" alt="Reflecting Telescope" class="telescope-diagram">
+                    <ul>
+                      <li>ใช้กระจกเว้า (Concave Mirror) เป็นกระจกหลัก</li>
+                      <li>แสงสะท้อนจากกระจกหลักไปยังกระจกทุติยภูมิแล้วสะท้อนเข้าตาผู้สังเกต</li>
+                      <li>ไม่เกิดความคลาดสี ผลิตในขนาดใหญ่ได้ง่ายกว่า</li>
+                      <li>เหมาะสำหรับการสังเกตวัตถุท้องฟ้าจางๆ เช่น เนบิวลา กาแล็กซี</li>
+                      <li><strong>ข้อเสีย:</strong> ต้องการการปรับตั้งที่แม่นยำ</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-4">
+              <h4 class="section-title">กล้องโทรทรรศน์แบบผสม (Catadioptric)</h4>
+              <p>เป็นกล้องที่รวมข้อดีของทั้งเลนส์และกระจกเข้าด้วยกัน โดยทั่วไปใช้กระจกหลักแบบเว้าและแผ่นแก้ความคลาด (Corrector Plate) ที่ปากท่อ</p>
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header bg-astronomy text-white">
+                      <h5><i class="bi bi-cpu"></i> Schmidt-Cassegrain</h5>
+                    </div>
+                    <div class="card-body">
+                      <ul>
+                        <li>ใช้แผ่นแก้ความคลาดแบบ Schmidt ที่ปากท่อ</li>
+                        <li>กระจกหลักเป็นทรงกลม</li>
+                        <li>ขนาดกระทัดรัด ท่อสั้นกว่ากล้องสะท้อนแสงแบบนิวโตเนียน</li>
+                        <li>เป็นที่นิยมในกล้องโทรทรรศน์สมัครเล่น</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header bg-astronomy text-white">
+                      <h5><i class="bi bi-cpu-fill"></i> Maksutov-Cassegrain</h5>
+                    </div>
+                    <div class="card-body">
+                      <ul>
+                        <li>ใช้แผ่นแก้ความคลาดแบบ Maksutov (เลนส์เว้า)</li>
+                        <li>กระจกทุติยภูมิเป็นกระจกเงาที่เคลือบบนแผ่นแก้ความคลาด</li>
+                        <li>ให้ภาพคมชัดสูง เหมาะสำหรับการถ่ายภาพดาวเคราะห์</li>
+                        <li>ปิดสนิท ป้องกันฝุ่นได้ดี</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="comparison-table mt-4">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ประเภท</th>
+                    <th>ข้อดี</th>
+                    <th>ข้อเสีย</th>
+                    <th>เหมาะสำหรับ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>หักเหแสง (Refractor)</td>
+                    <td>ให้ภาพคมชัดสูง, คอนทราสต์ดี, ดูแลรักษาง่าย</td>
+                    <td>เกิดความคลาดสี, ราคาสูงเมื่อขนาดใหญ่, น้ำหนักมาก</td>
+                    <td>ดาวเคราะห์, ดวงจันทร์, ดาวคู่</td>
+                  </tr>
+                  <tr>
+                    <td>สะท้อนแสง (Reflector)</td>
+                    <td>ไม่เกิดความคลาดสี, ราคาต่อนิ้วถูก, ขนาดใหญ่ทำได้ง่าย</td>
+                    <td>ต้องการการปรับตั้ง (Collimation), ท่อเปิดรับฝุ่น</td>
+                    <td>วัตถุท้องฟ้าจางๆ, กาแล็กซี, เนบิวลา</td>
+                  </tr>
+                  <tr>
+                    <td>ผสม (Catadioptric)</td>
+                    <td>ขนาดกระทัดรัด, ป้องกันฝุ่นได้ดี, ภาพคมชัด</td>
+                    <td>ราคาสูง, น้ำหนักมาก, Focal Length ยาว</td>
+                    <td>การถ่ายภาพดาวเคราะห์และวัตถุท้องฟ้าทั่วไป</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header" data-bs-toggle="collapse" data-bs-target="#magnification">
+          <div class="d-flex align-items-center">
+            <div class="section-icon">
+              <i class="bi bi-zoom-in"></i>
+            </div>
+            <div>
+              <h2 class="mb-0">2.3 กำลังขยาย (Magnification)</h2>
+            </div>
+          </div>
+        </div>
+        <div id="magnification" class="collapse show">
+          <div class="section-body">
+            <p class="lead">
+              กำลังขยายเป็นพารามิเตอร์ที่ผู้เริ่มต้นมักสนใจมากที่สุด แต่ในทางปฏิบัติ กำลังขยายสูงสุดที่ใช้งานได้จริงถูกจำกัดโดยขนาดหน้ากล้องและสภาพบรรยากาศ
+            </p>
+            
+            <div class="text-center bg-light p-3 rounded">
+              <h3 style="font-family: 'Times New Roman', serif;">$$ M = \frac{f_o}{f_e} $$</h3>
+            </div>
+            <ul>
+              <li>$M$: กำลังขยาย (ไม่มีหน่วย)</li>
+              <li>$f_o$: ความยาวโฟกัสของเลนส์วัตถุ (หน่วย: มม.)</li>
+              <li>$f_e$: ความยาวโฟกัสของเลนส์ตา (หน่วย: มม.)</li>
+            </ul>
+            
+            <div class="key-point">
+              <h5><i class="bi bi-exclamation-triangle"></i> กำลังขยายที่มีประโยชน์สูงสุด (Maximum Useful Magnification)</h5>
+              <p>กำลังขยายที่ใช้งานได้จริงจะถูกจำกัดโดยเส้นผ่านศูนย์กลางของกล้องโทรทรรศน์ โดยทั่วไปคือประมาณ 50 เท่าต่อนิ้วของเส้นผ่านศูนย์กลาง</p>
+              <div class="formula-box">
+                $$ M_{\text{max}} \approx 50 \times D \, (\text{นิ้ว}) $$
+                $$ \text{หรือ} \quad M_{\text{max}} \approx 2 \times D \, (\text{มม.}) $$
+              </div>
+              <p>ตัวอย่าง: กล้องขนาด 150 มม. (6 นิ้ว) จะมีกำลังขยายที่มีประโยชน์สูงสุดประมาณ 300×</p>
+            </div>
+            
+            <div class="example-box">
+              <h6><i class="bi bi-calculator"></i> ตัวอย่างการคำนวณกำลังขยาย</h6>
+              <p>กล้องโทรทรรศน์ขนาด 150 มม. มีความยาวโฟกัส 1200 มม. ใช้เลนส์ตาขนาด 10 มม.</p>
+              <p>กำลังขยาย: $ M = \frac{1200}{10} = 120 \times $</p>
+              <p>กำลังขยายที่มีประโยชน์สูงสุด: $ M_{\text{max}} \approx 2 \times 150 = 300 \times $</p>
+              <p>ดังนั้น กำลังขยาย 120× อยู่ในขอบเขตที่ใช้งานได้ดี</p>
+            </div>
+            
+            <div class="alert alert-warning" role="alert">
+              <h4 class="alert-heading"><i class="bi bi-eye-slash"></i> กำลังขยายมากเกินไป</h4>
+              <p>การใช้กำลังขยายเกินกว่าที่กล้องโทรทรรศน์และสภาพบรรยากาศรองรับได้ จะทำให้ภาพมืดลงและเบลอ เนื่องจาก:</p>
+              <ul>
+                <li>ปริมาณแสงต่อหน่วยพื้นที่ลดลง</li>
+                <li>การรบกวนจากบรรยากาศโลกเห็นชัดเจนขึ้น (Seeing)</li>
+                <li>ข้อผิดพลาดทางทัศนศาสตร์เห็นเด่นชัดขึ้น</li>
+              </ul>
+            </div>
+            
+            <div class="spec-highlight">
+              <h5><i class="bi bi-info-circle"></i> เลนส์ตา (Eyepiece) กับมุมมอง</h5>
+              <p>เลนส์ตาไม่ได้มีหน้าที่เพียงการขยายภาพเท่านั้น แต่ยังกำหนดมุมมอง (Field of View) ด้วย โดยทั่วไปแบ่งเป็น:</p>
+              <ul>
+                <li><strong>Plössl:</strong> มุมมอง 50° เหมาะสำหรับการใช้งานทั่วไป</li>
+                <li><strong>Wide Angle:</strong> มุมมอง 70-82° ให้ภาพเหมือนลอยอยู่ในอวกาศ</li>
+                <li><strong>Ultra Wide Angle:</strong> มุมมอง 100° หรือมากกว่า ให้ประสบการณ์เหมือนมองผ่านช่องหน้าต่างยานอวกาศ</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header" data-bs-toggle="collapse" data-bs-target="#light-gathering">
+          <div class="d-flex align-items-center">
+            <div class="section-icon">
+              <i class="bi bi-brightness-high"></i>
+            </div>
+            <div>
+              <h2 class="mb-0">2.4 กำลังรวมแสง (Light-gathering Power)</h2>
+            </div>
+          </div>
+        </div>
+        <div id="light-gathering" class="collapse show">
+          <div class="section-body">
+            <p class="lead">
+              กำลังรวมแสงเป็นความสามารถที่สำคัญที่สุดของกล้องโทรทรรศน์ในการสังเกตวัตถุท้องฟ้าจางๆ ซึ่งแปรผันตามพื้นที่ของเลนส์หรือกระจกหลัก
+            </p>
+            
+            <div class="text-center bg-light p-3 rounded">
+              <h3 style="font-family: 'Times New Roman', serif;">$$ \text{Light-gathering Power} \propto \left( \frac{D}{D_{\text{eye}}} \right)^2 $$</h3>
+            </div>
+            <ul>
+              <li>$D$: เส้นผ่านศูนย์กลางของกล้องโทรทรรศน์</li>
+              <li>$D_{\text{eye}}$: เส้นผ่านศูนย์กลางรูม่านตามนุษย์ (~7 มม.)</li>
+            </ul>
+            
+            <div class="key-point">
+              <h5><i class="bi bi-moon-stars"></i> ความสำคัญของกำลังรวมแสง</h5>
+              <p>กำลังรวมแสงเป็นตัวกำหนดความสามารถในการมองเห็นวัตถุท้องฟ้าจางๆ เช่น:</p>
+              <ul>
+                <li>เนบิวลา (Nebulae)</li>
+                <li>กาแล็กซี (Galaxies)</li>
+                <li>กระจุกดาวทรงกลม (Globular Clusters)</li>
+                <li>ดาวเคราะห์น้อย (Asteroids)</li>
+              </ul>
+            </div>
+            
+            <div class="row mt-4">
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header bg-astronomy text-white">
+                    <h5><i class="bi bi-graph-up"></i> การเปรียบเทียบกำลังรวมแสง</h5>
+                  </div>
+                  <div class="card-body">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>ขนาดกล้อง (มม.)</th>
+                          <th>กำลังรวมแสง (เท่าตา)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>70</td>
+                          <td>100×</td>
+                        </tr>
+                        <tr>
+                          <td>100</td>
+                          <td>204×</td>
+                        </tr>
+                        <tr>
+                          <td>150</td>
+                          <td>459×</td>
+                        </tr>
+                        <tr>
+                          <td>200</td>
+                          <td>816×</td>
+                        </tr>
+                        <tr>
+                          <td>250</td>
+                          <td>1275×</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header bg-astronomy text-white">
+                    <h5><i class="bi bi-stars"></i> ตัวอย่างวัตถุท้องฟ้าที่มองเห็น</h5>
+                  </div>
+                  <div class="card-body">
+                    <ul>
+                      <li><strong>70-80 มม.:</strong> วงแหวนดาวเสาร์, แถบเมฆบนดาวพฤหัสบดี</li>
+                      <li><strong>100-130 มม.:</strong> เนบิวลานายพราน (M42), กาแล็กซีแอนโดรเมดา (M31)</li>
+                      <li><strong>150-200 มม.:</strong> โครงสร้างในเนบิวลา, กระจุกดาวทรงกลม</li>
+                      <li><strong>250 มม. ขึ้นไป:</strong> รายละเอียดในกาแล็กซี, เนบิวลาดาร์ก</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="alert alert-info mt-4" role="alert">
+              <h4 class="alert-heading"><i class="bi bi-lightbulb"></i> กฎกำลังสองผกผัน (Inverse Square Law)</h4>
+              <p>กำลังรวมแสงเพิ่มขึ้นตามกำลังสองของเส้นผ่านศูนย์กลาง แต่ความสว่างของภาพลดลงตามกำลังสองของกำลังขยาย:</p>
+              <div class="formula-box">
+                $$ \text{Brightness} \propto \frac{D^2}{M^2} $$
+              </div>
+              <p>ดังนั้น การเพิ่มกำลังขยายเป็น 2 เท่า จะทำให้ภาพมืดลง 4 เท่า</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header" data-bs-toggle="collapse" data-bs-target="#resolving-power">
+          <div class="d-flex align-items-center">
+            <div class="section-icon">
+              <i class="bi bi-binoculars"></i>
+            </div>
+            <div>
+              <h2 class="mb-0">2.5 กำลังแยกภาพ (Resolving Power)</h2>
+            </div>
+          </div>
+        </div>
+        <div id="resolving-power" class="collapse show">
+          <div class="section-body">
+            <p class="lead">
+              กำลังแยกภาพเป็นความสามารถในการแยกวัตถุสองดวงที่อยู่ใกล้กันให้เห็นเป็นสองจุดแยกจากกัน ซึ่งถูกจำกัดโดยปรากฏการณ์การเลี้ยวเบนของแสง
+            </p>
+            
+            <div class="text-center bg-light p-3 rounded">
+              <h3 style="font-family: 'Times New Roman', serif;">$$ \theta \approx \frac{1.22 \lambda}{D} $$</h3>
+            </div>
+            <ul>
+              <li>$\theta$: ความละเอียดเชิงมุม (เรเดียน)</li>
+              <li>$\lambda$: ความยาวคลื่นของแสง (เมตร) - โดยทั่วไปใช้ 550 นาโนเมตร (แสงสีเขียว)</li>
+              <li>$D$: เส้นผ่านศูนย์กลางของเลนส์หรือกระจก (เมตร)</li>
+            </ul>
+            
+            <div class="key-point">
+              <h5><i class="bi bi-stars"></i> เกณฑ์ของเรย์เลห์ (Rayleigh Criterion)</h5>
+              <p>เกณฑ์มาตรฐานที่ใช้กำหนดว่าวัตถุสองชิ้นจะแยกจากกันได้เมื่อจุดสว่างสูงสุดของภาพหนึ่งอยู่บนจุดมืดแรกของอีกภาพหนึ่ง</p>
+              <div class="formula-box">
+                $$ \theta_{\text{min}} = \frac{1.22 \lambda}{D} \, \text{เรเดียน} $$
+              </div>
+              <p>เมื่อแปลงเป็นพิลิปดา (arcseconds):</p>
+              <div class="formula-box">
+                $$ \theta_{\text{min}} \approx \frac{138}{D} \, \text{พิลิปดา} $$
+                <small>($D$ ในหน่วยมิลลิเมตร, $\lambda = 550$ นาโนเมตร)</small>
+              </div>
+            </div>
+            
+            <div class="example-box">
+              <h6><i class="bi bi-calculator"></i> ตัวอย่างการคำนวณกำลังแยกภาพ</h6>
+              <p>กล้องโทรทรรศน์ขนาด 150 มม. (0.15 เมตร)</p>
+              <p>$\theta = \frac{1.22 \times 550 \times 10^{-9}}{0.15} \approx 4.47 \times 10^{-6}$ เรเดียน</p>
+              <p>แปลงเป็นพิลิปดา: $ \frac{4.47 \times 10^{-6} \times 206265 \approx 0.92$ พิลิปดา</p>
+              <p>หรือใช้สูตรลัด: $ \frac{138}{150} \approx 0.92$ พิลิปดา</p>
+            </div>
+            
+            <div class="alert alert-warning" role="alert">
+              <h4 class="alert-heading"><i class="bi bi-cloud"></i> ข้อจำกัดจากบรรยากาศโลก</h4>
+              <p>ในทางปฏิบัติ กำลังแยกภาพมักถูกจำกัดโดยสภาพบรรยากาศ (Seeing) มากกว่าขีดจำกัดทางทฤษฎี:</p>
+              <ul>
+                <li><strong>สถานที่ทั่วไป:</strong> 2-4 พิลิปดา</li>
+                <li><strong>สถานที่ที่เหมาะสม:</strong> 1-2 พิลิปดา</li>
+                <li><strong>หอดูดาวบนยอดเขาสูง:</strong> 0.5-1 พิลิปดา</li>
+                <li><strong>กล้องโทรทรรศน์อวกาศ:</strong> 0.05 พิลิปดา (ฮับเบิล)</li>
+              </ul>
+            </div>
+            
+            <div class="spec-highlight">
+              <h5><i class="bi bi-rocket-takeoff"></i> กล้องโทรทรรศน์อวกาศฮับเบิล</h5>
+              <p>ด้วยเส้นผ่านศูนย์กลาง 2.4 เมตร และอยู่เหนือบรรยากาศโลก ฮับเบิลสามารถบรรลุความละเอียดเชิงมุมประมาณ 0.05 พิลิปดา ซึ่งเทียบเท่าการมองเห็นเหรียญบาทที่ระยะ 100 กิโลเมตร!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-grid gap-2 mt-4">
+      <a href="astronomy_topics.html" class="btn btn-primary btn-lg">
+        <i class="bi bi-arrow-left-circle"></i> กลับไปยังหน้าบทเรียนทั้งหมด
+      </a>
+    </div>
   </div>
 </main>
 
-<footer class="bg-dark text-white text-center py-3">
+<footer class="bg-dark text-white text-center py-4">
   <div class="container">
+    <div class="mb-3">
+      <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+      <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+      <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+      <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+    </div>
     <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+    <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
   </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/script.js"></script>
-
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Dark mode toggle functionality
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      body.setAttribute('data-bs-theme', 'dark');
+      darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+      darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+    }
+    
+    darkModeToggle.addEventListener('click', function() {
+      if (body.getAttribute('data-bs-theme') === 'dark') {
+        body.setAttribute('data-bs-theme', 'light');
+        darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+        darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.setAttribute('data-bs-theme', 'dark');
+        darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+        darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  });
+</script>
 </body>
 </html>
