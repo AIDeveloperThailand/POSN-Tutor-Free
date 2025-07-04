@@ -4,16 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>เนื้อหาดาราศาสตร์ สอวน. - สอวน. Hub</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/style.css">
-
+    
     <script>
     MathJax = {
       tex: {
@@ -26,9 +22,147 @@
     };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        :root {
+            --astronomy: #0b3d91;
+            --astronomy-light: #4fc3f7;
+            --astronomy-dark: #0d47a1;
+            --nebula: #6a0dad;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230b3d91' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .accordion-button {
+            font-weight: 500;
+            background-color: #f8f9fa;
+            transition: all 0.3s;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: #e3f2fd;
+            color: var(--astronomy-dark);
+            box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(0,0,0,.125);
+        }
+        
+        .chapter-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--astronomy);
+            font-size: 1.2rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(11, 61, 145, 0.3);
+        }
+        
+        .chapter-header {
+            display: flex;
+            align-items: center;
+        }
+        
+        .chapter-title {
+            flex-grow: 1;
+        }
+        
+        .completed-badge {
+            background: linear-gradient(135deg, #4fc3f7, #29b6f6);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        footer {
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='20' cy='20' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='10' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='90' cy='10' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='55' cy='35' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.3;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(11, 61, 145, 0.1), rgba(106, 13, 173, 0.1));
+            border-left: 4px solid var(--astronomy);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 20px;
+        }
+        
+        .formula-box {
+            background-color: rgba(79, 195, 247, 0.1);
+            border-left: 3px solid var(--astronomy);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+    </style>
 </head>
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -43,7 +177,7 @@
                         <a class="nav-link" href="index.html">หน้าแรก</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="astronomy_topics.html">เนื้อหาดาราศาสตร์</a>
+                        <a class="nav-link active" aria-current="page" href="#">ดาราศาสตร์</a>
                     </li>
                     <li class="nav-item ms-lg-2">
                         <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
@@ -53,70 +187,114 @@
         </div>
     </nav>
 
-    <main class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h1 class="display-5">เนื้อหาทั้งหมด: ดาราศาสตร์ สอวน.</h1>
-                <p class="lead">รวมหัวข้อสำคัญสำหรับการเตรียมตัวสอบคัดเลือกค่าย 1 และ 2</p>
+    <div class="header-bg">
+        <div class="container text-center position-relative">
+            <h1 class="display-5 mb-3"><i class="bi bi-stars"></i> เนื้อหาดาราศาสตร์ สอวน.</h1>
+            <p class="lead">รวมหัวข้อสำคัญสำหรับการเตรียมตัวสอบคัดเลือกค่าย 1 และ 2</p>
+            <div class="mt-4">
+                <span class="badge bg-light text-astronomy me-2">ระบบพิกัดฟ้า</span>
+                <span class="badge bg-light text-astronomy me-2">กล้องโทรทรรศน์</span>
+                <span class="badge bg-light text-astronomy me-2">กลศาสตร์ท้องฟ้า</span>
+                <span class="badge bg-light text-astronomy">วิวัฒนาการดาวฤกษ์</span>
             </div>
+        </div>
+    </div>
 
-            <div class="accordion" id="astronomyAccordion">
-
-                <div class="accordion-item">
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <h4><i class="bi bi-check-circle-fill text-info"></i> เนื้อหาทุกบทเรียนเสร็จสมบูรณ์แล้ว!</h4>
+                <p class="mb-0">ทุกหัวข้อพร้อมให้คุณศึกษาได้ทันที</p>
+            </div>
+            
+            <div class="accordion mb-5" id="astronomyAccordion">
+                <!-- Chapter 1 - Original Content -->
+                <div class="accordion-item mb-3">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            <strong>บทที่ 1: พื้นฐานดาราศาสตร์และระบบพิกัดฟ้า (Basics & Celestial Coordinates)</strong>
+                            <div class="chapter-header">
+                                <div class="chapter-icon">1</div>
+                                <div class="chapter-title">
+                                    <strong>บทที่ 1: พื้นฐานดาราศาสตร์และระบบพิกัดฟ้า</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
                         </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#astronomyAccordion">
-                       <div class="accordion-body">
-    <p>การทำความเข้าใจตำแหน่งและการเคลื่อนที่ของวัตถุบนท้องฟ้าเป็นพื้นฐานที่สำคัญที่สุด ประกอบด้วยเรื่องทรงกลมท้องฟ้า ระบบพิกัดขอบฟ้าและศูนย์สูตร รวมถึงระบบเวลาทางดาราศาสตร์</p>
-                           <ul>
-                               <li><strong>ทรงกลมท้องฟ้า (Celestial Sphere):</strong> แบบจำลองเพื่อระบุตำแหน่งของดาว</li>
+                        <div class="accordion-body">
+                            <p>การทำความเข้าใจตำแหน่งและการเคลื่อนที่ของวัตถุบนท้องฟ้าเป็นพื้นฐานที่สำคัญที่สุด ประกอบด้วยเรื่องทรงกลมท้องฟ้า ระบบพิกัดขอบฟ้าและศูนย์สูตร รวมถึงระบบเวลาทางดาราศาสตร์</p>
+                            <ul class="topic-list">
+                                <li><strong>ทรงกลมท้องฟ้า (Celestial Sphere):</strong> แบบจำลองเพื่อระบุตำแหน่งของดาว</li>
                                 <li><strong>ระบบพิกัดขอบฟ้า (Horizon System):</strong> บอกตำแหน่งด้วยมุมทิศ (Azimuth) และมุมเงย (Altitude)</li>
-                                <li><strong>ระบบพิกัดศูนย์สูตร (Equatorial System):</strong> บอกตำแหน่งด้วยไรต์แอสเซนชัน (Right Ascension) และเดคลิเนชัน (Declination) ซึ่งไม่ขึ้นอยู่กับตำแหน่งผู้สังเกตและเวลา</li>
+                                <li><strong>ระบบพิกัดศูนย์สูตร (Equatorial System):</strong> บอกตำแหน่งด้วยไรต์แอสเซนชัน (Right Ascension) และเดคลิเนชัน (Declination)</li>
                                 <li><strong>การเคลื่อนที่ปรากฏของดาว:</strong> ดาวขึ้น-ตก, ดาวเคราะห์, การเคลื่อนที่ของดวงอาทิตย์ (สุริยวิถี)</li>
-                                <li><strong>เวลาดาราคติ (Sidereal Time):</strong> เวลที่อ้างอิงกับการหมุนของโลกรอบตัวเองเทียบกับดาวฤกษ์</li>
-                           </ul>
-    <a href="astronomy_chapter_1.html" class="btn btn-primary mt-2">
-        <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 1 ฉบับเต็ม
-    </a>
-</div>
+                                <li><strong>เวลาดาราคติ (Sidereal Time):</strong> เวลาที่อ้างอิงกับการหมุนของโลกรอบตัวเองเทียบกับดาวฤกษ์</li>
+                            </ul>
+                            <a href="astronomy_chapter_1.html" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 1 ฉบับเต็ม
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="accordion-item">
+                
+                <!-- Chapter 2 - Original Content -->
+                <div class="accordion-item mb-3">
                     <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            <strong>บทที่ 2: กล้องโทรทรรศน์และทัศนูปกรณ์ (Telescopes & Optics)</strong>
+                            <div class="chapter-header">
+                                <div class="chapter-icon">2</div>
+                                <div class="chapter-title">
+                                    <strong>บทที่ 2: กล้องโทรทรรศน์และทัศนูปกรณ์</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
                         </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#astronomyAccordion">
                         <div class="accordion-body">
                             <p>อุปกรณ์ที่ใช้ในการสังเกตการณ์ทางดาราศาสตร์และคุณสมบัติทางกายภาพที่สำคัญ</p>
-                            <ul>
+                            <ul class="topic-list">
                                 <li><strong>ประเภทของกล้องโทรทรรศน์:</strong> แบบหักเหแสง (Refractor) และแบบสะท้อนแสง (Reflector)</li>
-                                <li><strong>กำลังขยาย (Magnification):</strong> $ M = \frac{f_o}{f_e} $ (เมื่อ $f_o$ คือความยาวโฟกัสเลนส์วัตถุ, $f_e$ คือความยาวโฟกัสเลนส์ตา)</li>
-                                <li><strong>กำลังรวมแสง (Light-gathering Power):</strong> ความสามารถในการรวบรวมแสง แปรผันตรงกับพื้นที่หน้าตัดของเลนส์/กระจก $ \propto D^2 $</li>
-                                <li><strong>กำลังแยกภาพ (Resolving Power):</strong> ความสามารถในการแยกวัตถุที่อยู่ใกล้กัน $ \theta \approx \frac{1.22 \lambda}{D} $</li>
+                                <li><strong>กำลังขยาย (Magnification):</strong> $ M = \frac{f_o}{f_e} $</li>
+                                <li><strong>กำลังรวมแสง (Light-gathering Power):</strong> ความสามารถในการรวบรวมแสง</li>
+                                <li><strong>กำลังแยกภาพ (Resolving Power):</strong> $ \theta \approx \frac{1.22 \lambda}{D} $</li>
                             </ul>
-                            <a href="astronomy_chapter_2.html" class="btn btn-primary mt-2">
-        <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 2 ฉบับเต็ม
-    </a>
+                            <div class="formula-box">
+                                <strong>สูตรสำคัญ:</strong><br>
+                                $ M = \frac{f_o}{f_e} $ (กำลังขยาย)<br>
+                                $ \theta \approx \frac{1.22 \lambda}{D} $ (กำลังแยกภาพ)
+                            </div>
+                            <a href="astronomy_chapter_2.html" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 2 ฉบับเต็ม
+                            </a>
                         </div>
                     </div>
                 </div>
-
-                <div class="accordion-item">
+                
+                <!-- Chapter 3 - Original Content -->
+                <div class="accordion-item mb-3">
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            <strong>บทที่ 3: ระบบสุริยะและกลศาสตร์ท้องฟ้า (Solar System & Celestial Mechanics)</strong>
+                            <div class="chapter-header">
+                                <div class="chapter-icon">3</div>
+                                <div class="chapter-title">
+                                    <strong>บทที่ 3: ระบบสุริยะและกลศาสตร์ท้องฟ้า</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
                         </button>
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#astronomyAccordion">
                         <div class="accordion-body">
                             <p>การศึกษาการเคลื่อนที่ของดาวเคราะห์และวัตถุต่างๆ ในระบบสุริยะภายใต้แรงโน้มถ่วง</p>
-                            <ul>
+                            <ul class="topic-list">
                                 <li><strong>กฎของเคปเลอร์ (Kepler's Laws):</strong>
                                     <ol>
                                         <li>ดาวเคราะห์โคจรเป็นวงรี โดยมีดวงอาทิตย์อยู่ที่โฟกัสหนึ่ง</li>
@@ -124,101 +302,180 @@
                                         <li>กำลังสองของคาบวงโคจรแปรผันตรงกับกำลังสามของระยะครึ่งแกนเอก ($P^2 \propto a^3$)</li>
                                     </ol>
                                 </li>
-                                <li><strong>กฎความโน้มถ่วงสากลของนิวตัน (Newton's Law of Gravitation):</strong> $$ F = G \frac{M_1 M_2}{r^2} $$</li>
-                                <li><strong>องค์ประกอบของระบบสุริยะ:</strong> ดาวเคราะห์, ดาวเคราะห์แคระ, ดาวเคราะห์น้อย, ดาวหาง, และวัตถุในแถบคอยเปอร์</li>
+                                <li><strong>กฎความโน้มถ่วงสากลของนิวตัน:</strong> $$ F = G \frac{M_1 M_2}{r^2} $$</li>
+                                <li><strong>องค์ประกอบของระบบสุริยะ:</strong> ดาวเคราะห์, ดาวเคราะห์แคระ, ดาวเคราะห์น้อย, ดาวหาง</li>
                             </ul>
-                            <a href="astronomy_chapter_3.html" class="btn btn-primary mt-2">
-        <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 3 ฉบับเต็ม
-    </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFour">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            <strong>บทที่ 4: ฟิสิกส์ของดาวฤกษ์ (Stellar Physics)</strong>
-                        </button>
-                    </h2>
-                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#astronomyAccordion">
-                        <div class="accordion-body">
-                            <p>คุณสมบัติทางกายภาพต่างๆ ที่ใช้อธิบายและจำแนกประเภทของดาวฤกษ์</p>
-                            <ul>
-                                <li><strong>โชติมาตร (Magnitude):</strong>
-                                    <ul>
-                                        <li><strong>โชติมาตรปรากฏ (Apparent Magnitude, $m$):</strong> ความสว่างที่มองเห็นจากโลก</li>
-                                        <li><strong>โชติมาตรสัมบูรณ์ (Absolute Magnitude, $M$):</strong> ความสว่างจริงของดาวเมื่ออยู่ที่ระยะ 10 พาร์เซก</li>
-                                        <li><strong>สมการระยะทาง (Distance Modulus):</strong> $ m - M = 5 \log_{10}(d) - 5 $</li>
-                                    </ul>
-                                </li>
-                                <li><strong>กำลังส่องสว่างและฟลักซ์ (Luminosity & Flux):</strong> $ L = 4\pi d^2 f $</li>
-                                <li><strong>กฎของสเตฟาน-โบลทซ์มันน์ (Stefan-Boltzmann Law):</strong> $ L = 4\pi R^2 \sigma T^4 $</li>
-                                <li><strong>ประเภทสเปกตรัม (Spectral Types):</strong> การจำแนกดาวตามอุณหภูมิผิว (O, B, A, F, G, K, M)</li>
-                                <li><strong>แผนภาพ H-R (Hertzsprung-Russell Diagram):</strong> กราฟแสดงความสัมพันธ์ระหว่างกำลังส่องสว่างกับอุณหภูมิของดาว</li>
-                            </ul>
-                            <a href="astronomy_chapter_4.html" class="btn btn-primary mt-2">
-        <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 4 ฉบับเต็ม
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFive">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            <strong>บทที่ 5: วิวัฒนาการของดาวฤกษ์ (Stellar Evolution)</strong>
-                        </button>
-                    </h2>
-                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#astronomyAccordion">
-                        <div class="accordion-body">
-                            <p>เส้นทางชีวิตของดาวฤกษ์ตั้งแต่เกิดจนกระทั่งจบสิ้นอายุขัย ซึ่งขึ้นอยู่กับมวลดั้งเดิมของดาวเป็นสำคัญ</p>
-                            <ul>
-                                <li><strong>การก่อกำเนิดดาว:</strong> จากเมฆโมเลกุล (Molecular Cloud) สู่ดาวฤกษ์ก่อนเกิด (Protostar) และเข้าสู่แถบลำดับหลัก (Main Sequence)</li>
-                                <li><strong>วิวัฒนาการของดาวมวลน้อย (เช่น ดวงอาทิตย์):</strong> แถบลำดับหลัก $\rightarrow$ ดาวยักษ์แดง (Red Giant) $\rightarrow$ เนบิวลาดาวเคราะห์ (Planetary Nebula) $\rightarrow$ ดาวแคระขาว (White Dwarf)</li>
-                                <li><strong>วิวัฒนาการของดาวมวลมาก:</strong> แถบลำดับหลัก $\rightarrow$ ดาวยักษ์ใหญ่สีแดง (Red Supergiant) $\rightarrow$ ซูเปอร์โนวา (Supernova) $\rightarrow$ ดาวนิวตรอน (Neutron Star) หรือ หลุมดำ (Black Hole)</li>
-                                <li><strong>ขีดจำกัดจันทรสิกขาร์ (Chandrasekhar Limit):</strong> ขีดจำกัดมวลของดาวแคระขาวที่ $ \approx 1.4 M_\odot $ (มวลดวงอาทิตย์)</li>
-                            </ul>
-                            <a href="astronomy_chapter_5.html" class="btn btn-primary mt-2">
-        <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 5 ฉบับเต็ม
+                            <div class="formula-box">
+                                <strong>สูตรสำคัญ:</strong><br>
+                                $ F = G \frac{M_1 M_2}{r^2} $ (กฎความโน้มถ่วงสากล)<br>
+                                $ P^2 \propto a^3 $ (กฎข้อที่ 3 ของเคปเลอร์)
+                            </div>
+                            <a href="astronomy_chapter_3.html" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 3 ฉบับเต็ม
                             </a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="accordion-item">
+                <!-- Chapter 4 - Original Content -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">4</div>
+                                <div class="chapter-title">
+                                    <strong>บทที่ 4: ฟิสิกส์ของดาวฤกษ์</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#astronomyAccordion">
+                        <div class="accordion-body">
+                            <p>คุณสมบัติทางกายภาพต่างๆ ที่ใช้อธิบายและจำแนกประเภทของดาวฤกษ์</p>
+                            <ul class="topic-list">
+                                <li><strong>โชติมาตร (Magnitude):</strong>
+                                    <ul>
+                                        <li><strong>โชติมาตรปรากฏ (Apparent Magnitude, $m$):</strong> ความสว่างที่มองเห็นจากโลก</li>
+                                        <li><strong>โชติมาตรสัมบูรณ์ (Absolute Magnitude, $M$):</strong> ความสว่างจริงของดาวเมื่ออยู่ที่ระยะ 10 พาร์เซก</li>
+                                        <li><strong>สมการระยะทาง:</strong> $ m - M = 5 \log_{10}(d) - 5 $</li>
+                                    </ul>
+                                </li>
+                                <li><strong>กำลังส่องสว่างและฟลักซ์:</strong> $ L = 4\pi d^2 f $</li>
+                                <li><strong>กฎของสเตฟาน-โบลทซ์มันน์:</strong> $ L = 4\pi R^2 \sigma T^4 $</li>
+                                <li><strong>ประเภทสเปกตรัม (Spectral Types):</strong> การจำแนกดาวตามอุณหภูมิผิว (O, B, A, F, G, K, M)</li>
+                                <li><strong>แผนภาพ H-R (Hertzsprung-Russell Diagram):</strong> กราฟแสดงความสัมพันธ์ระหว่างกำลังส่องสว่างกับอุณหภูมิ</li>
+                            </ul>
+                            <div class="formula-box">
+                                <strong>สูตรสำคัญ:</strong><br>
+                                $ m - M = 5 \log_{10}(d) - 5 $ (สมการระยะทาง)<br>
+                                $ L = 4\pi R^2 \sigma T^4 $ (กฎของสเตฟาน-โบลทซ์มันน์)
+                            </div>
+                            <a href="astronomy_chapter_4.html" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 4 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 5 - Original Content -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">5</div>
+                                <div class="chapter-title">
+                                    <strong>บทที่ 5: วิวัฒนาการของดาวฤกษ์</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#astronomyAccordion">
+                        <div class="accordion-body">
+                            <p>เส้นทางชีวิตของดาวฤกษ์ตั้งแต่เกิดจนกระทั่งจบสิ้นอายุขัย ซึ่งขึ้นอยู่กับมวลดั้งเดิมของดาวเป็นสำคัญ</p>
+                            <ul class="topic-list">
+                                <li><strong>การก่อกำเนิดดาว:</strong> จากเมฆโมเลกุล (Molecular Cloud) สู่ดาวฤกษ์ก่อนเกิด (Protostar)</li>
+                                <li><strong>วิวัฒนาการของดาวมวลน้อย (เช่น ดวงอาทิตย์):</strong> แถบลำดับหลัก → ดาวยักษ์แดง → เนบิวลาดาวเคราะห์ → ดาวแคระขาว</li>
+                                <li><strong>วิวัฒนาการของดาวมวลมาก:</strong> แถบลำดับหลัก → ดาวยักษ์ใหญ่สีแดง → ซูเปอร์โนวา → ดาวนิวตรอนหรือหลุมดำ</li>
+                                <li><strong>ขีดจำกัดจันทรสิกขาร์ (Chandrasekhar Limit):</strong> ขีดจำกัดมวลของดาวแคระขาวที่ $ \approx 1.4 M_\odot $</li>
+                            </ul>
+                            <div class="formula-box">
+                                <strong>ข้อสังเกต:</strong><br>
+                                ขีดจำกัดจันทรสิกขาร์: $ \approx 1.4 M_\odot $ (มวลดวงอาทิตย์)
+                            </div>
+                            <a href="astronomy_chapter_5.html" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 5 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 6 - Original Content -->
+                <div class="accordion-item mb-3">
                     <h2 class="accordion-header" id="headingSix">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                            <strong>บทที่ 6: ดาราจักรและเอกภพวิทยา (Galaxies & Cosmology)</strong>
+                            <div class="chapter-header">
+                                <div class="chapter-icon">6</div>
+                                <div class="chapter-title">
+                                    <strong>บทที่ 6: ดาราจักรและเอกภพวิทยา</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
                         </button>
                     </h2>
                     <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#astronomyAccordion">
                         <div class="accordion-body">
                             <p>การศึกษาระบบที่ใหญ่กว่าดาวฤกษ์ คือ ดาราจักร และการศึกษาเรื่องกำเนิดและวิวัฒนาการของเอกภพโดยรวม</p>
-                            <ul>
-                                <li><strong>ประเภทของดาราจักร:</strong> แบบกังหัน (Spiral), แบบรี (Elliptical), และแบบไร้รูปทรง (Irregular) ตามการจำแนกของฮับเบิล</li>
+                            <ul class="topic-list">
+                                <li><strong>ประเภทของดาราจักร:</strong> แบบกังหัน (Spiral), แบบรี (Elliptical), และแบบไร้รูปทรง (Irregular)</li>
                                 <li><strong>ดาราจักรทางช้างเผือก (The Milky Way):</strong> โครงสร้าง, แขนกังหัน, และตำแหน่งของระบบสุริยะ</li>
-                                <li><strong>กฎของฮับเบิล (Hubble's Law):</strong> การขยายตัวของเอกภพและความสัมพันธ์ระหว่างความเร็วถอยห่างของดาราจักรกับระยะทาง $$ v = H_0 d $$</li>
+                                <li><strong>กฎของฮับเบิล (Hubble's Law):</strong> $$ v = H_0 d $$</li>
                                 <li><strong>ทฤษฎีบิ๊กแบง (Big Bang Theory):</strong> แบบจำลองมาตรฐานของกำเนิดเอกภพ</li>
                                 <li><strong>องค์ประกอบของเอกภพ:</strong> สสารมืด (Dark Matter) และพลังงานมืด (Dark Energy)</li>
                             </ul>
-                            <a href="astronomy_chapter_6.html" class="btn btn-primary mt-2">
-        <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 6 ฉบับเต็ม
+                            <div class="formula-box">
+                                <strong>สูตรสำคัญ:</strong><br>
+                                $ v = H_0 d $ (กฎของฮับเบิล)
+                            </div>
+                            <a href="astronomy_chapter_6.html" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 6 ฉบับเต็ม
                             </a>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </main>
-    
-    <footer class="bg-dark text-white text-center py-3">
+
+    <footer class="bg-dark text-white text-center py-4">
         <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
             <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
