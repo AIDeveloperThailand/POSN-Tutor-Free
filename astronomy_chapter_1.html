@@ -12,8 +12,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/style.css">
-
     <script>
     MathJax = {
       tex: {
@@ -23,9 +21,253 @@
     };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        :root {
+            --astronomy: #0b3d91;
+            --astronomy-light: #4fc3f7;
+            --astronomy-dark: #0d47a1;
+            --nebula: #6a0dad;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230b3d91' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='20' cy='20' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='10' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='90' cy='10' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='55' cy='35' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.3;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(11, 61, 145, 0.1), rgba(106, 13, 173, 0.1));
+            border-left: 4px solid var(--astronomy);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .formula-box {
+            background-color: rgba(79, 195, 247, 0.1);
+            border-left: 3px solid var(--astronomy);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(11, 61, 145, 0.15);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--astronomy);
+            font-size: 1.2rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(11, 61, 145, 0.3);
+        }
+        
+        .chapter-header {
+            display: flex;
+            align-items: center;
+        }
+        
+        .chapter-title {
+            flex-grow: 1;
+        }
+        
+        .completed-badge {
+            background: linear-gradient(135deg, #4fc3f7, #29b6f6);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        footer {
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .breadcrumb {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+        
+        .breadcrumb-item a {
+            color: #e0e0ff;
+        }
+        
+        .breadcrumb-item.active {
+            color: white;
+        }
+        
+        .breadcrumb-item+.breadcrumb-item::before {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .chapter-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .visual-guide {
+            background: linear-gradient(135deg, #f0f7ff, #e6f2ff);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 3px solid var(--astronomy);
+        }
+        
+        .visual-guide h5 {
+            color: var(--astronomy);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .visual-guide h5 i {
+            margin-right: 10px;
+        }
+        
+        .coordinate-diagram {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            border-bottom: 2px solid var(--astronomy);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: var(--astronomy);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--nebula);
+            border-radius: 3px;
+        }
+        
+        .example-box {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-left: 3px solid var(--astronomy);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        
+        .example-box h6 {
+            color: var(--astronomy);
+            margin-bottom: 10px;
+        }
+        
+        .key-point {
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.15), rgba(106, 13, 173, 0.1));
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(11, 61, 145, 0.1);
+        }
+        
+        .key-point h5 {
+            color: var(--astronomy);
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -50,128 +292,345 @@
         </div>
     </nav>
 
-    <main class="py-5">
-        <div class="container">
+    <div class="header-bg">
+        <div class="container position-relative">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="astronomy_topics.html">เนื้อหาทั้งหมด</a></li>
                     <li class="breadcrumb-item active" aria-current="page">บทที่ 1 (ละเอียด): พื้นฐานและระบบพิกัดฟ้า</li>
                 </ol>
             </nav>
-            <h1 class="display-6 mb-4">บทที่ 1 (ละเอียด): พื้นฐานดาราศาสตร์และระบบพิกัดฟ้า</h1>
+            <h1 class="display-6 mb-3 text-center">บทที่ 1 (ละเอียด): พื้นฐานดาราศาสตร์และระบบพิกัดฟ้า</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-astronomy me-2">ทรงกลมท้องฟ้า</span>
+                <span class="badge bg-light text-astronomy me-2">ระบบพิกัดขอบฟ้า</span>
+                <span class="badge bg-light text-astronomy me-2">ระบบพิกัดศูนย์สูตร</span>
+                <span class="badge bg-light text-astronomy">การส่ายของแกนโลก</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-info fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
             
-            <article>
-                <section id="celestial-sphere" class="mb-5">
-                    <h2 class="border-bottom pb-2 mb-3">1.1 ทรงกลมท้องฟ้าและการวัดระยะเชิงมุม</h2>
-                    <p>
-                        <strong>ทรงกลมท้องฟ้า (Celestial Sphere)</strong> เป็นเครื่องมือในจินตนาการที่สำคัญที่สุดในการเริ่มต้นศึกษาวิชาดาราศาสตร์ มันคือแบบจำลองที่ให้เรามองว่าดาวทั้งหมดอยู่ห่างจากโลกเป็นระยะทางเท่ากันบนพื้นผิวของทรงกลมขนาดมหึมา ทำให้เราสามารถวัด "ระยะห่าง" ระหว่างดาวในเชิงมุมได้ โดยไม่ต้องกังวลถึงระยะทางจริงที่แตกต่างกันมหาศาล
-                    </p>
-                    <div class="card shadow-sm mb-4">
-                        <div class="card-header">
-                            <strong>การวัดเชิงมุม (Angular Measurement)</strong>
-                        </div>
-                        <div class="card-body">
-                             <p>ระยะทางบนท้องฟ้าไม่ได้วัดเป็นเมตรหรือกิโลเมตร แต่วัดเป็นมุม</p>
-                            <ul>
-                                <li><strong>องศา ($^\circ$):</strong> วงกลมหนึ่งวงมี 360 องศา ดวงจันทร์เต็มดวงมีขนาดเชิงมุมประมาณ 0.5°</li>
-                                <li><strong>ลิปดา (Arcminute, '):</strong> 1 องศา มี 60 ลิปดา ($1^\circ = 60'$)</li>
-                                <li><strong>พิลิปดา (Arcsecond, ''):</strong> 1 ลิปดา มี 60 พิลิปดา ($1' = 60''$)</li>
-                            </ul>
-                            <p class="card-text"><strong>ตัวอย่าง:</strong> กำปั้นเมื่อเหยียดแขนจนสุด จะมีขนาดเชิงมุมประมาณ 10° ใช้ในการกะระยะบนท้องฟ้าได้</p>
+            <div class="chapter-content">
+                <div class="section-card">
+                    <div class="section-header" data-bs-toggle="collapse" data-bs-target="#celestial-sphere">
+                        <div class="d-flex align-items-center">
+                            <div class="section-icon">
+                                <i class="bi bi-globe"></i>
+                            </div>
+                            <div>
+                                <h2 class="mb-0">1.1 ทรงกลมท้องฟ้าและการวัดระยะเชิงมุม</h2>
+                            </div>
                         </div>
                     </div>
-                </section>
+                    <div id="celestial-sphere" class="collapse show">
+                        <div class="section-body">
+                            <p class="lead">
+                                <strong>ทรงกลมท้องฟ้า (Celestial Sphere)</strong> เป็นเครื่องมือทางจินตนาการที่สำคัญที่สุดในการเริ่มต้นศึกษาวิชาดาราศาสตร์
+                            </p>
+                            <p>
+                                มันคือแบบจำลองที่ช่วยให้เรามองว่าดาวทั้งหมดอยู่ห่างจากโลกเป็นระยะทางเท่ากันบนพื้นผิวของทรงกลมขนาดมหึมา ทำให้เราสามารถวัด "ระยะห่าง" ระหว่างดาวในเชิงมุมได้ โดยไม่ต้องกังวลถึงระยะทางจริงที่แตกต่างกันมหาศาล ทรงกลมท้องฟ้านี้หมุนรอบโลกจากทิศตะวันออกไปตะวันตกในรอบ 23 ชั่วโมง 56 นาที 4 วินาที ซึ่งเป็นผลมาจากการหมุนรอบตัวเองของโลก
+                            </p>
+                            
+                            <div class="key-point">
+                                <h5><i class="bi bi-lightbulb"></i> ทำไมต้องใช้ทรงกลมท้องฟ้า?</h5>
+                                <p>ในทางปฏิบัติ ดาวฤกษ์อยู่ห่างจากโลกมากจนเราไม่สามารถรับรู้ถึงความลึกได้ด้วยตาเปล่า การใช้ทรงกลมท้องฟ้าช่วยให้เราสร้างระบบพิกัดที่ใช้งานได้จริงสำหรับการระบุตำแหน่งและการเคลื่อนที่ของวัตถุท้องฟ้า</p>
+                            </div>
+                            
+                            <div class="card shadow-sm mb-4">
+                                <div class="card-header bg-astronomy text-white">
+                                    <strong>การวัดเชิงมุม (Angular Measurement)</strong>
+                                </div>
+                                <div class="card-body">
+                                    <p>ระยะทางบนท้องฟ้าไม่ได้วัดเป็นเมตรหรือกิโลเมตร แต่วัดเป็นมุม ซึ่งเป็นพื้นฐานสำหรับระบบพิกัดฟ้าทั้งหมด</p>
+                                    <ul>
+                                        <li><strong>องศา ($^\circ$):</strong> วงกลมหนึ่งวงมี 360 องศา ดวงจันทร์เต็มดวงมีขนาดเชิงมุมประมาณ 0.5° (ครึ่งองศา) โดยสามารถทดสอบได้โดยการเหยียดแขนและเปรียบเทียบขนาดกับเล็บนิ้วก้อยซึ่งมีขนาดประมาณ 1°</li>
+                                        <li><strong>ลิปดา (Arcminute, '):</strong> 1 องศา มี 60 ลิปดา ($1^\circ = 60'$) ดาวพฤหัสบดีเมื่อใกล้โลกที่สุดมีขนาดประมาณ 50"</li>
+                                        <li><strong>พิลิปดา (Arcsecond, ''):</strong> 1 ลิปดา มี 60 พิลิปดา ($1' = 60''$) ขนาดเชิงมุมที่เล็กที่สุดที่ตาเปล่าสามารถแยกแยะได้คือประมาณ 60"</li>
+                                    </ul>
+                                    
+                                    <div class="example-box">
+                                        <h6><i class="bi bi-stars"></i> ตัวอย่างการวัดเชิงมุมในชีวิตจริง:</h6>
+                                        <ul>
+                                            <li>กำปั้นเมื่อเหยียดแขนจนสุด จะมีขนาดเชิงมุมประมาณ 10°</li>
+                                            <li>นิ้วชี้เมื่อเหยียดแขนจนสุด มีขนาดเชิงมุมประมาณ 1°</li>
+                                            <li>เส้นผ่านศูนย์กลางของดวงอาทิตย์และดวงจันทร์: ประมาณ 30' (0.5°)</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="formula-box">
+                                        <strong>สูตรคำนวณขนาดเชิงมุม:</strong><br>
+                                        $ \theta = 2 \arctan\left(\frac{d}{2D}\right) $<br>
+                                        <small>โดยที่ $d$ = ขนาดจริงของวัตถุ, $D$ = ระยะห่างจากผู้สังเกต</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <section id="coordinate-systems" class="mb-5">
-                    <h2 class="border-bottom pb-2 mb-3">1.2 ระบบพิกัดฟ้า: การระบุตำแหน่งดาว</h2>
-                    
-                    <h3 class="mt-4">1.2.1 ระบบพิกัดขอบฟ้า (The Horizon System) - พิกัดเฉพาะที่</h3>
-                    <p>เป็นระบบที่ใช้งานง่ายและเป็นธรรมชาติที่สุด เพราะอ้างอิงกับมุมมองของผู้สังเกตโดยตรง</p>
-                    <ul>
-                        <li><strong>มุมเงย (Altitude, $h$):</strong> คือมุมที่วัดจากเส้นขอบฟ้าขึ้นไปหาดาว มีค่าตั้งแต่ 0° (ที่ขอบฟ้า) ถึง 90° (ที่จุดยอดฟ้า หรือ Zenith)</li>
-                        <li><strong>มุมทิศ (Azimuth, $A$):</strong> คือมุมที่วัดในแนวราบตามเส้นขอบฟ้า โดยทั่วไปจะเริ่มวัดจาก <strong>ทิศเหนือ (0°)</strong> ไปทาง <strong>ทิศตะวันออก (90°)</strong>, <strong>ทิศใต้ (180°)</strong>, และ <strong>ทิศตะวันตก (270°)</strong></li>
-                    </ul>
-                    <div class="alert alert-warning" role="alert">
-                        <h4 class="alert-heading">ข้อจำกัดสำคัญ</h4>
-                        <p>พิกัดของดาวในระบบนี้จะเปลี่ยนแปลงไป <strong>ทุกวินาที</strong> เนื่องจากการหมุนของโลก และผู้สังเกตที่ละติจูดต่างกันจะวัดค่าพิกัดของดาวดวงเดียวกันได้ไม่เท่ากัน ทำให้มันไม่เหมาะกับการบันทึกในแคตตาล็อกดาว</p>
-                    </div>
-
-                    <h3 class="mt-5">1.2.2 ระบบพิกัดศูนย์สูตร (The Equatorial System) - พิกัดสากล</h3>
-                    <p>ระบบพิกัดมาตรฐานที่นักดาราศาสตร์ทั่วโลกใช้ เพราะค่าพิกัดของดาวจะ "คงที่" ไม่ว่าผู้สังเกตจะอยู่ที่ไหนหรือสังเกตเวลาใด</p>
-                    <ul>
-                        <li><strong>เดคลิเนชัน (Declination, $\delta$):</strong> คือ "ละติจูด" บนท้องฟ้า บอกว่าดาวอยู่เหนือหรือใต้เส้นศูนย์สูตรฟ้าแค่ไหน
-                            <ul>
-                                <li>$\delta = 0^\circ$: ดาวอยู่บนเส้นศูนย์สูตรฟ้า</li>
-                                <li>$\delta = +90^\circ$: ดาวอยู่ที่ขั้วฟ้าเหนือ (ตำแหน่งของดาวเหนือ)</li>
-                                <li>$\delta = -90^\circ$: ดาวอยู่ที่ขั้วฟ้าใต้</li>
-                            </ul>
-                        </li>
-                        <li><strong>ไรต์แอสเซนชัน (Right Ascension, $\alpha$):</strong> คือ "ลองจิจูด" บนท้องฟ้า บอกตำแหน่งในแนวตะวันออก-ตะวันตก
-                            <ul>
-                                <li>มีจุดเริ่มต้นที่ <strong>จุดวสันตวิษุวัต (Vernal Equinox)</strong> ซึ่งเป็นตำแหน่งที่ดวงอาทิตย์เคลื่อนที่ตัดเส้นศูนย์สูตรฟ้าขึ้นไปทางเหนือ (ประมาณวันที่ 21 มีนาคม)</li>
-                                <li>มีหน่วยเป็นชั่วโมง (h), นาที (m), วินาที (s) เพื่อให้สอดคล้องกับการหมุนของโลก (24 ชั่วโมง = 360°, ดังนั้น $1^h = 15^\circ$)</li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <div class="card border-success mt-4">
-                        <div class="card-body">
-                            <h5 class="card-title text-success"><i class="bi bi-geo-alt-fill"></i> ความสัมพันธ์กับละติจูดของผู้สังเกต ($L$)</h5>
-                            <p>ณ ละติจูด $L$ ของผู้สังเกต:</p>
-                            <ul>
-                                <li>มุมเงยของขั้วฟ้าเหนือจะเท่ากับ $L$ (เช่น ที่กรุงเทพฯ $L \approx 14^\circ$ N, ดาวเหนือจะสูงจากขอบฟ้าทิศเหนือ 14°)</li>
-                                <li><strong>ดาวค้างฟ้า (Circumpolar Stars):</strong> คือดาวที่ไม่เคยตกเลย จะต้องมีเดคลิเนชัน $\delta > 90^\circ - L$</li>
-                                <li>ดาวที่ผู้สังเกตไม่มีวันมองเห็น จะต้องมีเดคลิเนชัน $\delta < -90^\circ + L$</li>
-                            </ul>
+                <div class="section-card">
+                    <div class="section-header" data-bs-toggle="collapse" data-bs-target="#coordinate-systems">
+                        <div class="d-flex align-items-center">
+                            <div class="section-icon">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <div>
+                                <h2 class="mb-0">1.2 ระบบพิกัดฟ้า: การระบุตำแหน่งดาว</h2>
+                            </div>
                         </div>
                     </div>
-                </section>
+                    <div id="coordinate-systems" class="collapse show">
+                        <div class="section-body">
+                            <h3 class="section-title">1.2.1 ระบบพิกัดขอบฟ้า (The Horizon System) - พิกัดเฉพาะที่</h3>
+                            <p>เป็นระบบที่ใช้งานง่ายและเป็นธรรมชาติที่สุด เพราะอ้างอิงกับมุมมองของผู้สังเกตโดยตรง</p>
+                            <ul>
+                                <li><strong>มุมเงย (Altitude, $h$):</strong> คือมุมที่วัดจากเส้นขอบฟ้าขึ้นไปหาดาว มีค่าตั้งแต่ 0° (ที่ขอบฟ้า) ถึง 90° (ที่จุดยอดฟ้า หรือ Zenith) ค่านี้บอกว่าดาวอยู่สูงจากขอบฟ้าเท่าไร</li>
+                                <li><strong>มุมทิศ (Azimuth, $A$):</strong> คือมุมที่วัดในแนวราบตามเส้นขอบฟ้า โดยทั่วไปจะเริ่มวัดจาก <strong>ทิศเหนือ (0°)</strong> ไปทาง <strong>ทิศตะวันออก (90°)</strong>, <strong>ทิศใต้ (180°)</strong>, และ <strong>ทิศตะวันตก (270°)</strong></li>
+                            </ul>
+                            
+                            <div class="visual-guide">
+                                <h5><i class="bi bi-compass"></i> ระบบพิกัดขอบฟ้าในทางปฏิบัติ</h5>
+                                <p>ระบบนี้ใช้งานง่ายเมื่อต้องการชี้ให้คนอื่นเห็นดาวบนท้องฟ้าในเวลาจริง ("มองไปทางทิศตะวันตกเฉียงเหนือ สูงประมาณ 30 องศา") แต่มีข้อจำกัดที่สำคัญคือค่าพิกัดเปลี่ยนแปลงตลอดเวลาตามการหมุนของโลก และขึ้นอยู่กับตำแหน่งของผู้สังเกต</p>
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Ccircle cx='200' cy='150' r='100' fill='none' stroke='%230b3d91' stroke-width='2'/%3E%3Ccircle cx='200' cy='150' r='3' fill='%230b3d91'/%3E%3Cline x1='200' y1='50' x2='200' y2='250' stroke='%230b3d91' stroke-width='1' stroke-dasharray='5,5'/%3E%3Cline x1='100' y1='150' x2='300' y2='150' stroke='%230b3d91' stroke-width='1' stroke-dasharray='5,5'/%3E%3Ctext x='200' y='40' text-anchor='middle' fill='%230b3d91' font-size='14'%3EZenith (90°)%3C/text%3E%3Ctext x='200' y='270' text-anchor='middle' fill='%230b3d91' font-size='14'%3ENadir%3C/text%3E%3Ctext x='310' y='150' text-anchor='middle' fill='%230b3d91' font-size='14'%3EEast (90°)%3C/text%3E%3Ctext x='90' y='150' text-anchor='middle' fill='%230b3d91' font-size='14'%3EWest (270°)%3C/text%3E%3Ctext x='200' y='170' text-anchor='middle' fill='%230b3d91' font-size='14'%3ENorth (0°)%3C/text%3E%3Ctext x='230' y='130' text-anchor='middle' fill='%230b3d91' font-size='14'%3ESouth (180°)%3C/text%3E%3C/svg%3E" alt="Horizon Coordinate System" class="coordinate-diagram">
+                            </div>
+                            
+                            <div class="alert alert-warning" role="alert">
+                                <h4 class="alert-heading"><i class="bi bi-exclamation-triangle"></i> ข้อจำกัดสำคัญของระบบพิกัดขอบฟ้า</h4>
+                                <p>พิกัดของดาวในระบบนี้จะเปลี่ยนแปลงไป <strong>ทุกวินาที</strong> เนื่องจากการหมุนของโลก และผู้สังเกตที่ละติจูดต่างกันจะวัดค่าพิกัดของดาวดวงเดียวกันได้ไม่เท่ากัน ทำให้มันไม่เหมาะสำหรับการบันทึกในแคตตาล็อกดาวหรือการคำนวณทางดาราศาสตร์ที่ต้องการความแม่นยำ</p>
+                            </div>
+
+                            <h3 class="section-title mt-5">1.2.2 ระบบพิกัดศูนย์สูตร (The Equatorial System) - พิกัดสากล</h3>
+                            <p>ระบบพิกัดมาตรฐานที่นักดาราศาสตร์ทั่วโลกใช้ เพราะค่าพิกัดของดาวจะ "คงที่" ไม่ว่าผู้สังเกตจะอยู่ที่ไหนหรือสังเกตเวลาใด</p>
+                            <ul>
+                                <li><strong>เดคลิเนชัน (Declination, $\delta$):</strong> คือ "ละติจูด" บนท้องฟ้า บอกว่าดาวอยู่เหนือหรือใต้เส้นศูนย์สูตรฟ้าแค่ไหน
+                                    <ul>
+                                        <li>$\delta = 0^\circ$: ดาวอยู่บนเส้นศูนย์สูตรฟ้า (เช่น ดาวริเกลในกลุ่มดาวนายพราน)</li>
+                                        <li>$\delta = +90^\circ$: ดาวอยู่ที่ขั้วฟ้าเหนือ (ตำแหน่งของดาวเหนือในปัจจุบัน)</li>
+                                        <li>$\delta = -90^\circ$: ดาวอยู่ที่ขั้วฟ้าใต้ (ไม่มีดาวสว่างอยู่ตรงจุดนี้)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>ไรต์แอสเซนชัน (Right Ascension, $\alpha$):</strong> คือ "ลองจิจูด" บนท้องฟ้า บอกตำแหน่งในแนวตะวันออก-ตะวันตก
+                                    <ul>
+                                        <li>มีจุดเริ่มต้นที่ <strong>จุดวสันตวิษุวัต (Vernal Equinox)</strong> ซึ่งเป็นตำแหน่งที่ดวงอาทิตย์เคลื่อนที่ตัดเส้นศูนย์สูตรฟ้าขึ้นไปทางเหนือ (ประมาณวันที่ 21 มีนาคม)</li>
+                                        <li>มีหน่วยเป็นชั่วโมง (h), นาที (m), วินาที (s) เพื่อให้สอดคล้องกับการหมุนของโลก (24 ชั่วโมง = 360°, ดังนั้น $1^h = 15^\circ$)</li>
+                                        <li>ตัวอย่าง: ดาวซิริอุสมีพิกัด $\alpha = 6^h 45^m 08.9^s$, $\delta = -16^\circ 42' 58''$</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            
+                            <div class="visual-guide">
+                                <h5><i class="bi bi-globe2"></i> การเทียบระบบพิกัดศูนย์สูตรกับพิกัดภูมิศาสตร์</h5>
+                                <p>เส้นศูนย์สูตรฟ้า (Celestial Equator) คือเส้นโครงของเส้นศูนย์สูตรโลกขึ้นไปบนทรงกลมท้องฟ้า ขั้วฟ้าเหนือและใต้คือจุดที่แกนหมุนของโลกชี้ไปบนทรงกลมท้องฟ้า</p>
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cellipse cx='200' cy='150' rx='150' ry='75' fill='none' stroke='%230b3d91' stroke-width='2'/%3E%3Cline x1='50' y1='150' x2='350' y2='150' stroke='%230b3d91' stroke-width='1' stroke-dasharray='5,5'/%3E%3Ccircle cx='200' cy='75' r='3' fill='%230b3d91'/%3E%3Ccircle cx='200' cy='225' r='3' fill='%230b3d91'/%3E%3Ctext x='200' y='65' text-anchor='middle' fill='%230b3d91' font-size='14'%3Eขั้วฟ้าเหนือ (δ = +90°)%3C/text%3E%3Ctext x='200' y='240' text-anchor='middle' fill='%230b3d91' font-size='14'%3Eขั้วฟ้าใต้ (δ = -90°)%3C/text%3E%3Ctext x='200' y='170' text-anchor='middle' fill='%230b3d91' font-size='14'%3Eเส้นศูนย์สูตรฟ้า (δ = 0°)%3C/text%3E%3Ctext x='360' y='150' text-anchor='middle' fill='%230b3d91' font-size='14'%3ERA = 0ʰ%3C/text%3E%3Ctext x='220' y='100' text-anchor='middle' fill='%230b3d91' font-size='14'%3ERA = 6ʰ%3C/text%3E%3Ctext x='180' y='100' text-anchor='middle' fill='%230b3d91' font-size='14'%3ERA = 18ʰ%3C/text%3E%3C/svg%3E" alt="Equatorial Coordinate System" class="coordinate-diagram">
+                            </div>
+                            
+                            <div class="card border-success mt-4">
+                                <div class="card-body">
+                                    <h5 class="card-title text-success"><i class="bi bi-geo-alt-fill"></i> ความสัมพันธ์กับละติจูดของผู้สังเกต ($L$)</h5>
+                                    <p>ณ ละติจูด $L$ ของผู้สังเกต:</p>
+                                    <ul>
+                                        <li>มุมเงยของขั้วฟ้าเหนือจะเท่ากับ $L$ (เช่น ที่กรุงเทพฯ $L \approx 14^\circ$ N, ดาวเหนือจะสูงจากขอบฟ้าทิศเหนือ 14°)</li>
+                                        <li><strong>ดาวค้างฟ้า (Circumpolar Stars):</strong> คือดาวที่ไม่เคยตกเลย จะต้องมีเดคลิเนชัน $\delta > 90^\circ - L$ 
+                                            <ul>
+                                                <li>ตัวอย่าง: ที่กรุงเทพฯ ($L = 14^\circ$N) ดาวจะเป็นดาวค้างฟ้าหาก $\delta > 76^\circ$</li>
+                                            </ul>
+                                        </li>
+                                        <li>ดาวที่ผู้สังเกตไม่มีวันมองเห็น จะต้องมีเดคลิเนชัน $\delta < -(90^\circ - L)$
+                                            <ul>
+                                                <li>ตัวอย่าง: ที่กรุงเทพฯ ดาวที่ $\delta < -76^\circ$ จะไม่เคยโผล่พ้นขอบฟ้าเลย</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    
+                                    <div class="formula-box mt-3">
+                                        <strong>สูตรคำนวณขอบเขตการมองเห็น:</strong><br>
+                                        ดาวค้างฟ้า: $\delta > 90^\circ - L$<br>
+                                        ดาวที่ไม่เคยเห็น: $\delta < -(90^\circ - L)$
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
-                <section id="time-link" class="mb-5">
-                    <h2 class="border-bottom pb-2 mb-3">1.3 เวลา, มุมชั่วโมง, และการเชื่อมโยงสองระบบพิกัด</h2>
-                    <p>
-                        หัวใจของการคำนวณทางดาราศาสตร์คือการแปลงพิกัดระหว่างระบบขอบฟ้า (สิ่งที่เห็น) และระบบศูนย์สูตร (สิ่งที่บันทึก) ซึ่งต้องอาศัยความเข้าใจเรื่องเวลาและมุมชั่วโมง
-                    </p>
-                    <div class="alert alert-primary" role="alert">
-                        <h4 class="alert-heading">เวลาดาราคติท้องถิ่น (Local Sidereal Time, LST)</h4>
-                        <p>ไม่ใช่เวลานาฬิกา แต่เป็น "เวลาของท้องฟ้า" ณ ตำแหน่งของผู้สังเกต โดยนิยามว่า <strong>LST คือค่าไรต์แอสเซนชัน ($\alpha$) ของดาวที่กำลังโคจรผ่านเส้นเมริเดียน (เส้นสมมติที่ลากจากทิศเหนือผ่านจุดยอดฟ้าไปยังทิศใต้) พอดี</strong></p>
+                <div class="section-card">
+                    <div class="section-header" data-bs-toggle="collapse" data-bs-target="#time-link">
+                        <div class="d-flex align-items-center">
+                            <div class="section-icon">
+                                <i class="bi bi-clock"></i>
+                            </div>
+                            <div>
+                                <h2 class="mb-0">1.3 เวลา, มุมชั่วโมง, และการเชื่อมโยงสองระบบพิกัด</h2>
+                            </div>
+                        </div>
                     </div>
-                    <p><strong>มุมชั่วโมง (Hour Angle, $H$)</strong> คือตัวแปรที่บอกว่าดาวอยู่ห่างจากเส้นเมริเดียนไปทางทิศตะวันตกเท่าใด (วัดเป็นหน่วยเวลาหรือองศา)</p>
-                    <ul>
-                        <li>$H = 0^h$: ดาวอยู่บนเส้นเมริเดียน (ตำแหน่งสูงสุดบนท้องฟ้า)</li>
-                        <li>$H > 0$ (ค่าบวก): ดาวได้เคลื่อนที่ผ่านเส้นเมริเดียนไปแล้ว และกำลังจะตก</li>
-                        <li>$H < 0$ (ค่าลบ): ดาวอยู่ทางทิศตะวันออก และกำลังจะเคลื่อนที่เข้าหาเส้นเมริเดียน</li>
-                    </ul>
-                    <p>ความสัมพันธ์ที่สำคัญที่สุดที่เชื่อมโยงทุกอย่างเข้าด้วยกันคือ:</p>
-                    <div class="text-center bg-light p-3 rounded">
-                        <h3 style="font-family: 'Times New Roman', serif;">$ H = \text{LST} - \alpha $</h3>
+                    <div id="time-link" class="collapse show">
+                        <div class="section-body">
+                            <p class="lead">
+                                หัวใจของการคำนวณทางดาราศาสตร์คือการแปลงพิกัดระหว่างระบบขอบฟ้า (สิ่งที่เห็น) และระบบศูนย์สูตร (สิ่งที่บันทึก) ซึ่งต้องอาศัยความเข้าใจเรื่องเวลาและมุมชั่วโมง
+                            </p>
+                            
+                            <div class="alert alert-primary" role="alert">
+                                <h4 class="alert-heading"><i class="bi bi-stopwatch"></i> เวลาดาราคติท้องถิ่น (Local Sidereal Time, LST)</h4>
+                                <p>ไม่ใช่เวลานาฬิกา แต่เป็น "เวลาของท้องฟ้า" ณ ตำแหน่งของผู้สังเกต โดยนิยามว่า <strong>LST คือค่าไรต์แอสเซนชัน ($\alpha$) ของดาวที่กำลังโคจรผ่านเส้นเมริเดียน (เส้นสมมติที่ลากจากทิศเหนือผ่านจุดยอดฟ้าไปยังทิศใต้) พอดี</strong></p>
+                                <hr>
+                                <p class="mb-0">เวลาดาราคติแตกต่างจากเวลาสุริยคติ (เวลานาฬิกา) เนื่องจากโลกโคจรรอบดวงอาทิตย์ ทำให้ในหนึ่งปีมีวันเวลาดาราคติมากกว่าวันสุริยคติ 1 วันพอดี (365.25 วันสุริยคติ เทียบกับ 366.25 วันดาราคติ)</p>
+                            </div>
+                            
+                            <p><strong>มุมชั่วโมง (Hour Angle, $H$)</strong> คือตัวแปรที่บอกว่าดาวอยู่ห่างจากเส้นเมริเดียนไปทางทิศตะวันตกเท่าใด (วัดเป็นหน่วยเวลาหรือองศา)</p>
+                            <ul>
+                                <li>$H = 0^h$: ดาวอยู่บนเส้นเมริเดียน (ตำแหน่งสูงสุดบนท้องฟ้า)</li>
+                                <li>$H > 0$ (ค่าบวก): ดาวได้เคลื่อนที่ผ่านเส้นเมริเดียนไปแล้ว และกำลังจะตก</li>
+                                <li>$H < 0$ (ค่าลบ): ดาวอยู่ทางทิศตะวันออก และกำลังจะเคลื่อนที่เข้าหาเส้นเมริเดียน</li>
+                            </ul>
+                            
+                            <div class="key-point">
+                                <h5><i class="bi bi-link-45deg"></i> ความสัมพันธ์ที่สำคัญที่สุด</h5>
+                                <p>ความสัมพันธ์ที่เชื่อมโยงพิกัดศูนย์สูตร ($\alpha$, $\delta$) กับพิกัดขอบฟ้า ($A$, $h$) ผ่านเวลาดาราคติท้องถิ่น (LST) และมุมชั่วโมง ($H$):</p>
+                                <div class="text-center bg-light p-3 rounded">
+                                    <h3 style="font-family: 'Times New Roman', serif;">$ H = \text{LST} - \alpha $</h3>
+                                </div>
+                                <p class="mt-2">เมื่อทราบ $H$ และ $\delta$ แล้ว เราสามารถแปลงเป็นพิกัดขอบฟ้า ($A$, $h$) ได้โดยใช้สูตรตรีโกณมิติทรงกลม</p>
+                            </div>
+                            
+                            <div class="formula-box">
+                                <strong>สูตรแปลงพิกัด (สำหรับละติจูด $L$):</strong><br>
+                                $\sin h = \sin L \sin \delta + \cos L \cos \delta \cos H$<br>
+                                $\cos A = \frac{\sin \delta - \sin h \sin L}{\cos h \cos L}$<br>
+                                <small>สูตรเหล่านี้ใช้ในการคำนวณตำแหน่งดาวสำหรับการสังเกตการณ์จริง</small>
+                            </div>
+                            
+                            <div class="example-box">
+                                <h6><i class="bi bi-calculator"></i> ตัวอย่างการคำนวณ:</h6>
+                                <p>กำหนด: ดาวมี $\alpha = 5^h 30^m$, $\delta = +20^\circ$<br>
+                                   เวลาดาราคติท้องถิ่น: LST = $7^h$<br>
+                                   ละติจูดผู้สังเกต: $L = 14^\circ$N</p>
+                                <p>คำนวณมุมชั่วโมง: $H = \text{LST} - \alpha = 7^h - 5^h 30^m = 1^h 30^m = 22.5^\circ$</p>
+                                <p>คำนวณมุมเงย: $\sin h = \sin(14^\circ)\sin(20^\circ) + \cos(14^\circ)\cos(20^\circ)\cos(22.5^\circ) \approx 0.794$<br>
+                                   ดังนั้น $h = \arcsin(0.794) \approx 52.6^\circ$</p>
+                            </div>
+                        </div>
                     </div>
-                </section>
+                </div>
 
-                <section id="precession" class="mb-5">
-                    <h2 class="border-bottom pb-2 mb-3">1.4 การส่ายของแกนหมุนของโลก (Precession)</h2>
-                    <p>
-                        เป็นปรากฏการณ์ที่สำคัญอย่างยิ่งในระดับสูงขึ้นไป แกนหมุนของโลกไม่ได้ชี้ไปยังทิศทางเดิมตลอดเวลา แต่มีการ "ส่าย" เป็นวงกลมคล้ายกับลูกข่างที่กำลังจะล้ม โดยใช้เวลาประมาณ <strong>26,000 ปี</strong> ต่อหนึ่งรอบ
-                    </p>
-                    <div class="alert alert-danger" role="alert">
-                        <i class="bi bi-exclamation-octagon-fill"></i> <strong>ผลกระทบของการส่าย (Consequences of Precession)</strong>
-                        <ul>
-                            <li><strong>ดาวเหนือเปลี่ยนไป:</strong> ในปัจจุบันแกนโลกชี้ไปใกล้ดาวโพลาริส (Polaris) แต่ในอีก 13,000 ปีข้างหน้าจะชี้ไปใกล้ดาวเวกา (Vega)</li>
-                            <li><strong>จุดวสันตวิษุวัตเคลื่อนที่:</strong> จุดเริ่มต้นของไรต์แอสเซนชัน ($RA=0^h$) จะเลื่อนไปบนท้องฟ้าอย่างช้าๆ</li>
-                            <li><strong>พิกัดดาวเปลี่ยนแปลง:</strong> เนื่องจากจุดอ้างอิงเปลี่ยนไป ค่า $\alpha$ และ $\delta$ ของดาวทุกดวงจึงเปลี่ยนแปลงไปตามกาลเวลา ด้วยเหตุนี้ แคตตาล็อกดาวจึงต้องระบุ <strong>纪元 (Epoch)</strong> หรือปีที่ใช้เป็นจุดอ้างอิงของพิกัด เช่น J2000.0 หมายถึงพิกัด ณ วันที่ 1 มกราคม ค.ศ. 2000</li>
-                        </ul>
+                <div class="section-card">
+                    <div class="section-header" data-bs-toggle="collapse" data-bs-target="#precession">
+                        <div class="d-flex align-items-center">
+                            <div class="section-icon">
+                                <i class="bi bi-arrow-repeat"></i>
+                            </div>
+                            <div>
+                                <h2 class="mb-0">1.4 การส่ายของแกนหมุนของโลก (Precession)</h2>
+                            </div>
+                        </div>
                     </div>
-                </section>
-            </article>
+                    <div id="precession" class="collapse show">
+                        <div class="section-body">
+                            <p class="lead">
+                                เป็นปรากฏการณ์ที่สำคัญอย่างยิ่งในระดับสูงขึ้นไป แกนหมุนของโลกไม่ได้ชี้ไปยังทิศทางเดิมตลอดเวลา แต่มีการ "ส่าย" เป็นวงกลมคล้ายกับลูกข่างที่กำลังจะล้ม
+                            </p>
+                            
+                            <p>
+                                การส่ายนี้เกิดจากแรงโน้มถ่วงของดวงจันทร์และดวงอาทิตย์ที่กระทำต่อส่วนโป่งบริเวณเส้นศูนย์สูตรของโลก ซึ่งทำให้แกนหมุนของโลกเคลื่อนที่เป็นกรวย โดยใช้เวลาประมาณ <strong>25,772 ปี</strong> ต่อหนึ่งรอบ (เรียกว่า Great Year หรือ Platonic Year)
+                            </p>
+                            
+                            <div class="alert alert-danger" role="alert">
+                                <h4 class="alert-heading"><i class="bi bi-exclamation-octagon-fill"></i> ผลกระทบของการส่าย (Consequences of Precession)</h4>
+                                <ul>
+                                    <li><strong>ดาวเหนือเปลี่ยนไป:</strong> ในปัจจุบันแกนโลกชี้ไปใกล้ดาวโพลาริส (Polaris) แต่ในอีก 13,000 ปีข้างหน้าจะชี้ไปใกล้ดาวเวกา (Vega) ซึ่งจะกลายเป็นดาวเหนือคนรุ่นหลัง</li>
+                                    <li><strong>จุดวสันตวิษุวัตเคลื่อนที่:</strong> จุดเริ่มต้นของไรต์แอสเซนชัน ($RA=0^h$) จะเลื่อนไปบนท้องฟ้าอย่างช้าๆ ด้วยอัตราประมาณ 50.3 พิลิปดาต่อปี (หรือ 1 องศาทุก 71.6 ปี)</li>
+                                    <li><strong>การเปลี่ยนแปลงของกลุ่มดาวจักรราศี:</strong> เนื่องจากจุดวสันตวิษุวัตเคลื่อนที่ผ่านกลุ่มดาวต่างๆ ทำให้กลุ่มดาวที่ดวงอาทิตย์ปรากฏในช่วงฤดูใบไม้ผลิเปลี่ยนไป</li>
+                                    <li><strong>พิกัดดาวเปลี่ยนแปลง:</strong> เนื่องจากจุดอ้างอิงเปลี่ยนไป ค่า $\alpha$ และ $\delta$ ของดาวทุกดวงจึงเปลี่ยนแปลงไปตามกาลเวลา ด้วยเหตุนี้ แคตตาล็อกดาวจึงต้องระบุ <strong>纪元 (Epoch)</strong> หรือปีที่ใช้เป็นจุดอ้างอิงของพิกัด เช่น J2000.0 หมายถึงพิกัด ณ วันที่ 1 มกราคม ค.ศ. 2000</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="key-point">
+                                <h5><i class="bi bi-calendar"></i> การคำนวณพิกัดสำหรับ Epoch ต่างกัน</h5>
+                                <p>ในการคำนวณพิกัดสำหรับ Epoch ใหม่ ($T$) จาก Epoch เก่า ($T_0$):</p>
+                                <div class="formula-box">
+                                    $\Delta T = (T - T_0) \text{ (ในหน่วยปี)}$<br>
+                                    $\Delta \alpha = m + n \sin \alpha \tan \delta$<br>
+                                    $\Delta \delta = n \cos \alpha$<br>
+                                    <small>โดยที่ $m = 3.075 \, \text{s/ปี}$, $n = 1.336 \, \text{''/ปี}$ สำหรับ J2000.0</small>
+                                </div>
+                                <p class="mt-2">การแก้ไขนี้จำเป็นสำหรับการสังเกตการณ์ที่มีความแม่นยำสูง หรือเมื่อใช้แผนที่ดาวที่สร้างขึ้นสำหรับ Epoch ต่างกัน</p>
+                            </div>
+                            
+                            <div class="example-box">
+                                <h6><i class="bi bi-stars"></i> ตัวอย่างประวัติศาสตร์:</h6>
+                                <ul>
+                                    <li>ประมาณ 3,000 ปีก่อนคริสตกาล: ดาวทูบาน (Thuban) ในกลุ่มดาวมังกรเป็นดาวเหนือ</li>
+                                    <li>ค.ศ. 2015: ดาวโพลาริสใกล้ขั้วฟ้าเหนือที่สุด ($\delta = 89^\circ 15' 50.8''$)</li>
+                                    <li>ค.ศ. 14,000: ดาวเวกาจะเป็นดาวเหนือ ($\delta \approx 86^\circ$)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="d-grid gap-2 mt-4">
+                <a href="astronomy_topics.html" class="btn btn-primary btn-lg">
+                    <i class="bi bi-arrow-left-circle"></i> กลับไปยังหน้าบทเรียนทั้งหมด
+                </a>
+            </div>
         </div>
     </main>
 
-    <footer class="bg-dark text-white text-center py-3">
+    <footer class="bg-dark text-white text-center py-4">
         <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
             <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
