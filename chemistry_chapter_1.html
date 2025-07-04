@@ -17,27 +17,30 @@
   </script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <style>
+    :root {
+      --primary: #4e54c8;
+      --secondary: #8f94fb;
+      --accent: #ff6b6b;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --dark-bg: #121212;
+      --dark-card: #1e1e1e;
+    }
+    
     body {
       font-family: 'Kanit', sans-serif;
-      background-color: #f8f9fa;
-      color: #212529;
+      background-color: var(--light);
+      color: var(--dark);
       line-height: 1.8;
+      overflow-x: hidden;
     }
     .dark-mode {
-      background-color: #121212;
+      background-color: var(--dark-bg);
       color: #e0e0e0;
     }
     .dark-mode .card {
-      background-color: #1e1e1e;
+      background-color: var(--dark-card);
       border-color: #333;
-    }
-    .dark-mode .accordion-button {
-      background-color: #1e1e1e;
-      color: #e0e0e0;
-    }
-    .dark-mode .accordion-body {
-      background-color: #1e1e1e;
-      color: #e0e0e0;
     }
     .dark-mode .table {
       color: #e0e0e0;
@@ -45,16 +48,8 @@
     .navbar {
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-    .accordion-button:not(.collapsed) {
-      background-color: #e9f7fe;
-      color: #0d6efd;
-    }
-    .dark-mode .accordion-button:not(.collapsed) {
-      background-color: #0d3a5c;
-      color: #90caf9;
-    }
     .chem-model {
-      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
       color: white;
       border-radius: 10px;
       padding: 20px;
@@ -63,49 +58,37 @@
     }
     .trend-card {
       transition: transform 0.3s ease;
+      height: 100%;
     }
     .trend-card:hover {
       transform: translateY(-5px);
     }
     .periodic-table-container {
       background-color: white;
-      padding: 20px;
+      padding: 15px;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       overflow-x: auto;
       margin-bottom: 30px;
     }
     .dark-mode .periodic-table-container {
-      background-color: #1e1e1e;
+      background-color: var(--dark-card);
     }
     .periodic-table-img {
       width: 100%;
-      max-width: 1000px;
+      min-width: 800px;
       height: auto;
-      display: block;
-      margin: 0 auto;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-    .diagram {
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    .dark-mode .diagram {
-      background-color: #1e1e1e;
-    }
-    h2 {
-      font-weight: 600;
     }
     .section-title {
       position: relative;
       padding-left: 15px;
-      border-bottom: 2px solid #0d6efd;
+      border-bottom: 2px solid var(--primary);
       padding-bottom: 10px;
       margin-bottom: 20px;
+      font-size: 1.8rem;
+      font-weight: 600;
     }
     .dark-mode .section-title {
       border-color: #90caf9;
@@ -115,18 +98,18 @@
       justify-content: center;
       flex-wrap: wrap;
       margin: 20px 0;
-      gap: 20px;
+      gap: 15px;
     }
     .orbital {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 120px;
+      width: 110px;
     }
     .orbital-box {
-      width: 100px;
-      height: 100px;
-      border: 2px solid #4facfe;
+      width: 90px;
+      height: 90px;
+      border: 2px solid var(--primary);
       border-radius: 10px;
       display: flex;
       justify-content: center;
@@ -141,11 +124,11 @@
     }
     .electron {
       position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #ff3e3e;
+      width: 18px;
+      height: 18px;
+      background: var(--accent);
       border-radius: 50%;
-      box-shadow: 0 0 8px #ff3e3e;
+      box-shadow: 0 0 8px var(--accent);
     }
     .dark-mode .electron {
       background: #ff6b6b;
@@ -155,7 +138,7 @@
       background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
       padding: 15px;
       border-radius: 8px;
-      border-left: 4px solid #0d6efd;
+      border-left: 4px solid var(--primary);
       margin: 20px 0;
     }
     .dark-mode .chem-highlight {
@@ -168,6 +151,7 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       transition: transform 0.3s ease;
       height: 100%;
+      margin-bottom: 20px;
     }
     .model-card:hover {
       transform: translateY(-10px);
@@ -182,21 +166,21 @@
     }
     .timeline {
       position: relative;
-      max-width: 800px;
+      max-width: 100%;
       margin: 40px auto;
     }
     .timeline::after {
       content: '';
       position: absolute;
       width: 4px;
-      background-color: #0d6efd;
+      background-color: var(--primary);
       top: 0;
       bottom: 0;
       left: 50%;
       margin-left: -2px;
     }
     .timeline-item {
-      padding: 10px 40px;
+      padding: 10px 30px;
       position: relative;
       width: 50%;
       box-sizing: border-box;
@@ -214,14 +198,14 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     .dark-mode .timeline-content {
-      background-color: #1e1e1e;
+      background-color: var(--dark-card);
     }
     .timeline-item::after {
       content: '';
       position: absolute;
       width: 20px;
       height: 20px;
-      background-color: #0d6efd;
+      background-color: var(--primary);
       border: 4px solid white;
       border-radius: 50%;
       top: 20px;
@@ -234,7 +218,59 @@
       left: -12px;
     }
     .dark-mode .timeline-item::after {
-      border-color: #121212;
+      border-color: var(--dark-bg);
+    }
+    
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.5rem;
+      }
+      
+      .timeline::after {
+        left: 31px;
+      }
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+      .timeline-item::after {
+        left: 19px;
+      }
+      .orbital {
+        width: 100px;
+      }
+      .orbital-box {
+        width: 80px;
+        height: 80px;
+      }
+      .chem-model h4 {
+        font-size: 1.2rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .section-title {
+        font-size: 1.3rem;
+      }
+      
+      .orbital {
+        width: 85px;
+      }
+      .orbital-box {
+        width: 70px;
+        height: 70px;
+      }
+      .model-card-header h5 {
+        font-size: 1.1rem;
+      }
+      .chem-highlight {
+        padding: 12px;
+      }
     }
   </style>
 </head>
@@ -266,9 +302,9 @@
   </div>
 </nav>
 
-<main class="py-5">
+<main class="py-4">
   <div class="container">
-    <nav aria-label="breadcrumb">
+    <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="chemistry_topics.html">เนื้อหาทั้งหมด</a></li>
         <li class="breadcrumb-item active" aria-current="page">บทที่ 1: โครงสร้างอะตอมและตารางธาตุ</li>
@@ -285,8 +321,8 @@
       <p>แบบจำลองอะตอมได้พัฒนามาอย่างต่อเนื่องตั้งแต่อดีตจนถึงปัจจุบัน เพื่ออธิบายโครงสร้างและพฤติกรรมของอะตอม</p>
     </div>
 
-    <div class="row mt-4">
-      <div class="col-md-4 mb-4">
+    <div class="row">
+      <div class="col-md-4">
         <div class="model-card">
           <div class="model-card-header bg-primary">
             <h5>รัทเทอร์ฟอร์ด</h5>
@@ -299,7 +335,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 mb-4">
+      <div class="col-md-4">
         <div class="model-card">
           <div class="model-card-header bg-success">
             <h5>นีลส์ โบร์</h5>
@@ -312,7 +348,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 mb-4">
+      <div class="col-md-4">
         <div class="model-card">
           <div class="model-card-header bg-info">
             <h5>กลศาสตร์ควอนตัม</h5>
@@ -331,13 +367,13 @@
       <div class="timeline-item">
         <div class="timeline-content">
           <h5>แบบจำลองอะตอมของรัทเทอร์ฟอร์ด (1911)</h5>
-          <p>จากการทดลองยิงอนุภาคแอลฟา (α) ไปยังแผ่นทองคำบาง (Gold Foil Experiment) เออร์เนสต์ รัทเทอร์ฟอร์ด พบว่า:</p>
+          <p>จากการทดลองยิงอนุภาคแอลฟา (α) ไปยังแผ่นทองคำบาง:</p>
           <ul>
             <li>อะตอมส่วนใหญ่เป็นพื้นที่ว่าง</li>
             <li>มีนิวเคลียสขนาดเล็กมากอยู่ตรงกลางที่มีประจุบวก</li>
             <li>อิเล็กตรอนโคจรรอบนิวเคลียส</li>
           </ul>
-          <p>แบบจำลองนี้สามารถอธิบายผลการทดลองได้ดี แต่มีข้อจำกัดคือ ไม่สามารถอธิบายสเปกตรัมการดูดกลืนและการคายพลังงานของอะตอมไฮโดรเจนได้</p>
+          <p class="mb-0">แบบจำลองนี้สามารถอธิบายผลการทดลองได้ดี แต่มีข้อจำกัดคือ ไม่สามารถอธิบายสเปกตรัมของอะตอมไฮโดรเจนได้</p>
         </div>
       </div>
       <div class="timeline-item">
@@ -345,14 +381,9 @@
           <h5>แบบจำลองอะตอมของโบร์ (1913)</h5>
           <p>นีลส์ โบร์ เสนอแบบจำลองอะตอมใหม่โดยมีสมมติฐานสำคัญ:</p>
           <ol>
-            <li>อิเล็กตรอนโคจรรอบนิวเคลียสเป็นวงโคจรวงกลมที่มีรัศมีแน่นอน โดยไม่มีการแผ่รังสี</li>
-            <li>โมเมนตัมเชิงมุมของอิเล็กตรอนมีค่าเป็นจำนวนเต็มเท่าของ $\frac{h}{2\pi}$:
-              $$L = mvr = n\frac{h}{2\pi} \quad (n=1,2,3,\dots)$$
-            </li>
-            <li>เมื่ออิเล็กตรอนเปลี่ยนวงโคจร จะมีการดูดกลืนหรือคายพลังงานเป็นโฟตอน:
-              $$\Delta E = E_2 - E_1 = h\nu$$
-              โดยที่ $\nu$ คือความถี่ของรังสี
-            </li>
+            <li>อิเล็กตรอนโคจรรอบนิวเคลียสเป็นวงโคจรวงกลมที่มีรัศมีแน่นอน</li>
+            <li>โมเมนตัมเชิงมุมของอิเล็กตรอนมีค่าเป็นจำนวนเต็มเท่าของ $\frac{h}{2\pi}$</li>
+            <li>เมื่ออิเล็กตรอนเปลี่ยนวงโคจร จะมีการดูดกลืนหรือคายพลังงานเป็นโฟตอน</li>
           </ol>
           <p>พลังงานของอิเล็กตรอนในอะตอมไฮโดรเจน:
             $$E_n = -\frac{13.6}{n^2} \text{ eV} \quad (n=1,2,3,\dots)$$
@@ -362,32 +393,29 @@
       <div class="timeline-item">
         <div class="timeline-content">
           <h5>แบบจำลองกลศาสตร์ควอนตัม</h5>
-          <p>ในช่วงทศวรรษ 1920 นักวิทยาศาสตร์ได้พัฒนากลศาสตร์ควอนตัมเพื่ออธิบายพฤติกรรมของอนุภาคในระดับอะตอม:</p>
+          <p>ในช่วงทศวรรษ 1920 นักวิทยาศาสตร์ได้พัฒนากลศาสตร์ควอนตัม:</p>
           <ul>
-            <li><strong>สมการชเรอดิงเงอร์ (Schrödinger Equation):</strong> 
-              $$i\hbar\frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \hat{H}\Psi(\mathbf{r},t)$$
-              โดยที่ $\Psi$ คือฟังก์ชันคลื่นที่บรรยายสถานะของระบบ
+            <li><strong>สมการชเรอดิงเงอร์:</strong> 
+              $$i\hbar\frac{\partial}{\partial t}\Psi = \hat{H}\Psi$$
             </li>
-            <li><strong>หลักความไม่แน่นอนของไฮเซนเบิร์ก (Heisenberg Uncertainty Principle):</strong>
+            <li><strong>หลักความไม่แน่นอนของไฮเซนเบิร์ก:</strong>
               $$\Delta x \cdot \Delta p \geq \frac{\hbar}{2}$$
-              ไม่สามารถทราบทั้งตำแหน่งและโมเมนตัมของอิเล็กตรอนได้อย่างแม่นยำในเวลาเดียวกัน
             </li>
-            <li><strong>ความน่าจะเป็นในการพบอิเล็กตรอน:</strong> $|\Psi|^2$ ให้ความหนาแน่นของความน่าจะเป็นในการพบอิเล็กตรอน</li>
+            <li>ความน่าจะเป็นในการพบอิเล็กตรอน: $|\Psi|^2$</li>
           </ul>
-          <p>แบบจำลองนี้แทนที่แนวคิดวงโคจร (orbit) ด้วยออร์บิทัล (orbital) ซึ่งเป็นพื้นที่ที่มีความน่าจะเป็นสูงที่จะพบอิเล็กตรอน</p>
+          <p>แบบจำลองนี้แทนที่แนวคิดวงโคจร (orbit) ด้วยออร์บิทัล (orbital)</p>
         </div>
       </div>
     </div>
   </section>
 
-  <hr class="my-5">
+  <hr class="my-4">
 
   <section class="mb-5">
     <h2 class="section-title">2. โครงสร้างอิเล็กตรอน: ระดับพลังงาน, ออร์บิทัล, การจัดเรียงอิเล็กตรอน</h2>
     
     <h4 class="mt-4">2.1 จำนวนควอนตัม (Quantum Numbers)</h4>
-    <p>
-      อิเล็กตรอนในอะตอมถูกบรรยายด้วยจำนวนควอนตัมสี่ตัว:
+    <div class="table-responsive">
       <table class="table table-bordered">
         <thead class="table-primary">
           <tr>
@@ -424,22 +452,22 @@
           </tr>
         </tbody>
       </table>
-    </p>
+    </div>
     
     <h4 class="mt-4">2.2 ออร์บิทัลและรูปร่าง</h4>
     <div class="orbital-diagram">
       <div class="orbital">
         <div class="orbital-box">
-          <div class="electron" style="top: 40px; left: 40px;"></div>
+          <div class="electron" style="top: 36px; left: 36px;"></div>
         </div>
-        <div class="mt-2">s-orbital (ทรงกลม)<br>$\ell = 0$</div>
+        <div class="mt-2 text-center">s-orbital<br>$\ell = 0$</div>
       </div>
       <div class="orbital">
         <div class="orbital-box">
           <div class="electron" style="top: 20px; left: 20px;"></div>
           <div class="electron" style="bottom: 20px; right: 20px;"></div>
         </div>
-        <div class="mt-2">p-orbital (ดัมเบล)<br>$\ell = 1$</div>
+        <div class="mt-2 text-center">p-orbital<br>$\ell = 1$</div>
       </div>
       <div class="orbital">
         <div class="orbital-box">
@@ -448,65 +476,78 @@
           <div class="electron" style="bottom: 15px; left: 15px;"></div>
           <div class="electron" style="bottom: 15px; right: 15px;"></div>
         </div>
-        <div class="mt-2">d-orbital (คล็อเวอร์)<br>$\ell = 2$</div>
+        <div class="mt-2 text-center">d-orbital<br>$\ell = 2$</div>
       </div>
     </div>
     
-    <h4 class="mt-4">2.3 การจัดเรียงอิเล็กตรอน (Electron Configuration)</h4>
+    <h4 class="mt-4">2.3 การจัดเรียงอิเล็กตรอน</h4>
     <div class="chem-highlight">
-      <h5><i class="bi bi-stars"></i> หลักการสำคัญในการจัดเรียงอิเล็กตรอน</h5>
+      <h5><i class="bi bi-stars"></i> หลักการสำคัญ</h5>
       <ol>
-        <li><strong>หลักของเอาฟบาว (Aufbau Principle):</strong> อิเล็กตรอนจะเข้าสู่ออร์บิทัลที่มีพลังงานต่ำที่สุดก่อน</li>
-        <li><strong>กฎของเพาลี (Pauli Exclusion Principle):</strong> ในออร์บิทัลหนึ่งๆ จะมีอิเล็กตรอนได้ไม่เกิน 2 ตัว และต้องมีสปินตรงข้ามกัน</li>
-        <li><strong>กฎของฮุนด์ (Hund's Rule):</strong> การจัดเรียงอิเล็กตรอนในออร์บิทัลย่อยที่มีพลังงานเท่ากัน จะจัดให้มีสปินขนานกันมากที่สุดก่อน</li>
+        <li><strong>หลักของเอาฟบาว:</strong> อิเล็กตรอนจะเข้าสู่ออร์บิทัลที่มีพลังงานต่ำที่สุดก่อน</li>
+        <li><strong>กฎของเพาลี:</strong> ในออร์บิทัลหนึ่งๆ จะมีอิเล็กตรอนได้ไม่เกิน 2 ตัว</li>
+        <li><strong>กฎของฮุนด์:</strong> จัดให้มีสปินขนานกันมากที่สุดก่อน</li>
       </ol>
     </div>
     
-    <h5>ลำดับการบรรจุอิเล็กตรอน (Aufbau Sequence):</h5>
-    <div class="diagram text-center">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Aufbau_Principle.svg/800px-Aufbau_Principle.svg.png" alt="Aufbau Principle" class="img-fluid" style="max-height: 300px;">
-    </div>
-    
-    <h5 class="mt-4">ตัวอย่างการจัดเรียงอิเล็กตรอน</h5>
     <div class="row">
-      <div class="col-md-4">
-        <div class="card mb-4">
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
           <div class="card-header bg-warning">
             ออกซิเจน (O, Z=8)
           </div>
           <div class="card-body">
             <p class="text-center display-6">$1s^2 2s^2 2p^4$</p>
-            <p>ไดอะแกรมออร์บิทัล:</p>
             <div class="text-center">
-              <img src="https://www.chemistrylearner.com/wp-content/uploads/2018/08/Oxygen-Electron-Configuration.jpg" alt="Oxygen electron configuration" class="img-fluid" style="max-height: 150px;">
+              <div class="d-inline-block border p-2 rounded bg-light">
+                <div class="d-flex">
+                  <div class="border mx-1 px-3 py-1">↑↓</div>
+                  <div class="border mx-1 px-3 py-1">↑</div>
+                  <div class="border mx-1 px-3 py-1">↑</div>
+                </div>
+                <div class="small mt-1">2p orbitals</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card mb-4">
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
           <div class="card-header bg-danger text-white">
             โซเดียม (Na, Z=11)
           </div>
           <div class="card-body">
             <p class="text-center display-6">$1s^2 2s^2 2p^6 3s^1$</p>
-            <p>หรือ [Ne] $3s^1$</p>
+            <p class="text-center">หรือ [Ne] $3s^1$</p>
             <div class="text-center">
-              <img src="https://www.chemistrylearner.com/wp-content/uploads/2018/08/Sodium-Electron-Configuration.jpg" alt="Sodium electron configuration" class="img-fluid" style="max-height: 150px;">
+              <div class="d-inline-block border p-2 rounded bg-light">
+                <div class="d-flex justify-content-center">
+                  <div class="border px-4 py-1">↑</div>
+                </div>
+                <div class="small mt-1">3s orbital</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card mb-4">
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
           <div class="card-header bg-success text-white">
             เหล็ก (Fe, Z=26)
           </div>
           <div class="card-body">
-            <p class="text-center display-6">$1s^2 2s^2 2p^6 3s^2 3p^6 4s^2 3d^6$</p>
-            <p>หรือ [Ar] $4s^2 3d^6$</p>
+            <p class="text-center display-6">$[Ar] 4s^2 3d^6$</p>
             <div class="text-center">
-              <img src="https://www.chemistrylearner.com/wp-content/uploads/2018/08/Iron-Electron-Configuration.jpg" alt="Iron electron configuration" class="img-fluid" style="max-height: 150px;">
+              <div class="d-inline-block border p-2 rounded bg-light">
+                <div class="d-flex">
+                  <div class="border mx-1 px-2 py-1">↑↓</div>
+                  <div class="border mx-1 px-2 py-1">↑↓</div>
+                  <div class="border mx-1 px-2 py-1">↑</div>
+                  <div class="border mx-1 px-2 py-1">↑</div>
+                  <div class="border mx-1 px-2 py-1">↑</div>
+                </div>
+                <div class="small mt-1">3d orbitals</div>
+              </div>
             </div>
           </div>
         </div>
@@ -514,7 +555,7 @@
     </div>
   </section>
 
-  <hr class="my-5">
+  <hr class="my-4">
 
   <section class="mb-5">
     <h2 class="section-title">3. ตารางธาตุและแนวโน้มสมบัติของธาตุ</h2>
@@ -529,60 +570,60 @@
     </div>
     
     <div class="row">
-      <div class="col-md-3 mb-3">
+      <div class="col-6 col-md-3 mb-3">
         <div class="card h-100">
           <div class="card-body text-center p-2">
-            <div class="element s-block p-3">
-              <span class="symbol">s-block</span>
+            <div class="p-3 bg-danger bg-opacity-25 rounded">
+              <span class="fw-bold">s-block</span>
             </div>
-            <p class="mt-2 mb-0">หมู่ 1-2 และ He</p>
+            <p class="mt-2 mb-0 small">หมู่ 1-2 และ He</p>
           </div>
         </div>
       </div>
-      <div class="col-md-3 mb-3">
+      <div class="col-6 col-md-3 mb-3">
         <div class="card h-100">
           <div class="card-body text-center p-2">
-            <div class="element p-block p-3">
-              <span class="symbol">p-block</span>
+            <div class="p-3 bg-success bg-opacity-25 rounded">
+              <span class="fw-bold">p-block</span>
             </div>
-            <p class="mt-2 mb-0">หมู่ 13-18 (ไม่รวม He)</p>
+            <p class="mt-2 mb-0 small">หมู่ 13-18 (ไม่รวม He)</p>
           </div>
         </div>
       </div>
-      <div class="col-md-3 mb-3">
+      <div class="col-6 col-md-3 mb-3">
         <div class="card h-100">
           <div class="card-body text-center p-2">
-            <div class="element d-block p-3">
-              <span class="symbol">d-block</span>
+            <div class="p-3 bg-primary bg-opacity-25 rounded">
+              <span class="fw-bold">d-block</span>
             </div>
-            <p class="mt-2 mb-0">หมู่ 3-12 (โลหะทรานซิชัน)</p>
+            <p class="mt-2 mb-0 small">หมู่ 3-12 (โลหะทรานซิชัน)</p>
           </div>
         </div>
       </div>
-      <div class="col-md-3 mb-3">
+      <div class="col-6 col-md-3 mb-3">
         <div class="card h-100">
           <div class="card-body text-center p-2">
-            <div class="element f-block p-3">
-              <span class="symbol">f-block</span>
+            <div class="p-3 bg-info bg-opacity-25 rounded">
+              <span class="fw-bold">f-block</span>
             </div>
-            <p class="mt-2 mb-0">แลนทาไนด์และแอกทิไนด์</p>
+            <p class="mt-2 mb-0 small">แลนทาไนด์และแอกทิไนด์</p>
           </div>
         </div>
       </div>
     </div>
     
-    <h4 class="mt-4">3.2 แนวโน้มสมบัติธาตุตามคาบและหมู่</h4>
+    <h4 class="mt-4">3.2 แนวโน้มสมบัติธาตุ</h4>
     <div class="row">
       <div class="col-md-4 mb-4">
         <div class="card trend-card h-100">
           <div class="card-header bg-primary text-white">
-            <i class="bi bi-arrow-up"></i> รัศมีอะตอม (Atomic Radius)
+            <i class="bi bi-arrow-up"></i> รัศมีอะตอม
           </div>
           <div class="card-body">
-            <p><strong>แนวโน้มตามคาบ:</strong> ลดลงจากซ้ายไปขวา เนื่องจากประจุนิวเคลียร์มีประสิทธิภาพเพิ่มขึ้น</p>
-            <p><strong>แนวโน้มตามหมู่:</strong> เพิ่มลงจากบนลงล่าง เนื่องจากจำนวนระดับพลังงานเพิ่มขึ้น</p>
+            <p><strong>แนวโน้มตามคาบ:</strong> ลดลงจากซ้ายไปขวา</p>
+            <p><strong>แนวโน้มตามหมู่:</strong> เพิ่มลงจากบนลงล่าง</p>
             <div class="text-center mt-3">
-              <img src="https://www.chemistrylearner.com/wp-content/uploads/2018/08/Atomic-Radius-Trend.jpg" alt="Atomic Radius Trend" class="img-fluid" style="max-height: 150px;">
+              <img src="https://www.chemistrylearner.com/wp-content/uploads/2018/08/Atomic-Radius-Trend.jpg" alt="Atomic Radius Trend" class="img-fluid">
             </div>
           </div>
         </div>
@@ -590,13 +631,13 @@
       <div class="col-md-4 mb-4">
         <div class="card trend-card h-100">
           <div class="card-header bg-success text-white">
-            <i class="bi bi-lightning"></i> พลังงานไอออไนเซชัน (Ionization Energy)
+            <i class="bi bi-lightning"></i> พลังงานไอออไนเซชัน
           </div>
           <div class="card-body">
-            <p><strong>แนวโน้มตามคาบ:</strong> เพิ่มขึ้นจากซ้ายไปขวา เนื่องจากรัศมีอะตอมลดลง</p>
-            <p><strong>แนวโน้มตามหมู่:</strong> ลดลงจากบนลงล่าง เนื่องจากอิเล็กตรอนชั้นนอกอยู่ห่างจากนิวเคลียส</p>
+            <p><strong>แนวโน้มตามคาบ:</strong> เพิ่มขึ้นจากซ้ายไปขวา</p>
+            <p><strong>แนวโน้มตามหมู่:</strong> ลดลงจากบนลงล่าง</p>
             <div class="text-center mt-3">
-              <img src="https://www.chemistrylearner.com/wp-content/uploads/2018/08/Ionization-Energy-Trend.jpg" alt="Ionization Energy Trend" class="img-fluid" style="max-height: 150px;">
+              <img src="https://www.chemistrylearner.com/wp-content/uploads/2018/08/Ionization-Energy-Trend.jpg" alt="Ionization Energy Trend" class="img-fluid">
             </div>
           </div>
         </div>
@@ -604,13 +645,13 @@
       <div class="col-md-4 mb-4">
         <div class="card trend-card h-100">
           <div class="card-header bg-info text-white">
-            <i class="bi bi-magnet"></i> อิเล็กโทรเนกาติวิตี (Electronegativity)
+            <i class="bi bi-magnet"></i> อิเล็กโทรเนกาติวิตี
           </div>
           <div class="card-body">
-            <p><strong>แนวโน้มตามคาบ:</strong> เพิ่มขึ้นจากซ้ายไปขวา เนื่องจากแนวโน้มในการรับอิเล็กตรอนเพิ่มขึ้น</p>
-            <p><strong>แนวโน้มตามหมู่:</strong> ลดลงจากบนลงล่าง เนื่องจากรัศมีอะตอมเพิ่มขึ้น</p>
+            <p><strong>แนวโน้มตามคาบ:</strong> เพิ่มขึ้นจากซ้ายไปขวา</p>
+            <p><strong>แนวโน้มตามหมู่:</strong> ลดลงจากบนลงล่าง</p>
             <div class="text-center mt-3">
-              <img src="https://www.chemistrylearner.com/wp-content/uploads/2018/08/Electronegativity-Trend.jpg" alt="Electronegativity Trend" class="img-fluid" style="max-height: 150px;">
+              <img src="https://www.chemistrylearner.com/wp-content/uploads/2018/08/Electronegativity-Trend.jpg" alt="Electronegativity Trend" class="img-fluid">
             </div>
           </div>
         </div>
@@ -619,51 +660,47 @@
     
     <h4 class="mt-4">3.3 กลุ่มธาตุสำคัญ</h4>
     <div class="row">
-      <div class="col-md-3 mb-4">
+      <div class="col-6 col-md-3 mb-3">
         <div class="card h-100">
-          <div class="card-header bg-danger text-white">
-            โลหะอัลคาไล (หมู่ 1)
+          <div class="card-header bg-danger text-white py-2">
+            โลหะอัลคาไล
           </div>
-          <div class="card-body">
-            <p>มีเวเลนซ์อิเล็กตรอน 1 ตัว</p>
-            <p>ทำปฏิกิริยารุนแรงกับน้ำ</p>
-            <p>ตัวอย่าง: Li, Na, K</p>
+          <div class="card-body py-3">
+            <p class="mb-1 small">หมู่ 1</p>
+            <p class="mb-1 small">Li, Na, K</p>
           </div>
         </div>
       </div>
-      <div class="col-md-3 mb-4">
+      <div class="col-6 col-md-3 mb-3">
         <div class="card h-100">
-          <div class="card-header bg-warning">
-            โลหะอัลคาไลน์เอิร์ท (หมู่ 2)
+          <div class="card-header bg-warning py-2">
+            อัลคาไลน์เอิร์ท
           </div>
-          <div class="card-body">
-            <p>มีเวเลนซ์อิเล็กตรอน 2 ตัว</p>
-            <p>แข็งแรงกว่าโลหะอัลคาไล</p>
-            <p>ตัวอย่าง: Mg, Ca, Ba</p>
+          <div class="card-body py-3">
+            <p class="mb-1 small">หมู่ 2</p>
+            <p class="mb-1 small">Mg, Ca, Ba</p>
           </div>
         </div>
       </div>
-      <div class="col-md-3 mb-4">
+      <div class="col-6 col-md-3 mb-3">
         <div class="card h-100">
-          <div class="card-header bg-success text-white">
-            แฮโลเจน (หมู่ 17)
+          <div class="card-header bg-success text-white py-2">
+            แฮโลเจน
           </div>
-          <div class="card-body">
-            <p>มีเวเลนซ์อิเล็กตรอน 7 ตัว</p>
-            <p>มีอิเล็กโทรเนกาติวิตีสูง</p>
-            <p>ตัวอย่าง: F, Cl, Br</p>
+          <div class="card-body py-3">
+            <p class="mb-1 small">หมู่ 17</p>
+            <p class="mb-1 small">F, Cl, Br</p>
           </div>
         </div>
       </div>
-      <div class="col-md-3 mb-4">
+      <div class="col-6 col-md-3 mb-3">
         <div class="card h-100">
-          <div class="card-header bg-primary text-white">
-            แก๊สมีตระกูล (หมู่ 18)
+          <div class="card-header bg-primary text-white py-2">
+            แก๊สมีตระกูล
           </div>
-          <div class="card-body">
-            <p>มีเวเลนซ์อิเล็กตรอน 8 ตัว (เต็มวง)</p>
-            <p>มีเสถียรภาพสูง</p>
-            <p>ตัวอย่าง: Ne, Ar, Kr</p>
+          <div class="card-body py-3">
+            <p class="mb-1 small">หมู่ 18</p>
+            <p class="mb-1 small">Ne, Ar, Kr</p>
           </div>
         </div>
       </div>
@@ -676,7 +713,7 @@
 
 <footer class="bg-dark text-white text-center py-3">
   <div class="container">
-    <p>&copy; 2025 เคมี Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+    <p class="mb-0">&copy; 2025 เคมี Hub. สร้างสรรค์เพื่อการศึกษา.</p>
   </div>
 </footer>
 
