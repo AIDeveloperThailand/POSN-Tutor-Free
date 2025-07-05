@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กล้องจุลทรรศน์และเซลล์ - สอวน. ชีววิทยา</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        :root {
+            --biology: #4CAF50;
+            --biology-light: #C8E6C9;
+            --biology-dark: #388E3C;
+            --microscope: #81C784;
+            --plant-cell: #AED581;
+            --animal-cell: #FFB74D;
+            --organelle: #64B5F6;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,15 C65.464,15 78,27.536 78,43 C78,58.464 65.464,71 50,71 C34.536,71 22,58.464 22,43 C22,27.536 34.536,15 50,15 Z M50,25 C40.058,25 32,33.058 32,43 C32,52.942 40.058,61 50,61 C59.942,61 68,52.942 68,43 C68,33.058 59.942,25 50,25 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3Cpath d='M30,75 C36.627,75 42,80.373 42,87 C42,93.627 36.627,99 30,99 C23.373,99 18,93.627 18,87 C18,80.373 23.373,75 30,75 Z M70,75 C76.627,75 82,80.373 82,87 C82,93.627 76.627,99 70,99 C63.373,99 58,93.627 58,87 C58,80.373 63.373,75 70,75 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='5' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='20' cy='30' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='80' cy='20' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='30' cy='70' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='70' cy='80' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='10' cy='50' r='2' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='90' cy='60' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.2;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.1), rgba(67, 160, 71, 0.1));
+            border-left: 4px solid var(--biology);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .key-point {
+            background: linear-gradient(135deg, rgba(200, 230, 201, 0.3), rgba(76, 175, 80, 0.1));
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(76, 175, 80, 0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--biology);
+            font-size: 1.2rem;
+        }
+        
+        .microscope-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .microscope-table th {
+            background-color: var(--microscope);
+            color: white;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .microscope-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .microscope-table tr:nth-child(even) {
+            background-color: #f2f9f2;
+        }
+        
+        .cell-comparison {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .cell-type {
+            flex: 1;
+            min-width: 300px;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .plant-cell {
+            border-top: 5px solid var(--plant-cell);
+        }
+        
+        .animal-cell {
+            border-top: 5px solid var(--animal-cell);
+        }
+        
+        .organelle-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--organelle);
+        }
+        
+        .organelle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .cell-diagram {
+            width: 100%;
+            height: 300px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diagram-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .technique-box {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .magnification-formula {
+            background: linear-gradient(135deg, rgba(255, 183, 77, 0.2), rgba(255, 183, 77, 0.1));
+            border-left: 3px solid #FF9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-family: monospace;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        
+        .resolution-box {
+            background: linear-gradient(135deg, rgba(100, 181, 246, 0.2), rgba(100, 181, 246, 0.1));
+            border-left: 3px solid var(--organelle);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .microscope-image {
+            width: 100%;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .cell-comparison {
+                flex-direction: column;
+            }
+            
+            .cell-type {
+                min-width: 100%;
+                margin: 10px 0;
+            }
+            
+            .header-bg {
+                padding: 2rem 0;
+            }
+            
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-eyeglasses"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="biology_topics.html">ชีววิทยา</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="biology_topics.html">เนื้อหาชีววิทยาทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">บทที่ 3: กล้องจุลทรรศน์และเซลล์</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">บทที่ 3: กล้องจุลทรรศน์และเซลล์</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-green me-2">ส่วนประกอบกล้องจุลทรรศน์</span>
+                <span class="badge bg-light text-green me-2">เทคนิคการใช้กล้อง</span>
+                <span class="badge bg-light text-green me-2">โครงสร้างเซลล์</span>
+                <span class="badge bg-light text-green">ออร์แกเนลล์เซลล์</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ส่วนประกอบของกล้องจุลทรรศน์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#components">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-camera"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ส่วนประกอบของกล้องจุลทรรศน์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="components" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            กล้องจุลทรรศน์ (Microscope) เป็นเครื่องมือสำคัญในการศึกษาสิ่งมีชีวิตขนาดเล็ก โดยเฉพาะเซลล์ ประกอบด้วยส่วนสำคัญ 3 ระบบหลัก คือ ระบบแสง ระบบเลนส์ และระบบปรับภาพ
+                        </p>
+                        
+                        <div class="microscope-image">
+                            <img src="https://microscopeinternational.com/content/resources/compound-microscope-labeled.jpg" alt="Compound Microscope Parts" class="img-fluid rounded">
+                            <p class="text-center mt-2 text-muted">ส่วนประกอบหลักของกล้องจุลทรรศน์แบบใช้แสง</p>
+                        </div>
+                        
+                        <div class="microscope-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ส่วนประกอบ</th>
+                                        <th>หน้าที่</th>
+                                        <th>รายละเอียด</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>เลนส์ใกล้วัตถุ (Objective Lens)</td>
+                                        <td>ขยายภาพวัตถุ</td>
+                                        <td>มีหลายกำลังขยาย (4x, 10x, 40x, 100x) ผลิตจากแก้วคุณภาพสูง</td>
+                                    </tr>
+                                    <tr>
+                                        <td>เลนส์ใกล้ตา (Eyepiece)</td>
+                                        <td>ขยายภาพจากเลนส์ใกล้วัตถุ</td>
+                                        <td>กำลังขยาย 10x หรือ 15x ทำจากแก้วยูเรเทียม</td>
+                                    </tr>
+                                    <tr>
+                                        <td>แท่นวางวัตถุ (Stage)</td>
+                                        <td>รองรับสไลด์ตัวอย่าง</td>
+                                        <td>มีแคลมหยึดสไลด์และปุ่มปรับตำแหน่ง</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ไดอะแฟรม (Diaphragm)</td>
+                                        <td>ควบคุมปริมาณแสง</td>
+                                        <td>ปรับขนาดรูเปิดเพื่อควบคุมความเข้มแสง</td>
+                                    </tr>
+                                    <tr>
+                                        <td>กระจกเงาหรือแหล่งกำเนิดแสง</td>
+                                        <td>ให้แสงส่องผ่านตัวอย่าง</td>
+                                        <td>กล้องรุ่นใหม่ใช้หลอด LED แทนกระจกเงา</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ปุ่มปรับหยาบ (Coarse Adjustment)</td>
+                                        <td>ปรับความคมชัดขั้นต้น</td>
+                                        <td>ใช้กับกำลังขยายต่ำ หมุนได้เร็ว</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ปุ่มปรับละเอียด (Fine Adjustment)</td>
+                                        <td>ปรับความคมชัดขั้นละเอียด</td>
+                                        <td>ใช้กับกำลังขยายสูง หมุนได้ช้าและแม่นยำ</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="magnification-formula">
+                            <p>กำลังขยายทั้งหมด = กำลังขยายเลนส์ใกล้วัตถุ × กำลังขยายเลนส์ใกล้ตา</p>
+                            <p>ตัวอย่าง: เลนส์ใกล้วัตถุ 40x × เลนส์ใกล้ตา 10x = กำลังขยาย 400 เท่า</p>
+                        </div>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-lightbulb"></i> ชนิดของกล้องจุลทรรศน์</h5>
+                            <ul>
+                                <li><strong>กล้องจุลทรรศน์แบบใช้แสง (Light Microscope):</strong> ใช้แสงส่องผ่านตัวอย่าง ขยายได้ 1,000-1,500 เท่า</li>
+                                <li><strong>กล้องจุลทรรศน์อิเล็กตรอน (Electron Microscope):</strong> ใช้ลำแสงอิเล็กตรอน ขยายได้มากถึง 1,000,000 เท่า</li>
+                                <li><strong>กล้องจุลทรรศน์แบบสเตอริโอ (Stereo Microscope):</strong> ใช้ศึกษาวัตถุสามมิติ ขยายได้ 10-200 เท่า</li>
+                                <li><strong>กล้องจุลทรรศน์แบบดิจิตอล (Digital Microscope):</strong> แสดงผลบนหน้าจอคอมพิวเตอร์</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- เทคนิคการใช้กล้องจุลทรรศน์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#techniques">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-gear"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">เทคนิคการใช้กล้องจุลทรรศน์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="techniques" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            การใช้กล้องจุลทรรศน์อย่างถูกต้องจำเป็นต้องเข้าใจเทคนิคพื้นฐานและการเตรียมตัวอย่าง เพื่อให้ได้ภาพที่ชัดเจนและข้อมูลที่ถูกต้อง
+                        </p>
+                        
+                        <div class="technique-box">
+                            <h5><i class="bi bi-list-check"></i> ขั้นตอนการใช้กล้องจุลทรรศน์พื้นฐาน</h5>
+                            <ol>
+                                <li>วางกล้องบนพื้นราบมั่นคง ห่างจากขอบโต๊ะ 10-15 ซม.</li>
+                                <li>เปิดแหล่งกำเนิดแสงหรือปรับกระจกเงาให้แสงส่องผ่านไดอะแฟรม</li>
+                                <li>เลือกเลนส์ใกล้วัตถุกำลังขยายต่ำสุด (4x)</li>
+                                <li>วางสไลด์บนแท่นวางวัตถุ โดยให้ตัวอย่างอยู่เหนือรูกลางแท่น</li>
+                                <li>ใช้ปุ่มปรับหยาบยกแท่นวางวัตถุขึ้นจนเกือบติดเลนส์</li>
+                                <li>มองผ่านเลนส์ใกล้ตา ใช้ปุ่มปรับหยาบลดแท่นลงช้าๆ จนเห็นภาพ</li>
+                                <li>ปรับความคมชัดด้วยปุ่มปรับละเอียด</li>
+                                <li>ปรับไดอะแฟรมให้ได้แสงที่เหมาะสม</li>
+                                <li>เมื่อต้องการขยายมากขึ้น หมุนหัวเลนส์ไปยังเลนส์กำลังขยายสูงกว่า</li>
+                                <li>ใช้ปุ่มปรับละเอียดเท่านั้นเมื่อใช้กำลังขยายสูง</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="resolution-box">
+                            <h5><i class="bi bi-eye"></i> ความละเอียด (Resolution)</h5>
+                            <p>ความสามารถในการแยกจุดสองจุดที่อยู่ใกล้กันออกจากกัน</p>
+                            <p>สูตรคำนวณ: $$ R = \frac{0.61 \times \lambda}{NA} $$</p>
+                            <p>โดยที่:</p>
+                            <ul>
+                                <li>\( R \) = ความละเอียด (หน่วย: นาโนเมตร)</li>
+                                <li>\( \lambda \) = ความยาวคลื่นแสง (แสงขาว ≈ 550 nm)</li>
+                                <li>\( NA \) = ค่า Numerical Aperture ของเลนส์</li>
+                            </ul>
+                            <p>กล้องจุลทรรศน์ใช้แสงมีความละเอียดสูงสุดประมาณ 200 nm</p>
+                        </div>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-droplet"></i> เทคนิคการเตรียมสไลด์</h5>
+                            <ul>
+                                <li><strong>สไลด์แห้ง (Dry Mount):</strong> วางตัวอย่างบนสไลด์ ปิดด้วยกระจกปิดวัตถุ</li>
+                                <li><strong>สไลด์เปียก (Wet Mount):</strong> ใส่น้ำหรือสารละลายก่อนวางตัวอย่าง</li>
+                                <li><strong>การย้อมสี (Staining):</strong> ใช้สีย้อมเพื่อเพิ่มความคมชัด
+                                    <ul>
+                                        <li>สีส้มอะคริดีน (Acridine Orange): ย้อม DNA</li>
+                                        <li>สีไอโอดีน (Iodine): ย้อมแป้ง</li>
+                                        <li>สีคริสตัลไวโอเลต (Crystal Violet): ย้อมแบคทีเรีย</li>
+                                    </ul>
+                                </li>
+                                <li><strong>สไลด์ถาวร (Permanent Mount):</strong> ใช้เรซินแช่แข็งตัวอย่าง</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <div class="cell-diagram">
+                                    <div class="diagram-placeholder">
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300'%3E%3Crect x='100' y='50' width='300' height='200' fill='%23F5F5F5'/%3E%3Ccircle cx='250' cy='150' r='80' fill='%23FFF59D'/%3E%3Ccircle cx='250' cy='150' r='50' fill='%23FFCC80'/%3E%3Ccircle cx='250' cy='150' r='20' fill='%23FFAB91'/%3E%3Ctext x='250' y='100' text-anchor='middle' fill='%23333' font-size='16'%3Eเซลล์พืช%3C/text%3E%3Ctext x='250' y='130' text-anchor='middle' fill='%23333' font-size='14'%3E(ไม่ย้อมสี)%3C/text%3E%3C/svg%3E" alt="Unstained Cell" style="width:100%; height:100%; object-fit: contain;">
+                                    </div>
+                                </div>
+                                <p class="text-center">เซลล์พืชไม่ย้อมสี - เห็นรายละเอียดน้อย</p>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="cell-diagram">
+                                    <div class="diagram-placeholder">
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300'%3E%3Crect x='100' y='50' width='300' height='200' fill='%23F5F5F5'/%3E%3Ccircle cx='250' cy='150' r='80' fill='%23C8E6C9'/%3E%3Ccircle cx='250' cy='150' r='50' fill='%2381C784'/%3E%3Ccircle cx='250' cy='150' r='20' fill='%232E7D32'/%3E%3Ccircle cx='200' cy='120' r='10' fill='%23F44336'/%3E%3Ccircle cx='280' cy='180' r='8' fill='%23F44336'/%3E%3Ccircle cx='230' cy='160' r='7' fill='%23F44336'/%3E%3Ctext x='250' y='100' text-anchor='middle' fill='%23333' font-size='16'%3Eเซลล์พืชย้อมสี%3C/text%3E%3Ctext x='250' y='130' text-anchor='middle' fill='%23333' font-size='14'%3E(เห็นนิวเคลียสชัดเจน)%3C/text%3E%3C/svg%3E" alt="Stained Cell" style="width:100%; height:100%; object-fit: contain;">
+                                    </div>
+                                </div>
+                                <p class="text-center">เซลล์พืชย้อมสี - เห็นนิวเคลียสและออร์แกเนลล์ชัดเจน</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- โครงสร้างเซลล์พืชและสัตว์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#cellStructure">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-grid-3x3"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">โครงสร้างเซลล์พืชและสัตว์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="cellStructure" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            เซลล์ (Cell) เป็นหน่วยพื้นฐานของสิ่งมีชีวิต เซลล์พืชและเซลล์สัตว์มีโครงสร้างพื้นฐานคล้ายกัน แต่มีลักษณะเฉพาะบางประการที่แตกต่างกัน
+                        </p>
+                        
+                        <div class="cell-comparison">
+                            <div class="cell-type plant-cell">
+                                <h4><i class="bi bi-tree"></i> เซลล์พืช</h4>
+                                <ul>
+                                    <li><strong>รูปร่าง:</strong> รูปหลายเหลี่ยม มุมชัดเจน</li>
+                                    <li><strong>ผนังเซลล์:</strong> มีผนังเซลล์ทำจากเซลลูโลส</li>
+                                    <li><strong>คลอโรพลาสต์:</strong> มีคลอโรพลาสต์สำหรับสังเคราะห์แสง</li>
+                                    <li><strong>แวคิวโอล:</strong> แวคิวโอลขนาดใหญ่ 1 อัน</li>
+                                    <li><strong>การเคลื่อนที่:</strong> ไม่มีแฟลเจลลัมหรือซิเลีย</li>
+                                    <li><strong>เซนทริโอล:</strong> ไม่มีเซนทริโอล</li>
+                                </ul>
+                                <div class="cell-diagram">
+                                    <div class="diagram-placeholder">
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300'%3E%3Crect x='50' y='50' width='400' height='200' fill='%23E8F5E9' rx='10'/%3E%3Crect x='70' y='70' width='360' height='160' fill='%23C8E6C9' rx='5'/%3E%3Ccircle cx='250' cy='150' r='30' fill='%2381C784'/%3E%3Ccircle cx='350' cy='120' r='40' fill='%23AED581'/%3E%3Ccircle cx='150' cy='180' r='20' fill='%234CAF50'/%3E%3Ccircle cx='300' cy='180' r='25' fill='%234CAF50'/%3E%3Ccircle cx='200' cy='100' r='15' fill='%232E7D32'/%3E%3Ctext x='250' cy='150' text-anchor='middle' fill='white' font-size='14'%3E นิวเคลียส %3C/text%3E%3Ctext x='350' cy='120' text-anchor='middle' fill='%23333' font-size='12'%3Eแวคิวโอล%3C/text%3E%3Ctext x='150' cy='180' text-anchor='middle' fill='white' font-size='10'%3Eคลอโรพลาสต์%3C/text%3E%3C/svg%3E" alt="Plant Cell" style="width:100%; height:100%; object-fit: contain;">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="cell-type animal-cell">
+                                <h4><i class="bi bi-heart"></i> เซลล์สัตว์</h4>
+                                <ul>
+                                    <li><strong>รูปร่าง:</strong> รูปทรงไม่แน่นอน กลมหรือรี</li>
+                                    <li><strong>ผนังเซลล์:</strong> ไม่มีผนังเซลล์ มีแต่เยื่อหุ้มเซลล์</li>
+                                    <li><strong>คลอโรพลาสต์:</strong> ไม่มีคลอโรพลาสต์</li>
+                                    <li><strong>แวคิวโอล:</strong> แวคิวโอลขนาดเล็กหลายอัน</li>
+                                    <li><strong>การเคลื่อนที่:</strong> อาจมีแฟลเจลลัมหรือซิเลีย</li>
+                                    <li><strong>เซนทริโอล:</strong> มีเซนทริโอลช่วยในการแบ่งเซลล์</li>
+                                </ul>
+                                <div class="cell-diagram">
+                                    <div class="diagram-placeholder">
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300'%3E%3Cellipse cx='250' cy='150' rx='180' ry='100' fill='%23FFF3E0'/%3E%3Cellipse cx='250' cy='150' rx='160' ry='80' fill='%23FFE0B2'/%3E%3Ccircle cx='250' cy='150' r='30' fill='%23FFB74D'/%3E%3Ccircle cx='350' cy='120' r='20' fill='%2396c'/%3E%3Ccircle cx='150' cy='180' r='15' fill='%2396c'/%3E%3Ccircle cx='300' cy='180' r='18' fill='%2396c'/%3E%3Ccircle cx='200' cy='100' r='12' fill='%2396c'/%3E%3Ccircle cx='180' cy='130' r='10' fill='%23795548'/%3E%3Ccircle cx='320' cy='130' r='10' fill='%23795548'/%3E%3Ctext x='250' cy='150' text-anchor='middle' fill='white' font-size='14'%3E นิวเคลียส %3C/text%3E%3Ctext x='350' cy='120' text-anchor='middle' fill='%23333' font-size='10'%3Eแวคิวโอล%3C/text%3E%3Ctext x='180' cy='130' text-anchor='middle' fill='white' font-size='8'%3Eเซนทริโอล%3C/text%3E%3C/svg%3E" alt="Animal Cell" style="width:100%; height:100%; object-fit: contain;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-layers"></i> โครงสร้างพื้นฐานของเซลล์</h5>
+                            <ul>
+                                <li><strong>เยื่อหุ้มเซลล์ (Cell Membrane):</strong> กั้นระหว่างภายในและภายนอกเซลล์ ควบคุมการผ่านเข้าออกของสาร</li>
+                                <li><strong>ไซโทพลาซึม (Cytoplasm):</strong> ของเหลวภายในเซลล์ ประกอบด้วยไซโทซอลและออร์แกเนลล์</li>
+                                <li><strong>นิวเคลียส (Nucleus):</strong> ศูนย์ควบคุมเซลล์ เก็บสารพันธุกรรม (DNA)</li>
+                                <li><strong>ไรโบโซม (Ribosomes):</strong> สังเคราะห์โปรตีน</li>
+                                <li><strong>เอนโดพลาซึมิกเรติคูลัม (Endoplasmic Reticulum):</strong> ทางขนส่งสารภายในเซลล์</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ออร์แกเนลล์ต่างๆ ในเซลล์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#organelles">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-bounding-box"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ออร์แกเนลล์ต่างๆ ในเซลล์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="organelles" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ออร์แกเนลล์ (Organelles) เป็นโครงสร้างภายในเซลล์ที่ทำหน้าที่เฉพาะเจาะจง คล้ายอวัยวะในร่างกายของสิ่งมีชีวิตหลายเซลล์
+                        </p>
+                        
+                        <div class="organelle-grid">
+                            <div class="organelle-card">
+                                <h5><i class="bi bi-circle"></i> นิวเคลียส (Nucleus)</h5>
+                                <ul>
+                                    <li><strong>หน้าที่:</strong> ควบคุมกิจกรรมของเซลล์ เก็บและถ่ายทอดข้อมูลทางพันธุกรรม</li>
+                                    <li><strong>โครงสร้าง:</strong> มีเยื่อหุ้มสองชั้น มีรูพรุน</li>
+                                    <li><strong>พบใน:</strong> เซลล์พืชและสัตว์</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="organelle-card">
+                                <h5><i class="bi bi-sun"></i> ไมโทคอนเดรีย (Mitochondria)</h5>
+                                <ul>
+                                    <li><strong>หน้าที่:</strong> ผลิตพลังงาน (ATP) จากการหายใจระดับเซลล์</li>
+                                    <li><strong>โครงสร้าง:</strong> รูปร่างกลมหรือรี มีเยื่อหุ้มสองชั้น</li>
+                                    <li><strong>พบใน:</strong> เซลล์พืชและสัตว์</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="organelle-card">
+                                <h5><i class="bi bi-tree"></i> คลอโรพลาสต์ (Chloroplast)</h5>
+                                <ul>
+                                    <li><strong>หน้าที่:</strong> สังเคราะห์ด้วยแสง ผลิตกลูโคสจากแสงแดด</li>
+                                    <li><strong>โครงสร้าง:</strong> รูปร่างคล้ายเลนส์ มีเยื่อหุ้มสองชั้น</li>
+                                    <li><strong>พบใน:</strong> เซลล์พืชและสาหร่าย</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="organelle-card">
+                                <h5><i class="bi bi-droplet"></i> เอนโดพลาซึมิกเรติคูลัม (Endoplasmic Reticulum)</h5>
+                                <ul>
+                                    <li><strong>หน้าที่:</strong> สังเคราะห์และขนส่งโปรตีนและลิพิด</li>
+                                    <li><strong>โครงสร้าง:</strong> ระบบท่อเชื่อมต่อกัน
+                                        <ul>
+                                            <li>แบบขรุขระ (Rough ER): มีไรโบโซมเกาะ</li>
+                                            <li>แบบเรียบ (Smooth ER): ไม่มีไรโบโซม</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>พบใน:</strong> เซลล์พืชและสัตว์</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="organelle-card">
+                                <h5><i class="bi bi-box"></i> กอลจิคอมเพล็กซ์ (Golgi Apparatus)</h5>
+                                <ul>
+                                    <li><strong>หน้าที่:</strong> แก้ไข บรรจุ และขนส่งโปรตีน</li>
+                                    <li><strong>โครงสร้าง:</strong> กลุ่มถุงแบนเรียงซ้อนกัน</li>
+                                    <li><strong>พบใน:</strong> เซลล์พืชและสัตว์</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="organelle-card">
+                                <h5><i class="bi bi-water"></i> ไลโซโซม (Lysosome)</h5>
+                                <ul>
+                                    <li><strong>หน้าที่:</strong> ย่อยสลายสารด้วยเอนไซม์</li>
+                                    <li><strong>โครงสร้าง:</strong> ถุงทรงกลมมีเยื่อหุ้ม</li>
+                                    <li><strong>พบใน:</strong> เซลล์สัตว์ (พบน้อยในเซลล์พืช)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="organelle-card">
+                                <h5><i class="bi bi-droplet-fill"></i> แวคิวโอล (Vacuole)</h5>
+                                <ul>
+                                    <li><strong>หน้าที่:</strong> เก็บน้ำ สารอาหาร และของเสีย</li>
+                                    <li><strong>โครงสร้าง:</strong> ถุงขนาดใหญ่มีเยื่อหุ้ม</li>
+                                    <li><strong>พบใน:</strong> พบใหญ่ในเซลล์พืช พบเล็กในเซลล์สัตว์</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="organelle-card">
+                                <h5><i class="bi bi-dot"></i> เปอร์ออกซิโซม (Peroxisome)</h5>
+                                <ul>
+                                    <li><strong>หน้าที่:</strong> ย่อยสลายกรดไขมัน กำจัดสารพิษ</li>
+                                    <li><strong>โครงสร้าง:</strong> ถุงทรงกลมเล็ก</li>
+                                    <li><strong>พบใน:</strong> เซลล์พืชและสัตว์</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point mt-4">
+                            <h5><i class="bi bi-link"></i> การทำงานร่วมกันของออร์แกเนลล์</h5>
+                            <p><strong>ตัวอย่างการผลิตโปรตีน:</strong></p>
+                            <ol>
+                                <li>DNA ในนิวเคลียสถอดรหัสเป็น mRNA</li>
+                                <li>mRNA ออกมาสู่ไซโทพลาซึม</li>
+                                <li>ไรโบโซมอ่าน mRNA และสังเคราะห์โปรตีน</li>
+                                <li>โปรตีนเข้าสู่ ER เพื่อปรับแต่ง</li>
+                                <li>กอลจิคอมเพล็กซ์บรรจุและส่งโปรตีน</li>
+                                <li>เวสิเคิลขนส่งโปรตีนไปยังจุดใช้งาน</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="cell-diagram">
+                            <div class="diagram-placeholder">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300'%3E%3Crect x='50' y='50' width='400' height='200' fill='%23F5F5F5'/%3E%3Ccircle cx='150' cy='150' r='30' fill='%2381C784'/%3E%3Cpath d='M180,150 L250,150 L250,130 L280,140 L270,160 L250,150' fill='%23FFB74D'/%3E%3Ccircle cx='300' cy='120' r='20' fill='%2364B5F6'/%3E%3Cpath d='M330,120 L370,120 L370,100 L390,110 L380,130 L370,120' fill='%239C27B0'/%3E%3Ctext x='150' cy='150' text-anchor='middle' fill='white'%3E1%3C/text%3E%3Ctext x='250' cy='140' text-anchor='middle' fill='%23333'%3E2%3C/text%3E%3Ctext x='300' cy='120' text-anchor='middle' fill='white'%3E3%3C/text%3E%3Ctext x='370' cy='110' text-anchor='middle' fill='white'%3E4%3C/text%3E%3Ctext x='100' y='80' fill='%23333'%3E1. นิวเคลียส%3C/text%3E%3Ctext x='220' y='100' fill='%23333'%3E2. ไรโบโซม%3C/text%3E%3Ctext x='280' y='70' fill='%23333'%3E3. ER%3C/text%3E%3Ctext x='350' y='80' fill='%23333'%3E4. กอลจิ%3C/text%3E%3C/svg%3E" alt="Protein Synthesis" style="width:100%; height:100%; object-fit: contain;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Make section headers clickable to collapse/expand
+            document.querySelectorAll('.section-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-bs-target');
+                    const target = document.querySelector(targetId);
+                    const collapse = new bootstrap.Collapse(target, {
+                        toggle: true
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
