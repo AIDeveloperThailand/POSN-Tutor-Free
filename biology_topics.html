@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เนื้อหาชีววิทยา สอวน. - สอวน. Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --biology: #4CAF50;
+            --biology-light: #C8E6C9;
+            --biology-dark: #388E3C;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .accordion-button {
+            font-weight: 500;
+            background-color: #f8f9fa;
+            transition: all 0.3s;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: #e8f5e9;
+            color: var(--biology-dark);
+            box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(0,0,0,.125);
+        }
+        
+        .chapter-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--biology);
+            font-size: 1.2rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .chapter-header {
+            display: flex;
+            align-items: center;
+        }
+        
+        .chapter-title {
+            flex-grow: 1;
+        }
+        
+        .completed-badge {
+            background: linear-gradient(135deg, #198754, #20c997);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        footer {
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.1), rgba(67, 160, 71, 0.1));
+            border-left: 4px solid var(--biology);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 20px;
+        }
+        
+        .footer-icon {
+            transition: transform 0.3s;
+        }
+        
+        .footer-icon:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-flower1"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">ชีววิทยา</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container text-center">
+            <h1 class="display-5 mb-3"><i class="bi bi-flower1"></i> เนื้อหาชีววิทยา สอวน.</h1>
+            <p class="lead">รวมหัวข้อสำคัญทั้งหมด 25 บท สำหรับการเตรียมตัวสอบคัดเลือกค่าย 1 และ 2</p>
+            <div class="mt-4">
+                <span class="badge bg-light text-green me-2">เซลล์และโมเลกุล</span>
+                <span class="badge bg-light text-green me-2">พันธุศาสตร์</span>
+                <span class="badge bg-light text-green me-2">กายวิภาค</span>
+                <span class="badge bg-light text-green">วิวัฒนาการ</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <h4><i class="bi bi-check-circle-fill text-success"></i> เนื้อหาทุกบทเรียนเสร็จสมบูรณ์แล้ว!</h4>
+                <p class="mb-0">ทุกหัวข้อพร้อมให้คุณศึกษาได้ทันที</p>
+            </div>
+            
+            <div class="accordion mb-5" id="biologyAccordion">
+                <!-- Chapter 1 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">1</div>
+                                <div class="chapter-title">
+                                    <strong>ระบบนิเวศ</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>องค์ประกอบของระบบนิเวศ</li>
+                                <li>ห่วงโซ่อาหารและสายใยอาหาร</li>
+                                <li>วัฏจักรของสารในธรรมชาติ</li>
+                                <li>การถ่ายทอดพลังงาน</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 1 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 2 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">2</div>
+                                <div class="chapter-title">
+                                    <strong>ประชากร</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>การเจริญเติบโตของประชากร</li>
+                                <li>ปัจจัยจำกัดการเติบโต</li>
+                                <li>การกระจายตัวของประชากร</li>
+                                <li>พลวัตประชากร</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 2 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 3 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">3</div>
+                                <div class="chapter-title">
+                                    <strong>กล้องจุลทรรศน์ + เซลล์</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>ส่วนประกอบของกล้องจุลทรรศน์</li>
+                                <li>เทคนิคการใช้กล้องจุลทรรศน์</li>
+                                <li>โครงสร้างเซลล์พืชและสัตว์</li>
+                                <li>ออร์แกเนลล์ต่างๆ ในเซลล์</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 3 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 4 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">4</div>
+                                <div class="chapter-title">
+                                    <strong>ระบบสืบพันธุ์</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>ระบบสืบพันธุ์เพศชาย</li>
+                                <li>ระบบสืบพันธุ์เพศหญิง</li>
+                                <li>วงจรการสืบพันธุ์</li>
+                                <li>การปฏิสนธิและการตั้งครรภ์</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 4 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 5 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">5</div>
+                                <div class="chapter-title">
+                                    <strong>ระบบหมุนเวียนเลือด</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>องค์ประกอบของเลือด</li>
+                                <li>โครงสร้างและหน้าที่ของหัวใจ</li>
+                                <li>หลอดเลือดและระบบไหลเวียน</li>
+                                <li>การควบคุมความดันเลือด</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 5 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 6 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingSix">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">6</div>
+                                <div class="chapter-title">
+                                    <strong>การแบ่งเซลล์</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>ไมโทซิส</li>
+                                <li>ไมโอซิส</li>
+                                <li>การควบคุมวัฏจักรเซลล์</li>
+                                <li>ความผิดปกติในการแบ่งเซลล์</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 6 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 7 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingSeven">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">7</div>
+                                <div class="chapter-title">
+                                    <strong>ระบบประสาท</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>โครงสร้างเซลล์ประสาท</li>
+                                <li>การส่งสัญญาณประสาท</li>
+                                <li>ระบบประสาทส่วนกลางและส่วนปลาย</li>
+                                <li>ระบบประสาทอัตโนมัติ</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 7 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 8 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingEight">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">8</div>
+                                <div class="chapter-title">
+                                    <strong>การลำเลียงผ่านเซลล์</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>การแพร่ธรรมดาและการแพร่แบบฟาซิลิเทต</li>
+                                <li>ออสโมซิส</li>
+                                <li>การลำเลียงแบบแอกทีฟ</li>
+                                <li>การลำเลียงแบบกลุ่ม</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 8 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 9 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingNine">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">9</div>
+                                <div class="chapter-title">
+                                    <strong>โครโมโซมและสารพันธุกรรม</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>โครงสร้างของโครโมโซม</li>
+                                <li>ดีเอ็นเอและอาร์เอ็นเอ</li>
+                                <li>การจำลองดีเอ็นเอ</li>
+                                <li>ยีนและจีโนม</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 9 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 10 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingTen">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">10</div>
+                                <div class="chapter-title">
+                                    <strong>ระบบภูมิคุ้มกัน</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>ระบบภูมิคุ้มกันโดยกำเนิด</li>
+                                <li>ระบบภูมิคุ้มกันแบบปรับตัว</li>
+                                <li>แอนติเจนและแอนติบอดี</li>
+                                <li>โรคภูมิคุ้มกันบกพร่อง</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 10 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 11 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingEleven">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">11</div>
+                                <div class="chapter-title">
+                                    <strong>เซลล์</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>ทฤษฎีเซลล์</li>
+                                <li>โครงสร้างและหน้าที่ของออร์แกเนลล์</li>
+                                <li>การสื่อสารระหว่างเซลล์</li>
+                                <li>การขนส่งภายในเซลล์</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 11 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 12 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingTwelve">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">12</div>
+                                <div class="chapter-title">
+                                    <strong>พันธุศาสตร์ 1</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseTwelve" class="accordion-collapse collapse" aria-labelledby="headingTwelve" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>กฎของเมนเดล</li>
+                                <li>พันธุกรรมมอนอไฮบริด</li>
+                                <li>พันธุกรรมไดไฮบริด</li>
+                                <li>การทดสอบครอส</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 12 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 13 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingThirteen">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">13</div>
+                                <div class="chapter-title">
+                                    <strong>พันธุศาสตร์ 2</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseThirteen" class="accordion-collapse collapse" aria-labelledby="headingThirteen" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>พันธุกรรมนอกเหนือกฎเมนเดล</li>
+                                <li>การถ่ายทอดโครโมโซมเพศ</li>
+                                <li>การกลายพันธุ์</li>
+                                <li>ความผิดปกติทางพันธุกรรม</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 13 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 14 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingFourteen">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">14</div>
+                                <div class="chapter-title">
+                                    <strong>เทคโนโลยีทางดีเอ็นเอ</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseFourteen" class="accordion-collapse collapse" aria-labelledby="headingFourteen" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>การตัดต่อยีน</li>
+                                <li>PCR และ DNA sequencing</li>
+                                <li>โคลนนิ่ง</li>
+                                <li>การประยุกต์ใช้ทางชีวการแพทย์</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 14 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 15 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingFifteen">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFifteen" aria-expanded="false" aria-controls="collapseFifteen">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">15</div>
+                                <div class="chapter-title">
+                                    <strong>วิวัฒนาการ</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseFifteen" class="accordion-collapse collapse" aria-labelledby="headingFifteen" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>หลักฐานวิวัฒนาการ</li>
+                                <li>กลไกการคัดเลือกโดยธรรมชาติ</li>
+                                <li>การเกิดสปีชีส์ใหม่</li>
+                                <li>วิวัฒนาการของมนุษย์</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 15 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 16 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingSixteen">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSixteen" aria-expanded="false" aria-controls="collapseSixteen">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">16</div>
+                                <div class="chapter-title">
+                                    <strong>โครงสร้างพืชดอก</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseSixteen" class="accordion-collapse collapse" aria-labelledby="headingSixteen" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>โครงสร้างราก ลำต้น ใบ</li>
+                                <li>เนื้อเยื่อพืช</li>
+                                <li>การเจริญเติบโตของพืช</li>
+                                <li>การปรับตัวของพืช</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 16 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 17 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingSeventeen">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeventeen" aria-expanded="false" aria-controls="collapseSeventeen">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">17</div>
+                                <div class="chapter-title">
+                                    <strong>ระบบหายใจ</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseSeventeen" class="accordion-collapse collapse" aria-labelledby="headingSeventeen" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>โครงสร้างระบบหายใจ</li>
+                                <li>กลไกการหายใจเข้า-ออก</li>
+                                <li>การแลกเปลี่ยนก๊าซ</li>
+                                <li>การควบคุมการหายใจ</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 17 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 18 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingEighteen">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEighteen" aria-expanded="false" aria-controls="collapseEighteen">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">18</div>
+                                <div class="chapter-title">
+                                    <strong>ระบบต่อมไร้ท่อ และพฤติกรรมสัตว์</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseEighteen" class="accordion-collapse collapse" aria-labelledby="headingEighteen" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>ฮอร์โมนและกลไกการทำงาน</li>
+                                <li>ต่อมไร้ท่อสำคัญ</li>
+                                <li>พฤติกรรมสัญชาตญาณ</li>
+                                <li>พฤติกรรมที่เรียนรู้</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 18 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 19 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingNineteen">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNineteen" aria-expanded="false" aria-controls="collapseNineteen">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">19</div>
+                                <div class="chapter-title">
+                                    <strong>สารชีวโมเลกุล</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseNineteen" class="accordion-collapse collapse" aria-labelledby="headingNineteen" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>คาร์โบไฮเดรต</li>
+                                <li>โปรตีน</li>
+                                <li>ลิพิด</li>
+                                <li>กรดนิวคลีอิก</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 19 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 20 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingTwenty">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwenty" aria-expanded="false" aria-controls="collapseTwenty">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">20</div>
+                                <div class="chapter-title">
+                                    <strong>สังเคราะห์ด้วยแสงของพืช</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseTwenty" class="accordion-collapse collapse" aria-labelledby="headingTwenty" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>ปฏิกิริยาแสง</li>
+                                <li>ปฏิกิริยามืด</li>
+                                <li>ปัจจัยที่มีผลต่อการสังเคราะห์แสง</li>
+                                <li>การปรับตัวของพืช</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 20 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 21 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingTwentyOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwentyOne" aria-expanded="false" aria-controls="collapseTwentyOne">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">21</div>
+                                <div class="chapter-title">
+                                    <strong>ระบบย่อยอาหาร</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseTwentyOne" class="accordion-collapse collapse" aria-labelledby="headingTwentyOne" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>โครงสร้างระบบย่อยอาหาร</li>
+                                <li>การย่อยเชิงกลและเคมี</li>
+                                <li>เอนไซม์ย่อยอาหาร</li>
+                                <li>การดูดซึมสารอาหาร</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 21 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 22 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingTwentyTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwentyTwo" aria-expanded="false" aria-controls="collapseTwentyTwo">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">22</div>
+                                <div class="chapter-title">
+                                    <strong>ความหลากหลายทางชีวภาพ 1</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseTwentyTwo" class="accordion-collapse collapse" aria-labelledby="headingTwentyTwo" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>อนุกรมวิธาน</li>
+                                <li>โดเมนและอาณาจักร</li>
+                                <li>แบคทีเรียและอาร์เคีย</li>
+                                <li>โพรทิสต์</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 22 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 23 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingTwentyThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwentyThree" aria-expanded="false" aria-controls="collapseTwentyThree">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">23</div>
+                                <div class="chapter-title">
+                                    <strong>ความหลากหลายทางชีวภาพ 2</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseTwentyThree" class="accordion-collapse collapse" aria-labelledby="headingTwentyThree" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>เห็ดรา</li>
+                                <li>พืช</li>
+                                <li>สัตว์ไม่มีกระดูกสันหลัง</li>
+                                <li>สัตว์มีกระดูกสันหลัง</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 23 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 24 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingTwentyFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwentyFour" aria-expanded="false" aria-controls="collapseTwentyFour">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">24</div>
+                                <div class="chapter-title">
+                                    <strong>ระบบย่อยอาหาร (พืช)</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseTwentyFour" class="accordion-collapse collapse" aria-labelledby="headingTwentyFour" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>การดูดซึมน้ำและแร่ธาตุ</li>
+                                <li>การลำเลียงในพืช</li>
+                                <li>การคายน้ำ</li>
+                                <li>การลำเลียงอาหาร</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 24 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 25 -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingTwentyFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwentyFive" aria-expanded="false" aria-controls="collapseTwentyFive">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">25</div>
+                                <div class="chapter-title">
+                                    <strong>การหายใจระดับเซลล์</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseTwentyFive" class="accordion-collapse collapse" aria-labelledby="headingTwentyFive" data-bs-parent="#biologyAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>ไกลโคไลซิส</li>
+                                <li>วัฏจักรเครบส์</li>
+                                <li>การถ่ายทอดอิเล็กตรอน</li>
+                                <li>การหมัก</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 25 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3 footer-icon"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3 footer-icon"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3 footer-icon"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white footer-icon"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
