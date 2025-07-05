@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบสืบพันธุ์ - สอวน. ชีววิทยา</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --biology: #4CAF50;
+            --biology-light: #C8E6C9;
+            --biology-dark: #388E3C;
+            --male: #64B5F6;
+            --female: #F48FB1;
+            --cycle: #7E57C2;
+            --pregnancy: #FFB74D;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,15 C65.464,15 78,27.536 78,43 C78,58.464 65.464,71 50,71 C34.536,71 22,58.464 22,43 C22,27.536 34.536,15 50,15 Z M50,25 C40.058,25 32,33.058 32,43 C32,52.942 40.058,61 50,61 C59.942,61 68,52.942 68,43 C68,33.058 59.942,25 50,25 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3Cpath d='M30,75 C36.627,75 42,80.373 42,87 C42,93.627 36.627,99 30,99 C23.373,99 18,93.627 18,87 C18,80.373 23.373,75 30,75 Z M70,75 C76.627,75 82,80.373 82,87 C82,93.627 76.627,99 70,99 C63.373,99 58,93.627 58,87 C58,80.373 63.373,75 70,75 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='5' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='20' cy='30' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='80' cy='20' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='30' cy='70' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='70' cy='80' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='10' cy='50' r='2' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='90' cy='60' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.2;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.1), rgba(67, 160, 71, 0.1));
+            border-left: 4px solid var(--biology);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+        }
+        
+        .section-header {
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .key-point {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .reproductive-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .reproductive-table th {
+            padding: 12px;
+            text-align: center;
+            color: white;
+        }
+        
+        .reproductive-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .reproductive-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .gender-comparison {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .gender-type {
+            flex: 1;
+            min-width: 300px;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .male {
+            border-top: 5px solid var(--male);
+        }
+        
+        .female {
+            border-top: 5px solid var(--female);
+        }
+        
+        .organ-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        
+        .organ-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .diagram-container {
+            width: 100%;
+            height: 400px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diagram-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .cycle-box {
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .pregnancy-timeline {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 30px;
+            border-left: 3px solid var(--pregnancy);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+        
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--pregnancy);
+        }
+        
+        .hormone-chart {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .hormone-item {
+            background: #E8F5E9;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #C8E6C9;
+        }
+        
+        .reproductive-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .img-caption {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .gender-comparison {
+                flex-direction: column;
+            }
+            
+            .gender-type {
+                min-width: 100%;
+                margin: 10px 0;
+            }
+            
+            .header-bg {
+                padding: 2rem 0;
+            }
+            
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .hormone-chart {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .diagram-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-eyeglasses"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="biology_topics.html">ชีววิทยา</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="biology_topics.html">เนื้อหาชีววิทยาทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">บทที่ 4: ระบบสืบพันธุ์</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">บทที่ 4: ระบบสืบพันธุ์</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-green me-2">ระบบสืบพันธุ์เพศชาย</span>
+                <span class="badge bg-light text-green me-2">ระบบสืบพันธุ์เพศหญิง</span>
+                <span class="badge bg-light text-green me-2">วงจรการสืบพันธุ์</span>
+                <span class="badge bg-light text-green">การปฏิสนธิและการตั้งครรภ์</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ระบบสืบพันธุ์เพศชาย -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#maleSystem" style="background: linear-gradient(135deg, var(--male), #2196F3);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-gender-male"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ระบบสืบพันธุ์เพศชาย</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="maleSystem" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ระบบสืบพันธุ์เพศชายประกอบด้วยอวัยวะต่างๆ ที่ทำงานร่วมกันเพื่อผลิตน้ำเชื้อและฮอร์โมนเพศชาย
+                        </p>
+                        
+                        <div class="diagram-container">
+                            <img src="https://my.clevelandclinic.org/-/scassets/images/org/health/articles/9117-male-reproductive-system" alt="Male Reproductive System" class="reproductive-image">
+                            <p class="img-caption">ระบบสืบพันธุ์เพศชาย (ที่มา: Cleveland Clinic)</p>
+                        </div>
+                        
+                        <div class="reproductive-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--male);">อวัยวะ</th>
+                                        <th style="background-color: var(--male);">หน้าที่</th>
+                                        <th style="background-color: var(--male);">รายละเอียด</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>อัณฑะ</strong></td>
+                                        <td>ผลิตอสุจิและฮอร์โมนเพศชาย</td>
+                                        <td>มีท่อขดเรียกว่า เซมินิเฟอรัส ทูบูลส์ สำหรับสร้างอสุจิ</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ถุงอัณฑะ</strong></td>
+                                        <td>ควบคุมอุณหภูมิของอัณฑะ</td>
+                                        <td>อุณหภูมิเหมาะสมประมาณ 34-35°C ซึ่งต่ำกว่าอุณหภูมิร่างกาย</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ท่อนำอสุจิ</strong></td>
+                                        <td>ลำเลียงอสุจิจากอัณฑะ</td>
+                                        <td>ยาวประมาณ 45 ซม. เชื่อมต่อระหว่างอัณฑะกับท่อปัสสาวะ</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ต่อมลูกหมาก</strong></td>
+                                        <td>ผลิตน้ำหล่อลื่นและสารอาหาร</td>
+                                        <td>น้ำหล่อลื่นช่วยให้อสุจิเคลื่อนที่ได้ดี</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ต่อมคาวเปอร์</strong></td>
+                                        <td>หลั่งสารเคลือบท่อปัสสาวะ</td>
+                                        <td>มีฤทธิ์เป็นด่าง ช่วยลดความเป็นกรดในท่อปัสสาวะ</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>องคชาต</strong></td>
+                                        <td>นำอสุจิเข้าสู่ร่างกายเพศหญิง</td>
+                                        <td>ประกอบด้วยเนื้อเยื่อคอร์ปัส คาเวอร์โนซัม</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(100, 181, 246, 0.2), rgba(100, 181, 246, 0.1)); border-color: rgba(100, 181, 246, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> การสร้างอสุจิ</h5>
+                            <ul>
+                                <li>เริ่มเมื่อเข้าสู่วัยรุ่น ภายใต้การควบคุมของฮอร์โมน FSH และ LH</li>
+                                <li>กระบวนการสร้างอสุจิใช้เวลาประมาณ 74 วัน</li>
+                                <li>อสุจิประกอบด้วย 3 ส่วน: หัว (บรรจุสารพันธุกรรม), คอ (มีไมโทคอนเดรีย), หาง (ช่วยในการเคลื่อนที่)</li>
+                                <li>ผู้ชายผลิตอสุจิได้วันละประมาณ 100-200 ล้านตัว</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ระบบสืบพันธุ์เพศหญิง -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#femaleSystem" style="background: linear-gradient(135deg, var(--female), #EC407A);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-gender-female"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ระบบสืบพันธุ์เพศหญิง</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="femaleSystem" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ระบบสืบพันธุ์เพศหญิงมีหน้าที่ผลิตไข่ รับอสุจิ และเป็นที่เจริญเติบโตของทารกในครรภ์
+                        </p>
+                        
+                        <div class="diagram-container">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlWT1qR-qizpMOHg6_QZ4tzgqFcWMzN4_QtQ&s" alt="Female Reproductive System" class="reproductive-image">
+                            <p class="img-caption">ระบบสืบพันธุ์เพศหญิง</p>
+                        </div>
+                        
+                        <div class="organ-grid">
+                            <div class="organ-card" style="border-left: 4px solid var(--female);">
+                                <h5><i class="bi bi-egg"></i> รังไข่ (Ovary)</h5>
+                                <ul>
+                                    <li>มี 2 อัน ขนาดเท่าเมล็ดอัลมอนด์</li>
+                                    <li>ผลิตไข่และฮอร์โมนเพศหญิง (เอสโตรเจนและโปรเจสเตอโรน)</li>
+                                    <li>หญิงเกิดมาพร้อมไข่ประมาณ 1-2 ล้านฟอง</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="organ-card" style="border-left: 4px solid var(--female);">
+                                <h5><i class="bi bi-funnel"></i> ท่อนำไข่ (Fallopian Tube)</h5>
+                                <ul>
+                                    <li>ท่อยาว 10-12 ซม. เชื่อมต่อระหว่างรังไข่กับมดลูก</li>
+                                    <li>เป็นที่เกิดการปฏิสนธิระหว่างอสุจิกับไข่</li>
+                                    <li>มีซิเลียช่วยพัดพาไข่ไปยังมดลูก</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="organ-card" style="border-left: 4px solid var(--female);">
+                                <h5><i class="bi bi-house"></i> มดลูก (Uterus)</h5>
+                                <ul>
+                                    <li>อวัยวะรูปผลแพร์ ขนาดประมาณ 7.5x5x2.5 ซม.</li>
+                                    <li>เป็นที่ฝังตัวของตัวอ่อนและเจริญเติบโตของทารก</li>
+                                    <li>ผนังมดลูกหนาและยืดหยุ่นได้ดี</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="organ-card" style="border-left: 4px solid var(--female);">
+                                <h5><i class="bi bi-door-open"></i> ช่องคลอด (Vagina)</h5>
+                                <ul>
+                                    <li>ทางผ่านของทารกขณะคลอดและรับอสุจิ</li>
+                                    <li>มีความยืดหยุ่นสูง ยาวประมาณ 7.5-10 ซม.</li>
+                                    <li>มีสภาพเป็นกรด (pH 3.8-4.5) เพื่อป้องกันการติดเชื้อ</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(244, 143, 177, 0.2), rgba(244, 143, 177, 0.1)); border-color: rgba(244, 143, 177, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> การสร้างไข่</h5>
+                            <ul>
+                                <li>เริ่มเมื่อเข้าสู่วัยรุ่น ภายใต้การควบคุมของฮอร์โมน FSH และ LH</li>
+                                <li>แต่ละเดือนจะมีการตกไข่ 1 ฟอง จากรังไข่สลับข้างกัน</li>
+                                <li>ไข่มีขนาดประมาณ 0.1-0.2 มม. มีอายุประมาณ 24 ชั่วโมงหลังตก</li>
+                                <li>ผู้หญิงจะหมดประจำเดือนเมื่ออายุประมาณ 45-55 ปี</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- วงจรการสืบพันธุ์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#reproductiveCycle" style="background: linear-gradient(135deg, var(--cycle), #5E35B1);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">วงจรการสืบพันธุ์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="reproductiveCycle" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            วงจรการสืบพันธุ์ของผู้หญิงเป็นกระบวนการที่เกิดขึ้นทุกเดือน โดยมีระยะเวลาเฉลี่ย 28 วัน ประกอบด้วย 3 ระยะสำคัญ
+                        </p>
+                        
+                        <div class="cycle-box" style="background: linear-gradient(135deg, #D1C4E9, #B39DDB);">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h5><i class="bi bi-droplet"></i> ระยะฟอลลิเคิล (Follicular Phase)</h5>
+                                    <p>วันที่ 1-14</p>
+                                    <ul>
+                                        <li>เยื่อบุมดลูกหลุดลอก (ประจำเดือน)</li>
+                                        <li>ฮอร์โมน FSH กระตุ้นการเจริญของฟอลลิเคิล</li>
+                                        <li>ฟอลลิเคิลผลิตเอสโตรเจน</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5><i class="bi bi-sun"></i> ระยะตกไข่ (Ovulation)</h5>
+                                    <p>วันที่ 14-16</p>
+                                    <ul>
+                                        <li>ฮอร์โมน LH เพิ่มสูงสุด</li>
+                                        <li>ฟอลลิเคิลแตก ปล่อยไข่สุก</li>
+                                        <li>เป็นช่วงที่มีโอกาสตั้งครรภ์สูงสุด</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5><i class="bi bi-flower1"></i> ระยะลูทีอัล (Luteal Phase)</h5>
+                                    <p>วันที่ 15-28</p>
+                                    <ul>
+                                        <li>คอร์ปัส ลูเทียมผลิตโปรเจสเตอโรน</li>
+                                        <li>เตรียมเยื่อบุมดลูกสำหรับการฝังตัว</li>
+                                        <li>ถ้าไม่มีการปฏิสนธิ คอร์ปัส ลูเทียมสลายตัว</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4 class="mt-4">การควบคุมด้วยฮอร์โมน</h4>
+                        <div class="hormone-chart">
+                            <div class="hormone-item">
+                                <h6>FSH</h6>
+                                <p>กระตุ้นการเจริญของฟอลลิเคิล</p>
+                            </div>
+                            <div class="hormone-item">
+                                <h6>LH</h6>
+                                <p>กระตุ้นการตกไข่</p>
+                            </div>
+                            <div class="hormone-item">
+                                <h6>เอสโตรเจน</h6>
+                                <p>พัฒนาลักษณะเพศหญิง</p>
+                            </div>
+                            <div class="hormone-item">
+                                <h6>โปรเจสเตอโรน</h6>
+                                <p>เตรียมมดลูกสำหรับการตั้งครรภ์</p>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(126, 87, 194, 0.2), rgba(126, 87, 194, 0.1)); border-color: rgba(126, 87, 194, 0.2);">
+                            <h5><i class="bi bi-graph-up"></i> การเปลี่ยนแปลงของฮอร์โมน</h5>
+                            <div class="diagram-container">
+                                <div class="diagram-placeholder">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300'%3E%3Crect x='50' y='50' width='400' height='200' fill='%23F5F5F5'/%3E%3Cpath d='M80,200 L100,150 L150,180 L200,100 L250,140 L300,80 L350,120 L400,70' stroke='%23F44336' stroke-width='2' fill='none'/%3E%3Cpath d='M80,180 L100,130 L150,160 L200,80 L250,120 L300,60 L350,100 L400,50' stroke='%232196F3' stroke-width='2' fill='none'/%3E%3Cpath d='M80,160 L100,170 L150,140 L200,190 L250,150 L300,170 L350,130 L400,180' stroke='%234CAF50' stroke-width='2' fill='none'/%3E%3Cpath d='M80,140 L100,190 L150,120 L200,170 L250,130 L300,150 L350,110 L400,160' stroke='%23FF9800' stroke-width='2' fill='none'/%3E%3Ctext x='450' y='70' text-anchor='end' fill='%23F44336' font-size='12'%3EEstrogen%3C/text%3E%3Ctext x='450' y='90' text-anchor='end' fill='%232196F3' font-size='12'%3EProgesterone%3C/text%3E%3Ctext x='450' y='110' text-anchor='end' fill='%234CAF50' font-size='12'%3EFSH%3C/text%3E%3Ctext x='450' y='130' text-anchor='end' fill='%23FF9800' font-size='12'%3ELH%3C/text%3E%3Ctext x='100' y='230' text-anchor='middle' fill='%23333' font-size='12'%3Eวัน%3C/text%3E%3Ctext x='200' y='230' text-anchor='middle' fill='%23333' font-size='12'%3E7%3C/text%3E%3Ctext x='300' y='230' text-anchor='middle' fill='%23333' font-size='12'%3E14%3C/text%3E%3Ctext x='400' y='230' text-anchor='middle' fill='%23333' font-size='12'%3E21%3C/text%3E%3C/svg%3E" alt="Hormone Cycle" style="width:100%; height:100%; object-fit: contain;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การปฏิสนธิและการตั้งครรภ์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#fertilization" style="background: linear-gradient(135deg, var(--pregnancy), #FB8C00);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-heart"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การปฏิสนธิและการตั้งครรภ์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="fertilization" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            การปฏิสนธิคือกระบวนการที่อสุจิผสมกับไข่ เกิดเป็นไซโกต ซึ่งจะพัฒนาเป็นทารกในครรภ์ต่อไป
+                        </p>
+                        
+                        <h4>ขั้นตอนการปฏิสนธิ</h4>
+                        <ol>
+                            <li>อสุจิว่ายผ่านปากมดลูกและมดลูกเข้าสู่ท่อนำไข่</li>
+                            <li>อสุจิเจาะผ่านชั้นนอกของไข่ (โครมาโซม) ได้ 1 ตัว</li>
+                            <li>หัวอสุจิหลอมรวมกับนิวเคลียสของไข่ เกิดการรวมโครโมโซม</li>
+                            <li>เกิดไซโกตที่มีโครโมโซม 46 แท่ง (23 คู่)</li>
+                            <li>ไซโกตแบ่งเซลล์กลายเป็นมอรูลา ขณะเคลื่อนไปยังมดลูก</li>
+                            <li>บลาสโตซิสต์ฝังตัวในผนังมดลูก (ประมาณวันที่ 6-7 หลังปฏิสนธิ)</li>
+                        </ol>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(255, 183, 77, 0.2), rgba(255, 183, 77, 0.1)); border-color: rgba(255, 183, 77, 0.2);">
+                            <h5><i class="bi bi-calendar"></i> การตั้งครรภ์</h5>
+                            <div class="pregnancy-timeline">
+                                <div class="timeline-item">
+                                    <h6>ไตรมาสที่ 1 (สัปดาห์ 1-12)</h6>
+                                    <p>อวัยวะสำคัญเริ่มพัฒนา ทารกมีขนาดประมาณ 7.5 ซม.</p>
+                                </div>
+                                <div class="timeline-item">
+                                    <h6>ไตรมาสที่ 2 (สัปดาห์ 13-26)</h6>
+                                    <p>ทารกเริ่มเคลื่อนไหว ผมและเล็บเริ่มงอก</p>
+                                </div>
+                                <div class="timeline-item">
+                                    <h6>ไตรมาสที่ 3 (สัปดาห์ 27-40)</h6>
+                                    <p>อวัยวะเจริญเต็มที่ ทารกเตรียมตัวออกมาด้านนอก</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4 class="mt-4">การเปลี่ยนแปลงของแม่ระหว่างตั้งครรภ์</h4>
+                        <div class="organ-grid">
+                            <div class="organ-card" style="border-left: 4px solid var(--pregnancy);">
+                                <h5><i class="bi bi-arrow-up"></i> ปริมาณเลือดเพิ่มขึ้น</h5>
+                                <p>เพิ่มขึ้น 30-50% เพื่อส่งสารอาหารและออกซิเจนให้ทารก</p>
+                            </div>
+                            <div class="organ-card" style="border-left: 4px solid var(--pregnancy);">
+                                <h5><i class="bi bi-heart"></i> อัตราการเต้นหัวใจเพิ่ม</h5>
+                                <p>เพิ่มขึ้น 10-20 ครั้งต่อนาที เพื่อสูบฉีดเลือดเพิ่มขึ้น</p>
+                            </div>
+                            <div class="organ-card" style="border-left: 4px solid var(--pregnancy);">
+                                <h5><i class="bi bi-bag-plus"></i> มดลูกขยายขนาด</h5>
+                                <p>จากขนาดประมาณลูกแพร์ขยายเป็น 500-1,000 เท่า</p>
+                            </div>
+                            <div class="organ-card" style="border-left: 4px solid var(--pregnancy);">
+                                <h5><i class="bi bi-activity"></i> การเผาผลาญเพิ่ม</h5>
+                                <p>ต้องการพลังงานเพิ่มวันละ 300-500 แคลอรี่</p>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(255, 183, 77, 0.2), rgba(255, 183, 77, 0.1)); border-color: rgba(255, 183, 77, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ข้อควรรู้เกี่ยวกับการตั้งครรภ์</h5>
+                            <ul>
+                                <li>ระยะเวลาตั้งครรภ์เฉลี่ย 40 สัปดาห์ (280 วัน)</li>
+                                <li>ควรฝากครรภ์ทันทีที่ทราบว่าตั้งครรภ์</li>
+                                <li>ควรรับประทานอาหารที่มีโฟเลตสูงเพื่อป้องกันความพิการแต่กำเนิด</li>
+                                <li>หลีกเลี่ยงเครื่องดื่มแอลกอฮอล์ บุหรี่ และยาที่ไม่จำเป็น</li>
+                                <li>ออกกำลังกายเบาๆ สม่ำเสมอตามคำแนะนำของแพทย์</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Make section headers clickable to collapse/expand
+            document.querySelectorAll('.section-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-bs-target');
+                    const target = document.querySelector(targetId);
+                    const collapse = new bootstrap.Collapse(target, {
+                        toggle: true
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
