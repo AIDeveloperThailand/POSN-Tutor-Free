@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบหมุนเวียนเลือด - สอวน. ชีววิทยา</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --biology: #4CAF50;
+            --biology-light: #C8E6C9;
+            --biology-dark: #388E3C;
+            --blood: #F44336;
+            --heart: #E91E63;
+            --vessels: #9C27B0;
+            --pressure: #2196F3;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,15 C65.464,15 78,27.536 78,43 C78,58.464 65.464,71 50,71 C34.536,71 22,58.464 22,43 C22,27.536 34.536,15 50,15 Z M50,25 C40.058,25 32,33.058 32,43 C32,52.942 40.058,61 50,61 C59.942,61 68,52.942 68,43 C68,33.058 59.942,25 50,25 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3Cpath d='M30,75 C36.627,75 42,80.373 42,87 C42,93.627 36.627,99 30,99 C23.373,99 18,93.627 18,87 C18,80.373 23.373,75 30,75 Z M70,75 C76.627,75 82,80.373 82,87 C82,93.627 76.627,99 70,99 C63.373,99 58,93.627 58,87 C58,80.373 63.373,75 70,75 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='5' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='20' cy='30' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='80' cy='20' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='30' cy='70' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='70' cy='80' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='10' cy='50' r='2' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='90' cy='60' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.2;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.1), rgba(67, 160, 71, 0.1));
+            border-left: 4px solid var(--biology);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+        }
+        
+        .section-header {
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .key-point {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .blood-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .blood-table th {
+            padding: 12px;
+            text-align: center;
+            color: white;
+        }
+        
+        .blood-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .blood-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .heart-chambers {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .chamber-card {
+            flex: 1;
+            min-width: 200px;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .vessel-comparison {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .vessel-type {
+            flex: 1;
+            min-width: 250px;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .organ-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        
+        .organ-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .diagram-container {
+            width: 100%;
+            height: 400px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diagram-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .reproductive-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .img-caption {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .bp-formula {
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.2), rgba(33, 150, 243, 0.1));
+            border-left: 3px solid var(--pressure);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-family: monospace;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        
+        .circulation-flow {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 30px;
+            border-left: 3px solid var(--biology);
+        }
+        
+        .flow-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+        
+        .flow-item::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--biology);
+        }
+        
+        .pressure-chart {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .pressure-item {
+            background: #E3F2FD;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #BBDEFB;
+        }
+        
+        @media (max-width: 768px) {
+            .vessel-comparison, .heart-chambers {
+                flex-direction: column;
+            }
+            
+            .vessel-type, .chamber-card {
+                min-width: 100%;
+                margin: 10px 0;
+            }
+            
+            .header-bg {
+                padding: 2rem 0;
+            }
+            
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .pressure-chart {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            
+            .diagram-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-eyeglasses"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="biology_topics.html">ชีววิทยา</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="biology_topics.html">เนื้อหาชีววิทยาทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">บทที่ 5: ระบบหมุนเวียนเลือด</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">บทที่ 5: ระบบหมุนเวียนเลือด</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-green me-2">องค์ประกอบของเลือด</span>
+                <span class="badge bg-light text-green me-2">โครงสร้างและหน้าที่ของหัวใจ</span>
+                <span class="badge bg-light text-green me-2">หลอดเลือดและระบบไหลเวียน</span>
+                <span class="badge bg-light text-green">การควบคุมความดันเลือด</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- องค์ประกอบของเลือด -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#bloodComponents" style="background: linear-gradient(135deg, var(--blood), #D32F2F);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-droplet"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">องค์ประกอบของเลือด</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="bloodComponents" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            เลือดเป็นเนื้อเยื่อเกี่ยวพันชนิดพิเศษที่ทำหน้าที่ขนส่งสารสำคัญต่างๆ ในร่างกาย ประกอบด้วยส่วนประกอบหลัก 2 ส่วน คือ ส่วนที่เป็นของเหลว (พลาสมา) และส่วนที่เป็นเซลล์
+                        </p>
+                        
+                        <div class="diagram-container">
+                            <img src="https://cdn.britannica.com/71/91871-050-30DCD54D/Blood-components-blood-cells-platelets-plasma-white.jpg" alt="Blood Components" class="reproductive-image">
+                            <p class="img-caption">องค์ประกอบของเลือด (ที่มา: Britannica)</p>
+                        </div>
+                        
+                        <div class="blood-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--blood);">องค์ประกอบ</th>
+                                        <th style="background-color: var(--blood);">ปริมาณ</th>
+                                        <th style="background-color: var(--blood);">ลักษณะและหน้าที่</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>พลาสมา (Plasma)</strong></td>
+                                        <td>55% ของปริมาตรเลือด</td>
+                                        <td>ของเหลวสีเหลืองอ่อน ประกอบด้วยน้ำ 92% โปรตีน 7% และสารอื่นๆ 1% ทำหน้าที่ขนส่งสารอาหาร ฮอร์โมน ของเสีย และรักษาสมดุลน้ำในร่างกาย</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เม็ดเลือดแดง (Erythrocytes)</strong></td>
+                                        <td>ประมาณ 4.5-5.5 ล้านเซลล์/ลบ.มม.</td>
+                                        <td>เซลล์รูปจานเว้าทั้งสองด้าน ไม่มีนิวเคลียส มีฮีโมโกลบินสำหรับขนส่งออกซิเจนและคาร์บอนไดออกไซด์ อายุประมาณ 120 วัน</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เม็ดเลือดขาว (Leukocytes)</strong></td>
+                                        <td>ประมาณ 5,000-10,000 เซลล์/ลบ.มม.</td>
+                                        <td>ทำหน้าที่ป้องกันร่างกายจากเชื้อโรค แบ่งเป็น 2 ประเภทหลัก: แกรนูโลไซต์ (มีกรานูล) และแอกรานูโลไซต์ (ไม่มีกรานูล)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เกล็ดเลือด (Platelets)</strong></td>
+                                        <td>ประมาณ 150,000-400,000/ลบ.มม.</td>
+                                        <td>ชิ้นส่วนเซลล์ขนาดเล็ก ไม่มีนิวเคลียส มีบทบาทสำคัญในกระบวนการห้ามเลือดและซ่อมแซมหลอดเลือด</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.2), rgba(244, 67, 54, 0.1)); border-color: rgba(244, 67, 54, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> กระบวนการสร้างเม็ดเลือด (Hematopoiesis)</h5>
+                            <ul>
+                                <li>เกิดขึ้นในไขกระดูก (Bone Marrow) โดยเฉพาะกระดูกซี่โครง กระดูกสันหลัง กระดูกเชิงกราน และกระดูกต้นขา</li>
+                                <li>สเต็มเซลล์ (Hematopoietic Stem Cells) เป็นเซลล์ต้นกำเนิดที่สามารถพัฒนาเป็นเม็ดเลือดทุกชนิด</li>
+                                <li>เม็ดเลือดแดงผลิตประมาณ 2.5 ล้านเซลล์ต่อวินาที</li>
+                                <li>ฮอร์โมนอีริโทรพออิติน (EPO) จากไตกระตุ้นการผลิตเม็ดเลือดแดง</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="organ-grid">
+                            <div class="organ-card" style="border-left: 4px solid var(--blood);">
+                                <h5><i class="bi bi-droplet-fill"></i> ชนิดของเม็ดเลือดขาว</h5>
+                                <ul>
+                                    <li><strong>นิวโทรฟิล (Neutrophils):</strong> 50-70% ทำลายแบคทีเรียโดยการฟาโกไซโตซิส</li>
+                                    <li><strong>ลิมโฟไซต์ (Lymphocytes):</strong> 20-40% สร้างแอนติบอดี (B-cells) และทำลายเซลล์ติดเชื้อ (T-cells)</li>
+                                    <li><strong>โมโนไซต์ (Monocytes):</strong> 2-8% เปลี่ยนเป็นมาโครฟาจในเนื้อเยื่อ ทำลายเชื้อโรคและเซลล์เก่า</li>
+                                    <li><strong>อีโอซิโนฟิล (Eosinophils):</strong> 1-4% ตอบสนองต่อปรสิตและปฏิกิริยาภูมิแพ้</li>
+                                    <li><strong>เบโซฟิล (Basophils):</strong> 0.5-1% ปล่อยฮีสตามีนในปฏิกิริยาการอักเสบ</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="organ-card" style="border-left: 4px solid var(--blood);">
+                                <h5><i class="bi bi-heart"></i> หมู่เลือดและระบบ ABO</h5>
+                                <ul>
+                                    <li>หมู่เลือดถูกกำหนดโดยแอนติเจนบนผิวเม็ดเลือดแดง</li>
+                                    <li><strong>หมู่ A:</strong> มีแอนติเจน A, สร้างแอนติบอดีต่อต้าน B</li>
+                                    <li><strong>หมู่ B:</strong> มีแอนติเจน B, สร้างแอนติบอดีต่อต้าน A</li>
+                                    <li><strong>หมู่ AB:</strong> มีแอนติเจน A และ B, ไม่สร้างแอนติบอดีต่อต้าน A หรือ B (รับเลือดได้ทุกหมู่)</li>
+                                    <li><strong>หมู่ O:</strong> ไม่มีแอนติเจน A หรือ B, สร้างแอนติบอดีต่อต้าน A และ B (ให้เลือดได้ทุกหมู่)</li>
+                                    <li>ระบบ Rh: Rh+ (มีแอนติเจน D), Rh- (ไม่มีแอนติเจน D)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- โครงสร้างและหน้าที่ของหัวใจ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#heartStructure" style="background: linear-gradient(135deg, var(--heart), #C2185B);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-heart"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">โครงสร้างและหน้าที่ของหัวใจ</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="heartStructure" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            หัวใจเป็นอวัยวะกล้ามเนื้อที่มีขนาดเท่ากำปั้น อยู่บริเวณกลางทรวงอกค่อนไปทางซ้าย ทำหน้าที่สูบฉีดเลือดไปยังส่วนต่างๆ ของร่างกาย
+                        </p>
+                        
+                        <div class="diagram-container">
+                            <img src="https://www.texasheart.org/wp-content/uploads/2018/01/thi-anatomy-heart-250x285.jpg" alt="Heart Anatomy" class="reproductive-image">
+                            <p class="img-caption">โครงสร้างภายในหัวใจ (ที่มา: Texas Heart Institute)</p>
+                        </div>
+                        
+                        <h4>ห้องต่างๆ ของหัวใจ</h4>
+                        <div class="heart-chambers">
+                            <div class="chamber-card" style="border-top: 5px solid var(--heart);">
+                                <h5><i class="bi bi-arrow-right-circle"></i> หัวใจห้องบนขวา</h5>
+                                <p>รับเลือดดำจากร่างกายผ่านหลอดเลือดเวนาคาวา</p>
+                            </div>
+                            
+                            <div class="chamber-card" style="border-top: 5px solid var(--heart);">
+                                <h5><i class="bi bi-arrow-right-circle"></i> หัวใจห้องล่างขวา</h5>
+                                <p>สูบฉีดเลือดดำไปยังปอดผ่านหลอดเลือดพัลโมนารีอาร์เตอรี</p>
+                            </div>
+                            
+                            <div class="chamber-card" style="border-top: 5px solid var(--heart);">
+                                <h5><i class="bi bi-arrow-left-circle"></i> หัวใจห้องบนซ้าย</h5>
+                                <p>รับเลือดแดงจากปอดผ่านหลอดเลือดพัลโมนารีเวน</p>
+                            </div>
+                            
+                            <div class="chamber-card" style="border-top: 5px solid var(--heart);">
+                                <h5><i class="bi bi-arrow-left-circle"></i> หัวใจห้องล่างซ้าย</h5>
+                                <p>สูบฉีดเลือดแดงไปยังร่างกายผ่านหลอดเลือดเอออร์ตา</p>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(233, 30, 99, 0.2), rgba(233, 30, 99, 0.1)); border-color: rgba(233, 30, 99, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ลิ้นหัวใจ (Heart Valves)</h5>
+                            <ul>
+                                <li><strong>ลิ้นไทรคัสปิด (Tricuspid Valve):</strong> อยู่ระหว่างหัวใจห้องบนขวาและล่างขวา ป้องกันเลือดไหลย้อนกลับ</li>
+                                <li><strong>ลิ้นพัลโมนารี (Pulmonary Valve):</strong> อยู่ระหว่างหัวใจห้องล่างขวากับหลอดเลือดพัลโมนารีอาร์เตอรี</li>
+                                <li><strong>ลิ้นไมทรัล (Mitral Valve):</strong> อยู่ระหว่างหัวใจห้องบนซ้ายและล่างซ้าย</li>
+                                <li><strong>ลิ้นเอออร์ติก (Aortic Valve):</strong> อยู่ระหว่างหัวใจห้องล่างซ้ายกับหลอดเลือดเอออร์ตา</li>
+                                <li>ลิ้นหัวใจเปิด-ปิดตามจังหวะการบีบตัวของหัวใจ ทำให้เลือดไหลไปในทิศทางเดียว</li>
+                            </ul>
+                        </div>
+                        
+                        <h4>วงจรการเต้นของหัวใจ</h4>
+                        <div class="organ-grid">
+                            <div class="organ-card" style="border-left: 4px solid var(--heart);">
+                                <h5><i class="bi bi-arrow-repeat"></i> ระยะซิสโตลี (Systole)</h5>
+                                <ul>
+                                    <li>ระยะที่หัวใจบีบตัว</li>
+                                    <li>เลือดถูกสูบฉีดออกจากหัวใจห้องล่าง</li>
+                                    <li>ความดันโลหิตสูงสุด (ความดันซิสโตลิก)</li>
+                                    <li>ใช้เวลาประมาณ 0.3 วินาที</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="organ-card" style="border-left: 4px solid var(--heart);">
+                                <h5><i class="bi bi-arrow-repeat"></i> ระยะไดแอสโตลี (Diastole)</h5>
+                                <ul>
+                                    <li>ระยะที่หัวใจคลายตัว</li>
+                                    <li>หัวใจห้องบนส่งเลือดลงสู่หัวใจห้องล่าง</li>
+                                    <li>ความดันโลหิตต่ำสุด (ความดันไดแอสโตลิก)</li>
+                                    <li>ใช้เวลาประมาณ 0.5 วินาที</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="organ-card" style="border-left: 4px solid var(--heart);">
+                                <h5><i class="bi bi-lightning"></i> ระบบไฟฟ้าหัวใจ</h5>
+                                <ul>
+                                    <li>เริ่มต้นที่โนดไซโนเอเตรียล (SA node) ในผนังหัวใจห้องบนขวา</li>
+                                    <li>กระแสไฟฟ้าแผ่กระจายผ่านเอเตรีย ทำให้หัวใจห้องบนบีบตัว</li>
+                                    <li>กระแสไฟฟ้าเคลื่อนไปยังโนดเอเตริโอเวนตริคูลาร์ (AV node)</li>
+                                    <li>ผ่านบันเดิลออฟฮิส (Bundle of His) และเส้นใยพัวคินเจ (Purkinje fibers)</li>
+                                    <li>ทำให้หัวใจห้องล่างบีบตัวจากยอดหัวใจขึ้นมาด้านบน</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- หลอดเลือดและระบบไหลเวียน -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#bloodVessels" style="background: linear-gradient(135deg, var(--vessels), #7B1FA2);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">หลอดเลือดและระบบไหลเวียน</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="bloodVessels" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ระบบไหลเวียนเลือดประกอบด้วยหัวใจ หลอดเลือด และเลือด โดยทำหน้าที่ขนส่งออกซิเจน สารอาหาร ฮอร์โมน และเก็บกักของเสียจากเซลล์
+                        </p>
+                        
+                        <div class="diagram-container">
+                            <img src="https://www.distancecme.com/wp-content/uploads/2024/06/AdobeStock_58768273-scaled.jpeg" alt="Circulatory System" class="reproductive-image">
+                            <p class="img-caption">ระบบไหลเวียนเลือด</p>
+                        </div>
+                        
+                        <h4>ชนิดของหลอดเลือด</h4>
+                        <div class="vessel-comparison">
+                            <div class="vessel-type" style="border-top: 5px solid #F44336;">
+                                <h5><i class="bi bi-arrow-right"></i> หลอดเลือดแดง (Arteries)</h5>
+                                <ul>
+                                    <li>นำเลือดออกจากหัวใจ (ส่วนใหญ่เป็นเลือดแดง ยกเว้นพัลโมนารีอาร์เตอรี)</li>
+                                    <li>ผนังหนา ประกอบด้วยกล้ามเนื้อเรียบและเส้นใยอีลาสติน</li>
+                                    <li>ทนต่อความดันโลหิตสูง</li>
+                                    <li>หลอดเลือดแดงใหญ่ที่สุดคือเอออร์ตา</li>
+                                    <li>แบ่งแขนงเป็นอาร์เทอริโอลส์ (Arterioles)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="vessel-type" style="border-top: 5px solid #2196F3;">
+                                <h5><i class="bi bi-arrow-left"></i> หลอดเลือดดำ (Veins)</h5>
+                                <ul>
+                                    <li>นำเลือดกลับสู่หัวใจ (ส่วนใหญ่เป็นเลือดดำ ยกเว้นพัลโมนารีเวน)</li>
+                                    <li>ผนังบางกว่าหลอดเลือดแดง</li>
+                                    <li>มีลิ้นปิดเปิดเพื่อป้องกันเลือดไหลย้อนกลับ</li>
+                                    <li>หลอดเลือดดำใหญ่ที่สุดคือเวนาคาวา</li>
+                                    <li>รวมตัวจากเวนูลส์ (Venules)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="vessel-type" style="border-top: 5px solid #4CAF50;">
+                                <h5><i class="bi bi-dot"></i> หลอดเลือดฝอย (Capillaries)</h5>
+                                <ul>
+                                    <li>เล็กที่สุด ผนังบางเพียงเซลล์เดียว</li>
+                                    <li>เป็นที่แลกเปลี่ยนก๊าซ สารอาหาร และของเสียระหว่างเลือดกับเซลล์</li>
+                                    <li>มีพื้นที่ผิวรวมประมาณ 6,300 ตารางเมตร</li>
+                                    <li>เชื่อมต่อระหว่างอาร์เทอริโอลส์และเวนูลส์</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.2), rgba(156, 39, 176, 0.1)); border-color: rgba(156, 39, 176, 0.2);">
+                            <h5><i class="bi bi-arrow-repeat"></i> วงจรการไหลเวียนเลือด</h5>
+                            <div class="circulation-flow">
+                                <div class="flow-item">
+                                    <h6>1. การไหลเวียนระบบปอด (Pulmonary Circulation)</h6>
+                                    <p>หัวใจห้องล่างขวา → หลอดเลือดพัลโมนารีอาร์เตอรี → ปอด → หลอดเลือดพัลโมนารีเวน → หัวใจห้องบนซ้าย</p>
+                                </div>
+                                <div class="flow-item">
+                                    <h6>2. การไหลเวียนระบบร่างกาย (Systemic Circulation)</h6>
+                                    <p>หัวใจห้องล่างซ้าย → หลอดเลือดเอออร์ตา → หลอดเลือดแดง → หลอดเลือดฝอย → หลอดเลือดดำ → หลอดเลือดเวนาคาวา → หัวใจห้องบนขวา</p>
+                                </div>
+                                <div class="flow-item">
+                                    <h6>3. การไหลเวียนระบบหลอดเลือดหัวใจ (Coronary Circulation)</h6>
+                                    <p>หลอดเลือดหัวใจ → เลี้ยงกล้ามเนื้อหัวใจ → หลอดเลือดหัวใจดำ → หัวใจห้องบนขวา</p>
+                                </div>
+                                <div class="flow-item">
+                                    <h6>4. การไหลเวียนระบบพอร์ทัล (Portal Circulation)</h6>
+                                    <p>ทางเดินอาหาร → หลอดเลือดดำพอร์ทัล → ตับ → หลอดเลือดดำตับ → หลอดเลือดเวนาคาวา</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การควบคุมความดันเลือด -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#bloodPressure" style="background: linear-gradient(135deg, var(--pressure), #1976D2);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-speedometer2"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การควบคุมความดันเลือด</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="bloodPressure" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ความดันเลือดคือแรงดันที่เลือดกระทำต่อผนังหลอดเลือด เกิดจากการสูบฉีดของหัวใจและการต้านทานของหลอดเลือด
+                        </p>
+                        
+                        <div class="bp-formula">
+                            <p>ความดันเลือด = ปริมาณเลือดที่หัวใจสูบฉีดต่อนาที (Cardiac Output) × ความต้านทานส่วนปลาย (Peripheral Resistance)</p>
+                            <p>BP = CO × PR</p>
+                        </div>
+                        
+                        <h4>ปัจจัยที่ส่งผลต่อความดันเลือด</h4>
+                        <div class="pressure-chart">
+                            <div class="pressure-item">
+                                <h5><i class="bi bi-heart-pulse"></i> ปริมาณเลือดที่สูบฉีด</h5>
+                                <p>ปริมาณเลือดที่หัวใจสูบฉีดต่อนาที (CO = HR × SV)</p>
+                                <ul>
+                                    <li>อัตราการเต้นหัวใจ (HR)</li>
+                                    <li>ปริมาตรเลือดที่สูบฉีดต่อครั้ง (SV)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="pressure-item">
+                                <h5><i class="bi bi-arrows-angle-contract"></i> ความต้านทานส่วนปลาย</h5>
+                                <p>ความต้านทานของหลอดเลือดต่อการไหลของเลือด</p>
+                                <ul>
+                                    <li>ความยืดหยุ่นของหลอดเลือด</li>
+                                    <li>ความหนืดของเลือด</li>
+                                    <li>เส้นผ่านศูนย์กลางหลอดเลือด</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="pressure-item">
+                                <h5><i class="bi bi-droplet"></i> ปริมาตรเลือด</h5>
+                                <p>ปริมาณเลือดทั้งหมดในระบบไหลเวียน</p>
+                                <ul>
+                                    <li>การบริโภคน้ำและเกลือ</li>
+                                    <li>การทำงานของไต</li>
+                                    <li>ฮอร์โมนควบคุมสมดุลน้ำ</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.2), rgba(33, 150, 243, 0.1)); border-color: rgba(33, 150, 243, 0.2);">
+                            <h5><i class="bi bi-activity"></i> กลไกการควบคุมความดันเลือด</h5>
+                            <ul>
+                                <li><strong>ระบบประสาทอัตโนมัติ:</strong> บารอร์เซ็ปเตอร์ในเอออร์ตาและหลอดเลือดคาโรติดตรวจจับความดัน ส่งสัญญาณไปยังสมองเพื่อปรับอัตราการเต้นหัวใจและความต้านทานหลอดเลือด</li>
+                                <li><strong>ระบบเรนิน-แองจิโอเทนซิน-อัลโดสเตอโรน (RAAS):</strong> เมื่อความดันเลือดต่ำ ไตหลั่งเรนิน กระตุ้นการสร้างแองจิโอเทนซิน II ที่ทำให้หลอดเลือดหดตัวและกระตุ้นการหลั่งอัลโดสเตอโรนที่เพิ่มปริมาตรเลือด</li>
+                                <li><strong>ฮอร์โมนแอนติไดยูเรติก (ADH):</strong> เพิ่มการดูดซึมน้ำกลับที่ไต เพิ่มปริมาตรเลือด</li>
+                                <li><strong>แอทริอัล นาไตรยูเรติก เปปไทด์ (ANP):</strong> เมื่อความดันเลือดสูง หัวใจห้องบนหลั่ง ANP เพิ่มการขับน้ำและเกลือ ลดปริมาตรเลือด</li>
+                            </ul>
+                        </div>
+                        
+                        <h4>ระดับความดันเลือดปกติและความผิดปกติ</h4>
+                        <div class="blood-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--pressure);">ประเภท</th>
+                                        <th style="background-color: var(--pressure);">ความดันซิสโตลิก (mmHg)</th>
+                                        <th style="background-color: var(--pressure);">ความดันไดแอสโตลิก (mmHg)</th>
+                                        <th style="background-color: var(--pressure);">คำอธิบาย</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>ความดันต่ำ (Hypotension)</strong></td>
+                                        <td>&lt;90</td>
+                                        <td>&lt;60</td>
+                                        <td>เวียนศีรษะ เป็นลม อาจเกิดจากการเสียเลือด ภาวะขาดน้ำ หรือโรคบางชนิด</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ปกติ (Normal)</strong></td>
+                                        <td>90-120</td>
+                                        <td>60-80</td>
+                                        <td>ระดับความดันเลือดที่เหมาะสม</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ก่อนความดันสูง (Prehypertension)</strong></td>
+                                        <td>120-139</td>
+                                        <td>80-89</td>
+                                        <td>เสี่ยงต่อการเกิดความดันเลือดสูง ควรปรับเปลี่ยนพฤติกรรม</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ความดันสูงระยะที่ 1 (Stage 1 Hypertension)</strong></td>
+                                        <td>140-159</td>
+                                        <td>90-99</td>
+                                        <td>ควรได้รับการรักษาโดยแพทย์</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ความดันสูงระยะที่ 2 (Stage 2 Hypertension)</strong></td>
+                                        <td>≥160</td>
+                                        <td>≥100</td>
+                                        <td>เสี่ยงต่อโรคหลอดเลือดสมอง หัวใจวาย ไตวาย ต้องรักษาอย่างเร่งด่วน</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Make section headers clickable to collapse/expand
+            document.querySelectorAll('.section-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-bs-target');
+                    const target = document.querySelector(targetId);
+                    const collapse = new bootstrap.Collapse(target, {
+                        toggle: true
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
