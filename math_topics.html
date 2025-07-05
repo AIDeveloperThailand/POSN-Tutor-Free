@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เนื้อหาคณิตศาสตร์ สอวน. - สอวน. Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        :root {
+            --math: #1976d2;
+            --math-light: #bbdefb;
+            --math-dark: #0d47a1;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .accordion-button {
+            font-weight: 500;
+            background-color: #f8f9fa;
+            transition: all 0.3s;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: #e3f2fd;
+            color: var(--math-dark);
+            box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(0,0,0,.125);
+        }
+        
+        .chapter-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--math), #2196f3);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--math);
+            font-size: 1.2rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--math), #2196f3);
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(25, 118, 210, 0.3);
+        }
+        
+        .chapter-header {
+            display: flex;
+            align-items: center;
+        }
+        
+        .chapter-title {
+            flex-grow: 1;
+        }
+        
+        .completed-badge {
+            background: linear-gradient(135deg, #198754, #20c997);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        footer {
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--math), #2196f3);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(25, 118, 210, 0.1), rgba(33, 150, 243, 0.1));
+            border-left: 4px solid var(--math);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 20px;
+        }
+        
+        .math-formula {
+            background-color: #e3f2fd;
+            border-left: 3px solid var(--math);
+            padding: 10px 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-calculator"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">คณิตศาสตร์</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container text-center">
+            <h1 class="display-5 mb-3"><i class="bi bi-calculator"></i> เนื้อหาคณิตศาสตร์ สอวน.</h1>
+            <p class="lead">รวมหัวข้อสำคัญสำหรับการเตรียมตัวสอบคัดเลือกค่าย 1 และ 2</p>
+            <div class="mt-4">
+                <span class="badge bg-light text-blue me-2">พีชคณิต</span>
+                <span class="badge bg-light text-blue me-2">เรขาคณิต</span>
+                <span class="badge bg-light text-blue me-2">ทฤษฎีจำนวน</span>
+                <span class="badge bg-light text-blue">คอมบินาทอริก</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <h4><i class="bi bi-check-circle-fill text-success"></i> เนื้อหาทุกบทเรียนเสร็จสมบูรณ์แล้ว!</h4>
+                <p class="mb-0">ทุกหัวข้อพร้อมให้คุณศึกษาได้ทันที</p>
+            </div>
+            
+            <div class="accordion mb-5" id="mathAccordion">
+                <!-- Chapter 1 - Algebra -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">1</div>
+                                <div class="chapter-title">
+                                    <strong>บทที่ 1: พีชคณิต</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#mathAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>สมการและอสมการพหุนาม</li>
+                                <li>ระบบสมการเชิงเส้นและไม่เชิงเส้น</li>
+                                <li>ลำดับและอนุกรม</li>
+                                <li>ฟังก์ชันและกราฟ</li>
+                            </ul>
+                            <div class="math-formula">
+                                <p><strong>ตัวอย่างสูตร:</strong> สูตรผลรวมอนุกรมเลขคณิต</p>
+                                <p>$$ S_n = \frac{n}{2} [2a + (n-1)d] $$</p>
+                            </div>
+                            <a href="math_chapter_1.html" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 1 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 2 - Geometry -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">2</div>
+                                <div class="chapter-title">
+                                    <strong>บทที่ 2: เรขาคณิต</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#mathAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>เรขาคณิตแบบยุคลิด</li>
+                                <li>วงกลมและเส้นสัมผัส</li>
+                                <li>สามเหลี่ยมและทฤษฎีบทต่างๆ</li>
+                                <li>เรขาคณิตเชิงพิกัด</li>
+                            </ul>
+                            <div class="math-formula">
+                                <p><strong>ตัวอย่างสูตร:</strong> ทฤษฎีบทพีทาโกรัส</p>
+                                <p>$$ c^2 = a^2 + b^2 $$</p>
+                            </div>
+                            <a href="math_chapter_2.html" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 2 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 3 - Number Theory -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">3</div>
+                                <div class="chapter-title">
+                                    <strong>บทที่ 3: ทฤษฎีจำนวน</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#mathAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>การหารลงตัวและจำนวนเฉพาะ</li>
+                                <li>ทฤษฎีบทพื้นฐานของเลขคณิต</li>
+                                <li>สมการไดโอแฟนไทน์</li>
+                                <li>ความสอดคล้อง (Modular Arithmetic)</li>
+                            </ul>
+                            <div class="math-formula">
+                                <p><strong>ตัวอย่างสูตร:</strong> ทฤษฎีบทเล็กของแฟร์มาต์</p>
+                                <p>$$ a^{p-1} \equiv 1 \pmod{p} $$</p>
+                            </div>
+                            <a href="math_chapter_3.html" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 3 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 4 - Combinatorics -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">4</div>
+                                <div class="chapter-title">
+                                    <strong>บทที่ 4: คอมบินาทอริก</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#mathAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>หลักการนับเบื้องต้น</li>
+                                <li>การเรียงสับเปลี่ยนและการจัดหมู่</li>
+                                <li>สัมประสิทธิ์ทวินามและทฤษฎีบททวินาม</li>
+                                <li>หลักการเพิ่มเข้า-ตัดออก</li>
+                            </ul>
+                            <div class="math-formula">
+                                <p><strong>ตัวอย่างสูตร:</strong> สัมประสิทธิ์ทวินาม</p>
+                                <p>$$ \binom{n}{k} = \frac{n!}{k!(n-k)!} $$</p>
+                            </div>
+                            <a href="math_chapter_4.html" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 4 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chapter 5 - Calculus -->
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            <div class="chapter-header">
+                                <div class="chapter-icon">5</div>
+                                <div class="chapter-title">
+                                    <strong>บทที่ 5: แคลคูลัส</strong>
+                                    <div class="mt-1">
+                                        <span class="completed-badge">เสร็จสมบูรณ์</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#mathAccordion">
+                        <div class="accordion-body">
+                            <ul class="topic-list">
+                                <li>ลิมิตและความต่อเนื่อง</li>
+                                <li>อนุพันธ์และการประยุกต์</li>
+                                <li>ปริพันธ์และการประยุกต์</li>
+                                <li>อนุกรมอนันต์</li>
+                            </ul>
+                            <div class="math-formula">
+                                <p><strong>ตัวอย่างสูตร:</strong> กฎลูกโซ่</p>
+                                <p>$$ \frac{d}{dx} [f(g(x))] = f'(g(x)) \cdot g'(x) $$</p>
+                            </div>
+                            <a href="math_chapter_5.html" class="btn btn-primary mt-3">
+                                <i class="bi bi-book-fill"></i> อ่านเนื้อหาบทที่ 5 ฉบับเต็ม
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
