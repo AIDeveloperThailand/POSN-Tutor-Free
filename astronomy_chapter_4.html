@@ -1,19 +1,397 @@
-<!DOCTYPE html><html lang="th">
+<!DOCTYPE html>
+<html lang="th">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>บทที่ 4 (ละเอียด): คุณสมบัติของดาวฤกษ์ - สอวน. Hub</title>  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>บทที่ 4 (ละเอียด): คุณสมบัติของดาวฤกษ์ - สอวน. Hub</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">  <script>
+  
+  <script>
     MathJax = {
       tex: {
-        inlineMath: [['$', '$'], ['\', '\']],
-        displayMath: [['$$', '$$'], ['\', '\']]
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
       }
     };
-  </script>  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head>
-<body><nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <style>
+    :root {
+        --astronomy: #0b3d91;
+        --astronomy-light: #4fc3f7;
+        --astronomy-dark: #0d47a1;
+        --nebula: #6a0dad;
+        --sun: #ff9800;
+        --planet: #4caf50;
+    }
+    
+    body {
+        font-family: 'Kanit', sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230b3d91' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
+    
+    .navbar {
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .header-bg {
+        background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+        padding: 3rem 0;
+        color: white;
+        margin-bottom: 2rem;
+        border-radius: 0 0 30px 30px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .header-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='20' cy='20' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='10' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='90' cy='10' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='55' cy='35' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3C/svg%3E");
+        background-size: 300px;
+        opacity: 0.3;
+    }
+    
+    .chapter-banner {
+        background: linear-gradient(90deg, rgba(11, 61, 145, 0.1), rgba(106, 13, 173, 0.1));
+        border-left: 4px solid var(--astronomy);
+        padding: 15px;
+        border-radius: 0 10px 10px 0;
+        margin-bottom: 30px;
+    }
+    
+    .formula-box {
+        background-color: rgba(79, 195, 247, 0.1);
+        border-left: 3px solid var(--astronomy);
+        padding: 15px;
+        border-radius: 0 8px 8px 0;
+        margin: 20px 0;
+        font-family: monospace;
+    }
+    
+    .section-card {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        margin-bottom: 30px;
+    }
+    
+    .section-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(11, 61, 145, 0.15);
+    }
+    
+    .section-header {
+        background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+        color: white;
+        padding: 20px;
+        cursor: pointer;
+    }
+    
+    .section-body {
+        padding: 25px;
+        background-color: white;
+    }
+    
+    .section-icon {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 1.5rem;
+    }
+    
+    .topic-list {
+        padding-left: 20px;
+    }
+    
+    .topic-list li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 15px;
+        line-height: 1.6;
+    }
+    
+    .topic-list li:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--astronomy);
+        font-size: 1.2rem;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+        border: none;
+        transition: all 0.3s;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(11, 61, 145, 0.3);
+    }
+    
+    .chapter-header {
+        display: flex;
+        align-items: center;
+    }
+    
+    .chapter-title {
+        flex-grow: 1;
+    }
+    
+    .completed-badge {
+        background: linear-gradient(135deg, #4fc3f7, #29b6f6);
+        color: white;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+    }
+    
+    footer {
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .breadcrumb {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 10px 15px;
+        border-radius: 8px;
+    }
+    
+    .breadcrumb-item a {
+        color: #e0e0ff;
+    }
+    
+    .breadcrumb-item.active {
+        color: white;
+    }
+    
+    .breadcrumb-item+.breadcrumb-item::before {
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .chapter-content {
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        margin-bottom: 30px;
+    }
+    
+    .visual-guide {
+        background: linear-gradient(135deg, #f0f7ff, #e6f2ff);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+        border-left: 3px solid var(--astronomy);
+    }
+    
+    .visual-guide h5 {
+        color: var(--astronomy);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .orbit-diagram {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 15px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .section-title {
+        border-bottom: 2px solid var(--astronomy);
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        color: var(--astronomy);
+        position: relative;
+    }
+    
+    .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 80px;
+        height: 3px;
+        background: var(--nebula);
+        border-radius: 3px;
+    }
+    
+    .example-box {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border-left: 3px solid var(--astronomy);
+        padding: 15px;
+        border-radius: 0 8px 8px 0;
+        margin: 20px 0;
+    }
+    
+    .key-point {
+        background: linear-gradient(135deg, rgba(79, 195, 247, 0.15), rgba(106, 13, 173, 0.1));
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+        border: 1px solid rgba(11, 61, 145, 0.1);
+    }
+    
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    
+    .comparison-table th {
+        background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+        color: white;
+        padding: 12px;
+        text-align: center;
+    }
+    
+    .comparison-table td {
+        padding: 12px;
+        border: 1px solid #dee2e6;
+    }
+    
+    .comparison-table tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+    
+    .kepler-law-card {
+        border-left: 4px solid var(--astronomy);
+        padding: 15px;
+        margin: 15px 0;
+        background: rgba(79, 195, 247, 0.05);
+        border-radius: 0 8px 8px 0;
+    }
+    
+    .law-number {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background: var(--astronomy);
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 30px;
+        margin-right: 10px;
+        font-weight: bold;
+    }
+    
+    .law-title {
+        display: inline;
+        color: var(--astronomy);
+        font-weight: bold;
+    }
+    
+    .planet-data-card {
+        background: linear-gradient(135deg, #f0f7ff, #e6f2ff);
+        border-radius: 10px;
+        padding: 15px;
+        margin: 15px 0;
+    }
+    
+    .planet-name {
+        font-weight: bold;
+        color: var(--astronomy);
+        margin-bottom: 10px;
+    }
+    
+    .data-row {
+        display: flex;
+        justify-content: space-between;
+        margin: 5px 0;
+    }
+    
+    .data-label {
+        font-weight: 500;
+    }
+    
+    .data-value {
+        font-weight: bold;
+        color: var(--nebula);
+    }
+    
+    .gravity-comparison {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px 0;
+    }
+    
+    .gravity-bar {
+        width: 40px;
+        background: linear-gradient(to top, var(--astronomy), var(--astronomy-light));
+        border-radius: 4px 4px 0 0;
+        position: relative;
+        text-align: center;
+        color: white;
+        font-size: 0.8rem;
+    }
+    
+    .gravity-label {
+        position: absolute;
+        bottom: -25px;
+        width: 100%;
+        text-align: center;
+        font-size: 0.8rem;
+    }
+    
+    .formula-derivation {
+        background: rgba(255, 255, 255, 0.7);
+        border-left: 3px solid var(--sun);
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 0 8px 8px 0;
+    }
+    
+    .star-spectrum {
+        display: flex;
+        height: 40px;
+        border-radius: 5px;
+        overflow: hidden;
+        margin: 20px 0;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    
+    .spectrum-O { background: #9bb5ff; flex: 1; }
+    .spectrum-B { background: #a8bbff; flex: 1; }
+    .spectrum-A { background: #cad7ff; flex: 1; }
+    .spectrum-F { background: #f8f7ff; flex: 1; }
+    .spectrum-G { background: #fff4ea; flex: 1; }
+    .spectrum-K { background: #ffd8a7; flex: 1; }
+    .spectrum-M { background: #ffb28b; flex: 1; }
+    
+    .hr-diagram {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container">
     <a class="navbar-brand" href="index.html">
       <i class="bi bi-stars"></i> สอวน. ดาราศาสตร์ Hub
@@ -37,174 +415,562 @@
       </ul>
     </div>
   </div>
-</nav><main class="py-5">
-  <div class="container">
+</nav>
+
+<div class="header-bg">
+  <div class="container position-relative">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="astronomy_topics.html">เนื้อหาทั้งหมด</a></li>
         <li class="breadcrumb-item active" aria-current="page">บทที่ 4 (ละเอียด): คุณสมบัติของดาวฤกษ์</li>
       </ol>
-    </nav><h1 class="display-6 mb-4">บทที่ 4 (ละเอียด): คุณสมบัติทางกายภาพที่ใช้อธิบายและจำแนกประเภทของดาวฤกษ์</h1>
-
-<article>
-
-  <!-- Section 4.1 Magnitude -->
-  <section class="mb-5">
-    <h2 class="border-bottom pb-2 mb-3">4.1 โชติมาตร (Magnitude)</h2>
-    <!-- history -->
-    <p>
-      โชติมาตรถูกนำมาใช้ครั้งแรกโดยไทโค บราเฮในศตวรรษที่ 16 เพื่อจัดลำดับความสว่างของดาวที่เห็นด้วยตาเปล่าเป็น 6 ระดับ โดยดาวที่สว่างที่สุดได้ระดับ 1 และดาวที่สว่างที่สุดที่มองเห็นได้ชัดเจนต่ำสุดได้ระดับ 6. ปัจจุบันระบบนี้พัฒนาเป็นสเกลลอการิทึมที่แม่นยำยิ่งขึ้น ใช้ในงานดาราศาสตร์สมัยใหม่เพื่อเปรียบเทียบความสว่างโดยตรงจากการวัดค่าพื้นฐาน.  
-    </p>
-    <!-- apparent magnitude detailed -->
-    <p>
-      <strong>โชติมาตรปรากฏ (Apparent Magnitude, $m$):</strong> ค่านี้แสดงถึงความสว่างที่มองเห็นจากโลกหรือจุดสังเกต โดยสัมพันธ์กับฟลักซ์ที่ตรวจวัดได้ผ่านกล้องโทรทรรศน์ ระบบสเกลลบ: ดาวที่มีค่ามากจะดูมืดกว่า และค่าที่เป็นลบหมายถึงดาวหรือวัตถุที่สว่างมาก เช่น ดวงจันทร์เต็มดวงประมาณ $m = -12.7$. สเกลนี้นิยามโดยสมการ:
-    </p>
-    <div class="text-center bg-light p-3 rounded">
-      <h3>$$ m = -2.5 \log_{10} \left( \frac{F}{F_0} \right) $$</h3>
+    </nav>
+    <h1 class="display-6 mb-3 text-center">บทที่ 4 (ละเอียด): คุณสมบัติทางกายภาพของดาวฤกษ์</h1>
+    <div class="text-center mb-3">
+      <span class="badge bg-light text-astronomy me-2">โชติมาตร</span>
+      <span class="badge bg-light text-astronomy me-2">กำลังส่องสว่าง</span>
+      <span class="badge bg-light text-astronomy me-2">กฎสเตฟาน-โบลทซ์มันน์</span>
+      <span class="badge bg-light text-astronomy">แผนภาพ H-R</span>
     </div>
-    <p>
-      โดยที่ $F$ คือฟลักซ์ที่วัดได้ และ $F_0$ คือฟลักซ์มาตรฐานที่กำหนดเป็นศูนย์เพื่อสร้างมาตรฐานสากล. 
-    </p>
-    <!-- absolute magnitude detailed -->
-    <p>
-      <strong>โชติมาตรสัมบูรณ์ (Absolute Magnitude, $M$):</strong> เป็นค่าที่เปรียบเทียบความสว่างแท้จริงของดาว หากตั้งอยู่ที่ระยะ 10 พาร์เซก (ประมาณ 32.6 ปีแสง) จากเรา ซึ่งเป็นวิธีที่ช่วยให้เปรียบเทียบตัวดาวได้โดยไม่ขึ้นกับระยะห่างจริง. ดวงอาทิตย์มีค่าความสว่างสัมบูรณ์ประมาณ $M = +4.83$.  
-    </p>
-    <p>
-      ผลต่างระหว่าง $m$ และ $M$ ยังนำไปสู่การคำนวณระยะทางผ่านสมการ distance modulus (ดูหัวข้อ 4.2) ซึ่งสำคัญมากในการศึกษาวัตถุที่อยู่ไกลออกไปในกาแลกซีหรือวงแหวนดาว.  
-    </p>
-  </section>
-
-  <!-- Section 4.2 Distance Modulus -->
-  <section class="mb-5">
-    <h2 class="border-bottom pb-2 mb-3">4.2 สมการระยะทาง (Distance Modulus)</h2>
-    <p>
-      สมการ distance modulus เป็นสะพานเชื่อมระหว่างความสว่างที่สังเกตได้และความสว่างแท้จริงของดาว เพื่อหาค่าระยะทาง $d$ (พาร์เซก). นิยาม:
-    </p>
-    <div class="text-center bg-light p-3 rounded">
-      <h3>$$ m - M = 5 \log_{10}(d) - 5 $$</h3>
-    </div>
-    <p>
-      โดยที่:
-    </p>
-    <ul>
-      <li>$m$ = โชติมาตรปรากฏ</li>
-      <li>$M$ = โชติมาตรสัมบูรณ์</li>
-      <li>$d$ = ระยะทางเป็นพาร์เซก (pc)</li>
-    </ul>
-    <p>
-      ตัวอย่าง: สมมติดาวดวงหนึ่งมี $m = 8.0$ และ $M = 3.0$ แทนค่าสมการจะได้:
-    </p>
-    <div class="text-center bg-light p-3 rounded">
-      <h3>$$ 8.0 - 3.0 = 5 \log_{10}(d) - 5 \quad\Rightarrow\quad 5 = 5\log_{10}(d) - 5 $$</h3>
-      <h3>$$ 10 = 5\log_{10}(d) \quad\Rightarrow\quad \log_{10}(d) = 2 \quad\Rightarrow\quad d = 100 \text{ pc} $$</h3>
-    </div>
-    <p>
-      วิธีนี้ใช้กันทั่วไปในดาราศาสตร์ภาคสนามและงานวิจัยเพื่อศึกษาระยะทางของดาวแต่ละกลุ่มและกาแลกซีระยะไกล.  
-    </p>
-  </section>
-
-  <!-- Section 4.3 Luminosity & Flux -->
-  <section class="mb-5">
-    <h2 class="border-bottom pb-2 mb-3">4.3 กำลังส่องสว่างและฟลักซ์ (Luminosity & Flux)</h2>
-    <p>
-      ในดาราศาสตร์ เราจำแนกสองแนวคิดหลักเกี่ยวกับพลังงานที่ดาวปล่อยออกมา:  
-    </p>
-    <p>
-      <strong>ฟลักซ์ (Flux, $F$):</strong> ปริมาณพลังงานที่ตกกระทบต่อพื้นที่หนึ่งต่อหน่วยเวลา ณ จุดสังเกตบนโลก หรือบนกล้องโทรทรรศน์หน่วยเป็น $W/m^2$. มันลดลงตามระยะทางสี่เหลี่ยมกำลังสองเนื่องจากการกระจายพลังงานเป็นทรงกลม.   
-    </p>
-    <p>
-      <strong>กำลังส่องสว่าง (Luminosity, $L$):</strong> ปริมาณพลังงานทั้งหมดที่ดาวปล่อยออกมาต่อหน่วยเวลา เป็นคุณสมบัติแท้จริงของดาว ไม่ขึ้นกับระยะทาง วัดเป็น Watt (W).  
-    </p>
-    <p>
-      ความสัมพันธ์ระหว่าง $L$ และ $F$ กำหนดโดยสมการ:
-    </p>
-    <div class="text-center bg-light p-3 rounded">
-      <h3>$$ F = \frac{L}{4\pi d^2} $$</h3>
-    </div>
-    <p>
-      โดยที่ $d$ คือระยะทางจากดาวถึงจุดสังเกต สามารถสลับใช้กับค่าระยะทางจาก distance modulus เพื่อวัด $L$ ของดาวได้ถ้าจำเป็น.  
-    </p>
-    <p>
-      ตัวอย่าง: หากดาวมี Luminosity $L = 3.8 \times 10^{26} W$ (เท่าดวงอาทิตย์) และอยู่ห่าง $d = 1$ AU (1.496e11 m) จะได้ฟลักซ์ประมาณ $F = 1361 W/m^2$ ซึ่งเป็นค่าความเข้มแสงที่โลกได้รับจากดวงอาทิตย์.  
-    </p>
-  </section>
-
-  <!-- Section 4.4 Stefan-Boltzmann Law -->
-  <section class="mb-5">
-    <h2 class="border-bottom pb-2 mb-3">4.4 กฎของสเตฟาน-โบลทซ์มันน์ (Stefan-Boltzmann Law)</h2>
-    <p>
-      กฎ Stefan-Boltzmann อธิบายว่าการแผ่รังสีพลังงานจากวัตถุดำสมบูรณ์ (blackbody) โดยความหนาแน่นพลังงานขึ้นอยู่กับอุณหภูมิ ยิ่งอุณหภูมิสูงยิ่งแผ่รังสีได้มาก. สำหรับดาวซึ่งใกล้เคียงกับ blackbody ให้ใช้สมการ:
-    </p>
-    <div class="text-center bg-light p-3 rounded">
-      <h3>$$ L = 4\pi R^2 \sigma T^4 $$</h3>
-    </div>
-    <ul>
-      <li>$R$ = รัศมีดาว (m)</li>
-      <li>$T$ = อุณหภูมิผิวดาว (K)</li>
-      <li>$\sigma$ = ค่าคงที่ Stefan-Boltzmann $= 5.670374419 \times 10^{-8} W m^{-2} K^{-4}$</li>
-    </ul>
-    <p>
-      สมการนี้แสดงให้เห็นว่า Luminosity เติบโตตามกำลังสองของรัศมีและกำลังสี่ของอุณหภูมิ ถ้าดาวร้อนขึ้นเล็กน้อยก็จะส่องสว่างเพิ่มขึ้นมาก.  
-    </p>
-    <p>
-      ตัวอย่าง: ดาวขนาดเท่าดวงอาทิตย์ ($R = 6.96 \times 10^8 m, T = 5778 K$) จะมี Luminosity ประมาณ $3.828 \times 10^{26} W$.  
-    </p>
-  </section>
-
-  <!-- Section 4.5 Spectral Types -->
-  <section class="mb-5">
-    <h2 class="border-bottom pb-2 mb-3">4.5 ประเภทสเปกตรัม (Spectral Types)</h2>
-    <p>
-      ดาวถูกจำแนกตามสเปกตรัมของแสงที่ปล่อยออกมาเชื่อมโยงกับอุณหภูมิผิวและองค์ประกอบทางเคมี วิธีที่ใช้กันทั่วไปเรียกว่าระบบ Morgan–Keenan (MK) แบ่งเป็นหลัก 7 ประเภทใหญ่: O, B, A, F, G, K, M และมีการขยายด้วยตัวเลขย่อย 0–9 เช่น G2 สำหรับดวงอาทิตย์.  
-    </p>
-    <p>
-      ตารางสรุปคุณสมบัติหลักของแต่ละประเภท:
-    </p>
-    <ul>
-      <li><strong>O:</strong> $T > 30{,}000 K$; สีฟ้าขาว; เส้นอีออนไฮโดรเจนและเฮลียมเด่น</li>
-      <li><strong>B:</strong> $10{,}000 < T < 30{,}000 K$; สีน้ำเงิน; ไอออนเบาลง, เส้น HE II ชัด</li>
-      <li><strong>A:</strong> $7{,}500 < T < 10{,}000 K$; สีขาว; เส้นแรงดันไฮโดรเจน (Balmer) เด่นมาก</li>
-      <li><strong>F:</strong> $6{,}000 < T < 7{,}500 K$; ขาวอมเหลือง; เส้นไอออนแคลเซียม II เริ่มชัด</li>
-      <li><strong>G:</strong> $5{,}200 < T < 6{,}000 K$; สีเหลือง; เส้นไอออนโลหะและโมเลกุลดินเด่น, ดวงอาทิตย์คือ G2</li>
-      <li><strong>K:</strong> $3{,}700 < T < 5{,}200 K$; สีส้ม; เส้นโมเลกุล CH, CN ชัด</li>
-      <li><strong>M:</strong> $T < 3{,}700 K$; สีแดง; แถบโมเลกุลดิน TiO เด่นมาก</li>
-    </ul>
-    <p>
-      การศึกษาสเปกตรัมยังช่วยในการวัดความเร็วรอบตัวดาวและองค์ประกอบทางเคมีโดยใช้ Doppler shift และความเข้มของเส้นดูดกลืน.  
-    </p>
-  </section>
-
-  <!-- Section 4.6 H-R Diagram -->
-  <section class="mb-5">
-    <h2 class="border-bottom pb-2 mb-3">4.6 แผนภาพเฮิรตซ์สปรุง-รัสเซล (Hertzsprung–Russell Diagram)</h2>
-    <p>
-      แผนภาพ H-R เป็นเครื่องมือสำคัญที่แสดงความสัมพันธ์ระหว่าง Luminosity หรือ Absolute Magnitude กับอุณหภูมิผิวหรือประเภทสเปกตรัมของดาว ทำให้เห็นวิวัฒนาการและสภาวะของดาวในแต่ละช่วง.  
-    </p>
-    <p>
-      แกน x แสดง Temperature (ลดจากซ้ายไปขวา) หรือ Spectral Type (O→M) และแกน y แสดง Luminosity (เพิ่มขึ้นจากล่างขึ้นบน) หรือ Absolute Magnitude (ลดลงจากล่างขึ้นบน).  
-    </p>
-    <p>
-      บริเวณหลักบน H-R Diagram ประกอบด้วย:
-    </p>
-    <ul>
-      <li><strong>Main Sequence:</strong> ลาดยาวจากมุมซ้ายบน (ร้อน-สว่าง) ถึงมุมขวาล่าง (เย็น-มืด) ดาวส่วนใหญ่ (ประมาณ 90%) อยู่ในช่วงนี้ รวมถึงดวงอาทิตย์</li>
-      <li><strong>Giants / Supergiants:</strong> อยู่เหนือ main sequence ด้านขวา ได้แก่ดาวแดงยักษ์ (Red Giants) และดาวยักษ์แดง (Red Supergiants) ที่มีรัศมีใหญ่ แต่พื้นผิวเย็น</li>
-      <li><strong>White Dwarfs:</strong> อยู่ด้านล่างซ้าย เป็นซากดาวแกนกลางอุณหภูมิสูง แต่ส่องสว่างน้อยเนื่องจากรัศมีเล็ก</li>
-    </ul>
-    <p>
-      จากตำแหน่งบน H-R Diagram สามารถอนุมานขั้นวิวัฒนาการ การสูบบุหรี่เชื้อเพลิงไฮโดรเจน การเผาไหม้เฮลียม และสถานะสุดท้ายของดาว เช่น การระเบิดซูเปอร์โนวา หรือการกลายเป็นดาวแคระขาว.  
-    </p>
-    <p>
-      นักดาราศาสตร์ยังใช้ isochrones ซึ่งเป็นเส้นที่แสดงจุดวิวัฒนาการของกลุ่มดาวที่มีอายุเท่ากัน ช่วยประเมินอายุของกระจุกดาวเปิดหรือกระจุกดาวทรงกลม.  
-    </p>
-  </section>
-
-</article>
-
   </div>
-</main><footer class="bg-dark text-white text-center py-3">
+</div>
+
+<main class="py-3">
   <div class="container">
-    <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+    <div class="chapter-banner">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-check-circle-fill text-info fs-3 me-3"></i>
+        <div>
+            <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+            <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="chapter-content">
+      <!-- Section 4.1 Magnitude -->
+      <div class="section-card">
+        <div class="section-header" data-bs-toggle="collapse" data-bs-target="#magnitude">
+          <div class="d-flex align-items-center">
+            <div class="section-icon">
+              <i class="bi bi-brightness-high"></i>
+            </div>
+            <div>
+              <h2 class="mb-0">4.1 โชติมาตร (Magnitude)</h2>
+            </div>
+          </div>
+        </div>
+        <div id="magnitude" class="collapse show">
+          <div class="section-body">
+            <p class="lead">
+              โชติมาตรเป็นระบบวัดความสว่างของดาวฤกษ์ที่พัฒนาขึ้นตั้งแต่สมัยโบราณ และยังคงใช้ในดาราศาสตร์สมัยใหม่เพื่อเปรียบเทียบความสว่างของวัตถุท้องฟ้า
+            </p>
+            
+            <div class="key-point">
+              <h5><i class="bi bi-clock-history"></i> ประวัติความเป็นมา</h5>
+              <p>โชติมาตรถูกนำมาใช้ครั้งแรกโดยไทโค บราเฮในศตวรรษที่ 16 เพื่อจัดลำดับความสว่างของดาวที่เห็นด้วยตาเปล่าเป็น 6 ระดับ โดยดาวที่สว่างที่สุดได้ระดับ 1 และดาวที่สว่างที่สุดที่มองเห็นได้ชัดเจนต่ำสุดได้ระดับ 6</p>
+            </div>
+            
+            <div class="row mt-4">
+              <div class="col-md-6">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h5 class="card-title text-astronomy"><i class="bi bi-eye"></i> โชติมาตรปรากฏ (Apparent Magnitude, $m$)</h5>
+                    <p>ความสว่างที่ปรากฏจากโลก โดยไม่คำนึงถึงระยะทางจริง</p>
+                    <div class="formula-box">
+                      $$ m = -2.5 \log_{10} \left( \frac{F}{F_0} \right) $$
+                    </div>
+                    <p>โดยที่ $F$ คือฟลักซ์ที่วัดได้ และ $F_0$ คือฟลักซ์มาตรฐาน</p>
+                    <div class="alert alert-light mt-3">
+                      <strong>ตัวอย่าง:</strong>
+                      <ul>
+                        <li>ดาวซิริอุส: $m = -1.46$ (สว่างที่สุดบนท้องฟ้ายามค่ำคืน)</li>
+                        <li>ดาวเหนือ: $m = +1.97$</li>
+                        <li>ดาวพลูโต: $m = +14$ (มองไม่เห็นด้วยตาเปล่า)</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h5 class="card-title text-astronomy"><i class="bi bi-stars"></i> โชติมาตรสัมบูรณ์ (Absolute Magnitude, $M$)</h5>
+                    <p>ความสว่างจริงเมื่อวัตถุอยู่ห่าง 10 พาร์เซก (32.6 ปีแสง)</p>
+                    <p>ใช้เปรียบเทียบความสว่างแท้จริงโดยไม่ขึ้นกับระยะทาง</p>
+                    <div class="alert alert-light mt-3">
+                      <strong>ตัวอย่าง:</strong>
+                      <ul>
+                        <li>ดวงอาทิตย์: $M = +4.83$</li>
+                        <li>ดาวซิริอุส: $M = +1.42$</li>
+                        <li>ดาวไรเจล: $M = -7.84$</li>
+                      </ul>
+                    </div>
+                    <div class="key-point mt-3">
+                      <p><strong>ความแตกต่างระหว่างโชติมาตร:</strong> ดาวที่มีค่าโชติมาตรต่างกัน 1 หน่วย มีความสว่างต่างกันประมาณ 2.512 เท่า</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4.2 Distance Modulus -->
+      <div class="section-card">
+        <div class="section-header" data-bs-toggle="collapse" data-bs-target="#distance-modulus">
+          <div class="d-flex align-items-center">
+            <div class="section-icon">
+              <i class="bi bi-rulers"></i>
+            </div>
+            <div>
+              <h2 class="mb-0">4.2 สมการระยะทาง (Distance Modulus)</h2>
+            </div>
+          </div>
+        </div>
+        <div id="distance-modulus" class="collapse show">
+          <div class="section-body">
+            <p class="lead">
+              สมการ distance modulus เป็นสะพานเชื่อมระหว่างความสว่างที่สังเกตได้และความสว่างแท้จริงของดาว เพื่อคำนวณระยะทาง
+            </p>
+            
+            <div class="text-center bg-light p-3 rounded">
+              <h3>$$ m - M = 5 \log_{10}(d) - 5 $$</h3>
+            </div>
+            
+            <div class="row mt-4">
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5><i class="bi bi-info-circle"></i> ส่วนประกอบของสมการ</h5>
+                    <ul>
+                      <li>$m$ = โชติมาตรปรากฏ</li>
+                      <li>$M$ = โชติมาตรสัมบูรณ์</li>
+                      <li>$d$ = ระยะทางเป็นพาร์เซก (pc)</li>
+                    </ul>
+                    <div class="alert alert-info mt-3">
+                      <strong>หน่วยพาร์เซก:</strong> 1 พาร์เซก ≈ 3.26 ปีแสง ≈ 206,265 AU
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="example-box">
+                  <h6><i class="bi bi-calculator"></i> ตัวอย่างการคำนวณ</h6>
+                  <p>สมมติดาวดวงหนึ่งมี $m = 8.0$ และ $M = 3.0$</p>
+                  <p>$$ 8.0 - 3.0 = 5 \log_{10}(d) - 5 $$</p>
+                  <p>$$ 5 = 5\log_{10}(d) - 5 $$</p>
+                  <p>$$ 10 = 5\log_{10}(d) $$</p>
+                  <p>$$ \log_{10}(d) = 2 $$</p>
+                  <p>$$ d = 100 \text{ pc} $$</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="key-point mt-4">
+              <h5><i class="bi bi-lightbulb"></i> การประยุกต์ใช้ในดาราศาสตร์</h5>
+              <p>วิธีนี้ใช้กันทั่วไปในดาราศาสตร์เพื่อศึกษาระยะทางของ:</p>
+              <ul>
+                <li>ดาวแปรแสงชนิดเซเฟอิด (Cepheid variables)</li>
+                <li>ดาว RR Lyrae</li>
+                <li>ซูเปอร์โนวาประเภท Ia</li>
+                <li>กระจุกดาวเปิดและกระจุกดาวทรงกลม</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4.3 Luminosity & Flux -->
+      <div class="section-card">
+        <div class="section-header" data-bs-toggle="collapse" data-bs-target="#luminosity-flux">
+          <div class="d-flex align-items-center">
+            <div class="section-icon">
+              <i class="bi bi-sun"></i>
+            </div>
+            <div>
+              <h2 class="mb-0">4.3 กำลังส่องสว่างและฟลักซ์ (Luminosity & Flux)</h2>
+            </div>
+          </div>
+        </div>
+        <div id="luminosity-flux" class="collapse show">
+          <div class="section-body">
+            <p class="lead">
+              การเข้าใจความแตกต่างระหว่างกำลังส่องสว่างและฟลักซ์เป็นพื้นฐานสำคัญในการศึกษาคุณสมบัติของดาวฤกษ์
+            </p>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h5 class="card-title text-astronomy"><i class="bi bi-brightness-alt-high"></i> กำลังส่องสว่าง (Luminosity, $L$)</h5>
+                    <p>พลังงานทั้งหมดที่ดาวปล่อยออกมาต่อหน่วยเวลา (วัตต์)</p>
+                    <p>เป็นคุณสมบัติแท้จริงของดาว ไม่ขึ้นกับระยะทาง</p>
+                    <div class="alert alert-light mt-3">
+                      <strong>ตัวอย่าง:</strong>
+                      <ul>
+                        <li>ดวงอาทิตย์: $L_☉ = 3.828 \times 10^{26} W$</li>
+                        <li>ดาวไรเจล: $L = 1.2 \times 10^{5} L_☉$</li>
+                        <li>ดาวพร็อกซิมาคนครึ่งม้า: $L = 0.0017 L_☉$</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h5 class="card-title text-astronomy"><i class="bi bi-brightness-alt-low"></i> ฟลักซ์ (Flux, $F$)</h5>
+                    <p>พลังงานที่ตกกระทบต่อพื้นที่หนึ่งต่อหน่วยเวลา ณ จุดสังเกต ($W/m^2$)</p>
+                    <p>ขึ้นกับระยะทางจากดาวถึงผู้สังเกต</p>
+                    <div class="alert alert-light mt-3">
+                      <strong>ตัวอย่าง:</strong>
+                      <ul>
+                        <li>ฟลักซ์จากดวงอาทิตย์ที่โลก: $1361 W/m^2$</li>
+                        <li>ฟลักซ์จากดาวซิริอุสที่โลก: $1.1 \times 10^{-7} W/m^2$</li>
+                        <li>ฟลักซ์จากแอนดรอเมดา: $6.4 \times 10^{-14} W/m^2$</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="key-point mt-4">
+              <h5><i class="bi bi-link"></i> ความสัมพันธ์ระหว่างกำลังส่องสว่างและฟลักซ์</h5>
+              <div class="text-center bg-light p-3 rounded">
+                <h3>$$ F = \frac{L}{4\pi d^2} $$</h3>
+              </div>
+              <p>โดย $d$ คือระยะทางจากดาวถึงจุดสังเกต</p>
+              
+              <div class="example-box mt-3">
+                <h6><i class="bi bi-calculator"></i> ตัวอย่างการคำนวณ</h6>
+                <p>หากดาวมีกำลังส่องสว่าง $L = 3.8 \times 10^{26} W$ (เท่าดวงอาทิตย์) และอยู่ห่าง $d = 1$ AU ($1.496 \times 10^{11} m$) จะได้ฟลักซ์:</p>
+                <p>$$ F = \frac{3.8 \times 10^{26}}{4\pi (1.496 \times 10^{11})^2} \approx 1361 W/m^2 $$</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4.4 Stefan-Boltzmann Law -->
+      <div class="section-card">
+        <div class="section-header" data-bs-toggle="collapse" data-bs-target="#stefan-boltzmann">
+          <div class="d-flex align-items-center">
+            <div class="section-icon">
+              <i class="bi bi-thermometer-high"></i>
+            </div>
+            <div>
+              <h2 class="mb-0">4.4 กฎของสเตฟาน-โบลทซ์มันน์ (Stefan-Boltzmann Law)</h2>
+            </div>
+          </div>
+        </div>
+        <div id="stefan-boltzmann" class="collapse show">
+          <div class="section-body">
+            <p class="lead">
+              กฎสเตฟาน-โบลทซ์มันน์อธิบายความสัมพันธ์ระหว่างกำลังส่องสว่างของดาวฤกษ์กับอุณหภูมิผิวและขนาดของดาว
+            </p>
+            
+            <div class="text-center bg-light p-3 rounded">
+              <h3>$$ L = 4\pi R^2 \sigma T^4 $$</h3>
+            </div>
+            
+            <div class="row mt-4">
+              <div class="col-md-4">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h5 class="card-title text-astronomy"><i class="bi bi-rulers"></i> $R$</h5>
+                    <p>รัศมีดาว (เมตร)</p>
+                    <div class="alert alert-light mt-3">
+                      <strong>ตัวอย่าง:</strong>
+                      <ul>
+                        <li>ดวงอาทิตย์: $6.96 \times 10^8 m$</li>
+                        <li>ดาวไรเจล: $7.7 \times 10^{10} m$</li>
+                        <li>ดาวแคระขาว: $1.0 \times 10^7 m$</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-4">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h5 class="card-title text-astronomy"><i class="bi bi-thermometer-sun"></i> $T$</h5>
+                    <p>อุณหภูมิผิวดาว (เคลวิน)</p>
+                    <div class="alert alert-light mt-3">
+                      <strong>ตัวอย่าง:</strong>
+                      <ul>
+                        <li>ดวงอาทิตย์: 5,778 K</li>
+                        <li>ดาวไรเจล: 12,100 K</li>
+                        <li>ดาวบีเทลจุส: 3,500 K</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-4">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h5 class="card-title text-astronomy"><i class="bi bi-infinity"></i> $\sigma$</h5>
+                    <p>ค่าคงที่สเตฟาน-โบลทซ์มันน์</p>
+                    <p>$$ \sigma = 5.670374419 \times 10^{-8} W m^{-2} K^{-4} $$</p>
+                    <div class="alert alert-light mt-3">
+                      ค่านี้เป็นค่าคงที่ทางฟิสิกส์ที่ได้จากการทดลอง
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="key-point mt-4">
+              <h5><i class="bi bi-lightning"></i> ผลกระทบของอุณหภูมิ</h5>
+              <p>กำลังส่องสว่างแปรผันตามกำลังสี่ของอุณหภูมิ ($L \propto T^4$) ดังนั้น:</p>
+              <ul>
+                <li>ดาวที่ร้อนกว่าเพียง 2 เท่าจะมีกำลังส่องสว่างมากกว่า 16 เท่า</li>
+                <li>ดาวที่ร้อนกว่า 3 เท่าจะมีกำลังส่องสว่างมากกว่า 81 เท่า</li>
+              </ul>
+              
+              <div class="example-box mt-3">
+                <h6><i class="bi bi-calculator"></i> ตัวอย่างการคำนวณ</h6>
+                <p>ดวงอาทิตย์ ($R = 6.96 \times 10^8 m, T = 5778 K$) จะมีกำลังส่องสว่าง:</p>
+                <p>$$ L = 4\pi (6.96 \times 10^8)^2 \times (5.67 \times 10^{-8}) \times (5778)^4 \approx 3.828 \times 10^{26} W $$</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4.5 Spectral Types -->
+      <div class="section-card">
+        <div class="section-header" data-bs-toggle="collapse" data-bs-target="#spectral-types">
+          <div class="d-flex align-items-center">
+            <div class="section-icon">
+              <i class="bi bi-stars"></i>
+            </div>
+            <div>
+              <h2 class="mb-0">4.5 ประเภทสเปกตรัม (Spectral Types)</h2>
+            </div>
+          </div>
+        </div>
+        <div id="spectral-types" class="collapse show">
+          <div class="section-body">
+            <p class="lead">
+              ดาวฤกษ์ถูกจำแนกตามสเปกตรัมของแสงที่ปล่อยออกมา ซึ่งสัมพันธ์กับอุณหภูมิผิวและองค์ประกอบทางเคมี
+            </p>
+            
+            <div class="star-spectrum">
+              <div class="spectrum-O">O</div>
+              <div class="spectrum-B">B</div>
+              <div class="spectrum-A">A</div>
+              <div class="spectrum-F">F</div>
+              <div class="spectrum-G">G</div>
+              <div class="spectrum-K">K</div>
+              <div class="spectrum-M">M</div>
+            </div>
+            
+            <div class="table-responsive mt-4">
+              <table class="table table-striped">
+                <thead class="table-dark">
+                  <tr>
+                    <th>ประเภท</th>
+                    <th>อุณหภูมิผิว (K)</th>
+                    <th>สี</th>
+                    <th>ตัวอย่างดาว</th>
+                    <th>ลักษณะสเปกตรัม</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>O</strong></td>
+                    <td>&gt; 30,000</td>
+                    <td>ฟ้าขาว</td>
+                    <td>ไรเจล, ซีต้า โอไรโอนิส</td>
+                    <td>เส้นอีออนไฮโดรเจนและเฮลียมเด่น</td>
+                  </tr>
+                  <tr>
+                    <td><strong>B</strong></td>
+                    <td>10,000-30,000</td>
+                    <td>น้ำเงิน</td>
+                    <td>สไปกา, ริเจล</td>
+                    <td>ไอออนเบาลง, เส้น HE II ชัด</td>
+                  </tr>
+                  <tr>
+                    <td><strong>A</strong></td>
+                    <td>7,500-10,000</td>
+                    <td>ขาว</td>
+                    <td>ซิริอุส, เวกา</td>
+                    <td>เส้นแรงดันไฮโดรเจน (Balmer) เด่นมาก</td>
+                  </tr>
+                  <tr>
+                    <td><strong>F</strong></td>
+                    <td>6,000-7,500</td>
+                    <td>ขาวอมเหลือง</td>
+                    <td>คาโนปัส, โพลลักซ์</td>
+                    <td>เส้นไอออนแคลเซียม II เริ่มชัด</td>
+                  </tr>
+                  <tr>
+                    <td><strong>G</strong></td>
+                    <td>5,200-6,000</td>
+                    <td>เหลือง</td>
+                    <td>ดวงอาทิตย์, อัลฟา เซนทอรี</td>
+                    <td>เส้นไอออนโลหะและโมเลกุลดินเด่น</td>
+                  </tr>
+                  <tr>
+                    <td><strong>K</strong></td>
+                    <td>3,700-5,200</td>
+                    <td>ส้ม</td>
+                    <td>อาร์คทูรัส, อัลเดบารัน</td>
+                    <td>เส้นโมเลกุล CH, CN ชัด</td>
+                  </tr>
+                  <tr>
+                    <td><strong>M</strong></td>
+                    <td>&lt; 3,700</td>
+                    <td>แดง</td>
+                    <td>บีเทลจุส, แอนทาเรส</td>
+                    <td>แถบโมเลกุลดิน TiO เด่นมาก</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div class="key-point mt-4">
+              <h5><i class="bi bi-graph-up"></i> ความสัมพันธ์ระหว่างประเภทสเปกตรัมและคุณสมบัติ</h5>
+              <ul>
+                <li>ดาวประเภท O, B: มวลมาก อายุสั้น สิ้นอายุขัยด้วยซูเปอร์โนวา</li>
+                <li>ดาวประเภท G, K: มวลปานกลาง อายุยืน (ดวงอาทิตย์มีอายุประมาณ 10 พันล้านปี)</li>
+                <li>ดาวประเภท M: มวลน้อย อายุยืนมาก (ถึงหลายแสนล้านปี)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4.6 H-R Diagram -->
+      <div class="section-card">
+        <div class="section-header" data-bs-toggle="collapse" data-bs-target="#hr-diagram">
+          <div class="d-flex align-items-center">
+            <div class="section-icon">
+              <i class="bi bi-graph-up"></i>
+            </div>
+            <div>
+              <h2 class="mb-0">4.6 แผนภาพเฮิรตซ์สปรุง-รัสเซล (Hertzsprung–Russell Diagram)</h2>
+            </div>
+          </div>
+        </div>
+        <div id="hr-diagram" class="collapse show">
+          <div class="section-body">
+            <p class="lead">
+              แผนภาพ H-R เป็นเครื่องมือสำคัญที่แสดงความสัมพันธ์ระหว่างกำลังส่องสว่างและอุณหภูมิผิวของดาว ทำให้เห็นวิวัฒนาการและสภาวะของดาวในแต่ละช่วง
+            </p>
+            
+            <div class="hr-diagram">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='white'/%3E%3Ctext x='400' y='30' text-anchor='middle' font-size='18' font-weight='bold'%3Eแผนภาพเฮิรตซ์สปรุง-รัสเซล%3C/text%3E%3C!-- Axes --%3E%3Cline x1='100' y1='500' x2='700' y2='500' stroke='black' stroke-width='2'/%3E%3Cline x1='100' y1='500' x2='100' y2='100' stroke='black' stroke-width='2'/%3E%3Ctext x='400' y='550' text-anchor='middle' font-size='16'%3Eอุณหภูมิผิว (K) →%3C/text%3E%3Ctext x='50' y='300' text-anchor='middle' transform='rotate(-90 50,300)' font-size='16'%3Eกำลังส่องสว่าง (L☉) →%3C/text%3E%3C!-- Temperature labels --%3E%3Ctext x='100' y='520' text-anchor='middle'%3E50,000%3C/text%3E%3Ctext x='250' y='520' text-anchor='middle'%3E10,000%3C/text%3E%3Ctext x='400' y='520' text-anchor='middle'%3E6,000%3C/text%3E%3Ctext x='550' y='520' text-anchor='middle'%3E3,000%3C/text%3E%3Ctext x='700' y='520' text-anchor='middle'%3E2,500%3C/text%3E%3C!-- Luminosity labels --%3E%3Ctext x='80' y='100' text-anchor='end'%3E1,000,000%3C/text%3E%3Ctext x='80' y='200' text-anchor='end'%3E10,000%3C/text%3E%3Ctext x='80' y='300' text-anchor='end'%3E100%3C/text%3E%3Ctext x='80' y='400' text-anchor='end'%3E1%3C/text%3E%3Ctext x='80' y='500' text-anchor='end'%3E0.01%3C/text%3E%3C!-- Main Sequence --%3E%3Cpath d='M120,120 L700,480' stroke='blue' stroke-width='2' fill='none'/%3E%3Ctext x='200' y='150' fill='blue'%3Eแถบกระบวนหลัก%3C/text%3E%3C!-- Giants --%3E%3Cpath d='M550,150 L650,80' stroke='red' stroke-width='2' fill='none'/%3E%3Ctext x='600' y='100' fill='red'%3Eดาวยักษ์%3C/text%3E%3C!-- Supergiants --%3E%3Cpath d='M500,80 L600,50' stroke='red' stroke-width='2' fill='none'/%3E%3Ctext x='550' y='40' fill='red'%3Eดาวยักษ์ใหญ่%3C/text%3E%3C!-- White Dwarfs --%3E%3Cpath d='M150,480 L250,520' stroke='green' stroke-width='2' fill='none'/%3E%3Ctext x='200' y='540' fill='green'%3Eดาวแคระขาว%3C/text%3E%3C!-- Sun --%3E%3Ccircle cx='400' cy='400' r='6' fill='yellow'/%3E%3Ctext x='420' y='395'%3E☉%3C/text%3E%3C/svg%3E" alt="H-R Diagram" class="img-fluid">
+            </div>
+            
+            <div class="row mt-4">
+              <div class="col-md-4">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h5 class="card-title text-astronomy"><i class="bi bi-diagram-3"></i> แถบกระบวนหลัก</h5>
+                    <p>ดาวส่วนใหญ่ (ประมาณ 90%) อยู่ในช่วงนี้ รวมถึงดวงอาทิตย์</p>
+                    <p>ดาวบนแถบกระบวนหลักกำลังเผาไฮโดรเจนในแกนกลาง</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-4">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h5 class="card-title text-astronomy"><i class="bi bi-circle"></i> ดาวยักษ์และดาวยักษ์ใหญ่</h5>
+                    <p>อยู่เหนือแถบกระบวนหลัก ด้านขวา</p>
+                    <p>ได้แก่ดาวแดงยักษ์ (Red Giants) และดาวยักษ์แดง (Red Supergiants)</p>
+                    <p>มีรัศมีใหญ่ แต่พื้นผิวเย็น</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-4">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h5 class="card-title text-astronomy"><i class="bi bi-dot"></i> ดาวแคระขาว</h5>
+                    <p>อยู่ด้านล่างซ้ายของแผนภาพ</p>
+                    <p>เป็นซากดาวแกนกลางอุณหภูมิสูง แต่ส่องสว่างน้อยเนื่องจากรัศมีเล็ก</p>
+                    <p>เป็นจุดจบของดาวมวลปานกลาง</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="key-point mt-4">
+              <h5><i class="bi bi-lightbulb"></i> การประยุกต์ใช้แผนภาพ H-R</h5>
+              <ul>
+                <li>ศึกษาวิวัฒนาการของดาว: ดาวเคลื่อนที่บนแผนภาพ H-R ตามอายุขัย</li>
+                <li>ประมาณอายุกระจุกดาว: โดยใช้ isochrones (เส้นวิวัฒนาการของกลุ่มดาวอายุเดียวกัน)</li>
+                <li>ศึกษาประชากรดาวในกาแล็กซี</li>
+                <li>ระบุระยะทางโดยใช้ spectroscopic parallax</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-grid gap-2 mt-4">
+      <a href="astronomy_topics.html" class="btn btn-primary btn-lg">
+        <i class="bi bi-arrow-left-circle"></i> กลับไปยังหน้าบทเรียนทั้งหมด
+      </a>
+    </div>
   </div>
-</footer><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="js/script.js"></script></body>
-           </html>
+</main>
+
+<footer class="bg-dark text-white text-center py-4">
+  <div class="container">
+    <div class="mb-3">
+      <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+      <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+      <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+      <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+    </div>
+    <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+    <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Dark mode toggle functionality
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      body.setAttribute('data-bs-theme', 'dark');
+      darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+      darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+    }
+    
+    darkModeToggle.addEventListener('click', function() {
+      if (body.getAttribute('data-bs-theme') === 'dark') {
+        body.setAttribute('data-bs-theme', 'light');
+        darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+        darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.setAttribute('data-bs-theme', 'dark');
+        darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+        darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  });
+</script>
+</body>
+</html>
