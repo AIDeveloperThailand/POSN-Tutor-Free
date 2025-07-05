@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทที่ 2: เรขาคณิต - สอวน. คณิตศาสตร์</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        :root {
+            --math: #1976d2;
+            --math-light: #bbdefb;
+            --math-dark: #0d47a1;
+            --theorem: #4caf50;
+            --proof: #ff9800;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%231976d2' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--math), #2196f3);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='20' cy='20' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='10' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='90' cy='10' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='55' cy='35' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.3;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(25, 118, 210, 0.1), rgba(33, 150, 243, 0.1));
+            border-left: 4px solid var(--math);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(25, 118, 210, 0.15);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, var(--math), #2196f3);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .formula-box {
+            background-color: rgba(187, 222, 251, 0.3);
+            border-left: 3px solid var(--math);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        .example-box {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-left: 3px solid var(--math);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        
+        .key-point {
+            background: linear-gradient(135deg, rgba(187, 222, 251, 0.3), rgba(25, 118, 210, 0.1));
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(25, 118, 210, 0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--math);
+            font-size: 1.2rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--math), #2196f3);
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(25, 118, 210, 0.3);
+        }
+        
+        .graph-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin: 20px 0;
+        }
+        
+        .proof-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .theorem {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.05));
+            border-left: 3px solid var(--theorem);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .step-by-step {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .geometry-diagram {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background-color: white;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-calculator"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="math_topics.html">คณิตศาสตร์</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="math_topics.html">เนื้อหาคณิตศาสตร์ทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">บทที่ 2: เรขาคณิต</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">บทที่ 2: เรขาคณิต</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-blue me-2">เรขาคณิตแบบยุคลิด</span>
+                <span class="badge bg-light text-blue me-2">วงกลมและเส้นสัมผัส</span>
+                <span class="badge bg-light text-blue me-2">สามเหลี่ยม</span>
+                <span class="badge bg-light text-blue">เรขาคณิตเชิงพิกัด</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#euclidean">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-triangle"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">2.1 เรขาคณิตแบบยุคลิด</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="euclidean" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            เรขาคณิตแบบยุคลิดเป็นระบบทางคณิตศาสตร์ที่อธิบายคุณสมบัติของระนาบและวัตถุในระนาบสองมิติ โดยยึดตามสมมุติฐานของยูคลิด
+                        </p>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-journal-check"></i> สัจพจน์ของยูคลิด</h5>
+                            <ol>
+                                <li>จากจุดหนึ่งไปยังจุดหนึ่ง ลากเส้นตรงได้เพียงเส้นเดียว</li>
+                                <li>ส่วนของเส้นตรงสามารถขยายออกไปเรื่อยๆ เป็นเส้นตรง</li>
+                                <li>จากจุดหนึ่งและระยะทางหนึ่ง สามารถเขียนวงกลมได้หนึ่งวง</li>
+                                <li>มุมฉากทุกมุมเท่ากัน</li>
+                                <li>ถ้าเส้นตรงเส้นหนึ่งตัดเส้นตรงคู่หนึ่ง ทำให้มุมภายในที่อยู่บนข้างเดียวกันรวมกันน้อยกว่าสองมุมฉาก เส้นตรงคู่นั้นจะตัดกันบนข้างที่มุมสองมุมนั้นรวมกันน้อยกว่าสองมุมฉาก</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>ทฤษฎีบทพื้นฐานของเรขาคณิตแบบยุคลิด</h5>
+                            <p><strong>ทฤษฎีบทพีทาโกรัส:</strong> ในรูปสามเหลี่ยมมุมฉาก กำลังสองของความยาวด้านตรงข้ามมุมฉากเท่ากับผลรวมของกำลังสองของความยาวด้านประกอบมุมฉาก</p>
+                            <p>$$ c^2 = a^2 + b^2 $$</p>
+                            
+                            <p><strong>ทฤษฎีบทของทาลีส:</strong> ถ้าเส้นตรงสองเส้นตัดกันและขนานกับเส้นตรงคู่หนึ่ง แล้วส่วนของเส้นตรงที่เส้นตัดเส้นขนานนั้นจะแบ่งเป็นสัดส่วนกัน</p>
+                        </div>
+                        
+                        <div class="proof-box">
+                            <h5><i class="bi bi-lightning"></i> การพิสูจน์ทฤษฎีบทพีทาโกรัส</h5>
+                            <p>พิจารณาสามเหลี่ยมมุมฉาก ABC โดยมีมุมฉากที่ C และด้านตรงข้ามมุมฉากคือ AB</p>
+                            <p>สร้างสี่เหลี่ยมจัตุรัสบนด้านทั้งสาม: ABDE, BCFG, ACHI</p>
+                            <p>พื้นที่สี่เหลี่ยม ABDE = พื้นที่สี่เหลี่ยม BCFG + พื้นที่สี่เหลี่ยม ACHI</p>
+                            <p>$$ c^2 = a^2 + b^2 $$</p>
+                            <!-- Replaced SVG with external image -->
+                            <img src="https://cdn1.byjus.com/wp-content/uploads/2021/02/Converse-of-Pythagoras-Theorem-1.png" 
+                                 alt="ทฤษฎีบทพีทาโกรัส" 
+                                 class="geometry-diagram"
+                                 style="max-height: 300px; object-fit: contain;">
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การประยุกต์ทฤษฎีบทพีทาโกรัส</h6>
+                            <p>สามเหลี่ยม ABC มีมุม C เป็นมุมฉาก โดย AC = 6 ซม., BC = 8 ซม. จงหาความยาว AB</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <p>จากทฤษฎีบทพีทาโกรัส:</p>
+                            <p>$$ AB^2 = AC^2 + BC^2 = 6^2 + 8^2 = 36 + 64 = 100 $$</p>
+                            <p>$$ AB = \sqrt{100} = 10 \text{ ซม.} $$</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#circles">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-circle"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">2.2 วงกลมและเส้นสัมผัส</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="circles" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            วงกลมคือเซตของจุดทุกจุดในระนาบที่อยู่ห่างจากจุดคงที่จุดหนึ่งเป็นระยะทางเท่ากัน จุดคงที่นั้นเรียกว่าจุดศูนย์กลางของวงกลม
+                        </p>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-dot"></i> ส่วนประกอบของวงกลม</h5>
+                            <ul>
+                                <li><strong>จุดศูนย์กลาง (Center):</strong> จุดคงที่ที่ทุกจุดบนวงกลมห่างเท่ากัน</li>
+                                <li><strong>รัศมี (Radius):</strong> ระยะทางจากจุดศูนย์กลางไปยังจุดใดๆ บนวงกลม</li>
+                                <li><strong>เส้นผ่านศูนย์กลาง (Diameter):</strong> คอร์ดที่ยาวที่สุดของวงกลม มีความยาวเป็น 2 เท่าของรัศมี</li>
+                                <li><strong>คอร์ด (Chord):</strong> ส่วนของเส้นตรงที่เชื่อมจุดสองจุดบนวงกลม</li>
+                                <li><strong>เส้นสัมผัส (Tangent):</strong> เส้นตรงที่สัมผัสวงกลมที่จุดเดียว</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>ทฤษฎีบทเกี่ยวกับวงกลม</h5>
+                            <p><strong>ทฤษฎีบทเส้นสัมผัส:</strong> เส้นสัมผัสวงกลมจะตั้งฉากกับรัศมีที่จุดสัมผัส</p>
+                            <p><strong>ทฤษฎีบทคอร์ด:</strong> ถ้าคอร์ดสองคอร์ดตัดกันภายในวงกลม แล้วผลคูณของความยาวของส่วนของคอร์ดหนึ่งเท่ากับผลคูณของความยาวของส่วนของอีกคอร์ดหนึ่ง</p>
+                            <p>$$ AE \times EC = BE \times ED $$</p>
+                            
+                            <p><strong>ทฤษฎีบทเส้นสัมผัสและส่วนตัดของเส้นตรง:</strong> ถ้าเส้นตรงเส้นหนึ่งลากจากจุดภายนอกวงกลมไปสัมผัสวงกลม และเส้นตรงอีกเส้นหนึ่งลากจากจุดเดียวกันไปตัดวงกลมที่สองจุด แล้วกำลังสองของความยาวเส้นสัมผัสเท่ากับผลคูณของความยาวของส่วนตัดทั้งหมด</p>
+                            <p>$$ PA^2 = PB \times PC $$</p>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="geometry-diagram">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Ccircle cx='150' cy='100' r='80' fill='none' stroke='%231976d2' stroke-width='2'/%3E%3Cline x1='50' y1='180' x2='250' y2='20' stroke='%23ff9800' stroke-width='2'/%3E%3Cline x1='100' y1='20' x2='200' y2='180' stroke='%23ff9800' stroke-width='2'/%3E%3Ccircle cx='150' cy='100' r='3' fill='%234caf50'/%3E%3Ctext x='150' y='90' fill='%234caf50' text-anchor='middle'%3EO%3C/text%3E%3Ccircle cx='120' cy='120' r='3' fill='black'/%3E%3Ctext x='120' y='110' fill='black'%3EA%3C/text%3E%3Ccircle cx='180' cy='80' r='3' fill='black'/%3E%3Ctext x='180' y='70' fill='black'%3EB%3C/text%3E%3Ccircle cx='140' cy='60' r='3' fill='black'/%3E%3Ctext x='140' y='50' fill='black'%3EC%3C/text%3E%3Ccircle cx='160' cy='140' r='3' fill='black'/%3E%3Ctext x='160' y='130' fill='black'%3ED%3C/text%3E%3Ctext x='130' y='140' fill='%23ff9800'%3EE%3C/text%3E%3C/svg%3E" alt="Circle Theorems">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="geometry-diagram">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Ccircle cx='150' cy='100' r='80' fill='none' stroke='%231976d2' stroke-width='2'/%3E%3Cline x1='50' y1='50' x2='250' y2='50' stroke='%23ff9800' stroke-width='2'/%3E%3Cline x1='150' y1='50' x2='150' y2='180' stroke='%234caf50' stroke-width='2'/%3E%3Ccircle cx='150' cy='100' r='3' fill='%234caf50'/%3E%3Ctext x='150' y='90' fill='%234caf50' text-anchor='middle'%3EO%3C/text%3E%3Ccircle cx='150' cy='50' r='3' fill='black'/%3E%3Ctext x='140' cy='40' fill='black'%3EA%3C/text%3E%3Ccircle cx='100' cy='50' r='3' fill='black'/%3E%3Ctext x='90' cy='40' fill='black'%3EB%3C/text%3E%3Ccircle cx='200' cy='50' r='3' fill='black'/%3E%3Ctext x='210' cy='40' fill='black'%3EC%3C/text%3E%3Ccircle cx='150' cy='180' r='3' fill='black'/%3E%3Ctext x='140' cy='170' fill='black'%3EP%3C/text%3E%3C/svg%3E" alt="Tangent Secant Theorem">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การประยุกต์ทฤษฎีบทวงกลม</h6>
+                            <p>จากจุด P นอกวงกลม ลากเส้นตรงสัมผัสวงกลมที่จุด A และลากเส้นตรงตัดวงกลมที่จุด B และ C ถ้า PA = 12 ซม. และ BC = 9 ซม. จงหา PB</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <p>จากทฤษฎีบทเส้นสัมผัสและส่วนตัดของเส้นตรง:</p>
+                            <p>$$ PA^2 = PB \times PC $$</p>
+                            <p>$$ 12^2 = PB \times (PB + BC) $$</p>
+                            <p>$$ 144 = PB \times (PB + 9) $$</p>
+                            <p>$$ 144 = PB^2 + 9PB $$</p>
+                            <p>$$ PB^2 + 9PB - 144 = 0 $$</p>
+                            <p>แก้สมการ: $ PB = \frac{-9 \pm \sqrt{81 + 576}}{2} = \frac{-9 \pm \sqrt{657}}{2} = \frac{-9 \pm 25.63}{2} $</p>
+                            <p>ได้ PB = 8.315 ซม. (ค่าบวกเท่านั้น)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#triangles">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-triangle"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">2.3 สามเหลี่ยมและทฤษฎีบทต่างๆ</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="triangles" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            สามเหลี่ยมเป็นรูปหลายเหลี่ยมที่มีสามด้านและสามมุม เป็นพื้นฐานสำคัญในเรขาคณิต
+                        </p>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-shapes"></i> ประเภทของสามเหลี่ยม</h5>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h6>แบ่งตามด้าน</h6>
+                                            <ul>
+                                                <li>ด้านเท่า: ด้านเท่ากันทุกด้าน</li>
+                                                <li>หน้าจั่ว: ด้านเท่ากันสองด้าน</li>
+                                                <li>ด้านไม่เท่า: ด้านไม่เท่ากันทุกด้าน</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h6>แบ่งตามมุม</h6>
+                                            <ul>
+                                                <li>มุมแหลม: มุมทุกมุมน้อยกว่า 90°</li>
+                                                <li>มุมฉาก: มีมุมหนึ่ง 90°</li>
+                                                <li>มุมป้าน: มีมุมหนึ่งมากกว่า 90°</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h6>จุดสำคัญในสามเหลี่ยม</h6>
+                                            <ul>
+                                                <li>เซนทรอยด์: จุดตัดของมัธยฐาน</li>
+                                                <li>ออร์โธเซนเตอร์: จุดตัดของความสูง</li>
+                                                <li>อินเซนเตอร์: จุดตัดของเส้นแบ่งครึ่งมุม</li>
+                                                <li>เซอร์คัมเซนเตอร์: จุดตัดของเส้นตั้งฉากด้าน</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>ทฤษฎีบทสำคัญเกี่ยวกับสามเหลี่ยม</h5>
+                            <p><strong>ทฤษฎีบทของซีวา (Ceva's Theorem):</strong> สำหรับสามเหลี่ยม ABC และจุด D, E, F บนด้าน BC, CA, AB ตามลำดับ AD, BE, CF ตัดกันที่จุดเดียวก็ต่อเมื่อ</p>
+                            <p>$$ \frac{AF}{FB} \cdot \frac{BD}{DC} \cdot \frac{CE}{EA} = 1 $$</p>
+                            
+                            <p><strong>ทฤษฎีบทของเมเนลอส (Menelaus's Theorem):</strong> สำหรับสามเหลี่ยม ABC และเส้นตรงที่ตัดด้าน BC, CA, AB ที่จุด D, E, F ตามลำดับ แล้ว</p>
+                            <p>$$ \frac{AF}{FB} \cdot \frac{BD}{DC} \cdot \frac{CE}{EA} = 1 $$</p>
+                        </div>
+                        
+                        <div class="proof-box">
+                            <h5><i class="bi bi-lightbulb"></i> การพิสูจน์กฎของไซน์</h5>
+                            <p>พิจารณาสามเหลี่ยม ABC โดยมีด้านตรงข้ามมุม A, B, C คือ a, b, c ตามลำดับ</p>
+                            <p>สร้างความสูง h จาก B ไปยังด้าน AC</p>
+                            <p>$$ \sin A = \frac{h}{c}, \quad \sin C = \frac{h}{a} $$</p>
+                            <p>$$ h = c \sin A = a \sin C $$</p>
+                            <p>$$ \frac{a}{\sin A} = \frac{c}{\sin C} $$</p>
+                            <p>ในทำนองเดียวกัน จะได้</p>
+                            <p>$$ \frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C} = 2R $$</p>
+                            <p>เมื่อ R คือรัศมีวงกลมล้อมรอบสามเหลี่ยม</p>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การประยุกต์กฎของไซน์</h6>
+                            <p>สามเหลี่ยม ABC มีมุม A = 30°, มุม B = 45° และด้าน b = 10 ซม. จงหาความยาวด้าน a และ c</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <p>มุม C = 180° - 30° - 45° = 105°</p>
+                            <p>จากกฎของไซน์:</p>
+                            <p>$$ \frac{a}{\sin 30^\circ} = \frac{b}{\sin 45^\circ} = \frac{c}{\sin 105^\circ} $$</p>
+                            <p>$$ \frac{a}{0.5} = \frac{10}{\frac{\sqrt{2}}{2}} = \frac{10 \times 2}{\sqrt{2}} = 10\sqrt{2} \approx 14.14 $$</p>
+                            <p>$$ a = 14.14 \times 0.5 = 7.07 \text{ ซม.} $$</p>
+                            <p>$$ c = 14.14 \times \sin 105^\circ \approx 14.14 \times 0.9659 \approx 13.66 \text{ ซม.} $$</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#coordinate">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-grid"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">2.4 เรขาคณิตเชิงพิกัด</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="coordinate" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            เรขาคณิตเชิงพิกัดเป็นการศึกษาเรขาคณิตโดยใช้ระบบพิกัดคาร์ทีเซียน ซึ่งช่วยให้สามารถใช้เทคนิคทางพีชคณิตในการแก้ปัญหาทางเรขาคณิต
+                        </p>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-node-plus"></i> สูตรพื้นฐาน</h5>
+                            <ul>
+                                <li><strong>ระยะทางระหว่างจุด:</strong> $ d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} $</li>
+                                <li><strong>จุดกึ่งกลาง:</strong> $ \left( \frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2} \right) $</li>
+                                <li><strong>ความชัน:</strong> $ m = \frac{y_2 - y_1}{x_2 - x_1} $</li>
+                                <li><strong>สมการเส้นตรง:</strong> $ y - y_1 = m(x - x_1) $</li>
+                                <li><strong>สมการวงกลม:</strong> $ (x - h)^2 + (y - k)^2 = r^2 $</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>การแปลงพิกัด</h5>
+                            <p><strong>การเลื่อน:</strong> $ (x', y') = (x + h, y + k) $</p>
+                            <p><strong>การหมุน:</strong> $ (x', y') = (x \cos \theta - y \sin \theta, x \sin \theta + y \cos \theta) $</p>
+                            <p><strong>การสะท้อน:</strong> 
+                                <ul>
+                                    <li>สะท้อนแกน x: $ (x, -y) $</li>
+                                    <li>สะท้อนแกน y: $ (-x, y) $</li>
+                                    <li>สะท้อนเส้นตรง y=x: $ (y, x) $</li>
+                                </ul>
+                            </p>
+                        </div>
+                        
+                        <div class="step-by-step">
+                            <h5><i class="bi bi-vector-pen"></i> ขั้นตอนการหาพื้นที่รูปหลายเหลี่ยม</h5>
+                            <ol>
+                                <li>เรียงจุดตามเข็มนาฬิกาหรือทวนเข็มนาฬิกา</li>
+                                <li>ใช้สูตร:
+                                    $$ \text{พื้นที่} = \frac{1}{2} \left| \sum_{i=1}^{n} (x_i y_{i+1} - x_{i+1} y_i) \right| $$
+                                    โดยที่ $ (x_{n+1}, y_{n+1}) = (x_1, y_1) $
+                                </li>
+                                <li>คำนวณค่าตามสูตร</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การหาพื้นที่รูปสามเหลี่ยม</h6>
+                            <p>จงหาพื้นที่สามเหลี่ยมที่มีจุดยอดที่ A(2,3), B(5,7), C(8,4)</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <p>ใช้สูตรพื้นที่รูปหลายเหลี่ยม:</p>
+                            <p>$$ \text{พื้นที่} = \frac{1}{2} \left| (x_1(y_2 - y_3) + x_2(y_3 - y_1) + x_3(y_1 - y_2)) \right| $$</p>
+                            <p>$$ = \frac{1}{2} \left| 2(7 - 4) + 5(4 - 3) + 8(3 - 7) \right| $$</p>
+                            <p>$$ = \frac{1}{2} \left| 2(3) + 5(1) + 8(-4) \right| $$</p>
+                            <p>$$ = \frac{1}{2} \left| 6 + 5 - 32 \right| = \frac{1}{2} \left| -21 \right| = \frac{21}{2} = 10.5 \text{ ตร.หน่วย} $$</p>
+                        </div>
+                        
+                        <div class="graph-container">
+                            <h5><i class="bi bi-graph-up"></i> การวาดกราฟวงกลม</h5>
+                            <p>กำหนดสมการวงกลม: $ (x-3)^2 + (y+2)^2 = 16 $</p>
+                            <p><strong>ขั้นตอน:</strong></p>
+                            <ol>
+                                <li>จุดศูนย์กลาง: (3, -2)</li>
+                                <li>รัศมี: $ \sqrt{16} = 4 $</li>
+                                <li>วาดจุดศูนย์กลางที่ (3, -2)</li>
+                                <li>วาดวงกลมรัศมี 4 หน่วยจากจุดศูนย์กลาง</li>
+                            </ol>
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Ccircle cx='150' cy='150' r='120' fill='none' stroke='%231976d2' stroke-width='2'/%3E%3Ccircle cx='150' cy='150' r='3' fill='%234caf50'/%3E%3Cline x1='150' y1='150' x2='270' y2='150' stroke='%234caf50' stroke-width='1' stroke-dasharray='5,5'/%3E%3Ctext x='200' y='140' fill='%234caf50'%3Er=4%3C/text%3E%3Ctext x='145' y='140' fill='%234caf50'%3EC(3,-2)%3C/text%3E%3C/svg%3E" alt="Circle Graph" class="geometry-diagram">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="d-grid gap-2 mt-4">
+                <a href="math_topics.html" class="btn btn-primary btn-lg">
+                    <i class="bi bi-arrow-left-circle"></i> กลับไปยังหน้าบทเรียนทั้งหมด
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
