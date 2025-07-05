@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ทฤษฎีจำนวน - สอวน. คณิตศาสตร์</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        :root {
+            --math: #1976d2;
+            --math-light: #bbdefb;
+            --math-dark: #0d47a1;
+            --theorem: #4caf50;
+            --proof: #ff9800;
+            --example: #2196F3;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%231976d2' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--math), #2196f3);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='20' cy='20' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='10' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='90' cy='10' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='55' cy='35' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.3;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(25, 118, 210, 0.1), rgba(33, 150, 243, 0.1));
+            border-left: 4px solid var(--math);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(25, 118, 210, 0.15);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, var(--math), #2196f3);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .formula-box {
+            background-color: rgba(187, 222, 251, 0.3);
+            border-left: 3px solid var(--math);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        .example-box {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-left: 3px solid var(--example);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        
+        .key-point {
+            background: linear-gradient(135deg, rgba(187, 222, 251, 0.3), rgba(25, 118, 210, 0.1));
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(25, 118, 210, 0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--math);
+            font-size: 1.2rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--math), #2196f3);
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(25, 118, 210, 0.3);
+        }
+        
+        .graph-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin: 20px 0;
+        }
+        
+        .proof-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .theorem {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.05));
+            border-left: 3px solid var(--theorem);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .step-by-step {
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .number-diagram {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background-color: white;
+            padding: 10px;
+        }
+        
+        .prime-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .prime-table th {
+            background-color: var(--math);
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .prime-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .prime-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .prime-table .prime {
+            background-color: rgba(25, 118, 210, 0.1);
+            font-weight: bold;
+        }
+        
+        .highlight {
+            background-color: rgba(255, 152, 0, 0.2);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-calculator"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">ทฤษฎีจำนวน</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">เนื้อหาคณิตศาสตร์ทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">ทฤษฎีจำนวน</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">ทฤษฎีจำนวน</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-blue me-2">การหารลงตัว</span>
+                <span class="badge bg-light text-blue me-2">จำนวนเฉพาะ</span>
+                <span class="badge bg-light text-blue me-2">สมการไดโอแฟนไทน์</span>
+                <span class="badge bg-light text-blue">ความสอดคล้อง</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การหารลงตัวและจำนวนเฉพาะ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#divisibility">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-divide"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การหารลงตัวและจำนวนเฉพาะ</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="divisibility" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            การหารลงตัวเป็นพื้นฐานสำคัญของทฤษฎีจำนวน โดยเรากล่าวว่า $a$ หาร $b$ ลงตัว เมื่อมีจำนวนเต็ม $k$ ที่ทำให้ $b = a \times k$ โดยเราเขียนแทนด้วย $a \mid b$
+                        </p>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-journal-check"></i> นิยามและคุณสมบัติพื้นฐาน</h5>
+                            <ul>
+                                <li><strong>การหารลงตัว:</strong> $a \mid b$ ก็ต่อเมื่อมี $k \in \mathbb{Z}$ ที่ทำให้ $b = a \cdot k$</li>
+                                <li><strong>จำนวนเฉพาะ:</strong> จำนวนเต็มบวกที่มากกว่า 1 และมีตัวหารเพียง 1 และตัวมันเอง</li>
+                                <li><strong>จำนวนประกอบ:</strong> จำนวนเต็มบวกที่มากกว่า 1 และไม่เป็นจำนวนเฉพาะ</li>
+                                <li><strong>ตัวหารร่วมมาก (ห.ร.ม.):</strong> จำนวนเต็มบวกที่มากที่สุดที่หารทั้ง $a$ และ $b$ ลงตัว ใช้สัญลักษณ์ $\gcd(a, b)$</li>
+                                <li><strong>ตัวคูณร่วมน้อย (ค.ร.น.):</strong> จำนวนเต็มบวกที่น้อยที่สุดที่ทั้ง $a$ และ $b$ หารลงตัว ใช้สัญลักษณ์ $\text{lcm}(a, b)$</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>ทฤษฎีบทเกี่ยวกับการหารลงตัว</h5>
+                            <p>1. ถ้า $a \mid b$ และ $b \mid c$ แล้ว $a \mid c$</p>
+                            <p>2. ถ้า $a \mid b$ และ $a \mid c$ แล้ว $a \mid (bx + cy)$ สำหรับทุกจำนวนเต็ม $x, y$</p>
+                            <p>3. สำหรับจำนวนเต็ม $a, b$ ใดๆ จะมี $q, r$ ที่ทำให้ $b = aq + r$ โดย $0 \leq r < |a|$</p>
+                        </div>
+                        
+                        <div class="proof-box">
+                            <h5><i class="bi bi-lightning"></i> การพิสูจน์คุณสมบัติของ ห.ร.ม.</h5>
+                            <p><strong>ทฤษฎีบท:</strong> $\gcd(a, b) = \gcd(b, a \mod b)$</p>
+                            <p><strong>พิสูจน์:</strong></p>
+                            <p>ให้ $d = \gcd(a, b)$ และ $r = a \mod b$ ดังนั้น $a = bq + r$ สำหรับบาง $q \in \mathbb{Z}$</p>
+                            <p>เนื่องจาก $d \mid a$ และ $d \mid b$ ดังนั้น $d \mid (a - bq) = r$</p>
+                            <p>ดังนั้น $d$ เป็นตัวหารร่วมของ $b$ และ $r$</p>
+                            <p>ถ้า $c$ เป็นตัวหารร่วมของ $b$ และ $r$ แล้ว $c \mid (bq + r) = a$ ดังนั้น $c \mid a$ และ $c \mid b$ นั่นคือ $c \mid d$</p>
+                            <p>จึงได้ว่า $\gcd(b, r) = d = \gcd(a, b)$</p>
+                        </div>
+                        
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <div class="example-box">
+                                    <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การหา ห.ร.ม. และ ค.ร.น.</h6>
+                                    <p>จงหา $\gcd(48, 18)$ และ $\text{lcm}(48, 18)$</p>
+                                    <p><strong>วิธีทำ:</strong></p>
+                                    <p>ขั้นที่ 1: หา $\gcd(48, 18)$ โดยใช้อัลกอริทึมของยุคลิด</p>
+                                    <p>$48 \div 18 = 2$ เหลือเศษ $12$</p>
+                                    <p>$18 \div 12 = 1$ เหลือเศษ $6$</p>
+                                    <p>$12 \div 6 = 2$ เหลือเศษ $0$</p>
+                                    <p>ดังนั้น $\gcd(48, 18) = 6$</p>
+                                    <p>ขั้นที่ 2: $\text{lcm}(48, 18) = \frac{48 \times 18}{\gcd(48, 18)} = \frac{864}{6} = 144$</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="example-box">
+                                    <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การตรวจสอบจำนวนเฉพาะ</h6>
+                                    <p>จงตรวจสอบว่า 97 เป็นจำนวนเฉพาะหรือไม่</p>
+                                    <p><strong>วิธีทำ:</strong></p>
+                                    <p>ตรวจสอบว่ามีตัวหารระหว่าง 2 ถึง $\lfloor \sqrt{97} \rfloor = 9$ ที่หาร 97 ลงตัวหรือไม่</p>
+                                    <p>2: 97 ÷ 2 = 48.5 (ไม่ลงตัว)</p>
+                                    <p>3: 97 ÷ 3 ≈ 32.333 (ไม่ลงตัว)</p>
+                                    <p>5: 97 ÷ 5 = 19.4 (ไม่ลงตัว)</p>
+                                    <p>7: 97 ÷ 7 ≈ 13.857 (ไม่ลงตัว)</p>
+                                    <p>ดังนั้น 97 เป็นจำนวนเฉพาะ</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <h5>จำนวนเฉพาะ 100 ตัวแรก</h5>
+                            <table class="prime-table">
+                                <tr>
+                                    <th>ลำดับ</th>
+                                    <th>จำนวนเฉพาะ</th>
+                                    <th>ลำดับ</th>
+                                    <th>จำนวนเฉพาะ</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td class="prime">2</td>
+                                    <td>11</td>
+                                    <td class="prime">31</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td class="prime">3</td>
+                                    <td>12</td>
+                                    <td class="prime">37</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td class="prime">5</td>
+                                    <td>13</td>
+                                    <td class="prime">41</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td class="prime">7</td>
+                                    <td>14</td>
+                                    <td class="prime">43</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td class="prime">11</td>
+                                    <td>15</td>
+                                    <td class="prime">47</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td class="prime">13</td>
+                                    <td>16</td>
+                                    <td class="prime">53</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td class="prime">17</td>
+                                    <td>17</td>
+                                    <td class="prime">59</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td class="prime">19</td>
+                                    <td>18</td>
+                                    <td class="prime">61</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td class="prime">23</td>
+                                    <td>19</td>
+                                    <td class="prime">67</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td class="prime">29</td>
+                                    <td>20</td>
+                                    <td class="prime">71</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ทฤษฎีบทพื้นฐานของเลขคณิต -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#fta">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-infinity"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ทฤษฎีบทพื้นฐานของเลขคณิต</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="fta" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ทฤษฎีบทพื้นฐานของเลขคณิต (Fundamental Theorem of Arithmetic) กล่าวว่า ทุกจำนวนเต็มบวกที่มากกว่า 1 สามารถเขียนในรูปผลคูณของจำนวนเฉพาะได้เพียงชุดเดียวเท่านั้น โดยไม่คำนึงถึงลำดับ
+                        </p>
+                        
+                        <div class="theorem">
+                            <h5>ทฤษฎีบทพื้นฐานของเลขคณิต</h5>
+                            <p>สำหรับจำนวนเต็ม $n > 1$ ใดๆ จะมีจำนวนเฉพาะ $p_1 < p_2 < \cdots < p_k$ และเลขชี้กำลัง $e_1, e_2, \dots, e_k$ เป็นจำนวนเต็มบวก ซึ่งทำให้:</p>
+                            <p>$$n = p_1^{e_1} \times p_2^{e_2} \times \cdots \times p_k^{e_k}$$</p>
+                            <p>และการแสดงนี้มีเพียงชุดเดียวเท่านั้น (unique)</p>
+                        </div>
+                        
+                        <div class="proof-box">
+                            <h5><i class="bi bi-lightning"></i> การพิสูจน์ทฤษฎีบทพื้นฐานของเลขคณิต</h5>
+                            <p><strong>ขั้นตอนที่ 1: การมีอยู่ (Existence)</strong></p>
+                            <p>ใช้การอุปนัยทางคณิตศาสตร์: ถ้า $n$ เป็นจำนวนเฉพาะ ก็เสร็จสิ้น ถ้าไม่ใช่ $n$ มีตัวหาร $a$ โดย $1 < a < n$ ดังนั้น $n = a \times b$ โดย $1 < b < n$ จากสมมติฐานอุปนัย $a$ และ $b$ สามารถเขียนในรูปผลคูณของจำนวนเฉพาะได้</p>
+                            
+                            <p><strong>ขั้นตอนที่ 2: ความเป็นหนึ่งเดียว (Uniqueness)</strong></p>
+                            <p>สมมติมีสองการแยกตัวประกอบ: $p_1^{e_1} \cdots p_k^{e_k} = q_1^{f_1} \cdots q_m^{f_m}$</p>
+                            <p>เนื่องจาก $p_1$ หารด้านซ้ายลงตัว ดังนั้น $p_1$ ต้องหาร $q_j$ บางตัวลงตัว แต่ $q_j$ เป็นจำนวนเฉพาะ ดังนั้น $p_1 = q_j$</p>
+                            <p>ทำซ้ำกระบวนการนี้จะได้ว่า $k = m$ และ $p_i = q_i$ และ $e_i = f_i$ ทุก $i$</p>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การแยกตัวประกอบจำนวนเฉพาะ</h6>
+                            <p>จงแยกตัวประกอบจำนวนเฉพาะของ 360</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <p>$360 \div 2 = 180$</p>
+                            <p>$180 \div 2 = 90$</p>
+                            <p>$90 \div 2 = 45$</p>
+                            <p>$45 \div 3 = 15$</p>
+                            <p>$15 \div 3 = 5$</p>
+                            <p>$5 \div 5 = 1$</p>
+                            <p>ดังนั้น $360 = 2^3 \times 3^2 \times 5^1$</p>
+                        </div>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-calculator"></i> การประยุกต์ใช้ทฤษฎีบทพื้นฐาน</h5>
+                            <ul>
+                                <li>การหา ห.ร.ม.: $\gcd(a,b) = p_1^{\min(e_1,f_1)} \times p_2^{\min(e_2,f_2)} \times \cdots$</li>
+                                <li>การหา ค.ร.น.: $\text{lcm}(a,b) = p_1^{\max(e_1,f_1)} \times p_2^{\max(e_2,f_2)} \times \cdots$</li>
+                                <li>การหาจำนวนตัวหาร: ถ้า $n = p_1^{e_1} \cdots p_k^{e_k}$ แล้วจำนวนตัวหารบวกของ $n$ คือ $(e_1+1)(e_2+1)\cdots(e_k+1)$</li>
+                                <li>การหาผลรวมตัวหาร: ผลรวมตัวหารบวกของ $n$ คือ $\prod_{i=1}^{k} \frac{p_i^{e_i+1}-1}{p_i-1}$</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การหาจำนวนตัวหาร</h6>
+                            <p>จงหาจำนวนตัวหารบวกของ 360</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <p>จาก $360 = 2^3 \times 3^2 \times 5^1$</p>
+                            <p>จำนวนตัวหารบวก $= (3+1) \times (2+1) \times (1+1) = 4 \times 3 \times 2 = 24$</p>
+                            <p>ตัวหารทั้งหมด: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 24, 30, 36, 40, 45, 60, 72, 90, 120, 180, 360</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- สมการไดโอแฟนไทน์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#diophantine">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-x-diamond"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">สมการไดโอแฟนไทน์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="diophantine" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            สมการไดโอแฟนไทน์ (Diophantine Equations) คือสมการพหุนามที่มีสัมประสิทธิ์เป็นจำนวนเต็ม และต้องการคำตอบที่เป็นจำนวนเต็ม
+                        </p>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-journal"></i> ประเภทของสมการไดโอแฟนไทน์</h5>
+                            <ul>
+                                <li><strong>สมการเชิงเส้นสองตัวแปร:</strong> $ax + by = c$</li>
+                                <li><strong>สมการพีทาโกรัส:</strong> $x^2 + y^2 = z^2$</li>
+                                <li><strong>สมการเพลล์:</strong> $x^2 - ny^2 = 1$</li>
+                                <li><strong>สมการกำลังสูง:</strong> $x^n + y^n = z^n$ สำหรับ $n > 2$ (ทฤษฎีบทสุดท้ายของแฟร์มาต์)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>ทฤษฎีบทสำหรับสมการเชิงเส้น</h5>
+                            <p>สมการ $ax + by = c$ จะมีคำตอบเป็นจำนวนเต็มก็ต่อเมื่อ $\gcd(a,b) \mid c$</p>
+                            <p>ถ้ามีคำตอบหนึ่งคู่ $(x_0, y_0)$ แล้วคำตอบทั้งหมดจะเป็น:</p>
+                            <p>$$x = x_0 + \frac{b}{d} k, \quad y = y_0 - \frac{a}{d} k$$</p>
+                            <p>เมื่อ $d = \gcd(a,b)$ และ $k \in \mathbb{Z}$</p>
+                        </div>
+                        
+                        <div class="step-by-step">
+                            <h5><i class="bi bi-list-ol"></i> ขั้นตอนการแก้สมการไดโอแฟนไทน์เชิงเส้น</h5>
+                            <ol>
+                                <li>ตรวจสอบว่า $\gcd(a,b) \mid c$ หรือไม่ ถ้าไม่ใช่ แสดงว่าไม่มีคำตอบ</li>
+                                <li>ใช้ extended Euclidean algorithm หา $x', y'$ ที่ทำให้ $ax' + by' = d$</li>
+                                <li>คำตอบเฉพาะ: $x_0 = x' \cdot \frac{c}{d}, \quad y_0 = y' \cdot \frac{c}{d}$</li>
+                                <li>คำตอบทั่วไป: $x = x_0 + \frac{b}{d} k, \quad y = y_0 - \frac{a}{d} k$ สำหรับ $k \in \mathbb{Z}$</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การแก้สมการไดโอแฟนไทน์</h6>
+                            <p>จงหาคำตอบทั้งหมดของสมการ $21x + 14y = 70$</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <p>ขั้นที่ 1: $\gcd(21,14) = 7$ และ $7 \mid 70$ ดังนั้นมีคำตอบ</p>
+                            <p>ขั้นที่ 2: หา $x', y'$ สำหรับ $21x' + 14y' = 7$</p>
+                            <p>$21 = 14 \times 1 + 7$</p>
+                            <p>$14 = 7 \times 2 + 0$</p>
+                            <p>ดังนั้น $7 = 21 - 14 \times 1$ ดังนั้น $x' = 1, y' = -1$</p>
+                            <p>ขั้นที่ 3: $x_0 = 1 \times \frac{70}{7} = 10, \quad y_0 = -1 \times \frac{70}{7} = -10$</p>
+                            <p>ขั้นที่ 4: คำตอบทั่วไป $x = 10 + \frac{14}{7} k = 10 + 2k$</p>
+                            <p>$y = -10 - \frac{21}{7} k = -10 - 3k$ สำหรับ $k \in \mathbb{Z}$</p>
+                            <p>คำตอบบางส่วน: $(10, -10), (12, -13), (8, -7), \dots$</p>
+                        </div>
+                        
+                        <div class="key-point mt-4">
+                            <h5><i class="bi bi-lightbulb"></i> สมการพีทาโกรัส</h5>
+                            <p>คำตอบทั้งหมดของ $x^2 + y^2 = z^2$ โดย $\gcd(x,y,z)=1$ และ $x$ คู่ $y$ คี่ (หรือกลับกัน) คือ:</p>
+                            <p>$$x = m^2 - n^2, \quad y = 2mn, \quad z = m^2 + n^2$$</p>
+                            <p>เมื่อ $m > n > 0$, $\gcd(m,n)=1$ และ $m$ กับ $n$ มีคี่คู่ต่างกัน</p>
+                            <p>ตัวอย่าง: $m=2, n=1$ ได้ $(3,4,5)$</p>
+                            <p>$m=3, n=2$ ได้ $(5,12,13)$</p>
+                            <p>$m=4, n=1$ ได้ $(15,8,17)$</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ความสอดคล้อง (Modular Arithmetic) -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#modular">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ความสอดคล้อง (Modular Arithmetic)</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="modular" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ความสอดคล้อง (Modular Arithmetic) เป็นระบบเลขคณิตสำหรับจำนวนเต็มซึ่งคำนึงถึงเศษที่ได้จากการหารด้วยจำนวนคงที่ที่เรียกว่าโมดูลัส
+                        </p>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-journal"></i> นิยามและคุณสมบัติพื้นฐาน</h5>
+                            <p>เรากล่าวว่า $a \equiv b \pmod{m}$ ถ้า $m \mid (a - b)$</p>
+                            <ul>
+                                <li>สมบัติสะท้อน: $a \equiv a \pmod{m}$</li>
+                                <li>สมบัติสมมาตร: ถ้า $a \equiv b \pmod{m}$ แล้ว $b \equiv a \pmod{m}$</li>
+                                <li>สมบัติถ่ายทอด: ถ้า $a \equiv b \pmod{m}$ และ $b \equiv c \pmod{m}$ แล้ว $a \equiv c \pmod{m}$</li>
+                                <li>ถ้า $a \equiv b \pmod{m}$ และ $c \equiv d \pmod{m}$ แล้ว:
+                                    <ul>
+                                        <li>$a+c \equiv b+d \pmod{m}$</li>
+                                        <li>$a-c \equiv b-d \pmod{m}$</li>
+                                        <li>$a \times c \equiv b \times d \pmod{m}$</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>ทฤษฎีบทที่สำคัญ</h5>
+                            <p><strong>ทฤษฎีบทเศษเหลือจีน (Chinese Remainder Theorem):</strong></p>
+                            <p>ถ้า $m_1, m_2, \dots, m_k$ เป็นจำนวนเต็มคู่ซึ่ง coprime เป็นคู่ๆ (นั่นคือ $\gcd(m_i, m_j) = 1$ เมื่อ $i \neq j$) แล้วระบบสมการ:</p>
+                            <p>$$x \equiv a_1 \pmod{m_1}$$</p>
+                            <p>$$x \equiv a_2 \pmod{m_2}$$</p>
+                            <p>$$\vdots$$</p>
+                            <p>$$x \equiv a_k \pmod{m_k}$$</p>
+                            <p>จะมีคำตอบเฉพาะตัวในโมดูลัส $M = m_1 m_2 \cdots m_k$</p>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การใช้ทฤษฎีบทเศษเหลือจีน</h6>
+                            <p>แก้ระบบสมการ:</p>
+                            <p>$x \equiv 2 \pmod{3}$</p>
+                            <p>$x \equiv 3 \pmod{5}$</p>
+                            <p>$x \equiv 2 \pmod{7}$</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <p>ให้ $M = 3 \times 5 \times 7 = 105$</p>
+                            <p>$M_1 = 105/3 = 35$, หา $y_1$ ที่ $35y_1 \equiv 1 \pmod{3}$ ได้ $y_1 = 2$</p>
+                            <p>$M_2 = 105/5 = 21$, หา $y_2$ ที่ $21y_2 \equiv 1 \pmod{5}$ ได้ $y_2 = 1$</p>
+                            <p>$M_3 = 105/7 = 15$, หา $y_3$ ที่ $15y_3 \equiv 1 \pmod{7}$ ได้ $y_3 = 1$</p>
+                            <p>คำตอบ: $x = 2 \times 35 \times 2 + 3 \times 21 \times 1 + 2 \times 15 \times 1 = 140 + 63 + 30 = 233$</p>
+                            <p>คำตอบในโมดูลัส 105: $233 \mod 105 = 23$</p>
+                            <p>ตรวจสอบ: $23 \div 3$ เศษ 2, $23 \div 5$ เศษ 3, $23 \div 7$ เศษ 2</p>
+                        </div>
+                        
+                        <div class="key-point mt-4">
+                            <h5><i class="bi bi-calculator"></i> การประยุกต์ใช้ความสอดคล้อง</h5>
+                            <ul>
+                                <li>การคำนวณเลขยกกำลังขนาดใหญ่: $a^b \mod m$</li>
+                                <li>การทดสอบจำนวนเฉพาะ</li>
+                                <li>การเข้ารหัสลับ (Cryptography)</li>
+                                <li>การสร้างตัวสร้างตัวเลขสุ่ม</li>
+                                <li>การคำนวณผลรวมตรวจสอบ (Checksum)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ทฤษฎีบทเล็กของแฟร์มาต์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#fermat">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-stars"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ทฤษฎีบทเล็กของแฟร์มาต์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="fermat" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ทฤษฎีบทเล็กของแฟร์มาต์ (Fermat's Little Theorem) เป็นทฤษฎีบทพื้นฐานในทฤษฎีจำนวนที่มีประโยชน์มากในการคำนวณทางคณิตศาสตร์และการเข้ารหัสลับ
+                        </p>
+                        
+                        <div class="theorem">
+                            <h5>ทฤษฎีบทเล็กของแฟร์มาต์</h5>
+                            <p>ถ้า $p$ เป็นจำนวนเฉพาะ และ $a$ เป็นจำนวนเต็มที่ $p \nmid a$ แล้ว:</p>
+                            <p>$$a^{p-1} \equiv 1 \pmod{p}$$</p>
+                            <p>และในรูปแบบเทียบเท่า:</p>
+                            <p>$$a^p \equiv a \pmod{p}$$</p>
+                            <p>สำหรับทุกจำนวนเต็ม $a$</p>
+                        </div>
+                        
+                        <div class="proof-box">
+                            <h5><i class="bi bi-lightning"></i> การพิสูจน์ทฤษฎีบทเล็กของแฟร์มาต์</h5>
+                            <p>พิจารณาเซต $S = \{1, 2, 3, \dots, p-1\}$</p>
+                            <p>พิจารณาเซต $T = \{a \cdot 1 \mod p, a \cdot 2 \mod p, \dots, a \cdot (p-1) \mod p\}$</p>
+                            <p>เนื่องจาก $p$ เป็นจำนวนเฉพาะและ $p \nmid a$ ดังนั้นสมาชิกใน $T$ จะไม่ซ้ำกันและไม่เป็น 0</p>
+                            <p>ดังนั้น $T$ คือการเรียงสับเปลี่ยนของ $S$</p>
+                            <p>ดังนั้น:</p>
+                            <p>$$\prod_{k=1}^{p-1} k \equiv \prod_{k=1}^{p-1} (a \cdot k) \pmod{p}$$</p>
+                            <p>$$(p-1)! \equiv a^{p-1} (p-1)! \pmod{p}$$</p>
+                            <p>เนื่องจาก $p$ เป็นจำนวนเฉพาะ ดังนั้น $\gcd((p-1)!, p) = 1$ เราสามารถหารทั้งสองข้างด้วย $(p-1)!$ ได้:</p>
+                            <p>$$1 \equiv a^{p-1} \pmod{p}$$</p>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การประยุกต์ทฤษฎีบทเล็กของแฟร์มาต์</h6>
+                            <p>จงหา $7^{222} \mod 11$</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <p>เนื่องจาก 11 เป็นจำนวนเฉพาะ และ 11 หาร 7 ไม่ลงตัว</p>
+                            <p>จากทฤษฎีบทเล็กของแฟร์มาต์: $7^{10} \equiv 1 \pmod{11}$</p>
+                            <p>ดังนั้น $7^{222} = 7^{10 \times 22 + 2} = (7^{10})^{22} \times 7^2 \equiv 1^{22} \times 49 \pmod{11}$</p>
+                            <p>$49 \mod 11 = 5$ (เพราะ $11 \times 4 = 44$, $49 - 44 = 5$)</p>
+                            <p>ดังนั้น $7^{222} \equiv 5 \pmod{11}$</p>
+                        </div>
+                        
+                        <div class="key-point mt-4">
+                            <h5><i class="bi bi-shield-lock"></i> การประยุกต์ในการเข้ารหัสลับ</h5>
+                            <p>ทฤษฎีบทเล็กของแฟร์มาต์เป็นพื้นฐานของอัลกอริทึมการเข้ารหัส RSA:</p>
+                            <ol>
+                                <li>เลือกจำนวนเฉพาะ $p$ และ $q$ ที่ใหญ่</li>
+                                <li>คำนวณ $n = p \times q$ และ $\phi(n) = (p-1)(q-1)$</li>
+                                <li>เลือก $e$ โดยที่ $1 < e < \phi(n)$ และ $\gcd(e, \phi(n)) = 1$</li>
+                                <li>คำนวณ $d$ โดยที่ $e \times d \equiv 1 \pmod{\phi(n)}$</li>
+                                <li>กุญแจสาธารณะ: $(n, e)$, กุญแจส่วนตัว: $(n, d)$</li>
+                                <li>การเข้ารหัส: $c = m^e \mod n$</li>
+                                <li>การถอดรหัส: $m = c^d \mod n$</li>
+                            </ol>
+                            <p>ความปลอดภัยขึ้นอยู่กับความยากในการแยกตัวประกอบ $n$ เป็น $p \times q$</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
