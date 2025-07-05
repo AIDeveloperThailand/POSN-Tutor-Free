@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบนิเวศ - สอวน. ชีววิทยา</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        :root {
+            --biology: #4CAF50;
+            --biology-light: #C8E6C9;
+            --biology-dark: #388E3C;
+            --theorem: #81C784;
+            --proof: #FFB74D;
+            --example: #64B5F6;
+            --cycle: #AED581;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234CAF50' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,15 C65.464,15 78,27.536 78,43 C78,58.464 65.464,71 50,71 C34.536,71 22,58.464 22,43 C22,27.536 34.536,15 50,15 Z M50,25 C40.058,25 32,33.058 32,43 C32,52.942 40.058,61 50,61 C59.942,61 68,52.942 68,43 C68,33.058 59.942,25 50,25 Z' fill='%23ffffff' fill-opacity='0.3'/%3E%3Cpath d='M30,75 C36.627,75 42,80.373 42,87 C42,93.627 36.627,99 30,99 C23.373,99 18,93.627 18,87 C18,80.373 23.373,75 30,75 Z M70,75 C76.627,75 82,80.373 82,87 C82,93.627 76.627,99 70,99 C63.373,99 58,93.627 58,87 C58,80.373 63.373,75 70,75 Z' fill='%23ffffff' fill-opacity='0.3'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.2;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.1), rgba(67, 160, 71, 0.1));
+            border-left: 4px solid var(--biology);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .formula-box {
+            background-color: rgba(200, 230, 201, 0.3);
+            border-left: 3px solid var(--biology);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        .example-box {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-left: 3px solid var(--example);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        
+        .key-point {
+            background: linear-gradient(135deg, rgba(200, 230, 201, 0.3), rgba(76, 175, 80, 0.1));
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(76, 175, 80, 0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--biology);
+            font-size: 1.2rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .graph-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin: 20px 0;
+        }
+        
+        .proof-box {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .theorem {
+            background: linear-gradient(135deg, rgba(129, 199, 132, 0.2), rgba(129, 199, 132, 0.1));
+            border-left: 3px solid var(--theorem);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .step-by-step {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .cycle-diagram {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background-color: white;
+            padding: 10px;
+        }
+        
+        .ecosystem-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .ecosystem-table th {
+            background-color: var(--biology);
+            color: white;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .ecosystem-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .ecosystem-table tr:nth-child(even) {
+            background-color: #f2f9f2;
+        }
+        
+        .highlight {
+            background-color: rgba(255, 183, 77, 0.2);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .formula {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--biology);
+        }
+        
+        .graph {
+            width: 100%;
+            height: 300px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .graph-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .cycle-box {
+            background: linear-gradient(135deg, rgba(174, 213, 129, 0.3), rgba(174, 213, 129, 0.15));
+            border-left: 3px solid var(--cycle);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .food-chain-diagram {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .food-chain-step {
+            text-align: center;
+            margin: 10px;
+            position: relative;
+            flex: 1;
+            min-width: 100px;
+        }
+        
+        .food-chain-step:not(:last-child)::after {
+            content: "→";
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--biology);
+        }
+        
+        .food-chain-icon {
+            width: 70px;
+            height: 70px;
+            background-color: #C8E6C9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 1.8rem;
+            color: var(--biology-dark);
+        }
+        
+        .energy-transfer {
+            background: linear-gradient(135deg, rgba(255, 183, 77, 0.2), rgba(255, 183, 77, 0.1));
+            border-left: 3px solid var(--proof);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-flower1"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="biology_topics.html">ชีววิทยา</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="biology_topics.html">เนื้อหาชีววิทยาทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">บทที่ 1: ระบบนิเวศ</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">บทที่ 1: ระบบนิเวศ</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-green me-2">องค์ประกอบของระบบนิเวศ</span>
+                <span class="badge bg-light text-green me-2">ห่วงโซ่อาหารและสายใยอาหาร</span>
+                <span class="badge bg-light text-green me-2">วัฏจักรของสารในธรรมชาติ</span>
+                <span class="badge bg-light text-green">การถ่ายทอดพลังงาน</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- องค์ประกอบของระบบนิเวศ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#components">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-puzzle"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">องค์ประกอบของระบบนิเวศ</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="components" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ระบบนิเวศ (Ecosystem) หมายถึง ระบบความสัมพันธ์ระหว่างสิ่งมีชีวิตกับสิ่งแวดล้อมในบริเวณหนึ่ง โดยมีองค์ประกอบสำคัญ 2 ส่วนคือ องค์ประกอบที่ไม่มีชีวิต (Abiotic) และองค์ประกอบที่มีชีวิต (Biotic)
+                        </p>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-journal-check"></i> องค์ประกอบที่ไม่มีชีวิต (Abiotic Components)</h5>
+                            <ul>
+                                <li><strong>ปัจจัยทางกายภาพ:</strong> แสงสว่าง, อุณหภูมิ, ความชื้น, ลม, ความกดอากาศ</li>
+                                <li><strong>ปัจจัยทางเคมี:</strong> แร่ธาตุในดิน, แก๊สในอากาศ, ความเป็นกรด-ด่าง (pH)</li>
+                                <li><strong>ปัจจัยทางภูมิศาสตร์:</strong> ลักษณะภูมิประเทศ, ระดับความสูง, ทิศทางลม</li>
+                                <li><strong>ปัจจัยทางอุทกวิทยา:</strong> น้ำในดิน, น้ำในแม่น้ำ, น้ำในมหาสมุทร</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>องค์ประกอบที่มีชีวิต (Biotic Components)</h5>
+                            <p><strong>1. ผู้ผลิต (Producers):</strong> สิ่งมีชีวิตที่สร้างอาหารเองได้ เช่น พืชสีเขียว, สาหร่าย, แบคทีเรียบางชนิด</p>
+                            <p><strong>2. ผู้บริโภค (Consumers):</strong> สิ่งมีชีวิตที่ไม่สามารถสร้างอาหารเองได้
+                                <ul>
+                                    <li><span class="highlight">ผู้บริโภคพืช (Herbivores):</span> กินพืชเป็นอาหาร เช่น กวาง, กระต่าย</li>
+                                    <li><span class="highlight">ผู้บริโภคสัตว์ (Carnivores):</span> กินสัตว์เป็นอาหาร เช่น เสือ, นกอินทรี</li>
+                                    <li><span class="highlight">ผู้บริโภคทั้งพืชและสัตว์ (Omnivores):</span> กินทั้งพืชและสัตว์ เช่น มนุษย์, หมี</li>
+                                </ul>
+                            </p>
+                            <p><strong>3. ผู้ย่อยสลาย (Decomposers):</strong> สิ่งมีชีวิตที่ย่อยสลายซากสิ่งมีชีวิต เช่น แบคทีเรีย, เห็ดรา</p>
+                        </div>
+                        
+                        <div class="graph-container">
+                            <h5>โครงสร้างระบบนิเวศ</h5>
+                            <div class="graph">
+                                <div class="graph-placeholder">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300'%3E%3Ccircle cx='100' cy='150' r='60' fill='%234CAF50' opacity='0.3'/%3E%3Ctext x='100' y='150' text-anchor='middle' fill='%23333' font-size='16'%3Eผู้ผลิต%3C/text%3E%3Ccircle cx='250' cy='100' r='50' fill='%23FF9800' opacity='0.3'/%3E%3Ctext x='250' y='100' text-anchor='middle' fill='%23333' font-size='16'%3Eผู้บริโภคพืช%3C/text%3E%3Ccircle cx='250' cy='200' r='50' fill='%23FF9800' opacity='0.3'/%3E%3Ctext x='250' y='200' text-anchor='middle' fill='%23333' font-size='16'%3Eผู้บริโภคสัตว์%3C/text%3E%3Ccircle cx='400' cy='150' r='40' fill='%23F44336' opacity='0.3'/%3E%3Ctext x='400' y='150' text-anchor='middle' fill='%23333' font-size='16'%3Eผู้ย่อยสลาย%3C/text%3E%3Cpath d='M160,150 L190,150 L190,100 L200,100' stroke='%23333' stroke-width='2' fill='none'/%3E%3Cpath d='M160,150 L190,150 L190,200 L200,200' stroke='%23333' stroke-width='2' fill='none'/%3E%3Cpath d='M300,100 L350,150' stroke='%23333' stroke-width='2' fill='none'/%3E%3Cpath d='M300,200 L350,150' stroke='%23333' stroke-width='2' fill='none'/%3E%3C/svg%3E" alt="โครงสร้างระบบนิเวศ" style="width:100%; height:100%; object-fit: contain;">
+                                </div>
+                            </div>
+                            <p class="mt-2">ความสัมพันธ์ระหว่างองค์ประกอบต่างๆ ในระบบนิเวศ</p>
+                        </div>
+                        
+                        <div class="ecosystem-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ประเภท</th>
+                                        <th>บทบาท</th>
+                                        <th>ตัวอย่าง</th>
+                                        <th>ความสำคัญ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>ผู้ผลิต</td>
+                                        <td>สร้างอาหารจากแสงแดดและสารอนินทรีย์</td>
+                                        <td>พืช, สาหร่าย, แพลงก์ตอนพืช</td>
+                                        <td>เป็นฐานของห่วงโซ่อาหาร</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ผู้บริโภคพืช</td>
+                                        <td>กินพืชเป็นอาหาร</td>
+                                        <td>กวาง, กระต่าย, ตั๊กแตน</td>
+                                        <td>ถ่ายทอดพลังงานจากพืชไปยังสัตว์กินเนื้อ</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ผู้บริโภคสัตว์</td>
+                                        <td>กินสัตว์เป็นอาหาร</td>
+                                        <td>เสือ, นกอินทรี, ปลาฉลาม</td>
+                                        <td>ควบคุมประชากรสัตว์กินพืช</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ผู้ย่อยสลาย</td>
+                                        <td>ย่อยสลายซากสิ่งมีชีวิต</td>
+                                        <td>แบคทีเรีย, เห็ดรา</td>
+                                        <td>คืนสารอาหารสู่ระบบนิเวศ</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ห่วงโซ่อาหารและสายใยอาหาร -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#foodChains">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-diagram-3"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ห่วงโซ่อาหารและสายใยอาหาร</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="foodChains" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ห่วงโซ่อาหาร (Food Chain) แสดงลำดับการกินต่อกันเป็นเส้นตรง ในขณะที่สายใยอาหาร (Food Web) แสดงความสัมพันธ์ที่ซับซ้อนของห่วงโซ่อาหารหลายๆ ห่วงโซ่ที่เชื่อมโยงกัน
+                        </p>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-link"></i> ระดับโภชนาการ (Trophic Levels)</h5>
+                            <ul>
+                                <li><strong>ระดับที่ 1:</strong> ผู้ผลิต (พืช)</li>
+                                <li><strong>ระดับที่ 2:</strong> ผู้บริโภคลำดับที่ 1 (สัตว์กินพืช)</li>
+                                <li><strong>ระดับที่ 3:</strong> ผู้บริโภคลำดับที่ 2 (สัตว์กินสัตว์)</li>
+                                <li><strong>ระดับที่ 4:</strong> ผู้บริโภคลำดับที่ 3 (สัตว์กินสัตว์ขนาดใหญ่)</li>
+                                <li><strong>ระดับสูงสุด:</strong> สัตว์นักล่าขนาดใหญ่</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>ลักษณะของห่วงโซ่อาหาร</h5>
+                            <p><strong>1. ห่วงโซ่อาหารแบบผู้ล่า (Predator Chain):</strong> เริ่มจากพืช → สัตว์กินพืช → สัตว์กินสัตว์</p>
+                            <p><strong>2. ห่วงโซ่อาหารแบบปรสิต (Parasite Chain):</strong> พลังงานถ่ายทอดจากโฮสต์ไปสู่ปรสิต</p>
+                            <p><strong>3. ห่วงโซ่อาหารแบบซาโพรไฟต์ (Saprophyte Chain):</strong> พลังงานถ่ายทอดจากซากสิ่งมีชีวิต → จุลินทรีย์</p>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่างห่วงโซ่อาหาร</h6>
+                            <p><strong>ห่วงโซ่อาหารแบบผู้ล่า:</strong> หญ้า → ตั๊กแตน → กบ → งู → เหยี่ยว</p>
+                            <p><strong>ห่วงโซ่อาหารแบบปรสิต:</strong> วัว → เห็บ → โปรโตซัว</p>
+                            <p><strong>ห่วงโซ่อาหารแบบซาโพรไฟต์:</strong> ซากไม้ → เห็ด → แบคทีเรีย</p>
+                        </div>
+                        
+                        <div class="food-chain-diagram">
+                            <div class="food-chain-step">
+                                <div class="food-chain-icon">
+                                    <i class="bi bi-tree"></i>
+                                </div>
+                                <div>พืช</div>
+                            </div>
+                            <div class="food-chain-step">
+                                <div class="food-chain-icon">
+                                    <i class="bi bi-bug"></i>
+                                </div>
+                                <div>ตั๊กแตน</div>
+                            </div>
+                            <div class="food-chain-step">
+                                <div class="food-chain-icon">
+                                    <i class="bi bi-egg-fried"></i>
+                                </div>
+                                <div>กบ</div>
+                            </div>
+                            <div class="food-chain-step">
+                                <div class="food-chain-icon">
+                                    <i class="bi bi-signpost-split"></i>
+                                </div>
+                                <div>งู</div>
+                            </div>
+                            <div class="food-chain-step">
+                                <div class="food-chain-icon">
+                                    <i class="bi bi-bird"></i>
+                                </div>
+                                <div>เหยี่ยว</div>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point mt-4">
+                            <h5><i class="bi bi-diagram-3"></i> สายใยอาหาร (Food Web)</h5>
+                            <p>เป็นโครงข่ายของห่วงโซ่อาหารหลายๆ ห่วงโซ่ที่เชื่อมโยงกันในระบบนิเวศเดียวกัน โดยสิ่งมีชีวิตหนึ่งอาจเป็นผู้บริโภคหลายระดับ</p>
+                            <p><strong>ความสำคัญ:</strong> ทำให้ระบบนิเวศมีความมั่นคง เมื่อสายใยอาหารมีความซับซ้อนมากขึ้น ระบบนิเวศก็จะมีความยั่งยืนมากขึ้น</p>
+                        </div>
+                        
+                        <div class="graph-container">
+                            <h5>สายใยอาหารในระบบนิเวศป่าไม้</h5>
+                            <div class="graph">
+                                <div class="graph-placeholder">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300'%3E%3Ccircle cx='100' cy='150' r='30' fill='%234CAF50' opacity='0.3'/%3E%3Ctext x='100' y='150' text-anchor='middle' fill='%23333' font-size='14'%3Eพืช%3C/text%3E%3Ccircle cx='200' cy='100' r='25' fill='%23FF9800' opacity='0.3'/%3E%3Ctext x='200' y='100' text-anchor='middle' fill='%23333' font-size='14'%3Eหนอน%3C/text%3E%3Ccircle cx='200' cy='200' r='25' fill='%23FF9800' opacity='0.3'/%3E%3Ctext x='200' y='200' text-anchor='middle' fill='%23333' font-size='14'%3Eกระต่าย%3C/text%3E%3Ccircle cx='300' cy='150' r='25' fill='%23FF9800' opacity='0.3'/%3E%3Ctext x='300' y='150' text-anchor='middle' fill='%23333' font-size='14'%3Eหนู%3C/text%3E%3Ccircle cx='400' cy='100' r='20' fill='%23F44336' opacity='0.3'/%3E%3Ctext x='400' y='100' text-anchor='middle' fill='%23333' font-size='14'%3Eเหยี่ยว%3C/text%3E%3Ccircle cx='400' cy='200' r='20' fill='%23F44336' opacity='0.3'/%3E%3Ctext x='400' y='200' text-anchor='middle' fill='%23333' font-size='14'%3Eงู%3C/text%3E%3Cpath d='M130,150 L170,150 L170,100 L180,100' stroke='%23333' stroke-width='1' fill='none'/%3E%3Cpath d='M130,150 L170,150 L170,200 L180,200' stroke='%23333' stroke-width='1' fill='none'/%3E%3Cpath d='M130,150 L170,150 L170,150 L180,150' stroke='%23333' stroke-width='1' fill='none'/%3E%3Cpath d='M220,100 L270,150' stroke='%23333' stroke-width='1' fill='none'/%3E%3Cpath d='M220,200 L270,150' stroke='%23333' stroke-width='1' fill='none'/%3E%3Cpath d='M220,100 L270,100' stroke='%23333' stroke-width='1' fill='none'/%3E%3Cpath d='M320,150 L370,100' stroke='%23333' stroke-width='1' fill='none'/%3E%3Cpath d='M320,150 L370,200' stroke='%23333' stroke-width='1' fill='none'/%3E%3Cpath d='M220,200 L270,200' stroke='%23333' stroke-width='1' fill='none'/%3E%3C/svg%3E" alt="สายใยอาหาร" style="width:100%; height:100%; object-fit: contain;">
+                                </div>
+                            </div>
+                            <p>สายใยอาหารแสดงความสัมพันธ์ที่ซับซ้อนระหว่างสิ่งมีชีวิตในระบบนิเวศ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- วัฏจักรของสารในธรรมชาติ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#cycles">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">วัฏจักรของสารในธรรมชาติ</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="cycles" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            วัฏจักรของสาร (Biogeochemical Cycles) เป็นกระบวนการหมุนเวียนสารอาหารที่จำเป็นต่อสิ่งมีชีวิตในระบบนิเวศ โดยสารต่างๆ จะถูกเปลี่ยนรูปและหมุนเวียนระหว่างองค์ประกอบที่มีชีวิตและไม่มีชีวิต
+                        </p>
+                        
+                        <div class="cycle-box">
+                            <h5><i class="bi bi-droplet"></i> วัฏจักรน้ำ (Water Cycle)</h5>
+                            <ul>
+                                <li><strong>การระเหย (Evaporation):</strong> น้ำเปลี่ยนสถานะจากของเหลวเป็นไอ</li>
+                                <li><strong>การคายน้ำ (Transpiration):</strong> พืชปล่อยน้ำออกทางปากใบ</li>
+                                <li><strong>การควบแน่น (Condensation):</strong> ไอน้ำกลั่นตัวเป็นเมฆ</li>
+                                <li><strong>การตกตะกอน (Precipitation):</strong> น้ำตกลงสู่พื้นดินในรูปแบบฝน, หิมะ</li>
+                                <li><strong>การซึม (Infiltration):</strong> น้ำซึมลงสู่ดิน</li>
+                                <li><strong>การไหลบ่า (Runoff):</strong> น้ำไหลบนพื้นผิวสู่แม่น้ำและทะเล</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="cycle-box">
+                            <h5><i class="bi bi-cloud"></i> วัฏจักรคาร์บอน (Carbon Cycle)</h5>
+                            <ul>
+                                <li><strong>แหล่งกักเก็บคาร์บอน:</strong> บรรยากาศ (CO₂), มหาสมุทร, หินปูน, เชื้อเพลิงฟอสซิล</li>
+                                <li><strong>กระบวนการเพิ่มคาร์บอน:</strong> การหายใจ, การสลายตัว, การเผาไหม้</li>
+                                <li><strong>กระบวนการลดคาร์บอน:</strong> การสังเคราะห์ด้วยแสง, การละลายน้ำ</li>
+                                <li><strong>การกักเก็บคาร์บอน:</strong> พืชดูด CO₂ ผ่านการสังเคราะห์แสง สร้างเป็นกลูโคส</li>
+                                <li><strong>ระยะเวลา:</strong> คาร์บอนในบรรยากาศหมุนเวียนทุก 5-200 ปี</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="cycle-diagram">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300'%3E%3Ccircle cx='250' cy='150' r='120' fill='none' stroke='%234CAF50' stroke-width='2' stroke-dasharray='5,5'/%3E%3Ctext x='250' y='50' text-anchor='middle' fill='%23333' font-size='16'%3Eบรรยากาศ%3C/text%3E%3Ctext x='250' y='250' text-anchor='middle' fill='%23333' font-size='16'%3Eพื้นดิน%3C/text%3E%3Ctext x='100' y='150' text-anchor='middle' fill='%23333' font-size='16'%3Eพืช%3C/text%3E%3Ctext x='400' y='150' text-anchor='middle' fill='%23333' font-size='16'%3Eสัตว์%3C/text%3E%3Cpath d='M250,30 L250,70' stroke='%234CAF50' stroke-width='2' fill='none'/%3E%3Cpath d='M250,230 L250,270' stroke='%234CAF50' stroke-width='2' fill='none'/%3E%3Cpath d='M130,150 L170,150' stroke='%234CAF50' stroke-width='2' fill='none'/%3E%3Cpath d='M330,150 L370,150' stroke='%234CAF50' stroke-width='2' fill='none'/%3E%3Cpath d='M250,70 Q200,100 170,150' stroke='%234CAF50' stroke-width='2' fill='none'/%3E%3Cpath d='M170,150 Q200,200 250,230' stroke='%234CAF50' stroke-width='2' fill='none'/%3E%3Cpath d='M250,230 Q300,200 330,150' stroke='%234CAF50' stroke-width='2' fill='none'/%3E%3Cpath d='M330,150 Q300,100 250,70' stroke='%234CAF50' stroke-width='2' fill='none'/%3E%3C/svg%3E" alt="วัฏจักรคาร์บอน" style="width:100%;">
+                        </div>
+                        
+                        <div class="cycle-box">
+                            <h5><i class="bi bi-lightning"></i> วัฏจักรไนโตรเจน (Nitrogen Cycle)</h5>
+                            <ul>
+                                <li><strong>การตรึงไนโตรเจน (Nitrogen Fixation):</strong> แบคทีเรียเปลี่ยน N₂ เป็น NH₃</li>
+                                <li><strong>การสร้างไนไตรท์ (Nitrification):</strong> แบคทีเรียเปลี่ยน NH₃ → NO₂⁻ → NO₃⁻</li>
+                                <li><strong>การดูดซึม (Assimilation):</strong> พืชดูดซึม NO₃⁻ และ NH₄⁺</li>
+                                <li><strong>การแอมโมนิฟิเคชัน (Ammonification):</strong> แบคทีเรียเปลี่ยนสารอินทรีย์เป็น NH₃</li>
+                                <li><strong>การดีไนตริฟิเคชัน (Denitrification):</strong> แบคทีเรียเปลี่ยน NO₃⁻ → N₂</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-geo-alt"></i> วัฏจักรฟอสฟอรัส (Phosphorus Cycle)</h5>
+                            <p>ฟอสฟอรัสเป็นองค์ประกอบสำคัญของ DNA, RNA และ ATP วัฏจักรนี้ไม่มีขั้นตอนในบรรยากาศ</p>
+                            <p><strong>แหล่งกักเก็บหลัก:</strong> หินฟอสเฟต</p>
+                            <p><strong>กระบวนการ:</strong> การผุพังของหิน → การดูดซึมโดยพืช → การถ่ายทอดในห่วงโซ่อาหาร → การย่อยสลาย → การสะสมในตะกอน</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การถ่ายทอดพลังงาน -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#energy">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-lightning-charge"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การถ่ายทอดพลังงาน</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="energy" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            พลังงานในระบบนิเวศมีต้นกำเนิดจากดวงอาทิตย์ โดยพลังงานแสงจะถูกเปลี่ยนเป็นพลังงานเคมีผ่านกระบวนการสังเคราะห์ด้วยแสง และถูกถ่ายทอดผ่านระดับต่างๆ ของห่วงโซ่อาหาร
+                        </p>
+                        
+                        <div class="energy-transfer">
+                            <h5><i class="bi bi-sun"></i> กฎ 10% (Ten Percent Law)</h5>
+                            <p>เมื่อพลังงานถูกถ่ายทอดจากระดับโภชนาการหนึ่งไปยังระดับถัดไป จะสูญเสียพลังงานประมาณ 90% โดยเฉลี่ย เหลือเพียง 10% ที่ถูกถ่ายทอดไปยังระดับถัดไป</p>
+                            <p class="formula">$$ \text{พลังงานระดับ n} = \text{พลังงานระดับ n-1} \times 0.10 $$</p>
+                            <div class="mt-3">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 200'%3E%3Crect x='50' y='50' width='100' height='100' fill='%234CAF50' opacity='0.6'/%3E%3Ctext x='100' y='120' text-anchor='middle' fill='%23333'%3Eผู้ผลิต%3C/text%3E%3Ctext x='100' y='140' text-anchor='middle' fill='%23333'%3E(พลังงาน 10,000 หน่วย)%3C/text%3E%3Crect x='180' y='70' width='80' height='80' fill='%23FF9800' opacity='0.6'/%3E%3Ctext x='220' y='140' text-anchor='middle' fill='%23333'%3Eผู้บริโภคพืช%3C/text%3E%3Ctext x='220' y='160' text-anchor='middle' fill='%23333'%3E(1,000 หน่วย)%3C/text%3E%3Crect x='290' y='90' width='60' height='60' fill='%23F44336' opacity='0.6'/%3E%3Ctext x='320' y='140' text-anchor='middle' fill='%23333'%3Eผู้บริโภคสัตว์%3C/text%3E%3Ctext x='320' y='160' text-anchor='middle' fill='%23333'%3E(100 หน่วย)%3C/text%3E%3Crect x='380' y='110' width='40' height='40' fill='%239C27B0' opacity='0.6'/%3E%3Ctext x='400' y='140' text-anchor='middle' fill='%23333'%3Eผู้บริโภคสูงสุด%3C/text%3E%3Ctext x='400' y='160' text-anchor='middle' fill='%23333'%3E(10 หน่วย)%3C/text%3E%3Cpath d='M150,100 L180,100' stroke='%23333' stroke-width='2' fill='none'/%3E%3Cpath d='M260,100 L290,100' stroke='%23333' stroke-width='2' fill='none'/%3E%3Cpath d='M350,100 L380,100' stroke='%23333' stroke-width='2' fill='none'/%3E%3C/svg%3E" alt="กฎ 10%" style="width:100%;">
+                            </div>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>ปิรามิดพลังงาน (Energy Pyramid)</h5>
+                            <p>เป็นวิธีแสดงการถ่ายทอดพลังงานในระบบนิเวศ โดยมีลักษณะดังนี้:</p>
+                            <ul>
+                                <li>ระดับล่างสุดกว้างที่สุด แสดงผู้ผลิตซึ่งมีพลังงานมากที่สุด</li>
+                                <li>ระดับสูงขึ้นไปมีขนาดเล็กลง แสดงผู้บริโภคซึ่งมีพลังงานลดลงตามลำดับ</li>
+                                <li>แสดงให้เห็นว่าทำไมจำนวนสัตว์นักล่าจึงน้อยกว่าจำนวนสัตว์กินพืช</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="proof-box">
+                            <h5><i class="bi bi-lightbulb"></i> สาเหตุการสูญเสียพลังงาน</h5>
+                            <p><strong>1. การหายใจ (Respiration):</strong> ใช้พลังงานในการดำรงชีวิต</p>
+                            <p><strong>2. ของเสีย (Waste Products):</strong> พลังงานที่ออกมากับอุจจาระและปัสสาวะ</p>
+                            <p><strong>3. ความร้อน (Heat Loss):</strong> พลังงานสูญเสียเป็นความร้อนตามกฎอุณหพลศาสตร์</p>
+                            <p><strong>4. ส่วนที่ไม่ถูกกิน (Uneaten Parts):</strong> ส่วนของสิ่งมีชีวิตที่ไม่ถูกบริโภค</p>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่างการถ่ายทอดพลังงาน</h6>
+                            <p>ในระบบนิเวศหนึ่ง มีหญ้าซึ่งมีพลังงาน 50,000 กิโลแคลอรี</p>
+                            <p><strong>ผู้บริโภคพืช (ตั๊กแตน):</strong> ได้รับพลังงาน $50,000 \times 0.10 = 5,000$ กิโลแคลอรี</p>
+                            <p><strong>ผู้บริโภคสัตว์ (กบ):</strong> ได้รับพลังงาน $5,000 \times 0.10 = 500$ กิโลแคลอรี</p>
+                            <p><strong>ผู้บริโภคสูงสุด (งู):</strong> ได้รับพลังงาน $500 \times 0.10 = 50$ กิโลแคลอรี</p>
+                        </div>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-arrow-repeat"></i> การประยุกต์ในระบบนิเวศ</h5>
+                            <ul>
+                                <li><strong>ความยาวของห่วงโซ่อาหาร:</strong> โดยทั่วไปมี 3-5 ระดับ เนื่องจากพลังงานลดลงตามระดับ</li>
+                                <li><strong>ประสิทธิภาพการถ่ายทอดพลังงาน:</strong> คำนวณได้จาก $\frac{\text{พลังงานระดับ n}}{\text{พลังงานระดับ n-1}} \times 100$</li>
+                                <li><strong>ผลต่อความหลากหลายทางชีวภาพ:</strong> ระบบนิเวศที่มีห่วงโซ่อาหารสั้นมักมีความหลากหลายน้อยกว่า</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Make section headers clickable to collapse/expand
+            document.querySelectorAll('.section-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-bs-target');
+                    const target = document.querySelector(targetId);
+                    const collapse = new bootstrap.Collapse(target, {
+                        toggle: true
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
