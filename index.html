@@ -18,6 +18,7 @@
             --dark: #212529;
             --chemistry: #9c27b0;
             --astronomy: #2196f3;
+            --mathematics: #0d6efd; /* Added math color */
         }
         
         body {
@@ -104,6 +105,11 @@
         .astronomy-card {
             border-top: 4px solid var(--astronomy);
         }
+
+        /* Added math card style */
+        .mathematics-card {
+            border-top: 4px solid var(--mathematics);
+        }
         
         .subject-icon {
             font-size: 2.5rem;
@@ -126,6 +132,12 @@
         .astronomy-icon {
             color: var(--astronomy);
             background: rgba(33, 150, 243, 0.1);
+        }
+
+        /* Added math icon style */
+        .mathematics-icon {
+            color: var(--mathematics);
+            background: rgba(13, 110, 253, 0.1);
         }
         
         .section-title {
@@ -350,7 +362,7 @@
 
     <header class="hero-section text-center text-white">
         <div class="container position-relative z-index-1">
-            <h1 class="display-4 fw-bold mb-3">เนื้อหาเคมีและดาราศาสตร์สมบูรณ์แล้ว!</h1>
+            <h1 class="display-4 fw-bold mb-3">เนื้อหาสอวน.สมบูรณ์แล้ว!</h1>
             <p class="lead fs-4 mb-4">ทุกบทเรียนพร้อมให้คุณศึกษาแล้ววันนี้</p>
             <a href="#subjects" class="btn btn-primary btn-lg mt-3 px-4 py-2">เริ่มเรียนรู้ตอนนี้</a>
         </div>
@@ -386,13 +398,19 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <h2 class="text-success"><i class="bi bi-check-circle-fill"></i> เนื้อหาใหม่สมบูรณ์แล้ว!</h2>
-                    <p class="fs-5">เราภูมิใจประกาศว่าบทเรียนวิชาเคมีและดาราศาสตร์สำหรับค่ายโอลิมปิกวิชาการได้เสร็จสมบูรณ์แล้ว</p>
+                    <p class="fs-5">เราภูมิใจประกาศว่าบทเรียนวิชาเคมี คณิตศาสตร์ และดาราศาสตร์สำหรับค่ายโอลิมปิกวิชาการได้เสร็จสมบูรณ์แล้ว</p>
                     <div class="d-flex mt-4">
                         <div class="me-4 text-center">
                             <div class="chemistry-icon mx-auto">
                                 <i class="bi bi-radioactive"></i>
                             </div>
                             <div class="mt-2 fw-bold">เคมี</div>
+                        </div>
+                        <div class="me-4 text-center">
+                            <div class="mathematics-icon mx-auto">
+                                <i class="bi bi-infinity"></i>
+                            </div>
+                            <div class="mt-2 fw-bold">คณิตศาสตร์</div>
                         </div>
                         <div class="me-4 text-center">
                             <div class="astronomy-icon mx-auto">
@@ -429,16 +447,19 @@
                     </div>
                 </div>
                 
-                <!-- Mathematics -->
+                <!-- Mathematics - COMPLETED -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 subject-card">
-                        <div class="card-body text-center position-relative">
-                            <div class="subject-icon"><i class="bi bi-infinity"></i></div>
-                            <h5 class="card-title mt-3">คณิตศาสตร์</h5>
-                            <p class="card-text">สำรวจทฤษฎีจำนวน พีชคณิต เรขาคณิต และคอมบินาทอริกส์</p>
-                            <a href="#" class="btn btn-outline-primary mt-2">เข้าสู่บทเรียน</a>
+                    <a href="math_topics.html" class="text-decoration-none">
+                        <div class="card h-100 subject-card mathematics-card">
+                            <div class="complete-badge">เนื้อหาเสร็จสมบูรณ์</div>
+                            <div class="card-body text-center">
+                                <div class="subject-icon mathematics-icon"><i class="bi bi-infinity"></i></div>
+                                <h5 class="card-title mt-3">คณิตศาสตร์</h5>
+                                <p class="card-text">สำรวจทฤษฎีจำนวน พีชคณิต เรขาคณิต และคอมบินาทอริกส์</p>
+                                <button class="btn btn-success w-100 mt-3">ศึกษาตอนนี้ <i class="bi bi-arrow-right"></i></button>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 
                 <!-- Physics -->
@@ -456,7 +477,7 @@
                 <!-- Chemistry - COMPLETED -->
                 <div class="col-md-6 col-lg-4">
                     <a href="chemistry_topics.html" class="text-decoration-none">
-                        <div class="card h-100 subject-card chemistry-card completed">
+                        <div class="card h-100 subject-card chemistry-card">
                             <div class="complete-badge">เนื้อหาเสร็จสมบูรณ์</div>
                             <div class="card-body text-center">
                                 <div class="subject-icon chemistry-icon"><i class="bi bi-radioactive"></i></div>
@@ -483,7 +504,7 @@
                 <!-- Astronomy - COMPLETED -->
                 <div class="col-md-6 col-lg-4">
                     <a href="astronomy_topics.html" class="text-decoration-none">
-                        <div class="card h-100 subject-card astronomy-card completed">
+                        <div class="card h-100 subject-card astronomy-card">
                             <div class="complete-badge">เนื้อหาเสร็จสมบูรณ์</div>
                             <div class="card-body text-center">
                                 <div class="subject-icon astronomy-icon"><i class="bi bi-stars"></i></div>
