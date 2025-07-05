@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทที่ 1: พีชคณิต - สอวน. คณิตศาสตร์</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        :root {
+            --math: #1976d2;
+            --math-light: #bbdefb;
+            --math-dark: #0d47a1;
+            --formula: #ff9800;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%231976d2' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--math), #2196f3);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='20' cy='20' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='10' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='90' cy='10' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='55' cy='35' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.3;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(25, 118, 210, 0.1), rgba(33, 150, 243, 0.1));
+            border-left: 4px solid var(--math);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(25, 118, 210, 0.15);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, var(--math), #2196f3);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .formula-box {
+            background-color: rgba(187, 222, 251, 0.3);
+            border-left: 3px solid var(--formula);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        .example-box {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-left: 3px solid var(--math);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        
+        .key-point {
+            background: linear-gradient(135deg, rgba(187, 222, 251, 0.3), rgba(25, 118, 210, 0.1));
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(25, 118, 210, 0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--math);
+            font-size: 1.2rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--math), #2196f3);
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(25, 118, 210, 0.3);
+        }
+        
+        .graph-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin: 20px 0;
+        }
+        
+        .proof-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .theorem {
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(255, 152, 0, 0.05));
+            border-left: 3px solid var(--formula);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .step-by-step {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-calculator"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="math_topics.html">คณิตศาสตร์</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="math_topics.html">เนื้อหาคณิตศาสตร์ทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">บทที่ 1: พีชคณิต</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">บทที่ 1: พีชคณิต</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-blue me-2">สมการพหุนาม</span>
+                <span class="badge bg-light text-blue me-2">ระบบสมการ</span>
+                <span class="badge bg-light text-blue me-2">ลำดับและอนุกรม</span>
+                <span class="badge bg-light text-blue">ฟังก์ชันและกราฟ</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#polynomials">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-x-diamond"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">1.1 สมการและอสมการพหุนาม</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="polynomials" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            พหุนาม (Polynomial) คือ นิพจน์ทางคณิตศาสตร์ที่ประกอบด้วยตัวแปรและค่าคงตัว โดยมีการดำเนินการเพียงการบวก ลบ คูณ และการยกกำลังที่มีเลขชี้กำลังเป็นจำนวนเต็มที่ไม่ติดลบ
+                        </p>
+                        
+                        <div class="formula-box">
+                            <h5>รูปแบบทั่วไปของพหุนาม:</h5>
+                            <p>$$ P(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0 $$</p>
+                            <p>โดยที่ $a_n, a_{n-1}, \ldots, a_0$ เป็นสัมประสิทธิ์ และ $n$ เป็นดีกรีของพหุนาม</p>
+                        </div>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-lightbulb"></i> ทฤษฎีบทพื้นฐานของพีชคณิต (Fundamental Theorem of Algebra)</h5>
+                            <p>พหุนามดีกรี $n$ ใดๆ จะมีรากในระบบจำนวนเชิงซ้อนอย่างน้อย $n$ ราก (นับรากซ้ำ)</p>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>สูตรหารากสมการพหุนาม</h5>
+                            <p><strong>สมการกำลังสอง:</strong> $ax^2 + bx + c = 0$</p>
+                            <p>$$ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$</p>
+                            
+                            <p><strong>สมการกำลังสาม:</strong> $ax^3 + bx^2 + cx + d = 0$</p>
+                            <p>$$ x = \sqrt[3]{\frac{-q}{2} + \sqrt{\left(\frac{q}{2}\right)^2 + \left(\frac{p}{3}\right)^3}} + \sqrt[3]{\frac{-q}{2} - \sqrt{\left(\frac{q}{2}\right)^2 + \left(\frac{p}{3}\right)^3}} $$</p>
+                            <p>โดยที่ $p = \frac{3ac - b^2}{3a^2}$, $q = \frac{2b^3 - 9abc + 27a^2d}{27a^3}$</p>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การแก้สมการพหุนาม</h6>
+                            <p>แก้สมการ $x^3 - 6x^2 + 11x - 6 = 0$</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <ol>
+                                <li>ทดลองแทนค่า $x=1$: $1 - 6 + 11 - 6 = 0$ → $(x-1)$ เป็นตัวประกอบ</li>
+                                <li>ใช้การหารสังเคราะห์:
+                                    <pre>
+      1 | 1  -6  11  -6
+           |     1  -5   6
+          ---------------
+            1  -5   6   0
+                                    </pre>
+                                </li>
+                                <li>ได้ผลลัพธ์ $x^2 - 5x + 6 = 0$</li>
+                                <li>แยกตัวประกอบ: $(x-2)(x-3) = 0$</li>
+                                <li>ดังนั้นคำตอบคือ $x = 1, 2, 3$</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-graph-up"></i> การแก้อสมการพหุนาม</h5>
+                            <p>ขั้นตอนการแก้อสมการพหุนาม:</p>
+                            <ol>
+                                <li>หาค่าที่ทำให้พหุนามเท่ากับศูนย์ (รากของสมการ)</li>
+                                <li>แบ่งช่วงบนเส้นจำนวน</li>
+                                <li>ทดสอบเครื่องหมายในแต่ละช่วง</li>
+                                <li>เลือกช่วงที่สอดคล้องกับอสมการ</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#systems">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-diagram-3"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">1.2 ระบบสมการเชิงเส้นและไม่เชิงเส้น</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="systems" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ระบบสมการคือเซตของสมการหลายสมการที่มีตัวแปรร่วมกัน การแก้ระบบสมการคือการหาค่าของตัวแปรที่ทำให้สมการทุกสมการเป็นจริงพร้อมกัน
+                        </p>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="key-point">
+                                    <h5><i class="bi bi-arrow-repeat"></i> ระบบสมการเชิงเส้น</h5>
+                                    <p>รูปแบบทั่วไป: $a_1x + b_1y = c_1$</p>
+                                    <p>$a_2x + b_2y = c_2$</p>
+                                    
+                                    <p><strong>วิธีแก้:</strong></p>
+                                    <ul>
+                                        <li>วิธีกำจัดตัวแปร</li>
+                                        <li>วิธีแทนค่า</li>
+                                        <li>วิธีเมทริกซ์</li>
+                                        <li>วิธีดีเทอร์มิแนนต์ (กฎของคราเมอร์)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="key-point">
+                                    <h5><i class="bi bi-bezier"></i> ระบบสมการไม่เชิงเส้น</h5>
+                                    <p>ตัวอย่าง: $x^2 + y^2 = 25$</p>
+                                    <p>$x + y = 7$</p>
+                                    
+                                    <p><strong>วิธีแก้:</strong></p>
+                                    <ul>
+                                        <li>วิธีแทนค่า</li>
+                                        <li>วิธีกราฟ</li>
+                                        <li>วิธีกำจัดตัวแปร</li>
+                                        <li>วิธีเชิงตัวเลข</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>กฎของคราเมอร์ (Cramer's Rule)</h5>
+                            <p>สำหรับระบบสมการ:</p>
+                            <p>$ax + by = e$</p>
+                            <p>$cx + dy = f$</p>
+                            
+                            <p>$$ x = \frac{\begin{vmatrix} e & b \\ f & d \end{vmatrix}}{\begin{vmatrix} a & b \\ c & d \end{vmatrix}} = \frac{ed - bf}{ad - bc} $$</p>
+                            <p>$$ y = \frac{\begin{vmatrix} a & e \\ c & f \end{vmatrix}}{\begin{vmatrix} a & b \\ c & d \end{vmatrix}} = \frac{af - ec}{ad - bc} $$</p>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การแก้ระบบสมการไม่เชิงเส้น</h6>
+                            <p>แก้ระบบสมการ: $x^2 + y^2 = 25$ และ $x + y = 7$</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <ol>
+                                <li>จากสมการที่สอง: $y = 7 - x$</li>
+                                <li>แทนค่าในสมการแรก: $x^2 + (7 - x)^2 = 25$</li>
+                                <li>ขยายสมการ: $x^2 + 49 - 14x + x^2 = 25$</li>
+                                <li>ลดรูป: $2x^2 - 14x + 49 = 25$</li>
+                                <li>ย้ายข้าง: $2x^2 - 14x + 24 = 0$</li>
+                                <li>หารด้วย 2: $x^2 - 7x + 12 = 0$</li>
+                                <li>แยกตัวประกอบ: $(x-3)(x-4) = 0$</li>
+                                <li>ดังนั้น $x = 3, 4$</li>
+                                <li>เมื่อ $x=3$ ได้ $y=4$</li>
+                                <li>เมื่อ $x=4$ ได้ $y=3$</li>
+                                <li>คำตอบ: $(3,4)$ และ $(4,3)$</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#sequences">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-infinity"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">1.3 ลำดับและอนุกรม</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="sequences" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ลำดับ (Sequence) คือฟังก์ชันที่มีโดเมนเป็นเซตของจำนวนเต็มบวก ส่วนอนุกรม (Series) คือผลรวมของพจน์ในลำดับ
+                        </p>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="key-point">
+                                    <h5><i class="bi bi-sort-up"></i> ลำดับเลขคณิต</h5>
+                                    <p>ลำดับที่มีผลต่างร่วม (common difference) คงตัว</p>
+                                    <p>พจน์ทั่วไป: $a_n = a_1 + (n-1)d$</p>
+                                    <p>ผลรวม n พจน์แรก: $S_n = \frac{n}{2} [2a_1 + (n-1)d]$</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="key-point">
+                                    <h5><i class="bi bi-graph-up-arrow"></i> ลำดับเรขาคณิต</h5>
+                                    <p>ลำดับที่มีอัตราส่วนร่วม (common ratio) คงตัว</p>
+                                    <p>พจน์ทั่วไป: $a_n = a_1 \cdot r^{n-1}$</p>
+                                    <p>ผลรวม n พจน์แรก: $S_n = a_1 \frac{r^n - 1}{r - 1}$ สำหรับ $r \neq 1$</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>อนุกรมอนันต์ (Infinite Series)</h5>
+                            <p>อนุกรมเรขาคณิตอนันต์ลู่เข้าเมื่อ $|r| < 1$</p>
+                            <p>$$ S = \sum_{n=0}^{\infty} ar^n = \frac{a}{1-r} \quad \text{สำหรับ} \ |r| < 1 $$</p>
+                        </div>
+                        
+                        <div class="proof-box">
+                            <h5><i class="bi bi-journal-check"></i> การพิสูจน์สูตรอนุกรมเรขาคณิตอนันต์</h5>
+                            <p>กำหนดให้ $S = a + ar + ar^2 + ar^3 + \cdots$</p>
+                            <p>คูณทั้งสองข้างด้วย $r$: $rS = ar + ar^2 + ar^3 + \cdots$</p>
+                            <p>ลบสมการ: $S - rS = a$</p>
+                            <p>$$ S(1 - r) = a $$</p>
+                            <p>$$ S = \frac{a}{1-r} \quad \text{เมื่อ} \ |r| < 1 $$</p>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การประยุกต์อนุกรม</h6>
+                            <p>จงหาผลรวมของอนุกรม $1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \cdots$</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <p>อนุกรมนี้เป็นอนุกรมเรขาคณิตอนันต์ โดย $a = 1$, $r = \frac{1}{2}$</p>
+                            <p>เนื่องจาก $|r| = \frac{1}{2} < 1$ อนุกรมลู่เข้า</p>
+                            <p>$$ S = \frac{a}{1-r} = \frac{1}{1 - \frac{1}{2}} = \frac{1}{\frac{1}{2}} = 2 $$</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#functions">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">1.4 ฟังก์ชันและกราฟ</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="functions" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ฟังก์ชัน (Function) คือความสัมพันธ์ซึ่งในสองคู่อันดับใดๆ ของความสัมพันธ์นั้น ถ้ามีสมาชิกตัวหน้าเท่ากันแล้ว สมาชิกตัวหลังต้องไม่ต่างกัน
+                        </p>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-diagram-2"></i> ฟังก์ชันพื้นฐาน</h5>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h6>ฟังก์ชันเชิงเส้น</h6>
+                                            <p>$f(x) = mx + b$</p>
+                                            <p>กราฟเป็นเส้นตรง</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h6>ฟังก์ชันกำลังสอง</h6>
+                                            <p>$f(x) = ax^2 + bx + c$</p>
+                                            <p>กราฟเป็นพาราโบลา</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h6>ฟังก์ชันเอกซ์โพเนนเชียล</h6>
+                                            <p>$f(x) = a^x$</p>
+                                            <p>กราฟเป็นเส้นโค้งชี้ขึ้น</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="graph-container">
+                            <h5><i class="bi bi-bar-chart-line"></i> การแปลงกราฟฟังก์ชัน</h5>
+                            <p>ฟังก์ชัน $y = f(x)$ สามารถแปลงได้ดังนี้:</p>
+                            <ul>
+                                <li>$y = f(x) + k$ → เลื่อนขึ้น $k$ หน่วย</li>
+                                <li>$y = f(x) - k$ → เลื่อนลง $k$ หน่วย</li>
+                                <li>$y = f(x + h)$ → เลื่อนซ้าย $h$ หน่วย</li>
+                                <li>$y = f(x - h)$ → เลื่อนขวา $h$ หน่วย</li>
+                                <li>$y = -f(x)$ → สะท้อนรอบแกน x</li>
+                                <li>$y = f(-x)$ → สะท้อนรอบแกน y</li>
+                                <li>$y = a f(x)$ → ยืด/หดในแนวตั้ง</li>
+                                <li>$y = f(bx)$ → ยืด/หดในแนวนอน</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="step-by-step">
+                            <h5><i class="bi bi-arrow-right-circle"></i> ขั้นตอนการวาดกราฟฟังก์ชัน</h5>
+                            <ol>
+                                <li>หาจุดตัดแกน x (ให้ y=0)</li>
+                                <li>หาจุดตัดแกน y (ให้ x=0)</li>
+                                <li>หาจุดวิกฤต (ค่าสูงสุด/ต่ำสุด)</li>
+                                <li>หาพฤติกรรมปลาย (x → ±∞)</li>
+                                <li>หาช่วงที่ฟังก์ชันเพิ่ม/ลด</li>
+                                <li>หาช่วงที่ฟังก์ชันเว้าขึ้น/ลง</li>
+                                <li>วาดกราฟโดยใช้ข้อมูลทั้งหมด</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การวิเคราะห์ฟังก์ชัน</h6>
+                            <p>จงวิเคราะห์และวาดกราฟฟังก์ชัน $f(x) = x^3 - 3x$</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <ol>
+                                <li>จุดตัดแกน x: $x^3 - 3x = 0$ → $x(x^2 - 3) = 0$ → $x = 0, \pm\sqrt{3}$</li>
+                                <li>จุดตัดแกน y: $f(0) = 0$</li>
+                                <li>อนุพันธ์: $f'(x) = 3x^2 - 3 = 3(x^2 - 1)$</li>
+                                <li>จุดวิกฤต: $x = \pm 1$
+                                    <ul>
+                                        <li>$f''(x) = 6x$</li>
+                                        <li>$f''(-1) = -6 < 0$ → ค่าสูงสุดสัมพัทธ์ที่ $(-1, 2)$</li>
+                                        <li>$f''(1) = 6 > 0$ → ค่าต่ำสุดสัมพัทธ์ที่ $(1, -2)$</li>
+                                    </ul>
+                                </li>
+                                <li>พฤติกรรมปลาย: เมื่อ $x \to \infty$, $f(x) \to \infty$; เมื่อ $x \to -\infty$, $f(x) \to -\infty$</li>
+                                <li>วาดกราฟโดยใช้ข้อมูลทั้งหมด</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="d-grid gap-2 mt-4">
+                <a href="math_topics.html" class="btn btn-primary btn-lg">
+                    <i class="bi bi-arrow-left-circle"></i> กลับไปยังหน้าบทเรียนทั้งหมด
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
