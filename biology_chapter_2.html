@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ประชากร - สอวน. ชีววิทยา</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        :root {
+            --biology: #4CAF50;
+            --biology-light: #C8E6C9;
+            --biology-dark: #388E3C;
+            --theorem: #81C784;
+            --proof: #FFB74D;
+            --example: #64B5F6;
+            --growth: #AED581;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,15 C65.464,15 78,27.536 78,43 C78,58.464 65.464,71 50,71 C34.536,71 22,58.464 22,43 C22,27.536 34.536,15 50,15 Z M50,25 C40.058,25 32,33.058 32,43 C32,52.942 40.058,61 50,61 C59.942,61 68,52.942 68,43 C68,33.058 59.942,25 50,25 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3Cpath d='M30,75 C36.627,75 42,80.373 42,87 C42,93.627 36.627,99 30,99 C23.373,99 18,93.627 18,87 C18,80.373 23.373,75 30,75 Z M70,75 C76.627,75 82,80.373 82,87 C82,93.627 76.627,99 70,99 C63.373,99 58,93.627 58,87 C58,80.373 63.373,75 70,75 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='5' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='20' cy='30' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='80' cy='20' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='30' cy='70' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='70' cy='80' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='10' cy='50' r='2' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='90' cy='60' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.2;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.1), rgba(67, 160, 71, 0.1));
+            border-left: 4px solid var(--biology);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .formula-box {
+            background-color: rgba(200, 230, 201, 0.3);
+            border-left: 3px solid var(--biology);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        .example-box {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-left: 3px solid var(--example);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        
+        .key-point {
+            background: linear-gradient(135deg, rgba(200, 230, 201, 0.3), rgba(76, 175, 80, 0.1));
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(76, 175, 80, 0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--biology);
+            font-size: 1.2rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .graph-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin: 20px 0;
+        }
+        
+        .proof-box {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .theorem {
+            background: linear-gradient(135deg, rgba(129, 199, 132, 0.2), rgba(129, 199, 132, 0.1));
+            border-left: 3px solid var(--theorem);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .growth-model {
+            background: linear-gradient(135deg, rgba(174, 213, 129, 0.3), rgba(174, 213, 129, 0.15));
+            border-left: 3px solid var(--growth);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .population-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .population-table th {
+            background-color: var(--biology);
+            color: white;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .population-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .population-table tr:nth-child(even) {
+            background-color: #f2f9f2;
+        }
+        
+        .highlight {
+            background-color: rgba(255, 183, 77, 0.2);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .formula {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--biology);
+        }
+        
+        .graph {
+            width: 100%;
+            height: 300px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .graph-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .distribution-diagram {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .distribution-type {
+            text-align: center;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .distribution-icon {
+            width: 100px;
+            height: 100px;
+            background-color: #C8E6C9;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 2.5rem;
+            color: var(--biology-dark);
+        }
+        
+        .pyramid-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 250px;
+            margin: 20px 0;
+            gap: 10px;
+        }
+        
+        .pyramid-age-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 120px;
+        }
+        
+        .pyramid-bar {
+            width: 100%;
+            background: linear-gradient(90deg, #4CAF50, #2E7D32);
+            border-radius: 5px 5px 0 0;
+            transition: height 1s ease;
+        }
+        
+        .pyramid-label {
+            margin-top: 10px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .growth-factor {
+            background: linear-gradient(135deg, rgba(255, 183, 77, 0.2), rgba(255, 183, 77, 0.1));
+            border-left: 3px solid var(--proof);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-people"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="biology_topics.html">ชีววิทยา</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="biology_topics.html">เนื้อหาชีววิทยาทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">บทที่ 2: ประชากร</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">บทที่ 2: ประชากร</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-green me-2">การเจริญเติบโตของประชากร</span>
+                <span class="badge bg-light text-green me-2">ปัจจัยจำกัดการเติบโต</span>
+                <span class="badge bg-light text-green me-2">การกระจายตัวของประชากร</span>
+                <span class="badge bg-light text-green">พลวัตประชากร</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การเจริญเติบโตของประชากร -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#growth">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การเจริญเติบโตของประชากร</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="growth" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            การเจริญเติบโตของประชากร (Population Growth) หมายถึง การเปลี่ยนแปลงขนาดของประชากรในพื้นที่หนึ่งๆ ตามเวลา ซึ่งเกิดจากปัจจัยหลัก 4 ประการคือ การเกิด การตาย การเข้า และการออก
+                        </p>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-calculator"></i> สูตรการคำนวณการเจริญเติบโต</h5>
+                            <p>อัตราการเปลี่ยนแปลงประชากร = (จำนวนเกิด + จำนวนเข้า) - (จำนวนตาย + จำนวนออก)</p>
+                            <p class="formula">$$ \Delta P = (B + I) - (D + E) $$</p>
+                            <p>โดยที่:</p>
+                            <ul>
+                                <li>$\Delta P$ = การเปลี่ยนแปลงขนาดประชากร</li>
+                                <li>$B$ = จำนวนการเกิด (Births)</li>
+                                <li>$D$ = จำนวนการตาย (Deaths)</li>
+                                <li>$I$ = จำนวนการเข้า (Immigration)</li>
+                                <li>$E$ = จำนวนการออก (Emigration)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>รูปแบบการเจริญเติบโตของประชากร</h5>
+                            <p><strong>1. การเติบโตแบบเอ็กซ์โพเนนเชียล (Exponential Growth):</strong></p>
+                            <p class="formula">$$ \frac{dN}{dt} = rN $$</p>
+                            <p>โดย $N$ = ขนาดประชากร, $r$ = อัตราการเพิ่มตามธรรมชาติ, $t$ = เวลา</p>
+                            <p>ลักษณะ: การเพิ่มขึ้นแบบรวดเร็วเป็นรูปตัว J เมื่อทรัพยากรไม่จำกัด</p>
+                            
+                            <p><strong>2. การเติบโตแบบลอจิสติก (Logistic Growth):</strong></p>
+                            <p class="formula">$$ \frac{dN}{dt} = rN \left(1 - \frac{N}{K}\right) $$</p>
+                            <p>โดย $K$ = ความจุการรองรับ (Carrying Capacity)</p>
+                            <p>ลักษณะ: การเพิ่มขึ้นเริ่มเร็วแล้วชะลอลงเป็นรูปตัว S เมื่อประชากรเข้าใกล้ K</p>
+                        </div>
+                        
+                        <div class="graph-container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>การเติบโตแบบเอ็กซ์โพเนนเชียล</h5>
+                                    <div class="graph">
+                                        <div class="graph-placeholder">
+                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300'%3E%3Cpath d='M50,250 L100,200 L150,150 L200,100 L250,50 L300,30 L350,20 L400,15 L450,10' stroke='%234CAF50' stroke-width='3' fill='none'/%3E%3Ctext x='250' y='20' text-anchor='middle' fill='%23333' font-size='16'%3Eขนาดประชากร (N)%3C/text%3E%3Ctext x='20' y='150' text-anchor='middle' fill='%23333' font-size='16' transform='rotate(-90 20,150)'%3Eเวลา (t)%3C/text%3E%3C/svg%3E" alt="Exponential Growth" style="width:100%; height:100%; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                    <p class="text-center">รูปตัว J - การเติบโตไม่จำกัด</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>การเติบโตแบบลอจิสติก</h5>
+                                    <div class="graph">
+                                        <div class="graph-placeholder">
+                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300'%3E%3Cpath d='M50,250 L100,200 L150,150 L200,120 L250,100 L300,90 L350,85 L400,85 L450,85' stroke='%23F44336' stroke-width='3' fill='none'/%3E%3Cline x1='50' y1='85' x2='450' y2='85' stroke='%239E9E9E' stroke-width='1' stroke-dasharray='5,5'/%3E%3Ctext x='450' y='75' text-anchor='end' fill='%23333'%3EK%3C/text%3E%3Ctext x='250' y='20' text-anchor='middle' fill='%23333' font-size='16'%3Eขนาดประชากร (N)%3C/text%3E%3Ctext x='20' y='150' text-anchor='middle' fill='%23333' font-size='16' transform='rotate(-90 20,150)'%3Eเวลา (t)%3C/text%3E%3C/svg%3E" alt="Logistic Growth" style="width:100%; height:100%; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                    <p class="text-center">รูปตัว S - การเติบโตจำกัดด้วย K</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่างการคำนวณ</h6>
+                            <p>ประชากรหนูเริ่มต้น 100 ตัว มีอัตราการเกิด 0.5 ตัว/ตัว/ปี อัตราการตาย 0.2 ตัว/ตัว/ปี</p>
+                            <p><strong>อัตราการเพิ่มตามธรรมชาติ (r):</strong> r = อัตราการเกิด - อัตราการตาย = 0.5 - 0.2 = 0.3 ตัว/ตัว/ปี</p>
+                            <p><strong>ขนาดประชากรในปีถัดไป:</strong> N<sub>1</sub> = N<sub>0</sub> + rN<sub>0</sub> = 100 + (0.3 × 100) = 130 ตัว</p>
+                            <p><strong>ขนาดประชากรในปีที่ 2:</strong> N<sub>2</sub> = 130 + (0.3 × 130) = 169 ตัว</p>
+                        </div>
+                        
+                        <div class="population-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ลักษณะ</th>
+                                        <th>การเติบโตแบบเอ็กซ์โพเนนเชียล</th>
+                                        <th>การเติบโตแบบลอจิสติก</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>รูปกราฟ</td>
+                                        <td>ตัว J</td>
+                                        <td>ตัว S</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ทรัพยากร</td>
+                                        <td>ไม่จำกัด</td>
+                                        <td>จำกัด</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ความจุการรองรับ (K)</td>
+                                        <td>ไม่มี</td>
+                                        <td>มี</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ตัวอย่างในธรรมชาติ</td>
+                                        <td>แบคทีเรียในอาหารใหม่, ไวรัสระบาด</td>
+                                        <td>สัตว์ป่าในพื้นที่จำกัด, มนุษย์</td>
+                                    </tr>
+                                    <tr>
+                                        <td>สมการ</td>
+                                        <td>dN/dt = rN</td>
+                                        <td>dN/dt = rN(1-N/K)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ปัจจัยจำกัดการเติบโต -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#limiting">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-slash-circle"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ปัจจัยจำกัดการเติบโต</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="limiting" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ปัจจัยจำกัดการเติบโต (Limiting Factors) เป็นปัจจัยทางสิ่งแวดล้อมที่ควบคุมการเจริญเติบโตของประชากร โดยแบ่งเป็น 2 ประเภทหลักคือ ปัจจัยที่ขึ้นกับความหนาแน่น และปัจจัยที่ไม่ขึ้นกับความหนาแน่น
+                        </p>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-arrow-down-up"></i> ปัจจัยที่ขึ้นกับความหนาแน่น (Density-Dependent Factors)</h5>
+                            <p>ผลกระทบขึ้นอยู่กับความหนาแน่นของประชากร:</p>
+                            <ul>
+                                <li><strong>การแข่งขัน (Competition):</strong> การแข่งขันเพื่ออาหาร, น้ำ, ที่อยู่อาศัย, คู่ผสมพันธุ์</li>
+                                <li><strong>การล่า (Predation):</strong> การควบคุมโดยผู้ล่าเมื่อประชากรหนาแน่น</li>
+                                <li><strong>ปรสิตและโรค (Parasitism and Disease):</strong> โรคติดต่อแพร่กระจายเร็วในประชากรหนาแน่น</li>
+                                <li><strong>ความเครียด (Stress):</strong> ความเครียดจากความแออัดลดการสืบพันธุ์</li>
+                                <li><strong>การย้ายถิ่น (Migration):</strong> การอพยพออกเมื่อทรัพยากรน้อย</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-wind"></i> ปัจจัยที่ไม่ขึ้นกับความหนาแน่น (Density-Independent Factors)</h5>
+                            <p>ผลกระทบไม่ขึ้นอยู่กับความหนาแน่นของประชากร:</p>
+                            <ul>
+                                <li><strong>ภัยธรรมชาติ:</strong> น้ำท่วม, ไฟป่า, พายุ, แผ่นดินไหว</li>
+                                <li><strong>สภาพอากาศ:</strong> อุณหภูมิสุดขั้ว, ภัยแล้ง, ฤดูหนาวรุนแรง</li>
+                                <li><strong>มลพิษ:</strong> การปนเปื้อนสารเคมี, น้ำมันรั่ว</li>
+                                <li><strong>การเปลี่ยนแปลงถิ่นที่อยู่:</strong> การตัดไม้ทำลายป่า, การสร้างเขื่อน</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>หลักการของความจุการรองรับ (Carrying Capacity - K)</h5>
+                            <p>จำนวนประชากรสูงสุดที่สิ่งแวดล้อมสามารถสนับสนุนได้อย่างยั่งยืนในระยะยาว โดยไม่เกิดการเสื่อมโทรมของสิ่งแวดล้อม</p>
+                            <p class="formula">$$ K = \frac{\text{ทรัพยากรที่มีอยู่}}{\text{ทรัพยากรที่ต้องการต่อบุคคล}} $$</p>
+                            <p>ปัจจัยกำหนด K:</p>
+                            <ul>
+                                <li>ปริมาณอาหารและน้ำ</li>
+                                <li>พื้นที่อยู่อาศัย</li>
+                                <li>การมีที่กำบัง</li>
+                                <li>การมีคู่ผสมพันธุ์</li>
+                                <li>การสะสมของเสีย</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="graph-container">
+                            <h5>ผลของปัจจัยจำกัดต่อประชากร</h5>
+                            <div class="graph">
+                                <div class="graph-placeholder">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300'%3E%3Cpath d='M50,250 L100,200 L150,150 L200,120 L250,100 L300,90 L350,85 L400,85 L450,85' stroke='%234CAF50' stroke-width='3' fill='none'/%3E%3Cline x1='50' y1='85' x2='450' y2='85' stroke='%239E9E9E' stroke-width='1' stroke-dasharray='5,5'/%3E%3Ctext x='450' y='75' text-anchor='end' fill='%23333'%3EK%3C/text%3E%3Cline x1='250' y1='250' x2='250' y2='50' stroke='%239E9E9E' stroke-width='1' stroke-dasharray='5,5'/%3E%3Ctext x='260' y='30' fill='%23333'%3Eปัจจัยจำกัดเริ่มมีผล%3C/text%3E%3Ccircle cx='200' cy='120' r='8' fill='%23F44336'/%3E%3Ctext x='200' y='110' text-anchor='middle' fill='%23F44336'%3Eจุดเปลี่ยน%3C/text%3E%3Ctext x='250' y='20' text-anchor='middle' fill='%23333' font-size='16'%3Eขนาดประชากร (N)%3C/text%3E%3Ctext x='20' y='150' text-anchor='middle' fill='%23333' font-size='16' transform='rotate(-90 20,150)'%3Eเวลา (t)%3C/text%3E%3C/svg%3E" alt="Limiting Factors" style="width:100%; height:100%; object-fit: contain;">
+                                </div>
+                            </div>
+                            <p>ปัจจัยจำกัดเริ่มมีผลกระทบมากขึ้นเมื่อประชากรเข้าใกล้ K และกลายเป็นตัวควบคุมหลักที่ทำให้ประชากรไม่เกิน K</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การกระจายตัวของประชากร -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#distribution">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-grid-3x3"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การกระจายตัวของประชากร</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="distribution" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            การกระจายตัวของประชากร (Population Distribution) หมายถึง รูปแบบการกระจายตัวของสิ่งมีชีวิตในพื้นที่หนึ่งๆ ซึ่งสามารถแบ่งได้เป็น 3 รูปแบบหลัก
+                        </p>
+                        
+                        <div class="distribution-diagram">
+                            <div class="distribution-type">
+                                <div class="distribution-icon">
+                                    <i class="bi bi-dot"></i>
+                                </div>
+                                <h5>แบบกระจายตัวสม่ำเสมอ (Uniform)</h5>
+                                <ul>
+                                    <li>ระยะห่างระหว่างบุคคลเท่าๆ กัน</li>
+                                    <li>เกิดจากการแข่งขันรุนแรง</li>
+                                    <li>ตัวอย่าง: นกเพนกวิน, ต้นไม้ในสวนผลไม้</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="distribution-type">
+                                <div class="distribution-icon">
+                                    <i class="bi bi-collection"></i>
+                                </div>
+                                <h5>แบบกระจายตัวเป็นกลุ่ม (Clumped)</h5>
+                                <ul>
+                                    <li>พบกันเป็นกลุ่มในบางพื้นที่</li>
+                                    <li>พบมากที่สุดในธรรมชาติ (90%)</li>
+                                    <li>ตัวอย่าง: ฝูงสัตว์, ปลาในแนวปะการัง</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="distribution-type">
+                                <div class="distribution-icon">
+                                    <i class="bi bi-dice-5"></i>
+                                </div>
+                                <h5>แบบกระจายตัวสุ่ม (Random)</h5>
+                                <ul>
+                                    <li>ไม่มีรูปแบบที่ชัดเจน</li>
+                                    <li>พบเมื่อสิ่งแวดล้อมสม่ำเสมอ</li>
+                                    <li>ตัวอย่าง: หอยทากในป่า, ดาวทะเล</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="graph-container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="graph">
+                                        <div class="graph-placeholder">
+                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='50' cy='50' r='10' fill='%234CAF50'/%3E%3Ccircle cx='150' cy='50' r='10' fill='%234CAF50'/%3E%3Ccircle cx='50' cy='150' r='10' fill='%234CAF50'/%3E%3Ccircle cx='150' cy='150' r='10' fill='%234CAF50'/%3E%3Ccircle cx='100' cy='100' r='10' fill='%234CAF50'/%3E%3C/svg%3E" alt="Uniform Distribution" style="width:100%; height:100%; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                    <p class="text-center">แบบสม่ำเสมอ</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="graph">
+                                        <div class="graph-placeholder">
+                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='70' cy='70' r='10' fill='%234CAF50'/%3E%3Ccircle cx='90' cy='60' r='10' fill='%234CAF50'/%3E%3Ccircle cx='60' cy='90' r='10' fill='%234CAF50'/%3E%3Ccircle cx='130' cy='130' r='10' fill='%234CAF50'/%3E%3Ccircle cx='150' cy='120' r='10' fill='%234CAF50'/%3E%3Ccircle cx='120' cy='150' r='10' fill='%234CAF50'/%3E%3C/svg%3E" alt="Clumped Distribution" style="width:100%; height:100%; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                    <p class="text-center">แบบเป็นกลุ่ม</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="graph">
+                                        <div class="graph-placeholder">
+                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='40' cy='60' r='10' fill='%234CAF50'/%3E%3Ccircle cx='120' cy='30' r='10' fill='%234CAF50'/%3E%3Ccircle cx='80' cy='150' r='10' fill='%234CAF50'/%3E%3Ccircle cx='160' cy='90' r='10' fill='%234CAF50'/%3E%3Ccircle cx='100' cy='70' r='10' fill='%234CAF50'/%3E%3Ccircle cx='30' cy='140' r='10' fill='%234CAF50'/%3E%3C/svg%3E" alt="Random Distribution" style="width:100%; height:100%; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                    <p class="text-center">แบบสุ่ม</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-geo-alt"></i> ปัจจัยที่ส่งผลต่อการกระจายตัว</h5>
+                            <ul>
+                                <li><strong>การกระจายของทรัพยากร:</strong> อาหาร, น้ำ, ที่อยู่อาศัย</li>
+                                <li><strong>สภาพภูมิศาสตร์:</strong> ภูมิประเทศ, แหล่งน้ำ, ระดับความสูง</li>
+                                <li><strong>ปฏิสัมพันธ์ทางสังคม:</strong> การอยู่เป็นกลุ่ม, การปกป้องอาณาเขต</li>
+                                <li><strong>ความสามารถในการเคลื่อนที่:</strong> สัตว์เคลื่อนที่ได้ดีกว่าพืช</li>
+                                <li><strong>ปัจจัยทางประวัติศาสตร์:</strong> การอพยพ, การกระจายพันธุ์</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>ความสำคัญของการกระจายตัว</h5>
+                            <ul>
+                                <li><strong>การจัดการทรัพยากร:</strong> ช่วยวางแผนการอนุรักษ์</li>
+                                <li><strong>การศึกษานิเวศวิทยา:</strong> ทำความเข้าใจปฏิสัมพันธ์ระหว่างสปีชีส์</li>
+                                <li><strong>การควบคุมโรค:</strong> ทำนายการแพร่กระจายของโรค</li>
+                                <li><strong>การเกษตร:</strong> วางแผนการปลูกพืชและเลี้ยงสัตว์</li>
+                                <li><strong>การวางผังเมือง:</strong> ออกแบบเมืองให้เหมาะสมกับประชากร</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- พลวัตประชากร -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#dynamics">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-arrows-move"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">พลวัตประชากร</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="dynamics" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            พลวัตประชากร (Population Dynamics) หมายถึง การศึกษาการเปลี่ยนแปลงขนาดและโครงสร้างของประชากรตามเวลา ซึ่งรวมถึงอัตราการเกิด อัตราการตาย อัตราการย้ายถิ่น และโครงสร้างอายุ
+                        </p>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-people"></i> โครงสร้างอายุ (Age Structure)</h5>
+                            <p>การกระจายของประชากรตามกลุ่มอายุ ซึ่งบ่งบอกถึงแนวโน้มการเติบโตในอนาคต</p>
+                            
+                            <div class="pyramid-container">
+                                <div class="pyramid-age-group">
+                                    <div class="pyramid-bar" style="height: 180px;"></div>
+                                    <div class="pyramid-label">0-14 ปี<br>(วัยเด็ก)</div>
+                                </div>
+                                <div class="pyramid-age-group">
+                                    <div class="pyramid-bar" style="height: 160px;"></div>
+                                    <div class="pyramid-label">15-64 ปี<br>(วัยทำงาน)</div>
+                                </div>
+                                <div class="pyramid-age-group">
+                                    <div class="pyramid-bar" style="height: 100px;"></div>
+                                    <div class="pyramid-label">65+ ปี<br>(วัยสูงอายุ)</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>รูปแบบโครงสร้างอายุ</h5>
+                            <ul>
+                                <li><strong>รูปปิรามิด (Pyramid):</strong> ฐานกว้าง → ประชากรเพิ่มขึ้น (ประเทศกำลังพัฒนา)</li>
+                                <li><strong>รูประฆัง (Bell):</strong> ฐานและยอดใกล้เคียง → ประชากรคงที่ (ประเทศพัฒนาแล้ว)</li>
+                                <li><strong>รูปหัวระฆัง (Urn):</strong> ฐานแคบ → ประชากรลดลง (ประเทศพัฒนาแล้วบางประเทศ)</li>
+                            </ul>
+                        </div>
+                        
+        <div class="growth-factor">
+            <h5><i class="bi bi-calculator"></i> อัตราส่วนสำคัญในพลวัตประชากร</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>อัตราการเกิด (Birth Rate):</strong></p>
+                    <p class="formula">$$ \text{อัตราการเกิด} = \frac{\text{จำนวนเกิด}}{\text{ประชากรเฉลี่ย}} \times 1000 $$</p>
+                    <p>หน่วย: ต่อพันคนต่อปี</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>อัตราการตาย (Death Rate):</strong></p>
+                    <p class="formula">$$ \text{อัตราการตาย} = \frac{\text{จำนวนตาย}}{\text{ประชากรเฉลี่ย}} \times 1000 $$</p>
+                    <p>หน่วย: ต่อพันคนต่อปี</p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <p><strong>อัตราการเพิ่มตามธรรมชาติ (Natural Increase Rate):</strong></p>
+                    <p class="formula">$$ \text{NIR} = \text{อัตราการเกิด} - \text{อัตราการตาย} $$</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>เวลาสองเท่า (Doubling Time):</strong></p>
+                    <p class="formula">$$ T_d = \frac{70}{\text{อัตราการเพิ่ม (%)}} $$</p>
+                    <p>เวลาที่ประชากรใช้เพิ่มขึ้นเป็นสองเท่า</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <h6><i class="bi bi-pencil"></i> ตัวอย่างพลวัตประชากรประเทศไทย</h6>
+            <p><strong>ข้อมูลปี 2023:</strong></p>
+            <ul>
+                <li>ประชากร: 66 ล้านคน</li>
+                <li>จำนวนเกิด: 600,000 คน</li>
+                <li>จำนวนตาย: 500,000 คน</li>
+                <li>อัตราการเกิด: 9.1 ต่อพันคน</li>
+                <li>อัตราการตาย: 7.6 ต่อพันคน</li>
+            </ul>
+            <p><strong>อัตราการเพิ่มตามธรรมชาติ:</strong> NIR = 9.1 - 7.6 = 1.5 ต่อพันคน</p>
+            <p><strong>อัตราการเพิ่ม (%):</strong> 0.15% ต่อปี</p>
+            <p><strong>เวลาสองเท่า:</strong> T<sub>d</sub> = 70 / 0.15 ≈ 467 ปี</p>
+        </div>
+
+        <div class="key-point">
+            <h5><i class="bi bi-graph-up"></i> การประยุกต์พลวัตประชากร</h5>
+            <ul>
+                <li><strong>การวางแผนสาธารณสุข:</strong> ออกแบบระบบสาธารณสุขตามโครงสร้างอายุ</li>
+                <li><strong>นโยบายการศึกษา:</strong> วางแผนจำนวนโรงเรียนตามเด็กเกิดใหม่</li>
+                <li><strong>ระบบบำนาญ:</strong> ออกแบบระบบเงินบำนาญตามสัดส่วนวัยทำงานและผู้สูงอายุ</li>
+                <li><strong>การวางผังเมือง:</strong> ออกแบบเมืองรองรับประชากรในอนาคต</li>
+                <li><strong>การอนุรักษ์สิ่งแวดล้อม:</strong> วางแผนการใช้ทรัพยากรธรรมชาติอย่างยั่งยืน</li>
+            </ul>
+        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Make section headers clickable to collapse/expand
+            document.querySelectorAll('.section-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-bs-target');
+                    const target = document.querySelector(targetId);
+                    const collapse = new bootstrap.Collapse(target, {
+                        toggle: true
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
