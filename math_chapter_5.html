@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แคลคูลัส - สอวน. คณิตศาสตร์</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        :root {
+            --math: #1976d2;
+            --math-light: #bbdefb;
+            --math-dark: #0d47a1;
+            --theorem: #4caf50;
+            --proof: #ff9800;
+            --example: #2196F3;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%231976d2' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--math), #2196f3);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='20' cy='20' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='10' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='90' cy='10' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='55' cy='35' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.3;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(25, 118, 210, 0.1), rgba(33, 150, 243, 0.1));
+            border-left: 4px solid var(--math);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(25, 118, 210, 0.15);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, var(--math), #2196f3);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .formula-box {
+            background-color: rgba(187, 222, 251, 0.3);
+            border-left: 3px solid var(--math);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        .example-box {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-left: 3px solid var(--example);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        
+        .key-point {
+            background: linear-gradient(135deg, rgba(187, 222, 251, 0.3), rgba(25, 118, 210, 0.1));
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(25, 118, 210, 0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--math);
+            font-size: 1.2rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--math), #2196f3);
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(25, 118, 210, 0.3);
+        }
+        
+        .graph-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin: 20px 0;
+        }
+        
+        .proof-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .theorem {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.05));
+            border-left: 3px solid var(--theorem);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .step-by-step {
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .calculus-diagram {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background-color: white;
+            padding: 10px;
+        }
+        
+        .derivative-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .derivative-table th {
+            background-color: var(--math);
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .derivative-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .derivative-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .highlight {
+            background-color: rgba(255, 152, 0, 0.2);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .formula {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--math);
+        }
+        
+        .graph {
+            width: 100%;
+            height: 300px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .graph-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-calculator"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="math_topics.html">คณิตศาสตร์</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="math_topics.html">เนื้อหาคณิตศาสตร์ทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">บทที่ 5: แคลคูลัส</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">บทที่ 5: แคลคูลัส</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-blue me-2">ลิมิตและความต่อเนื่อง</span>
+                <span class="badge bg-light text-blue me-2">อนุพันธ์และการประยุกต์</span>
+                <span class="badge bg-light text-blue me-2">ปริพันธ์และการประยุกต์</span>
+                <span class="badge bg-light text-blue">อนุกรมอนันต์</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ลิมิตและความต่อเนื่อง -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#limits">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ลิมิตและความต่อเนื่อง</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="limits" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ลิมิตเป็นแนวคิดพื้นฐานของแคลคูลัสที่ใช้อธิบายพฤติกรรมของฟังก์ชันเมื่อตัวแปรเข้าใกล้ค่าใดค่าหนึ่ง
+                        </p>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-journal-check"></i> นิยามและแนวคิดพื้นฐาน</h5>
+                            <ul>
+                                <li><strong>ลิมิต (Limit):</strong> $\lim_{x \to a} f(x) = L$ หมายความว่าเมื่อ $x$ เข้าใกล้ $a$ ค่าของ $f(x)$ จะเข้าใกล้ $L$</li>
+                                <li><strong>ลิมิตด้านเดียว:</strong> ลิมิตซ้าย ($\lim_{x \to a^-} f(x)$) และลิมิตขวา ($\lim_{x \to a^+} f(x)$)</li>
+                                <li><strong>ความต่อเนื่อง (Continuity):</strong> ฟังก์ชัน $f$ ต่อเนื่องที่ $a$ ถ้า $\lim_{x \to a} f(x) = f(a)$</li>
+                                <li><strong>ทฤษฎีบทค่ากลาง (Intermediate Value Theorem):</strong> ถ้า $f$ ต่อเนื่องบน $[a,b]$ และ $k$ อยู่ระหว่าง $f(a)$ กับ $f(b)$ แล้วจะมี $c \in (a,b)$ ที่ $f(c) = k$</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>ทฤษฎีบทเกี่ยวกับลิมิต</h5>
+                            <p>1. $\lim_{x \to a} [f(x) + g(x)] = \lim_{x \to a} f(x) + \lim_{x \to a} g(x)$</p>
+                            <p>2. $\lim_{x \to a} [f(x) \cdot g(x)] = \lim_{x \to a} f(x) \cdot \lim_{x \to a} g(x)$</p>
+                            <p>3. $\lim_{x \to a} \frac{f(x)}{g(x)} = \frac{\lim_{x \to a} f(x)}{\lim_{x \to a} g(x)}$ เมื่อ $\lim_{x \to a} g(x) \neq 0$</p>
+                            <p>4. $\lim_{x \to a} c \cdot f(x) = c \cdot \lim_{x \to a} f(x)$</p>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การคำนวณลิมิต</h6>
+                            <p>จงหาค่า $\lim_{x \to 2} \frac{x^2 - 4}{x - 2}$</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <p>$\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \lim_{x \to 2} \frac{(x-2)(x+2)}{x-2} = \lim_{x \to 2} (x+2) = 4$</p>
+                            
+                            <p>จงหาค่า $\lim_{x \to 0} \frac{\sin x}{x}$</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <p>$\lim_{x \to 0} \frac{\sin x}{x} = 1$ (ลิมิตพื้นฐาน)</p>
+                        </div>
+                        
+                        <div class="graph-container">
+                            <h5>การมองเห็นลิมิตด้วยกราฟ</h5>
+                            <div class="graph">
+                                <div class="graph-placeholder">
+                                    กราฟแสดงฟังก์ชัน $f(x) = \frac{\sin x}{x}$ และลิมิตที่ $x \to 0$
+                                </div>
+                            </div>
+                            <p>ฟังก์ชัน $f(x) = \frac{\sin x}{x}$ ไม่นิยามที่ $x=0$ แต่ลิมิตเมื่อ $x \to 0$ เท่ากับ 1</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- อนุพันธ์และการประยุกต์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#derivatives">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-speedometer2"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">อนุพันธ์และการประยุกต์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="derivatives" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            อนุพันธ์ (Derivative) ใช้วัดอัตราการเปลี่ยนแปลงของฟังก์ชัน ณ จุดใดจุดหนึ่ง และมีความสำคัญในการหาค่าเอ็กซ์ตรีมัมและวิเคราะห์พฤติกรรมของฟังก์ชัน
+                        </p>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-journal"></i> นิยามและสูตรอนุพันธ์</h5>
+                            <ul>
+                                <li><strong>นิยามอนุพันธ์:</strong> $f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$</li>
+                                <li><strong>อนุพันธ์พื้นฐาน:</strong>
+                                    <ul>
+                                        <li>$\frac{d}{dx} (c) = 0$</li>
+                                        <li>$\frac{d}{dx} (x^n) = n x^{n-1}$</li>
+                                        <li>$\frac{d}{dx} (\sin x) = \cos x$</li>
+                                        <li>$\frac{d}{dx} (\cos x) = -\sin x$</li>
+                                        <li>$\frac{d}{dx} (e^x) = e^x$</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>กฎการหาอนุพันธ์</h5>
+                            <p><strong>กฎผลรวม:</strong> $(f + g)' = f' + g'$</p>
+                            <p><strong>กฎผลคูณ:</strong> $(fg)' = f'g + fg'$</p>
+                            <p><strong>กฎผลหาร:</strong> $\left( \frac{f}{g} \right)' = \frac{f'g - fg'}{g^2}$</p>
+                            <p class="formula"><strong>กฎลูกโซ่ (Chain Rule):</strong> $(f \circ g)'(x) = f'(g(x)) \cdot g'(x)$</p>
+                        </div>
+                        
+                        <div class="proof-box">
+                            <h5><i class="bi bi-lightning"></i> การพิสูจน์กฎลูกโซ่</h5>
+                            <p>ให้ $y = f(u)$ และ $u = g(x)$ ดังนั้น $y = f(g(x))$</p>
+                            <p>อนุพันธ์ของ $y$ เทียบกับ $x$ คือ:</p>
+                            <p>$$\frac{dy}{dx} = \lim_{\Delta x \to 0} \frac{\Delta y}{\Delta x} = \lim_{\Delta x \to 0} \frac{\Delta y}{\Delta u} \cdot \frac{\Delta u}{\Delta x}$$</p>
+                            <p>เมื่อ $\Delta x \to 0$ แล้ว $\Delta u \to 0$ ดังนั้น</p>
+                            <p>$$\frac{dy}{dx} = \lim_{\Delta u \to 0} \frac{\Delta y}{\Delta u} \cdot \lim_{\Delta x \to 0} \frac{\Delta u}{\Delta x} = \frac{dy}{du} \cdot \frac{du}{dx}$$</p>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การใช้กฎลูกโซ่</h6>
+                            <p>จงหาอนุพันธ์ของ $y = \sin(3x^2 + 2x)$</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <p>ให้ $u = 3x^2 + 2x$ ดังนั้น $y = \sin u$</p>
+                            <p>$\frac{du}{dx} = 6x + 2$</p>
+                            <p>$\frac{dy}{du} = \cos u$</p>
+                            <p>$\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx} = \cos(3x^2 + 2x) \cdot (6x + 2)$</p>
+                        </div>
+                        
+                        <div class="key-point mt-4">
+                            <h5><i class="bi bi-graph-up"></i> การประยุกต์อนุพันธ์</h5>
+                            <ul>
+                                <li><strong>ความชันของเส้นสัมผัส:</strong> $m = f'(a)$</li>
+                                <li><strong>การหาค่าสูงสุด/ต่ำสุด:</strong> $f'(c) = 0$ หรือ $f'(c)$ ไม่นิยาม</li>
+                                <li><strong>การทดสอบอนุพันธ์อันดับหนึ่ง:</strong> เปลี่ยนเครื่องหมายของ $f'$ บอกค่าสูงสุด/ต่ำสุด</li>
+                                <li><strong>การเคลื่อนที่:</strong> ความเร็ว $v(t) = s'(t)$, ความเร่ง $a(t) = v'(t) = s''(t)$</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ปริพันธ์และการประยุกต์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#integrals">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-calculator"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ปริพันธ์และการประยุกต์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="integrals" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ปริพันธ์ (Integral) ใช้ในการหาพื้นที่ใต้เส้นโค้งและเป็นปฏิยานุพันธ์ของฟังก์ชัน ซึ่งมีความสัมพันธ์กับอนุพันธ์โดยทฤษฎีบทพื้นฐานของแคลคูลัส
+                        </p>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-calculator"></i> นิยามและสูตรปริพันธ์</h5>
+                            <ul>
+                                <li><strong>ปริพันธ์ไม่จำกัดเขต:</strong> $\int f(x)  dx = F(x) + C$ เมื่อ $F'(x) = f(x)$</li>
+                                <li><strong>ปริพันธ์จำกัดเขต:</strong> $\int_a^b f(x)  dx = F(b) - F(a)$</li>
+                                <li><strong>สูตรพื้นฐาน:</strong>
+                                    <ul>
+                                        <li>$\int x^n  dx = \frac{x^{n+1}}{n+1} + C$ ($n \neq -1$)</li>
+                                        <li>$\int \sin x  dx = -\cos x + C$</li>
+                                        <li>$\int \cos x  dx = \sin x + C$</li>
+                                        <li>$\int e^x  dx = e^x + C$</li>
+                                        <li>$\int \frac{1}{x}  dx = \ln |x| + C$</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>ทฤษฎีบทพื้นฐานของแคลคูลัส</h5>
+                            <p><strong>ส่วนที่ 1:</strong> ถ้า $f$ ต่อเนื่องบน $[a,b]$ และ $F(x) = \int_a^x f(t)  dt$ แล้ว $F'(x) = f(x)$</p>
+                            <p><strong>ส่วนที่ 2:</strong> ถ้า $f$ ต่อเนื่องบน $[a,b]$ และ $F$ เป็นปฏิยานุพันธ์ของ $f$ แล้ว</p>
+                            <p>$$\int_a^b f(x)  dx = F(b) - F(a)$$</p>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่าง: การคำนวณปริพันธ์</h6>
+                            <p>จงหาค่า $\int (3x^2 + 2x - 1)  dx$</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <p>$\int (3x^2 + 2x - 1)  dx = 3 \cdot \frac{x^3}{3} + 2 \cdot \frac{x^2}{2} - x + C = x^3 + x^2 - x + C$</p>
+                            
+                            <p>จงหาค่า $\int_0^{\pi} \sin x  dx$</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <p>$\int_0^{\pi} \sin x  dx = [-\cos x]_0^{\pi} = (-\cos \pi) - (-\cos 0) = (-(-1)) - (-1) = 1 + 1 = 2$</p>
+                        </div>
+                        
+                        <div class="graph-container">
+                            <h5>การประยุกต์หาพื้นที่ด้วยปริพันธ์</h5>
+                            <div class="graph">
+                                <div class="graph-placeholder">
+                                    กราฟแสดงพื้นที่ใต้เส้นโค้ง $y = \sin x$ จาก $0$ ถึง $\pi$
+                                </div>
+                            </div>
+                            <p>พื้นที่ใต้เส้นโค้ง $y = \sin x$ จาก $0$ ถึง $\pi$ เท่ากับ $\int_0^{\pi} \sin x  dx = 2$</p>
+                        </div>
+                        
+                        <div class="key-point mt-4">
+                            <h5><i class="bi bi-rulers"></i> การประยุกต์ปริพันธ์</h5>
+                            <ul>
+                                <li>การหาพื้นที่ระหว่างเส้นโค้ง</li>
+                                <li>การหาปริมาตรของวัตถุทรงตัน</li>
+                                <li>การหาความยาวส่วนโค้ง</li>
+                                <li>การหาพื้นที่ผิวของวัตถุทรงตัน</li>
+                                <li>การประยุกต์ทางฟิสิกส์: งาน, โมเมนต์, จุดศูนย์กลางมวล</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- อนุกรมอนันต์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#series">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-infinity"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">อนุกรมอนันต์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="series" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            อนุกรมอนันต์ (Infinite Series) คือผลบวกของลำดับอนันต์ ซึ่งมีความสำคัญในการประมาณค่าฟังก์ชันและแก้ปัญหาทางคณิตศาสตร์
+                        </p>
+                        
+                        <div class="key-point">
+                            <h5><i class="bi bi-journal"></i> นิยามและแนวคิดพื้นฐาน</h5>
+                            <ul>
+                                <li><strong>อนุกรมเลขคณิต:</strong> $\sum_{n=1}^{\infty} a + (n-1)d$</li>
+                                <li><strong>อนุกรมเรขาคณิต:</strong> $\sum_{n=0}^{\infty} ar^n = \frac{a}{1-r}$ สำหรับ $|r| < 1$</li>
+                                <li><strong>อนุกรมเทย์เลอร์:</strong> $f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!} (x-a)^n$</li>
+                                <li><strong>อนุกรมแมคลอริน:</strong> อนุกรมเทย์เลอร์เมื่อ $a=0$</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="theorem">
+                            <h5>การทดสอบการลู่เข้า</h5>
+                            <p><strong>การทดสอบพี (p-test):</strong> $\sum \frac{1}{n^p}$ ลู่เข้าเมื่อ $p > 1$</p>
+                            <p><strong>การทดสอบอัตราส่วน (Ratio Test):</strong> ถ้า $\lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| = L$ แล้ว
+                                <ul>
+                                    <li>ลู่เข้าเมื่อ $L < 1$</li>
+                                    <li>ลู่ออกเมื่อ $L > 1$</li>
+                                    <li>สรุปไม่ได้เมื่อ $L = 1$</li>
+                                </ul>
+                            </p>
+                            <p><strong>การทดสอบราก (Root Test):</strong> ถ้า $\lim_{n \to \infty} \sqrt[n]{|a_n|} = L$ แล้ว
+                                <ul>
+                                    <li>ลู่เข้าเมื่อ $L < 1$</li>
+                                    <li>ลู่ออกเมื่อ $L > 1$</li>
+                                    <li>สรุปไม่ได้เมื่อ $L = 1$</li>
+                                </ul>
+                            </p>
+                        </div>
+                        
+                        <div class="example-box">
+                            <h6><i class="bi bi-pencil"></i> ตัวอย่าง: อนุกรมเทย์เลอร์</h6>
+                            <p>จงหาอนุกรมเทย์เลอร์ของ $f(x) = e^x$ รอบจุด $a = 0$</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <p>อนุพันธ์ของ $e^x$ ทุกลำดับคือ $e^x$ ดังนั้น $f^{(n)}(0) = 1$ สำหรับทุก $n$</p>
+                            <p>อนุกรมแมคลอริน: $e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots$</p>
+                            
+                            <p>จงหาอนุกรมเทย์เลอร์ของ $f(x) = \sin x$ รอบจุด $a = 0$</p>
+                            <p><strong>วิธีทำ:</strong></p>
+                            <p>$\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots = \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n+1}}{(2n+1)!}$</p>
+                        </div>
+                        
+                        <div class="graph-container">
+                            <h5>การประมาณค่าด้วยอนุกรมเทย์เลอร์</h5>
+                            <div class="graph">
+                                <div class="graph-placeholder">
+                                    กราฟแสดงการประมาณค่า $e^x$ ด้วยอนุกรมแมคลอริน
+                                </div>
+                            </div>
+                            <p>อนุกรมแมคลอรินของ $e^x$: $1, 1+x, 1+x+\frac{x^2}{2}, \dots$ ให้การประมาณที่ดีขึ้นเรื่อยๆ</p>
+                        </div>
+                        
+                        <div class="key-point mt-4">
+                            <h5><i class="bi bi-lightbulb"></i> การประยุกต์อนุกรมอนันต์</h5>
+                            <ul>
+                                <li>การประมาณค่าฟังก์ชันที่คำนวณยาก</li>
+                                <li>การแก้สมการเชิงอนุพันธ์</li>
+                                <li>การวิเคราะห์วงจรไฟฟ้า</li>
+                                <li>การคำนวณในทฤษฎีความน่าจะเป็นและสถิติ</li>
+                                <li>การวิเคราะห์อัลกอริทึมในวิทยาการคอมพิวเตอร์</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
