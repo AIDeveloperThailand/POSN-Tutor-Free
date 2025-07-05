@@ -7,9 +7,10 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-
+  
   <script>
     MathJax = {
       tex: {
@@ -19,6 +20,349 @@
     };
   </script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <style>
+    :root {
+        --astronomy: #0b3d91;
+        --astronomy-light: #4fc3f7;
+        --astronomy-dark: #0d47a1;
+        --nebula: #6a0dad;
+        --sun: #ff9800;
+        --planet: #4caf50;
+    }
+    
+    body {
+        font-family: 'Kanit', sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230b3d91' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
+    
+    .navbar {
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .header-bg {
+        background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+        padding: 3rem 0;
+        color: white;
+        margin-bottom: 2rem;
+        border-radius: 0 0 30px 30px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .header-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='20' cy='20' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='10' cy='50' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='90' cy='10' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='55' cy='35' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3C/svg%3E");
+        background-size: 300px;
+        opacity: 0.3;
+    }
+    
+    .chapter-banner {
+        background: linear-gradient(90deg, rgba(11, 61, 145, 0.1), rgba(106, 13, 173, 0.1));
+        border-left: 4px solid var(--astronomy);
+        padding: 15px;
+        border-radius: 0 10px 10px 0;
+        margin-bottom: 30px;
+    }
+    
+    .formula-box {
+        background-color: rgba(79, 195, 247, 0.1);
+        border-left: 3px solid var(--astronomy);
+        padding: 15px;
+        border-radius: 0 8px 8px 0;
+        margin: 20px 0;
+        font-family: monospace;
+    }
+    
+    .section-card {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        margin-bottom: 30px;
+    }
+    
+    .section-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(11, 61, 145, 0.15);
+    }
+    
+    .section-header {
+        background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+        color: white;
+        padding: 20px;
+        cursor: pointer;
+    }
+    
+    .section-body {
+        padding: 25px;
+        background-color: white;
+    }
+    
+    .section-icon {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 1.5rem;
+    }
+    
+    .topic-list {
+        padding-left: 20px;
+    }
+    
+    .topic-list li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 15px;
+        line-height: 1.6;
+    }
+    
+    .topic-list li:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--astronomy);
+        font-size: 1.2rem;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+        border: none;
+        transition: all 0.3s;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(11, 61, 145, 0.3);
+    }
+    
+    .chapter-header {
+        display: flex;
+        align-items: center;
+    }
+    
+    .chapter-title {
+        flex-grow: 1;
+    }
+    
+    .completed-badge {
+        background: linear-gradient(135deg, #4fc3f7, #29b6f6);
+        color: white;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+    }
+    
+    footer {
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .breadcrumb {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 10px 15px;
+        border-radius: 8px;
+    }
+    
+    .breadcrumb-item a {
+        color: #e0e0ff;
+    }
+    
+    .breadcrumb-item.active {
+        color: white;
+    }
+    
+    .breadcrumb-item+.breadcrumb-item::before {
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .chapter-content {
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        margin-bottom: 30px;
+    }
+    
+    .visual-guide {
+        background: linear-gradient(135deg, #f0f7ff, #e6f2ff);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+        border-left: 3px solid var(--astronomy);
+    }
+    
+    .visual-guide h5 {
+        color: var(--astronomy);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .orbit-diagram {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 15px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .section-title {
+        border-bottom: 2px solid var(--astronomy);
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        color: var(--astronomy);
+        position: relative;
+    }
+    
+    .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 80px;
+        height: 3px;
+        background: var(--nebula);
+        border-radius: 3px;
+    }
+    
+    .example-box {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border-left: 3px solid var(--astronomy);
+        padding: 15px;
+        border-radius: 0 8px 8px 0;
+        margin: 20px 0;
+    }
+    
+    .key-point {
+        background: linear-gradient(135deg, rgba(79, 195, 247, 0.15), rgba(106, 13, 173, 0.1));
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+        border: 1px solid rgba(11, 61, 145, 0.1);
+    }
+    
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    
+    .comparison-table th {
+        background: linear-gradient(135deg, var(--astronomy), var(--nebula));
+        color: white;
+        padding: 12px;
+        text-align: center;
+    }
+    
+    .comparison-table td {
+        padding: 12px;
+        border: 1px solid #dee2e6;
+    }
+    
+    .comparison-table tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+    
+    .kepler-law-card {
+        border-left: 4px solid var(--astronomy);
+        padding: 15px;
+        margin: 15px 0;
+        background: rgba(79, 195, 247, 0.05);
+        border-radius: 0 8px 8px 0;
+    }
+    
+    .law-number {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background: var(--astronomy);
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 30px;
+        margin-right: 10px;
+        font-weight: bold;
+    }
+    
+    .law-title {
+        display: inline;
+        color: var(--astronomy);
+        font-weight: bold;
+    }
+    
+    .planet-data-card {
+        background: linear-gradient(135deg, #f0f7ff, #e6f2ff);
+        border-radius: 10px;
+        padding: 15px;
+        margin: 15px 0;
+    }
+    
+    .planet-name {
+        font-weight: bold;
+        color: var(--astronomy);
+        margin-bottom: 10px;
+    }
+    
+    .data-row {
+        display: flex;
+        justify-content: space-between;
+        margin: 5px 0;
+    }
+    
+    .data-label {
+        font-weight: 500;
+    }
+    
+    .data-value {
+        font-weight: bold;
+        color: var(--nebula);
+    }
+    
+    .gravity-comparison {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px 0;
+    }
+    
+    .gravity-bar {
+        width: 40px;
+        background: linear-gradient(to top, var(--astronomy), var(--astronomy-light));
+        border-radius: 4px 4px 0 0;
+        position: relative;
+        text-align: center;
+        color: white;
+        font-size: 0.8rem;
+    }
+    
+    .gravity-label {
+        position: absolute;
+        bottom: -25px;
+        width: 100%;
+        text-align: center;
+        font-size: 0.8rem;
+    }
+    
+    .formula-derivation {
+        background: rgba(255, 255, 255, 0.7);
+        border-left: 3px solid var(--sun);
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 0 8px 8px 0;
+    }
+</style>
 </head>
 <body>
 
@@ -48,95 +392,409 @@
   </div>
 </nav>
 
-<main class="py-5">
-  <div class="container">
+<div class="header-bg">
+  <div class="container position-relative">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="astronomy_topics.html">เนื้อหาทั้งหมด</a></li>
         <li class="breadcrumb-item active" aria-current="page">บทที่ 3 (ละเอียด): ระบบสุริยะและกลศาสตร์ท้องฟ้า</li>
       </ol>
     </nav>
+    <h1 class="display-6 mb-3 text-center">บทที่ 3 (ละเอียด): ระบบสุริยะและกลศาสตร์ท้องฟ้า</h1>
+    <div class="text-center mb-3">
+      <span class="badge bg-light text-astronomy me-2">กฎของเคปเลอร์</span>
+      <span class="badge bg-light text-astronomy me-2">แรงโน้มถ่วงสากล</span>
+      <span class="badge bg-light text-astronomy me-2">วงโคจรดาวเคราะห์</span>
+      <span class="badge bg-light text-astronomy">กลศาสตร์ท้องฟ้า</span>
+    </div>
+  </div>
+</div>
 
-    <h1 class="display-6 mb-4">บทที่ 3 (ละเอียด): ระบบสุริยะและกลศาสตร์ท้องฟ้า</h1>
-
-    <article>
-
-      <section class="mb-5">
-        <h2 class="border-bottom pb-2 mb-3">3.1 บทนำ</h2>
-        <p>
-          ระบบสุริยะของเราเป็นระบบดาวฤกษ์ที่ประกอบด้วยดวงอาทิตย์เป็นศูนย์กลาง มีวัตถุอื่น ๆ โคจรรอบ เช่น ดาวเคราะห์ ดาวเคราะห์น้อย ดาวหาง และวัตถุในแถบไคเปอร์ 
-          การศึกษาโครงสร้างของระบบสุริยะควบคู่ไปกับกลศาสตร์ท้องฟ้าทำให้เราเข้าใจแรงโน้มถ่วงและการเคลื่อนที่ของวัตถุต่าง ๆ ได้อย่างแม่นยำ
-        </p>
-      </section>
-
-      <section class="mb-5">
-        <h2 class="border-bottom pb-2 mb-3">3.2 กฎของเคปเลอร์ (Kepler's Laws)</h2>
-
-        <h4 class="mt-4">กฎข้อที่ 1: วงโคจรของดาวเคราะห์เป็นวงรี</h4>
-        <p>
-          ดาวเคราะห์โคจรรอบดวงอาทิตย์เป็นรูปวงรี โดยดวงอาทิตย์อยู่ที่จุดโฟกัสหนึ่งของวงรี สมการของวงโคจรมีรูปแบบดังนี้:
-        </p>
-        <div class="text-center bg-light p-3 rounded">
-          <h3 style="font-family: 'Times New Roman', serif;">$$ r = \frac{a(1 - e^2)}{1 + e\cos\theta} $$</h3>
+<main class="py-3">
+  <div class="container">
+    <div class="chapter-banner">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-check-circle-fill text-info fs-3 me-3"></i>
+        <div>
+            <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+            <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
         </div>
-        <ul>
-          <li>$a$: กึ่งแกนเอก</li>
-          <li>$e$: ค่าความเยื้องศูนย์</li>
-          <li>$r$: ระยะจากดาวเคราะห์ถึงดวงอาทิตย์</li>
-          <li>$\theta$: มุมที่วัดจาก perihelion</li>
-        </ul>
-
-        <h4 class="mt-4">กฎข้อที่ 2: พื้นที่ที่กวาดได้เท่ากันในเวลาเท่ากัน</h4>
-        <p>
-          ดาวเคราะห์จะกวาดพื้นที่ในวงโคจรเท่ากันในเวลาที่เท่ากัน แสดงให้เห็นว่าดาวเคราะห์เคลื่อนที่เร็วขึ้นเมื่ออยู่ใกล้ดวงอาทิตย์ และช้าลงเมื่ออยู่ไกล
-        </p>
-        <div class="text-center bg-light p-3 rounded">
-          <h3 style="font-family: 'Times New Roman', serif;">$$ L = mvr = \text{ค่าคงที่} $$</h3>
+      </div>
+    </div>
+    
+    <div class="chapter-content">
+      <div class="section-card">
+        <div class="section-header" data-bs-toggle="collapse" data-bs-target="#solar-intro">
+          <div class="d-flex align-items-center">
+            <div class="section-icon">
+              <i class="bi bi-globe-americas"></i>
+            </div>
+            <div>
+              <h2 class="mb-0">3.1 ระบบสุริยะ: โครงสร้างและองค์ประกอบ</h2>
+            </div>
+          </div>
         </div>
-
-        <h4 class="mt-4">กฎข้อที่ 3: คาบวงโคจรแปรผันกับระยะห่าง</h4>
-        <p>
-          คาบวงโคจรของดาวเคราะห์มีความสัมพันธ์กับระยะห่างจากดวงอาทิตย์:
-        </p>
-        <div class="text-center bg-light p-3 rounded">
-          <h3 style="font-family: 'Times New Roman', serif;">$$ P^2 \propto a^3 $$</h3>
+        <div id="solar-intro" class="collapse show">
+          <div class="section-body">
+            <p class="lead">
+              ระบบสุริยะของเราเป็นระบบดาวเคราะห์ที่ประกอบด้วยดวงอาทิตย์เป็นศูนย์กลาง มีวัตถุอื่น ๆ โคจรรอบภายใต้อิทธิพลของแรงโน้มถ่วง
+            </p>
+            
+            <div class="key-point">
+              <h5><i class="bi bi-stars"></i> โครงสร้างหลักของระบบสุริยะ</h5>
+              <div class="row mt-3">
+                <div class="col-md-4">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h5 class="card-title text-astronomy"><i class="bi bi-sun"></i> ดวงอาทิตย์</h5>
+                      <p class="card-text">ดาวฤกษ์ประเภท G2V อายุประมาณ 4.6 พันล้านปี มีมวล 99.86% ของมวลทั้งหมดในระบบสุริยะ</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-4">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h5 class="card-title text-astronomy"><i class="bi bi-planet"></i> ดาวเคราะห์</h5>
+                      <p class="card-text">8 ดาวเคราะห์ แบ่งเป็นดาวเคราะห์ชั้นใน (ดาวเคราะห์หิน) และดาวเคราะห์ชั้นนอก (ดาวเคราะห์แก๊ส)</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-4">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h5 class="card-title text-astronomy"><i class="bi bi-meteor"></i> วัตถุขนาดเล็ก</h5>
+                      <p class="card-text">ประกอบด้วยดาวเคราะห์น้อย (แถบหลัก, โทรจัน) ดาวหาง (เมฆออร์ต, แถบไคเปอร์) และวัตถุอื่นๆ</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="planet-data-card">
+              <div class="planet-name">ข้อมูลดาวเคราะห์ชั้นใน (Terrestrial Planets)</div>
+              <div class="data-row">
+                <span class="data-label">ดาวพุธ (Mercury)</span>
+                <span class="data-value">ระยะห่างเฉลี่ย: 0.39 AU</span>
+              </div>
+              <div class="data-row">
+                <span class="data-label">ดาวศุกร์ (Venus)</span>
+                <span class="data-value">ระยะห่างเฉลี่ย: 0.72 AU</span>
+              </div>
+              <div class="data-row">
+                <span class="data-label">โลก (Earth)</span>
+                <span class="data-value">ระยะห่างเฉลี่ย: 1.00 AU</span>
+              </div>
+              <div class="data-row">
+                <span class="data-label">ดาวอังคาร (Mars)</span>
+                <span class="data-value">ระยะห่างเฉลี่ย: 1.52 AU</span>
+              </div>
+            </div>
+            
+            <div class="alert alert-info" role="alert">
+              <h4 class="alert-heading"><i class="bi bi-rulers"></i> หน่วยดาราศาสตร์ (Astronomical Unit - AU)</h4>
+              <p>1 AU คือระยะทางเฉลี่ยจากโลกถึงดวงอาทิตย์ (ประมาณ 149.6 ล้านกิโลเมตร) ใช้เป็นหน่วยวัดระยะทางในระบบสุริยะ</p>
+              <div class="formula-box">
+                $$ 1\, \text{AU} = 149,597,870,700 \, \text{m} \approx 1.496 \times 10^{11} \, \text{m} $$
+              </div>
+            </div>
+          </div>
         </div>
-        <p>
-          กฎนี้ใช้อธิบายการเคลื่อนที่ของดาวเคราะห์ภายในระบบสุริยะได้อย่างแม่นยำ โดยที่ $P$ คือคาบการโคจร และ $a$ คือระยะกึ่งแกนเอก
-        </p>
-      </section>
+      </div>
 
-      <section class="mb-5">
-        <h2 class="border-bottom pb-2 mb-3">3.3 กฎแรงโน้มถ่วงของนิวตัน</h2>
-        <p>
-          นิวตันเสนอว่าแรงโน้มถ่วงระหว่างมวลสองมวลเป็นดังนี้:
-        </p>
-        <div class="text-center bg-light p-3 rounded">
-          <h3 style="font-family: 'Times New Roman', serif;">$$ F = G\frac{m_1 m_2}{r^2} $$</h3>
+      <div class="section-card">
+        <div class="section-header" data-bs-toggle="collapse" data-bs-target="#kepler-laws">
+          <div class="d-flex align-items-center">
+            <div class="section-icon">
+              <i class="bi bi-diagram-3"></i>
+            </div>
+            <div>
+              <h2 class="mb-0">3.2 กฎของเคปเลอร์: รากฐานกลศาสตร์ท้องฟ้า</h2>
+            </div>
+          </div>
         </div>
-        <ul>
-          <li>$F$: แรงโน้มถ่วง (นิวตัน)</li>
-          <li>$m_1, m_2$: มวลของวัตถุทั้งสอง</li>
-          <li>$r$: ระยะห่างระหว่างจุดศูนย์กลางมวล</li>
-          <li>$G$: ค่าคงที่โน้มถ่วง $6.674 \times 10^{-11}\ \mathrm{Nm^2/kg^2}$</li>
-        </ul>
-        <p>
-          สูตรนี้ใช้คำนวณแรงดึงดูดระหว่างวัตถุในระบบสุริยะและช่วยวิเคราะห์การเคลื่อนที่ของดาวเคราะห์ได้เป็นระบบ
-        </p>
-      </section>
+        <div id="kepler-laws" class="collapse show">
+          <div class="section-body">
+            <p class="lead">
+              โยฮันเนส เคปเลอร์ ได้พัฒนากฎการเคลื่อนที่ของดาวเคราะห์ 3 ข้อจากข้อมูลการสังเกตของไทโค บราเฮ ซึ่งเป็นรากฐานของกลศาสตร์ท้องฟ้า
+            </p>
+            
+            <div class="kepler-law-card">
+              <div class="law-number">1</div>
+              <div class="law-title">กฎว่าด้วยวงโคจร (Law of Orbits)</div>
+              <p>ดาวเคราะห์ทุกดวงโคจรรอบดวงอาทิตย์เป็นวงรี โดยดวงอาทิตย์อยู่ที่จุดโฟกัสหนึ่งของวงรีนั้น</p>
+              <div class="text-center bg-light p-3 rounded">
+                <h3 style="font-family: 'Times New Roman', serif;">$$ r = \frac{a(1 - e^2)}{1 + e\cos\theta} $$</h3>
+              </div>
+              <ul>
+                <li>$a$: กึ่งแกนเอก (semi-major axis)</li>
+                <li>$e$: ความเยื้องศูนย์กลาง (eccentricity)</li>
+                <li>$r$: ระยะทางจากดวงอาทิตย์ถึงดาวเคราะห์</li>
+                <li>$\theta$: มุมที่วัดจากจุดใกล้ดวงอาทิตย์ที่สุด (perihelion)</li>
+              </ul>
+              
+              <div class="visual-guide mt-3">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Cellipse cx='200' cy='100' rx='150' ry='80' fill='none' stroke='%230b3d91' stroke-width='2'/%3E%3Ccircle cx='120' cy='100' r='5' fill='%23ff9800'/%3E%3Ccircle cx='280' cy='100' r='5' fill='%230b3d91'/%3E%3Cline x1='120' y1='100' x2='280' y2='100' stroke='%236a0dad' stroke-width='1' stroke-dasharray='5,5'/%3E%3Ctext x='120' y='90' text-anchor='middle' fill='%23ff9800'%3Eโฟกัส 1 (ดวงอาทิตย์)%3C/text%3E%3Ctext x='280' y='90' text-anchor='middle' fill='%230b3d91'%3Eโฟกัส 2%3C/text%3E%3Ctext x='200' y='50' text-anchor='middle' fill='%230b3d91'%3EPerihelion%3C/text%3E%3Ctext x='200' y='150' text-anchor='middle' fill='%230b3d91'%3EAphelion%3C/text%3E%3C/svg%3E" alt="Kepler's First Law" class="orbit-diagram">
+              </div>
+            </div>
+            
+            <div class="kepler-law-card">
+              <div class="law-number">2</div>
+              <div class="law-title">กฎว่าด้วยพื้นที่ (Law of Areas)</div>
+              <p>เส้นตรงที่เชื่อมระหว่างดาวเคราะห์กับดวงอาทิตย์กวาดพื้นที่เท่ากันในเวลาที่เท่ากัน</p>
+              <div class="text-center bg-light p-3 rounded">
+                <h3 style="font-family: 'Times New Roman', serif;">$$ \frac{dA}{dt} = \text{constant} $$</h3>
+              </div>
+              <p>กฎข้อนี้แสดงว่าดาวเคราะห์เคลื่อนที่เร็วที่สุดเมื่ออยู่ใกล้ดวงอาทิตย์ (perihelion) และช้าที่สุดเมื่ออยู่ไกลดวงอาทิตย์ (aphelion)</p>
+              
+              <div class="visual-guide mt-3">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Cellipse cx='200' cy='100' rx='150' ry='80' fill='none' stroke='%230b3d91' stroke-width='2'/%3E%3Ccircle cx='120' cy='100' r='8' fill='%23ff9800'/%3E%3Cpath d='M120,100 L180,40 L200,100 L180,160 L120,100' fill='rgba(79,195,247,0.3)' stroke='%234fc3f7' stroke-width='1'/%3E%3Cpath d='M120,100 L50,100 L120,180 L120,100' fill='rgba(79,195,247,0.3)' stroke='%234fc3f7' stroke-width='1'/%3E%3Ctext x='150' y='70' text-anchor='middle' fill='%230b3d91'%3Eพื้นที่ A%3C/text%3E%3Ctext x='80' y='140' text-anchor='middle' fill='%230b3d91'%3Eพื้นที่ A%3C/text%3E%3C/svg%3E" alt="Kepler's Second Law" class="orbit-diagram">
+              </div>
+            </div>
+            
+            <div class="kepler-law-card">
+              <div class="law-number">3</div>
+              <div class="law-title">กฎว่าด้วยคาบการโคจร (Law of Periods)</div>
+              <p>กำลังสองของคาบการโคจรของดาวเคราะห์แปรผันตรงกับกำลังสามของระยะกึ่งแกนเอกของวงโคจร</p>
+              <div class="text-center bg-light p-3 rounded">
+                <h3 style="font-family: 'Times New Roman', serif;">$$ \frac{T_1^2}{T_2^2} = \frac{a_1^3}{a_2^3} $$</h3>
+              </div>
+              <p>สำหรับดาวเคราะห์ในระบบสุริยะเดียวกัน ค่าคงที่นี้จะเท่ากันหมด</p>
+              
+              <div class="example-box mt-3">
+                <h6><i class="bi bi-calculator"></i> ตัวอย่างการคำนวณ</h6>
+                <p>ดาวพฤหัสบดีมีระยะกึ่งแกนเอก 5.2 AU และคาบการโคจร 11.86 ปี จงหาคาบการโคจรของดาวเคราะห์ที่มีระยะกึ่งแกนเอก 10 AU</p>
+                <p>จาก $ \frac{T_1^2}{a_1^3} = \frac{T_2^2}{a_2^3} $</p>
+                <p>ดังนั้น $ T_2 = T_1 \sqrt{\left(\frac{a_2}{a_1}\right)^3} = 11.86 \times \sqrt{(10/5.2)^3} \approx 31.6 $ ปี</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    </article>
+      <div class="section-card">
+        <div class="section-header" data-bs-toggle="collapse" data-bs-target="#newton-gravity">
+          <div class="d-flex align-items-center">
+            <div class="section-icon">
+              <i class="bi bi-apple"></i>
+            </div>
+            <div>
+              <h2 class="mb-0">3.3 กฎแรงโน้มถ่วงสากลของนิวตัน</h2>
+            </div>
+          </div>
+        </div>
+        <div id="newton-gravity" class="collapse show">
+          <div class="section-body">
+            <p class="lead">
+              ไอแซก นิวตัน ได้พัฒนากฎแรงโน้มถ่วงสากล ซึ่งอธิบายว่าแรงระหว่างวัตถุสองชิ้นแปรผันตรงกับผลคูณของมวลและแปรผกผันกับกำลังสองของระยะทาง
+            </p>
+            
+            <div class="text-center bg-light p-3 rounded">
+              <h3 style="font-family: 'Times New Roman', serif;">$$ F = G \frac{m_1 m_2}{r^2} $$</h3>
+            </div>
+            <ul>
+              <li>$F$: แรงโน้มถ่วงระหว่างวัตถุ (นิวตัน)</li>
+              <li>$G$: ค่าคงที่โน้มถ่วงสากล $6.674 \times 10^{-11}  \mathrm{N \cdot m^2 / kg^2}$</li>
+              <li>$m_1, m_2$: มวลของวัตถุทั้งสอง (กิโลกรัม)</li>
+              <li>$r$: ระยะห่างระหว่างจุดศูนย์กลางมวล (เมตร)</li>
+            </ul>
+            
+            <div class="formula-derivation">
+              <h5><i class="bi bi-lightning"></i> ที่มาของกฎแรงโน้มถ่วงสากล</h5>
+              <p>นิวตันนำกฎของเคปเลอร์และกฎการเคลื่อนที่ของตนเองมาผสมกัน:</p>
+              <p>จากกฎข้อที่สองของนิวตัน: $ F = ma = m \frac{v^2}{r} $</p>
+              <p>และจากวงโคจรวงกลม: $ v = \frac{2\pi r}{T} $</p>
+              <p>จากกฎข้อที่สามของเคปเลอร์: $ T^2 \propto r^3 $</p>
+              <p>นำมารวมกัน: $ F \propto \frac{m}{r^2} $</p>
+              <p>จึงสรุปว่า $ F \propto \frac{m_1 m_2}{r^2} $</p>
+            </div>
+            
+            <div class="key-point">
+              <h5><i class="bi bi-globe2"></i> ความแรงโน้มถ่วงบนดาวเคราะห์ต่างๆ</h5>
+              <div class="gravity-comparison">
+                <div>
+                  <div class="gravity-bar" style="height: 40px;">1.00g</div>
+                  <div class="gravity-label"></div>
+                </div>
+                <div>
+                  <div class="gravity-bar" style="height: 38px;">0.38g</div>
+                  <div class="gravity-label"></div>
+                </div>
+                <div>
+                  <div class="gravity-bar" style="height: 90px;">0.90g</div>
+                  <div class="gravity-label"></div>
+                </div>
+                <div>
+                  <div class="gravity-bar" style="height: 27px;">0.17g</div>
+                  <div class="gravity-label"></div>
+                </div>
+                <div>
+                  <div class="gravity-bar" style="height: 265px;">2.53g</div>
+                  <div class="gravity-label"></div>
+                </div>
+              </div>
+              <p class="mt-3">ความเร่งโน้มถ่วงบนดาวเคราะห์: $ g = G \frac{M}{R^2} $</p>
+            </div>
+            
+            <div class="example-box">
+              <h6><i class="bi bi-calculator"></i> ตัวอย่างการคำนวณแรงโน้มถ่วง</h6>
+              <p>จงหาแรงโน้มถ่วงระหว่างโลก (มวล 5.97 × 10²⁴ kg) และดวงจันทร์ (มวล 7.34 × 10²² kg) ที่ระยะห่างเฉลี่ย 3.84 × 10⁸ m</p>
+              <p>$$ F = G \frac{m_1 m_2}{r^2} = (6.674 \times 10^{-11}) \frac{(5.97 \times 10^{24}) (7.34 \times 10^{22})}{(3.84 \times 10^8)^2} $$</p>
+              <p>$$ F \approx 1.98 \times 10^{20} \, \text{N} $$</p>
+              <p>ซึ่งเทียบเท่าน้ำหนักของภูเขาเอเวอเรสต์ประมาณ 2 ล้านลูก!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header" data-bs-toggle="collapse" data-bs-target="#orbital-mechanics">
+          <div class="d-flex align-items-center">
+            <div class="section-icon">
+              <i class="bi bi-speedometer2"></i>
+            </div>
+            <div>
+              <h2 class="mb-0">3.4 กลศาสตร์วงโคจรและการประยุกต์</h2>
+            </div>
+          </div>
+        </div>
+        <div id="orbital-mechanics" class="collapse show">
+          <div class="section-body">
+            <p class="lead">
+              ความเข้าใจเกี่ยวกับกลศาสตร์วงโคจรช่วยให้เราคำนวณวิถีการเคลื่อนที่ของวัตถุท้องฟ้าและยานอวกาศได้อย่างแม่นยำ
+            </p>
+            
+            <div class="key-point">
+              <h5><i class="bi bi-rocket"></i> ความเร็ววงโคจร (Orbital Velocity)</h5>
+              <p>ความเร็วที่วัตถุต้องมีเพื่อโคจรรอบดาวหลัก:</p>
+              <div class="text-center bg-light p-3 rounded">
+                <h3 style="font-family: 'Times New Roman', serif;">$$ v = \sqrt{\frac{GM}{r}} $$</h3>
+              </div>
+              <p>โดย $M$ คือมวลของดาวหลัก, $r$ คือระยะห่างจากจุดศูนย์กลาง</p>
+              
+              <div class="example-box mt-3">
+                <h6><i class="bi bi-calculator"></i> ตัวอย่าง: ความเร็ววงโคจรของโลก</h6>
+                <p>มวลดวงอาทิตย์ $M = 1.989 \times 10^{30}$ kg</p>
+                <p>ระยะห่างโลก-ดวงอาทิตย์ $r = 1.496 \times 10^{11}$ m</p>
+                <p>$$ v = \sqrt{\frac{(6.674 \times 10^{-11}) (1.989 \times 10^{30})}{1.496 \times 10^{11}}} \approx 29,785  \text{m/s} $$</p>
+                <p>หรือประมาณ 107,000 km/h</p>
+              </div>
+            </div>
+            
+            <div class="key-point mt-4">
+              <h5><i class="bi bi-rocket-takeoff"></i> ความเร็วหลุดพ้น (Escape Velocity)</h5>
+              <p>ความเร็วขั้นต่ำที่วัตถุต้องการเพื่อหลุดจากสนามแรงโน้มถ่วงของดาว:</p>
+              <div class="text-center bg-light p-3 rounded">
+                <h3 style="font-family: 'Times New Roman', serif;">$$ v_e = \sqrt{\frac{2GM}{R}} $$</h3>
+              </div>
+              <p>โดย $R$ คือรัศมีของดาว</p>
+              
+              <div class="row mt-3">
+                <div class="col-md-6">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>วัตถุท้องฟ้า</th>
+                        <th>ความเร็วหลุดพ้น (km/s)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>ดาวพุธ</td>
+                        <td>4.3</td>
+                      </tr>
+                      <tr>
+                        <td>ดาวศุกร์</td>
+                        <td>10.4</td>
+                      </tr>
+                      <tr>
+                        <td>โลก</td>
+                        <td>11.2</td>
+                      </tr>
+                      <tr>
+                        <td>ดาวอังคาร</td>
+                        <td>5.0</td>
+                      </tr>
+                      <tr>
+                        <td>ดาวพฤหัส</td>
+                        <td>59.5</td>
+                      </tr>
+                      <tr>
+                        <td>ดวงอาทิตย์</td>
+                        <td>617.5</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-md-6">
+                  <div class="alert alert-info">
+                    <h5><i class="bi bi-lightbulb"></i> การประยุกต์ในอวกาศ</h5>
+                    <p>การส่งยานอวกาศต้องคำนึงถึงความเร็วหลุดพ้น:</p>
+                    <ul>
+                      <li>ยานอพอลโล 11: ต้องเร่งถึง 11.2 km/s เพื่อออกจากโลก</li>
+                      <li>ยานวอยเอจเจอร์: ใช้แรงโน้มถ่วงช่วย (gravity assist) จากดาวพฤหัส</li>
+                      <li>ยานนิวฮอไรซันส์: ความเร็ว 16.26 km/s เมื่อปล่อยจากโลก</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-grid gap-2 mt-4">
+      <a href="astronomy_topics.html" class="btn btn-primary btn-lg">
+        <i class="bi bi-arrow-left-circle"></i> กลับไปยังหน้าบทเรียนทั้งหมด
+      </a>
+    </div>
   </div>
 </main>
 
-<footer class="bg-dark text-white text-center py-3">
+<footer class="bg-dark text-white text-center py-4">
   <div class="container">
+    <div class="mb-3">
+      <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+      <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+      <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+      <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+    </div>
     <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+    <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
   </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/script.js"></script>
-
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Dark mode toggle functionality
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      body.setAttribute('data-bs-theme', 'dark');
+      darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+      darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+    }
+    
+    darkModeToggle.addEventListener('click', function() {
+      if (body.getAttribute('data-bs-theme') === 'dark') {
+        body.setAttribute('data-bs-theme', 'light');
+        darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+        darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.setAttribute('data-bs-theme', 'dark');
+        darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+        darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  });
+</script>
 </body>
 </html>
