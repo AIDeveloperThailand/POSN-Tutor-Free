@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การแบ่งเซลล์ - สอวน. ชีววิทยา</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --biology: #4CAF50;
+            --biology-light: #C8E6C9;
+            --biology-dark: #388E3C;
+            --mitosis: #64B5F6;
+            --meiosis: #BA68C8;
+            --cycle-control: #FFB74D;
+            --abnormalities: #F44336;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,15 C65.464,15 78,27.536 78,43 C78,58.464 65.464,71 50,71 C34.536,71 22,58.464 22,43 C22,27.536 34.536,15 50,15 Z M50,25 C40.058,25 32,33.058 32,43 C32,52.942 40.058,61 50,61 C59.942,61 68,52.942 68,43 C68,33.058 59.942,25 50,25 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3Cpath d='M30,75 C36.627,75 42,80.373 42,87 C42,93.627 36.627,99 30,99 C23.373,99 18,93.627 18,87 C18,80.373 23.373,75 30,75 Z M70,75 C76.627,75 82,80.373 82,87 C82,93.627 76.627,99 70,99 C63.373,99 58,93.627 58,87 C58,80.373 63.373,75 70,75 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='5' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='20' cy='30' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='80' cy='20' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='30' cy='70' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='70' cy='80' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='10' cy='50' r='2' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='90' cy='60' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.2;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.1), rgba(67, 160, 71, 0.1));
+            border-left: 4px solid var(--biology);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+        }
+        
+        .section-header {
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .key-point {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .division-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .division-table th {
+            padding: 12px;
+            text-align: center;
+            color: white;
+        }
+        
+        .division-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .division-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .phase-comparison {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .phase-card {
+            flex: 1;
+            min-width: 200px;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .cycle-diagram {
+            width: 100%;
+            height: 400px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diagram-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .reproductive-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .img-caption {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .phase-flow {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 30px;
+            border-left: 3px solid var(--biology);
+        }
+        
+        .flow-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+        
+        .flow-item::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--biology);
+        }
+        
+        .control-chart {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .control-item {
+            background: #E8F5E9;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #C8E6C9;
+        }
+        
+        .abnormalities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .abnormality-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--abnormalities);
+        }
+        
+        @media (max-width: 768px) {
+            .phase-comparison {
+                flex-direction: column;
+            }
+            
+            .phase-card {
+                min-width: 100%;
+                margin: 10px 0;
+            }
+            
+            .header-bg {
+                padding: 2rem 0;
+            }
+            
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .control-chart {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            
+            .cycle-diagram {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-eyeglasses"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="biology_topics.html">ชีววิทยา</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="biology_topics.html">เนื้อหาชีววิทยาทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">บทที่ 6: การแบ่งเซลล์</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">บทที่ 6: การแบ่งเซลล์</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-green me-2">ไมโทซิส</span>
+                <span class="badge bg-light text-green me-2">ไมโอซิส</span>
+                <span class="badge bg-light text-green me-2">การควบคุมวัฏจักรเซลล์</span>
+                <span class="badge bg-light text-green">ความผิดปกติในการแบ่งเซลล์</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ไมโทซิส -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#mitosis" style="background: linear-gradient(135deg, var(--mitosis), #2196F3);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ไมโทซิส (Mitosis)</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="mitosis" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ไมโทซิสเป็นการแบ่งเซลล์แบบไม่ลดโครโมโซม ทำให้ได้เซลล์ลูก 2 เซลล์ที่มีจำนวนโครโมโซมเท่าเซลล์แม่ (2n) ใช้ในการเจริญเติบโต ซ่อมแซมเนื้อเยื่อ และการสืบพันธุ์แบบไม่อาศัยเพศ
+                        </p>
+                        
+                        <div class="cycle-diagram">
+                            <img src="https://microbenotes.com/wp-content/uploads/2020/03/Mitosis-Phases.jpeg" alt="Mitosis Phases" class="reproductive-image">
+                            <p class="img-caption">ระยะต่างๆ ของไมโทซิส (ที่มา: Microbe Notes)</p>
+                        </div>
+                        
+                        <h4>ระยะต่างๆ ของไมโทซิส</h4>
+                        <div class="phase-comparison">
+                            <div class="phase-card" style="border-top: 5px solid var(--mitosis);">
+                                <h5><i class="bi bi-circle"></i> โพรเฟส (Prophase)</h5>
+                                <ul>
+                                    <li>โครโมโซมหดตัวและมองเห็นเป็นแท่ง</li>
+                                    <li>เยื่อหุ้มนิวเคลียสสลายตัว</li>
+                                    <li>เซนทริโอลเคลื่อนไปขั้วเซลล์</li>
+                                    <li>เส้นใยสปินเดิลเริ่มก่อตัว</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="phase-card" style="border-top: 5px solid var(--mitosis);">
+                                <h5><i class="bi bi-layout-three-columns"></i> เมทาเฟส (Metaphase)</h5>
+                                <ul>
+                                    <li>โครโมโซมเรียงตัวที่เส้นศูนย์กลางเซลล์</li>
+                                    <li>เส้นใยสปินเดิลยึดติดกับไคเนโตคอร์</li>
+                                    <li>แต่ละโครโมโซมประกอบด้วย 2 โครมาทิด</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="phase-card" style="border-top: 5px solid var(--mitosis);">
+                                <h5><i class="bi bi-arrow-up"></i> แอนาเฟส (Anaphase)</h5>
+                                <ul>
+                                    <li>โครมาทิดแยกออกจากกัน</li>
+                                    <li>โครโมโซมลูกถูกดึงไปยังขั้วเซลล์</li>
+                                    <li>เซลล์เริ่มยืดยาวออก</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="phase-card" style="border-top: 5px solid var(--mitosis);">
+                                <h5><i class="bi bi-circle-half"></i> เทโลเฟส (Telophase)</h5>
+                                <ul>
+                                    <li>โครโมโซมคลายตัวเป็นโครมาติน</li>
+                                    <li>เยื่อหุ้มนิวเคลียสก่อตัวใหม่</li>
+                                    <li>เส้นใยสปินเดิลสลายตัว</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="phase-card" style="border-top: 5px solid var(--mitosis);">
+                                <h5><i class="bi bi-dash"></i> ไซโทไคเนซิส (Cytokinesis)</h5>
+                                <ul>
+                                    <li>ไซโทพลาซึมแบ่งตัว</li>
+                                    <li>เซลล์สัตว์: เกิดร่องแบ่งเซลล์</li>
+                                    <li>เซลล์พืช: เกิดแผ่นเซลล์ (cell plate)</li>
+                                    <li>ได้เซลล์ลูก 2 เซลล์</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(100, 181, 246, 0.2), rgba(100, 181, 246, 0.1)); border-color: rgba(100, 181, 246, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ความสำคัญของไมโทซิส</h5>
+                            <ul>
+                                <li><strong>การเจริญเติบโต:</strong> เพิ่มจำนวนเซลล์ในร่างกาย</li>
+                                <li><strong>การซ่อมแซม:</strong> แทนที่เซลล์ที่เสียหายหรือตายแล้ว</li>
+                                <li><strong>การสืบพันธุ์แบบไม่อาศัยเพศ:</strong> เช่น การแตกหน่อของไฮดรา การปักชำพืช</li>
+                                <li><strong>การงอกใหม่:</strong> ในสัตว์บางชนิด เช่น ปลาดาว สามารถงอกแขนใหม่ได้</li>
+                                <li><strong>การสร้างเซลล์สืบพันธุ์ในพืชดอก:</strong> การสร้างละอองเรณูและถุงเอ็มบริโอ</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="division-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--mitosis);">ลักษณะ</th>
+                                        <th style="background-color: var(--mitosis);">เซลล์สัตว์</th>
+                                        <th style="background-color: var(--mitosis);">เซลล์พืช</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>เซนทริโอล</strong></td>
+                                        <td>มีเซนทริโอล</td>
+                                        <td>ไม่มีเซนทริโอล</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>แอสเทอร์ (Aster)</strong></td>
+                                        <td>มีแอสเทอร์ (รังสีรอบเซนทริโอล)</td>
+                                        <td>ไม่มีแอสเทอร์</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ไซโทไคเนซิส</strong></td>
+                                        <td>เกิดร่องแบ่งเซลล์ (Cleavage furrow)</td>
+                                        <td>เกิดแผ่นเซลล์ (Cell plate)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ตำแหน่งการแบ่ง</strong></td>
+                                        <td>แบ่งได้ทุกทิศทาง</td>
+                                        <td>แบ่งในแนวตั้งฉากกับผนังเซลล์เดิม</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ไมโอซิส -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#meiosis" style="background: linear-gradient(135deg, var(--meiosis), #9C27B0);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ไมโอซิส (Meiosis)</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="meiosis" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ไมโอซิสเป็นการแบ่งเซลล์แบบลดโครโมโซม ทำให้ได้เซลล์ลูก 4 เซลล์ที่มีจำนวนโครโมโซมลดลงครึ่งหนึ่ง (n) ใช้ในการสร้างเซลล์สืบพันธุ์ (gametes) สำหรับการสืบพันธุ์แบบอาศัยเพศ
+                        </p>
+                        
+                        <div class="cycle-diagram">
+                            <img src="https://www.sciencefacts.net/wp-content/uploads/2020/12/Meiosis-Stages.jpg" alt="Meiosis Stages" class="reproductive-image">
+                            <p class="img-caption">ระยะต่างๆ ของไมโอซิส (ที่มา: Science Facts)</p>
+                        </div>
+                        
+                        <h4>ขั้นตอนของไมโอซิส</h4>
+                        <div class="phase-flow">
+                            <div class="flow-item">
+                                <h6><i class="bi bi-1-circle"></i> ไมโอซิส I (การแบ่งแบบลดจำนวน)</h6>
+                                <ul>
+                                    <li><strong>โพรเฟส I:</strong> โครโมโซมคู่เหมือนจับคู่กัน (ซินแอปซิส) เกิดการไขว้เปลี่ยน (ครอสซิงโอเวอร์)</li>
+                                    <li><strong>เมทาเฟส I:</strong> คู่โครโมโซมเรียงตัวที่เส้นศูนย์กลางเซลล์</li>
+                                    <li><strong>แอนาเฟส I:</strong> โครโมโซมคู่เหมือนแยกออกจากกันไปยังขั้วเซลล์</li>
+                                    <li><strong>เทโลเฟส I:</strong> ได้เซลล์ลูก 2 เซลล์ที่มีโครโมโซมเป็น n (แต่แต่ละโครโมโซมมี 2 โครมาทิด)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-2-circle"></i> ไมโอซิส II (การแบ่งแบบเท่า)</h6>
+                                <ul>
+                                    <li><strong>โพรเฟส II:</strong> เยื่อหุ้มนิวเคลียสสลายตัว</li>
+                                    <li><strong>เมทาเฟส II:</strong> โครโมโซมเรียงตัวที่เส้นศูนย์กลางเซลล์</li>
+                                    <li><strong>แอนาเฟส II:</strong> โครมาทิดแยกออกจากกัน</li>
+                                    <li><strong>เทโลเฟส II:</strong> ได้เซลล์ลูก 4 เซลล์ที่มีโครโมโซมเป็น n (แต่ละโครโมโซมมี 1 โครมาทิด)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(186, 104, 200, 0.2), rgba(186, 104, 200, 0.1)); border-color: rgba(186, 104, 200, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ความสำคัญของไมโอซิส</h5>
+                            <ul>
+                                <li><strong>การสร้างเซลล์สืบพันธุ์:</strong> สเปิร์มและไข่</li>
+                                <li><strong>การลดจำนวนโครโมโซม:</strong> จาก 2n เป็น n</li>
+                                <li><strong>การสับเปลี่ยนยีน:</strong> ผ่านกระบวนการครอสซิงโอเวอร์</li>
+                                <li><strong>การแยกโครโมโซมอย่างอิสระ:</strong> ทำให้เกิดความแปรผันทางพันธุกรรม</li>
+                                <li><strong>การสืบพันธุ์แบบอาศัยเพศ:</strong> รักษาจำนวนโครโมโซมคงที่ในรุ่นลูก</li>
+                            </ul>
+                        </div>
+                        
+                        <h4>ความแตกต่างระหว่างไมโทซิสและไมโอซิส</h4>
+                        <div class="division-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--meiosis);">ลักษณะ</th>
+                                        <th style="background-color: var(--meiosis);">ไมโทซิส</th>
+                                        <th style="background-color: var(--meiosis);">ไมโอซิส</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>จำนวนการแบ่ง</strong></td>
+                                        <td>1 ครั้ง</td>
+                                        <td>2 ครั้ง</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>จำนวนเซลล์ลูก</strong></td>
+                                        <td>2 เซลล์</td>
+                                        <td>4 เซลล์</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>จำนวนโครโมโซม</strong></td>
+                                        <td>2n (เท่าเซลล์แม่)</td>
+                                        <td>n (ครึ่งหนึ่งของเซลล์แม่)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>การจับคู่โครโมโซม</strong></td>
+                                        <td>ไม่มีการจับคู่</td>
+                                        <td>มีการจับคู่ในโพรเฟส I</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ครอสซิงโอเวอร์</strong></td>
+                                        <td>ไม่เกิด</td>
+                                        <td>เกิดในโพรเฟส I</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ตำแหน่งที่เกิด</strong></td>
+                                        <td>เซลล์ร่างกาย</td>
+                                        <td>อวัยวะสืบพันธุ์</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>หน้าที่</strong></td>
+                                        <td>การเจริญเติบโต, ซ่อมแซม</td>
+                                        <td>การสร้างเซลล์สืบพันธุ์</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การควบคุมวัฏจักรเซลล์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#cycleControl" style="background: linear-gradient(135deg, var(--cycle-control), #FB8C00);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-gear"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การควบคุมวัฏจักรเซลล์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="cycleControl" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            วัฏจักรเซลล์ (Cell Cycle) คือลำดับขั้นตอนที่เซลล์เจริญเติบโตและแบ่งตัว ประกอบด้วยระยะอินเตอร์เฟส (Interphase) และระยะแบ่งตัว (Mitotic Phase) โดยถูกควบคุมอย่างเข้มงวดด้วยระบบตรวจสอบ (Checkpoints)
+                        </p>
+                        
+                        <div class="cycle-diagram">
+                            <img src="https://microbenotes.com/wp-content/uploads/2022/05/Cell-Cycle-Phases-1536x1041.jpg" alt="Cell Cycle" class="reproductive-image">
+                            <p class="img-caption">วัฏจักรเซลล์และจุดตรวจสอบ (ที่มา: Microbe Notes)</p>
+                        </div>
+                        
+                        <h4>ระยะต่างๆ ของวัฏจักรเซลล์</h4>
+                        <div class="phase-comparison">
+                            <div class="phase-card" style="border-top: 5px solid var(--cycle-control);">
+                                <h5><i class="bi bi-arrow-repeat"></i> ระยะ G1 (Gap 1)</h5>
+                                <ul>
+                                    <li>เซลล์เจริญเติบโตและสังเคราะห์โปรตีน</li>
+                                    <li>เตรียมสารสำหรับจำลอง DNA</li>
+                                    <li>จุดตรวจสอบ G1/S: ตรวจสอบขนาดเซลล์ สารอาหาร และความเสียหายของ DNA</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="phase-card" style="border-top: 5px solid var(--cycle-control);">
+                                <h5><i class="bi bi-dna"></i> ระยะ S (Synthesis)</h5>
+                                <ul>
+                                    <li>จำลอง DNA (โครโมโซมแต่ละแท่งมี 2 โครมาทิด)</li>
+                                    <li>สังเคราะห์โปรตีนฮิสโตน</li>
+                                    <li>จุดตรวจสอบภายใน S: ตรวจสอบความสมบูรณ์ของ DNA</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="phase-card" style="border-top: 5px solid var(--cycle-control);">
+                                <h5><i class="bi bi-arrow-repeat"></i> ระยะ G2 (Gap 2)</h5>
+                                <ul>
+                                    <li>สังเคราะห์โปรตีนและออร์แกเนลล์สำหรับการแบ่งเซลล์</li>
+                                    <li>เตรียมเส้นใยสปินเดิล</li>
+                                    <li>จุดตรวจสอบ G2/M: ตรวจสอบความสมบูรณ์ของ DNA และขนาดเซลล์</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="phase-card" style="border-top: 5px solid var(--cycle-control);">
+                                <h5><i class="bi bi-arrow-right-circle"></i> ระยะ M (Mitotic Phase)</h5>
+                                <ul>
+                                    <li>แบ่งนิวเคลียส (ไมโทซิส) และไซโทพลาซึม (ไซโทไคเนซิส)</li>
+                                    <li>จุดตรวจสอบ M: ตรวจสอบการยึดติดของเส้นใยสปินเดิลกับไคเนโตคอร์</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="phase-card" style="border-top: 5px solid var(--cycle-control);">
+                                <h5><i class="bi bi-pause-circle"></i> ระยะ G0 (Quiescence)</h5>
+                                <ul>
+                                    <li>เซลล์พักการแบ่งตัวชั่วคราวหรือถาวร</li>
+                                    <li>เซลล์ประสาทและเซลล์กล้ามเนื้อส่วนใหญ่อยู่ในระยะนี้</li>
+                                    <li>เซลล์สามารถกลับเข้าสู่วัฏจักรได้เมื่อได้รับสัญญาณที่เหมาะสม</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(255, 183, 77, 0.2), rgba(255, 183, 77, 0.1)); border-color: rgba(255, 183, 77, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> โมเลกุลควบคุมวัฏจักรเซลล์</h5>
+                            <div class="control-chart">
+                                <div class="control-item">
+                                    <h5><i class="bi bi-arrow-up-circle"></i> ไซคลิน (Cyclins)</h5>
+                                    <p>โปรตีนที่ระดับความเข้มข้นขึ้นลงตามระยะวัฏจักรเซลล์</p>
+                                </div>
+                                
+                                <div class="control-item">
+                                    <h5><i class="bi bi-lightning"></i> ไซคลิน-ดีเพนเดนท์ ไคเนส (CDKs)</h5>
+                                    <p>เอนไซม์ที่ถูกกระตุ้นโดยไซคลิน ฟอสโฟรีเลตโปรตีนเป้าหมาย</p>
+                                </div>
+                                
+                                <div class="control-item">
+                                    <h5><i class="bi bi-check-circle"></i> จุดตรวจสอบ (Checkpoints)</h5>
+                                    <p>ควบคุมการผ่านเข้าสู่ระยะต่อไป</p>
+                                </div>
+                                
+                                <div class="control-item">
+                                    <h5><i class="bi bi-pause-circle"></i> ตัวยับยั้ง CDK (CDK Inhibitors)</h5>
+                                    <p>โปรตีนที่ยับยั้งการทำงานของ CDK เช่น p21, p27</p>
+                                </div>
+                                
+                                <div class="control-item">
+                                    <h5><i class="bi bi-wrench"></i> ระบบซ่อมแซม DNA</h5>
+                                    <p>โปรตีนที่ตรวจสอบและซ่อมแซม DNA ก่อนการแบ่งเซลล์</p>
+                                </div>
+                                
+                                <div class="control-item">
+                                    <h5><i class="bi bi-exclamation-triangle"></i> โปรตีนต้านมะเร็ง</h5>
+                                    <p>เช่น p53 ที่หยุดวัฏจักรเซลล์เมื่อพบ DNA เสียหาย</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ความผิดปกติในการแบ่งเซลล์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#abnormalities" style="background: linear-gradient(135deg, var(--abnormalities), #D32F2F);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-exclamation-triangle"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ความผิดปกติในการแบ่งเซลล์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="abnormalities" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ความผิดปกติในการแบ่งเซลล์อาจเกิดจากหลายสาเหตุ เช่น ความเสียหายของ DNA การกลายพันธุ์ในยีนควบคุมวัฏจักรเซลล์ หรือการรบกวนระบบตรวจสอบ ซึ่งสามารถนำไปสู่โรคต่างๆ โดยเฉพาะมะเร็ง
+                        </p>
+                        
+                        <h4>สาเหตุของความผิดปกติ</h4>
+                        <div class="abnormalities-grid">
+                            <div class="abnormality-card">
+                                <h5><i class="bi bi-droplet"></i> ความเสียหายของ DNA</h5>
+                                <ul>
+                                    <li>รังสี UV, รังสีเอกซ์</li>
+                                    <li>สารก่อกลายพันธุ์ (mutagens)</li>
+                                    <li>สารเคมีก่อมะเร็ง (carcinogens)</li>
+                                    <li>อนุมูลอิสระ</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="abnormality-card">
+                                <h5><i class="bi bi-code-slash"></i> การกลายพันธุ์ในยีนควบคุม</h5>
+                                <ul>
+                                    <li>ยีนต้านมะเร็ง (tumor suppressor genes)</li>
+                                    <li>ยีนกระตุ้นมะเร็ง (oncogenes)</li>
+                                    <li>ยีนซ่อมแซม DNA</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="abnormality-card">
+                                <h5><i class="bi bi-virus"></i> การติดเชื้อไวรัส</h5>
+                                <ul>
+                                    <li>HPV (มะเร็งปากมดลูก)</li>
+                                    <li>ไวรัสตับอักเสบ B และ C (มะเร็งตับ)</li>
+                                    <li>ไวรัส Epstein-Barr (มะเร็งต่อมน้ำเหลือง)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.2), rgba(244, 67, 54, 0.1)); border-color: rgba(244, 67, 54, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ความผิดปกติที่สำคัญ</h5>
+                            <div class="division-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th style="background-color: var(--abnormalities);">ความผิดปกติ</th>
+                                            <th style="background-color: var(--abnormalities);">ลักษณะ</th>
+                                            <th style="background-color: var(--abnormalities);">ผลกระทบ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>โครโมโซมไม่แยกตัว (Nondisjunction)</strong></td>
+                                            <td>โครโมโซมคู่เหมือนไม่แยกจากกันในแอนาเฟส</td>
+                                            <td>เกิดภาวะโครโมโซมเกิน (เช่น กลุ่มอาการดาวน์) หรือขาด (เช่น กลุ่มอาการเทอร์เนอร์)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>การกลายพันธุ์ของ p53</strong></td>
+                                            <td>ยีน p53 ซึ่งทำหน้าที่หยุดวัฏจักรเซลล์เมื่อพบ DNA เสียหาย เกิดกลายพันธุ์</td>
+                                            <td>เซลล์แบ่งตัวโดยไม่มีการซ่อมแซม DNA นำไปสู่มะเร็ง</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>การถ่ายโอนโครโมโซม (Translocation)</strong></td>
+                                            <td>การแลกเปลี่ยนส่วนของโครโมโซมระหว่างคู่ที่ไม่เหมือนกัน</td>
+                                            <td>เช่น การเกิด Philadelphia chromosome ในมะเร็งเม็ดเลือดขาวชนิดเรื้อรัง (CML)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>โครโมโซมวงแหวน (Ring Chromosome)</strong></td>
+                                            <td>ปลายโครโมโซมขาดแล้วเชื่อมต่อกันเป็นวงแหวน</td>
+                                            <td>เกิดการสูญเสียสารพันธุกรรม นำไปสู่ความผิดปกติแต่กำเนิด</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>โครโมโซมมีสองเซนโทรเมียร์ (Dicentric Chromosome)</strong></td>
+                                            <td>โครโมโซมที่มีสองเซนโทรเมียร์</td>
+                                            <td>เกิดการแตกหักของโครโมโซมระหว่างการแบ่งเซลล์</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <h4>โรคที่เกิดจากความผิดปกติในการแบ่งเซลล์</h4>
+                        <div class="abnormalities-grid">
+                            <div class="abnormality-card">
+                                <h5><i class="bi bi-heartbreak"></i> กลุ่มอาการดาวน์ (Down Syndrome)</h5>
+                                <ul>
+                                    <li>เกิดจากโครโมโซมคู่ที่ 21 เกินมา 1 แท่ง (Trisomy 21)</li>
+                                    <li>ลักษณะ: ดั้งจมูกแบน ตาเฉียงขึ้น ลิ้นยื่น</li>
+                                    <li>ปัญญาอ่อนระดับเล็กน้อยถึงปานกลาง</li>
+                                    <li>เสี่ยงต่อโรคหัวใจพิการแต่กำเนิด</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="abnormality-card">
+                                <h5><i class="bi bi-gender-ambiguous"></i> กลุ่มอาการเทอร์เนอร์ (Turner Syndrome)</h5>
+                                <ul>
+                                    <li>เกิดในเพศหญิง โครโมโซมเพศเป็น XO (ขาด X 1 แท่ง)</li>
+                                    <li>ลักษณะ: คอมีพังผืด ขนาดตัวเตี้ย ไม่มีประจำเดือน</li>
+                                    <li>รังไข่ไม่พัฒนา ไม่สามารถมีบุตรได้</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="abnormality-card">
+                                <h5><i class="bi bi-activity"></i> มะเร็ง (Cancer)</h5>
+                                <ul>
+                                    <li>เซลล์แบ่งตัวโดยไม่มีการควบคุม</li>
+                                    <li>เกิดจากการกลายพันธุ์ในยีนควบคุมวัฏจักรเซลล์</li>
+                                    <li>สามารถแพร่กระจายไปยังอวัยวะอื่น (Metastasis)</li>
+                                    <li>รักษาด้วยการผ่าตัด เคมีบำบัด รังสีรักษา</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Make section headers clickable to collapse/expand
+            document.querySelectorAll('.section-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-bs-target');
+                    const target = document.querySelector(targetId);
+                    const collapse = new bootstrap.Collapse(target, {
+                        toggle: true
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
