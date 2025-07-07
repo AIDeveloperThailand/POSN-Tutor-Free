@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การลำเลียงผ่านเซลล์ - สอวน. ชีววิทยา</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --biology: #4CAF50;
+            --biology-light: #C8E6C9;
+            --biology-dark: #388E3C;
+            --diffusion: #4CAF50;
+            --osmosis: #64B5F6;
+            --active: #BA68C8;
+            --bulk: #FFB74D;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,15 C65.464,15 78,27.536 78,43 C78,58.464 65.464,71 50,71 C34.536,71 22,58.464 22,43 C22,27.536 34.536,15 50,15 Z M50,25 C40.058,25 32,33.058 32,43 C32,52.942 40.058,61 50,61 C59.942,61 68,52.942 68,43 C68,33.058 59.942,25 50,25 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3Cpath d='M30,75 C36.627,75 42,80.373 42,87 C42,93.627 36.627,99 30,99 C23.373,99 18,93.627 18,87 C18,80.373 23.373,75 30,75 Z M70,75 C76.627,75 82,80.373 82,87 C82,93.627 76.627,99 70,99 C63.373,99 58,93.627 58,87 C58,80.373 63.373,75 70,75 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='5' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='20' cy='30' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='80' cy='20' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='30' cy='70' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='70' cy='80' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='10' cy='50' r='2' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='90' cy='60' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.2;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.1), rgba(67, 160, 71, 0.1));
+            border-left: 4px solid var(--biology);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+        }
+        
+        .section-header {
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .key-point {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .transport-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .transport-table th {
+            padding: 12px;
+            text-align: center;
+            color: white;
+        }
+        
+        .transport-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .transport-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .transport-diagram {
+            width: 100%;
+            height: 400px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diagram-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .transport-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .img-caption {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .process-flow {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 30px;
+            border-left: 3px solid var(--biology);
+        }
+        
+        .flow-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+        
+        .flow-item::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--biology);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        
+        .osmosis-diagram {
+            width: 100%;
+            height: 300px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .transport-comparison {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .transport-type {
+            flex: 1;
+            min-width: 300px;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        @media (max-width: 768px) {
+            .transport-comparison {
+                flex-direction: column;
+            }
+            
+            .transport-type {
+                min-width: 100%;
+                margin: 10px 0;
+            }
+            
+            .header-bg {
+                padding: 2rem 0;
+            }
+            
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .transport-diagram {
+                height: 300px;
+            }
+        }
+        
+        .cell-membrane {
+            width: 100%;
+            height: 300px;
+            background-color: #E3F2FD;
+            border-radius: 8px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .membrane-label {
+            position: absolute;
+            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 3px 8px;
+            border-radius: 3px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-eyeglasses"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="biology_topics.html">ชีววิทยา</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="biology_topics.html">เนื้อหาชีววิทยาทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">บทที่ 8: การลำเลียงผ่านเซลล์</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">บทที่ 8: การลำเลียงผ่านเซลล์</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-green me-2">การแพร่ธรรมดาและการแพร่แบบฟาซิลิเทต</span>
+                <span class="badge bg-light text-green me-2">ออสโมซิส</span>
+                <span class="badge bg-light text-green me-2">การลำเลียงแบบแอกทีฟ</span>
+                <span class="badge bg-light text-green">การลำเลียงแบบกลุ่ม</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การแพร่ธรรมดาและการแพร่แบบฟาซิลิเทต -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#diffusion" style="background: linear-gradient(135deg, var(--diffusion), #2E7D32);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-arrow-left-right"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การแพร่ธรรมดาและการแพร่แบบฟาซิลิเทต</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="diffusion" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            การแพร่ (Diffusion) เป็นกระบวนการลำเลียงสารผ่านเยื่อหุ้มเซลล์โดยไม่ต้องใช้พลังงานจากความแตกต่างของความเข้มข้น การแพร่แบ่งเป็นสองประเภทหลักคือ การแพร่ธรรมดา (Simple Diffusion) และการแพร่แบบฟาซิลิเทต (Facilitated Diffusion)
+                        </p>
+                        
+                        <div class="transport-diagram">
+                            <img src="https://www.sciencefacts.net/wp-content/uploads/2020/12/Simple-vs-Facilitated-Diffusion.jpg" alt="Simple vs Facilitated Diffusion" class="transport-image">
+                            <p class="img-caption">การเปรียบเทียบการแพร่ธรรมดาและการแพร่แบบฟาซิลิเทต (ที่มา: Science Facts)</p>
+                        </div>
+                        
+                        <div class="transport-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--diffusion);" colspan="3">การเปรียบเทียบการแพร่ธรรมดาและการแพร่แบบฟาซิลิเทต</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="background-color: var(--diffusion);">ลักษณะ</th>
+                                        <th style="background-color: var(--diffusion);">การแพร่ธรรมดา</th>
+                                        <th style="background-color: var(--diffusion);">การแพร่แบบฟาซิลิเทต</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>กลไกการลำเลียง</strong></td>
+                                        <td>สารเคลื่อนที่ผ่านเยื่อหุ้มเซลล์โดยตรง</td>
+                                        <td>สารเคลื่อนที่ผ่านช่องทางโปรตีน (channel) หรือตัวพาโปรตีน (carrier)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ชนิดสารที่ลำเลียง</strong></td>
+                                        <td>สารละลายไขมัน, แก๊ส (O₂, CO₂), สารโมเลกุลเล็กไม่มีขั้ว</td>
+                                        <td>สารโมเลกุลใหญ่, สารมีขั้ว, ไอออน (Na⁺, K⁺, Cl⁻)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ทิศทางการแพร่</strong></td>
+                                        <td>จากบริเวณความเข้มข้นสูงไปความเข้มข้นต่ำ</td>
+                                        <td>จากบริเวณความเข้มข้นสูงไปความเข้มข้นต่ำ</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>อัตราการแพร่</strong></td>
+                                        <td>แปรผันตรงกับความแตกต่างของความเข้มข้น</td>
+                                        <td>เร็วจนถึงจุดอิ่มตัว (saturation point)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>การใช้พลังงาน</strong></td>
+                                        <td>ไม่ใช้พลังงาน (passive transport)</td>
+                                        <td>ไม่ใช้พลังงาน (passive transport)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ตัวอย่าง</strong></td>
+                                        <td>O₂ เข้าสู่เซลล์, CO₂ ออกจากเซลล์</td>
+                                        <td>กลูโคสเข้าสู่เซลล์, การลำเลียงไอออน</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.1)); border-color: rgba(76, 175, 80, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> กลไกการแพร่แบบฟาซิลิเทต</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--diffusion);">
+                                    <h5><i class="bi bi-door-open"></i> ช่องทางโปรตีน (Channel Proteins)</h5>
+                                    <ul>
+                                        <li>เป็นช่องน้ำผ่านเยื่อหุ้มเซลล์</li>
+                                        <li>เฉพาะเจาะจงกับสารบางชนิด</li>
+                                        <li>อาจเปิด-ปิดได้ (gated channels)</li>
+                                        <li>ตัวอย่าง: Aquaporins (ลำเลียงน้ำ), Ion channels</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--diffusion);">
+                                    <h5><i class="bi bi-truck"></i> ตัวพาโปรตีน (Carrier Proteins)</h5>
+                                    <ul>
+                                        <li>เปลี่ยนแปลงรูปร่างเพื่อลำเลียงสาร</li>
+                                        <li>เกิดกระบวนการ binding และ conformational change</li>
+                                        <li>อัตราการลำเลียงจำกัดที่จุดอิ่มตัว</li>
+                                        <li>ตัวอย่าง: Glucose transporters (GLUT)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>ปัจจัยที่มีผลต่ออัตราการแพร่</h4>
+                        <div class="comparison-grid">
+                            <div class="comparison-card" style="border-left: 4px solid var(--diffusion);">
+                                <h5><i class="bi bi-arrow-up-right"></i> ความแตกต่างของความเข้มข้น</h5>
+                                <p>ยิ่งความแตกต่างของความเข้มข้นระหว่างสองด้านของเยื่อหุ้มเซลล์มาก อัตราการแพร่ยิ่งสูง</p>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--diffusion);">
+                                <h5><i class="bi bi-thermometer-high"></i> อุณหภูมิ</h5>
+                                <p>อุณหภูมิสูงทำให้โมเลกุลเคลื่อนที่เร็วขึ้น เพิ่มอัตราการแพร่</p>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--diffusion);">
+                                <h5><i class="bi bi-rulers"></i> ขนาดโมเลกุล</h5>
+                                <p>โมเลกุลขนาดเล็กแพร่ได้เร็วกว่าโมเลกุลขนาดใหญ่ (กฎของ Graham)</p>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--diffusion);">
+                                <h5><i class="bi bi-droplet"></i> ความสามารถละลายในไขมัน</h5>
+                                <p>สารที่ละลายในไขมันได้ดีแพร่ผ่านเยื่อหุ้มเซลล์ได้เร็วกว่า</p>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ออสโมซิส -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#osmosis" style="background: linear-gradient(135deg, var(--osmosis), #1976D2);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-droplet"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ออสโมซิส</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="osmosis" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ออสโมซิส (Osmosis) เป็นการแพร่ของน้ำผ่านเยื่อหุ้มเซลล์แบบ selectively permeable membrane จากบริเวณที่มีความเข้มข้นของน้ำสูง (สารละลายเจือจาง) ไปยังบริเวณที่มีความเข้มข้นของน้ำต่ำ (สารละลายเข้มข้น) โดยไม่ต้องใช้พลังงาน
+                        </p>
+                        
+                        <div class="osmosis-diagram">
+                            <img src="https://microbenotes.com/wp-content/uploads/2019/11/Osmosis.jpg" alt="Osmosis Process" class="transport-image">
+                            <p class="img-caption">กระบวนการออสโมซิส (ที่มา: Microbe Notes)</p>
+                        </div>
+                        
+                        <h4>ศักย์น้ำและแรงออสโมติก</h4>
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(100, 181, 246, 0.2), rgba(100, 181, 246, 0.1)); border-color: rgba(100, 181, 246, 0.2);">
+                            <ul>
+                                <li><strong>ศักย์น้ำ (Water Potential - Ψ):</strong> ความสามารถของน้ำที่จะเคลื่อนที่ แสดงด้วยหน่วย MPa</li>
+                                <li><strong>แรงออสโมติก (Osmotic Pressure):</strong> แรงดันที่ต้องใช้เพื่อหยุดการเคลื่อนที่ของน้ำผ่านเยื่อเลือกผ่าน</li>
+                                <li><strong>สารละลายไอโซโทนิก (Isotonic):</strong> ความเข้มข้นเท่ากันทั้งสองด้าน ไม่มีการเคลื่อนที่ของน้ำสุทธิ</li>
+                                <li><strong>สารละลายไฮโพโทนิก (Hypotonic):</strong> ความเข้มข้นของตัวถูกละลายน้อยกว่า น้ำเคลื่อนที่เข้าสู่เซลล์</li>
+                                <li><strong>สารละลายไฮเพอร์โทนิก (Hypertonic):</strong> ความเข้มข้นของตัวถูกละลายมากกว่า น้ำเคลื่อนที่ออกจากเซลล์</li>
+                            </ul>
+                        </div>
+                        
+                        <h4>ผลของออสโมซิสต่อเซลล์</h4>
+                        <div class="transport-comparison">
+                            <div class="transport-type" style="border-top: 5px solid #4CAF50;">
+                                <h5><i class="bi bi-droplet"></i> เซลล์พืช</h5>
+                                <ul>
+                                    <li><strong>ในสารละลายไฮโพโทนิก:</strong> น้ำเคลื่อนที่เข้าสู่เซลล์ ทำให้เกิดแรงดันเต่ง (Turgor Pressure) เซลล์เต่ง</li>
+                                    <li><strong>ในสารละลายไอโซโทนิก:</strong> น้ำเข้า-ออกสมดุล เซลล์ปกติ</li>
+                                    <li><strong>ในสารละลายไฮเพอร์โทนิก:</strong> น้ำออกจากเซลล์ เกิดพลาสโมไลซิส (Plasmolysis) เซลล์เหี่ยว</li>
+                                    <li>ผนังเซลล์ช่วยป้องกันไม่ให้เซลล์แตก</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="transport-type" style="border-top: 5px solid #2196F3;">
+                                <h5><i class="bi bi-droplet"></i> เซลล์สัตว์</h5>
+                                <ul>
+                                    <li><strong>ในสารละลายไฮโพโทนิก:</strong> น้ำเคลื่อนที่เข้าสู่เซลล์มากเกินไป ทำให้เซลล์บวมและแตก (Hemolysis)</li>
+                                    <li><strong>ในสารละลายไอโซโทนิก:</strong> น้ำเข้า-ออกสมดุล เซลล์ปกติ</li>
+                                    <li><strong>ในสารละลายไฮเพอร์โทนิก:</strong> น้ำออกจากเซลล์ เกิดการเหี่ยว (Crenation)</li>
+                                    <li>ไม่มีผนังเซลล์ จึงไวต่อการเปลี่ยนแปลงความเข้มข้น</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(100, 181, 246, 0.2), rgba(100, 181, 246, 0.1)); border-color: rgba(100, 181, 246, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> การควบคุมสมดุลน้ำในสิ่งมีชีวิต</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card">
+                                    <h5><i class="bi bi-tree"></i> พืช</h5>
+                                    <ul>
+                                        <li>สโทมาตา (Stomata) ควบคุมการคายน้ำ</li>
+                                        <li>แวคิวโอลขนาดใหญ่เก็บน้ำ</li>
+                                        <li>ผนังเซลล์ป้องกันการแตก</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card">
+                                    <h5><i class="bi bi-egg-fried"></i> สัตว์น้ำจืด</h5>
+                                    <ul>
+                                        <li>ขับปัสสาวะปริมาณมากและเจือจาง</li>
+                                        <li>ดูดซึมเกลือแร่ผ่านเหงือก</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card">
+                                    <h5><i class="bi bi-droplet-half"></i> สัตว์ทะเล</h5>
+                                    <ul>
+                                        <li>ดื่มน้ำทะเลและขับเกลือแร่ออก</li>
+                                        <li>ขับปัสสาวะปริมาณน้อยแต่เข้มข้น</li>
+                                        <li>มีต่อมขับเกลือ (ในนกและสัตว์เลื้อยคลาน)</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card">
+                                    <h5><i class="bi bi-person"></i> มนุษย์</h5>
+                                    <ul>
+                                        <li>ไตควบคุมสมดุลน้ำและอิเล็กโทรไลต์</li>
+                                        <li>ฮอร์โมน ADH ควบคุมการดูดกลับน้ำ</li>
+                                        <li>ความรู้สึกกระหายน้ำ</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การลำเลียงแบบแอกทีฟ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#activeTransport" style="background: linear-gradient(135deg, var(--active), #7B1FA2);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-lightning-charge"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การลำเลียงแบบแอกทีฟ</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="activeTransport" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            การลำเลียงแบบแอกทีฟ (Active Transport) เป็นการลำเลียงสารผ่านเยื่อหุ้มเซลล์โดยใช้พลังงานจาก ATP ในการเคลื่อนย้ายสารจากบริเวณความเข้มข้นต่ำไปยังความเข้มข้นสูง (ทวนเกรเดียนต์) มีสองประเภทหลักคือ Primary Active Transport และ Secondary Active Transport
+                        </p>
+                        
+                        <div class="transport-diagram">
+                            <img src="https://microbenotes.com/wp-content/uploads/2020/02/Active-Transport.jpg" alt="Active Transport" class="transport-image">
+                            <p class="img-caption">การลำเลียงแบบแอกทีฟ (ที่มา: Microbe Notes)</p>
+                        </div>
+                        
+                        <h4>Primary Active Transport</h4>
+                        <div class="process-flow">
+                            <div class="flow-item">
+                                <h6><i class="bi bi-1-circle"></i> ใช้พลังงานจาก ATP โดยตรง</h6>
+                                <ul>
+                                    <li>โปรตีนขนส่งทำหน้าที่เป็น ATPase</li>
+                                    <li>ATP → ADP + Pi + พลังงาน</li>
+                                    <li>ใช้พลังงานนี้ในการเปลี่ยนแปลงรูปร่างโปรตีน</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-2-circle"></i> ตัวอย่าง: Sodium-Potassium Pump (Na⁺/K⁺-ATPase)</h6>
+                                <ul>
+                                    <li>พบในเซลล์สัตว์ทุกชนิด</li>
+                                    <li>ปั๊ม Na⁺ 3 โมเลกุลออกนอกเซลล์ และ K⁺ 2 โมเลกุลเข้าเซลล์</li>
+                                    <li>รักษาสมดุลไฟฟ้าเคมีของเซลล์</li>
+                                    <li>สำคัญต่อการทำงานของเซลล์ประสาทและเซลล์กล้ามเนื้อ</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-3-circle"></i> กลไกการทำงาน</h6>
+                                <ol>
+                                    <li>Na⁺ 3 โมเลกุลจับกับโปรตีนภายในเซลล์</li>
+                                    <li>ATP ถูกย่อยให้ ADP และกลุ่มฟอสเฟตจับกับโปรตีน</li>
+                                    <li>โปรตีนเปลี่ยนแปลงรูปร่าง ปล่อย Na⁺ ออกนอกเซลล์</li>
+                                    <li>K⁺ 2 โมเลกุลจับกับโปรตีนภายนอกเซลล์</li>
+                                    <li>กลุ่มฟอสเฟตหลุดออกจากโปรตีน</li>
+                                    <li>โปรตีนกลับสู่รูปร่างเดิม ปล่อย K⁺ เข้าเซลล์</li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <h4>Secondary Active Transport</h4>
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(186, 104, 200, 0.2), rgba(186, 104, 200, 0.1)); border-color: rgba(186, 104, 200, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ใช้พลังงานจากความแตกต่างของความเข้มข้น</h5>
+                            <ul>
+                                <li>อาศัยศักย์ไฟฟ้าเคมีที่สร้างโดย primary active transport</li>
+                                <li>สารหนึ่งเคลื่อนที่ตามเกรเดียนต์ สารอีกตัวเคลื่อนที่ทวนเกรเดียนต์</li>
+                                <li>แบ่งเป็นสองประเภท:</li>
+                                <ul>
+                                    <li><strong>Symport:</strong> สารทั้งสองเคลื่อนที่ไปในทิศทางเดียวกัน</li>
+                                    <li><strong>Antiport:</strong> สารทั้งสองเคลื่อนที่ไปในทิศทางตรงข้าม</li>
+                                </ul>
+                            </ul>
+                        </div>
+                        
+                        <div class="comparison-grid">
+                            <div class="comparison-card" style="border-left: 4px solid var(--active);">
+                                <h5><i class="bi bi-arrow-right"></i> Symport: การลำเลียงแบบร่วมทิศทาง</h5>
+                                <ul>
+                                    <li>ตัวอย่าง: Sodium-Glucose Cotransporter</li>
+                                    <li>Na⁺ เคลื่อนที่ตามเกรเดียนต์เข้าสู่เซลล์</li>
+                                    <li>กลูโคสเคลื่อนที่ทวนเกรเดียนต์เข้าสู่เซลล์</li>
+                                    <li>พบในเซลล์เยื่อบุลำไส้เล็ก</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--active);">
+                                <h5><i class="bi bi-arrow-left-right"></i> Antiport: การลำเลียงแบบสวนทิศทาง</h5>
+                                <ul>
+                                    <li>ตัวอย่าง: Sodium-Calcium Exchanger</li>
+                                    <li>Na⁺ 3 โมเลกุลเคลื่อนที่ตามเกรเดียนต์เข้าสู่เซลล์</li>
+                                    <li>Ca²⁺ 1 โมเลกุลเคลื่อนที่ทวนเกรเดียนต์ออกนอกเซลล์</li>
+                                    <li>สำคัญในการควบคุมความเข้มข้นของแคลเซียมในเซลล์</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(186, 104, 200, 0.2), rgba(186, 104, 200, 0.1)); border-color: rgba(186, 104, 200, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ความสำคัญของการลำเลียงแบบแอกทีฟ</h5>
+                            <ul>
+                                <li>รักษาสมดุลไอออนในเซลล์ (Na⁺, K⁺, Ca²⁺)</li>
+                                <li>ดูดซึมสารอาหารในลำไส้ (กลูโคส, กรดอะมิโน)</li>
+                                <li>ขับสารพิษออกจากเซลล์</li>
+                                <li>สร้างศักย์ไฟฟ้าเยื่อหุ้มเซลล์</li>
+                                <li>ควบคุม pH ภายในเซลล์</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การลำเลียงแบบกลุ่ม -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#bulkTransport" style="background: linear-gradient(135deg, var(--bulk), #F57C00);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-box-arrow-in-down"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การลำเลียงแบบกลุ่ม</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="bulkTransport" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            การลำเลียงแบบกลุ่ม (Bulk Transport) เป็นการลำเลียงสารขนาดใหญ่ผ่านเยื่อหุ้มเซลล์โดยใช้ถุงลม (vesicle) แบ่งเป็นสองประเภทหลักคือ การนำสารเข้าเซลล์ (Endocytosis) และการนำสารออกจากเซลล์ (Exocytosis) โดยต้องใช้พลังงานทั้งสองกระบวนการ
+                        </p>
+                        
+                        <div class="transport-diagram">
+                            <img src="https://www.sciencefacts.net/wp-content/uploads/2020/12/Endocytosis-and-Exocytosis.jpg" alt="Bulk Transport" class="transport-image">
+                            <p class="img-caption">การลำเลียงแบบกลุ่ม: Endocytosis และ Exocytosis (ที่มา: Science Facts)</p>
+                        </div>
+                        
+                        <h4>การนำสารเข้าเซลล์ (Endocytosis)</h4>
+                        <div class="comparison-grid">
+                            <div class="comparison-card" style="border-left: 4px solid var(--bulk);">
+                                <h5><i class="bi bi-hand-index"></i> ฟาโกไซโทซิส (Phagocytosis)</h5>
+                                <ul>
+                                    <li>"การกินเซลล์"</li>
+                                    <li>นำสารขนาดใหญ่เข้าเซลล์ เช่น แบคทีเรีย เซลล์ที่ตายแล้ว</li>
+                                    <li>พบในเซลล์เม็ดเลือดขาวและโปรโตซัว</li>
+                                    <li>ขั้นตอน:</li>
+                                    <ol>
+                                        <li>เซลล์ยื่นเท้าเทียม (pseudopodia) ออกมา</li>
+                                        <li>โอบล้อมอนุภาค</li>
+                                        <li>เกิดถุงฟาโกโซม (phagosome)</li>
+                                        <li>หลอมรวมกับไลโซโซมเพื่อย่อยสลาย</li>
+                                    </ol>
+                                </ul>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--bulk);">
+                                <h5><i class="bi bi-cup-straw"></i> พิโนไซโทซิส (Pinocytosis)</h5>
+                                <ul>
+                                    <li>"การดื่มเซลล์"</li>
+                                    <li>นำสารละลายและสารโมเลกุลเล็กเข้าเซลล์</li>
+                                    <li>เกิดในเซลล์ส่วนใหญ่</li>
+                                    <li>ขั้นตอน:</li>
+                                    <ol>
+                                        <li>เยื่อหุ้มเซลล์เว้าเข้า</li>
+                                        <li>สร้างถุงพิโนโซม (pinosome)</li>
+                                        <li>นำสารละลายเข้าเซลล์</li>
+                                    </ol>
+                                </ul>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--bulk);">
+                                <h5><i class="bi bi-funnel"></i> รีเซพเตอร์-เมดิเอเทต เอนโดไซโทซิส (Receptor-Mediated Endocytosis)</h5>
+                                <ul>
+                                    <li>การนำสารเข้าเซลล์แบบเฉพาะเจาะจง</li>
+                                    <li>สารจับกับรีเซพเตอร์บนเยื่อหุ้มเซลล์</li>
+                                    <li>ตัวอย่าง: การนำ LDL เข้าเซลล์, การนำฮอร์โมน</li>
+                                    <li>ขั้นตอน:</li>
+                                    <ol>
+                                        <li>สารจับกับรีเซพเตอร์ในบริเวณ coated pit</li>
+                                        <li>เยื่อหุ้มเซลล์เว้าเข้าเกิดเป็นถุง</li>
+                                        <li>ถุงหลุดเข้าในเซลล์ (coated vesicle)</li>
+                                        <li>ถุงหลอมรวมกับเอนโดโซม</li>
+                                    </ol>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <h4>การนำสารออกจากเซลล์ (Exocytosis)</h4>
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(255, 183, 77, 0.2), rgba(255, 183, 77, 0.1)); border-color: rgba(255, 183, 77, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> กระบวนการ Exocytosis</h5>
+                            <ol>
+                                <li>ถุงลม (vesicle) ที่บรรจุสารเคลื่อนที่มาสู่เยื่อหุ้มเซลล์</li>
+                                <li>เยื่อหุ้มถุงลมหลอมรวมกับเยื่อหุ้มเซลล์</li>
+                                <li>ปล่อยสารออกสู่ภายนอกเซลล์</li>
+                                <li>เยื่อหุ้มถุงลมกลายเป็นส่วนหนึ่งของเยื่อหุ้มเซลล์</li>
+                            </ol>
+                            
+                            <div class="comparison-grid mt-3">
+                                <div class="comparison-card">
+                                    <h5><i class="bi bi-egg"></i> การหลั่งสาร (Secretion)</h5>
+                                    <ul>
+                                        <li>เซลล์ต่อมต่างๆ หลั่งฮอร์โมนหรือเอนไซม์</li>
+                                        <li>เซลล์ประสาทปล่อยสารสื่อประสาท</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card">
+                                    <h5><i class="bi bi-shield-plus"></i> การสร้างผนังเซลล์</h5>
+                                    <ul>
+                                        <li>เซลล์พืชสร้างผนังเซลล์โดย exocytosis</li>
+                                        <li>เซลล์โปรคาริโอตสร้างผนังเซลล์</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card">
+                                    <h5><i class="bi bi-trash"></i> การกำจัดของเสีย</h5>
+                                    <ul>
+                                        <li>เซลล์ขับของเสียที่ไม่สามารถย่อยได้</li>
+                                        <li>ปล่อยสารที่ย่อยแล้วออกสู่ภายนอก</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(255, 183, 77, 0.2), rgba(255, 183, 77, 0.1)); border-color: rgba(255, 183, 77, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ความสำคัญของการลำเลียงแบบกลุ่ม</h5>
+                            <ul>
+                                <li>การสื่อสารระหว่างเซลล์ (สารสื่อประสาท, ฮอร์โมน)</li>
+                                <li>การดูดซึมสารอาหารในลำไส้</li>
+                                <li>การป้องกันร่างกาย (ฟาโกไซโทซิสของเซลล์เม็ดเลือดขาว)</li>
+                                <li>การสร้างและซ่อมแซมเยื่อหุ้มเซลล์</li>
+                                <li>การรักษาสมดุลภายในเซลล์</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Make section headers clickable to collapse/expand
+            document.querySelectorAll('.section-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-bs-target');
+                    const target = document.querySelector(targetId);
+                    const collapse = new bootstrap.Collapse(target, {
+                        toggle: true
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
