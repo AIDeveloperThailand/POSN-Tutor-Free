@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โครโมโซมและสารพันธุกรรม - สอวน. ชีววิทยา</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --biology: #4CAF50;
+            --biology-light: #C8E6C9;
+            --biology-dark: #388E3C;
+            --chromosome: #4CAF50;
+            --dna-rna: #2196F3;
+            --replication: #9C27B0;
+            --gene-genome: #FF9800;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,15 C65.464,15 78,27.536 78,43 C78,58.464 65.464,71 50,71 C34.536,71 22,58.464 22,43 C22,27.536 34.536,15 50,15 Z M50,25 C40.058,25 32,33.058 32,43 C32,52.942 40.058,61 50,61 C59.942,61 68,52.942 68,43 C68,33.058 59.942,25 50,25 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3Cpath d='M30,75 C36.627,75 42,80.373 42,87 C42,93.627 36.627,99 30,99 C23.373,99 18,93.627 18,87 C18,80.373 23.373,75 30,75 Z M70,75 C76.627,75 82,80.373 82,87 C82,93.627 76.627,99 70,99 C63.373,99 58,93.627 58,87 C58,80.373 63.373,75 70,75 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='5' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='20' cy='30' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='80' cy='20' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='30' cy='70' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='70' cy='80' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='10' cy='50' r='2' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='90' cy='60' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.2;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.1), rgba(67, 160, 71, 0.1));
+            border-left: 4px solid var(--biology);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+        }
+        
+        .section-header {
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .key-point {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .genetics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .genetics-table th {
+            padding: 12px;
+            text-align: center;
+            color: white;
+        }
+        
+        .genetics-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .genetics-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .dna-diagram {
+            width: 100%;
+            height: 400px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diagram-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .genetics-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .img-caption {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .process-flow {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 30px;
+            border-left: 3px solid var(--replication);
+        }
+        
+        .flow-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+        
+        .flow-item::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--replication);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        
+        .replication-diagram {
+            width: 100%;
+            height: 300px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .dna-comparison {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .dna-type {
+            flex: 1;
+            min-width: 300px;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        @media (max-width: 768px) {
+            .dna-comparison {
+                flex-direction: column;
+            }
+            
+            .dna-type {
+                min-width: 100%;
+                margin: 10px 0;
+            }
+            
+            .header-bg {
+                padding: 2rem 0;
+            }
+            
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .dna-diagram {
+                height: 300px;
+            }
+        }
+        
+        .dna-helix {
+            position: relative;
+            height: 200px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .helix-base {
+            position: absolute;
+            width: 10px;
+            height: 30px;
+            background: #333;
+            transform-origin: bottom center;
+        }
+        
+        .helix-connection {
+            position: absolute;
+            height: 2px;
+            background: #777;
+            transform-origin: left center;
+        }
+        
+        .dna-label {
+            position: absolute;
+            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 3px 8px;
+            border-radius: 3px;
+            z-index: 10;
+        }
+        
+        .nucleotide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+            width: 80px;
+        }
+        
+        .nucleotide-part {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .nucleotide-connection {
+            height: 20px;
+            width: 4px;
+            background: #777;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-eyeglasses"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="biology_topics.html">ชีววิทยา</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="biology_topics.html">เนื้อหาชีววิทยาทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">บทที่ 9: โครโมโซมและสารพันธุกรรม</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">บทที่ 9: โครโมโซมและสารพันธุกรรม</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-green me-2">โครงสร้างของโครโมโซม</span>
+                <span class="badge bg-light text-green me-2">ดีเอ็นเอและอาร์เอ็นเอ</span>
+                <span class="badge bg-light text-green me-2">การจำลองดีเอ็นเอ</span>
+                <span class="badge bg-light text-green">ยีนและจีโนม</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- โครงสร้างของโครโมโซม -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#chromosomeStructure" style="background: linear-gradient(135deg, var(--chromosome), #2E7D32);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-braces"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">โครงสร้างของโครโมโซม</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="chromosomeStructure" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            โครโมโซม (Chromosome) เป็นโครงสร้างภายในนิวเคลียสของเซลล์ที่ประกอบด้วยดีเอ็นเอและโปรตีน มีหน้าที่เก็บและถ่ายทอดข้อมูลทางพันธุกรรม ในเซลล์ยูคาริโอต โครโมโซมจะเห็นชัดเจนในระยะไมโทซิสและไมโอซิส
+                        </p>
+                        
+                        <div class="dna-diagram">
+                            <img src="https://microbenotes.com/wp-content/uploads/2022/06/Structure-of-Chromosome.jpeg" alt="Chromosome Structure" class="genetics-image">
+                            <p class="img-caption">โครงสร้างโครโมโซม (ที่มา: Microbe Notes)</p>
+                        </div>
+                        
+                        <div class="genetics-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--chromosome);" colspan="3">ส่วนประกอบสำคัญของโครโมโซม</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="background-color: var(--chromosome);">ส่วนประกอบ</th>
+                                        <th style="background-color: var(--chromosome);">โครงสร้าง</th>
+                                        <th style="background-color: var(--chromosome);">หน้าที่</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>โครมาติน (Chromatin)</strong></td>
+                                        <td>เส้นใยดีเอ็นเอพันรอบโปรตีนฮิสโตน</td>
+                                        <td>รูปแบบของโครโมโซมในระยะอินเตอร์เฟส</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>นิวคลีโอโซม (Nucleosome)</strong></td>
+                                        <td>กลุ่มฮิสโตน 8 โมเลกุลที่ DNA พันรอบ</td>
+                                        <td>หน่วยพื้นฐานของการจัดเรียงดีเอ็นเอ</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เซนโทรเมียร์ (Centromere)</strong></td>
+                                        <td>บริเวณคอดกลางของโครโมโซม</td>
+                                        <td>เป็นจุดเกาะของเส้นใยสปินเดิลในกระบวนการแบ่งเซลล์</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เทโลเมียร์ (Telomere)</strong></td>
+                                        <td>ส่วนปลายของโครโมโซม</td>
+                                        <td>ป้องกันการสูญเสียข้อมูลทางพันธุกรรม</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>แขนโครโมโซม (Chromosome Arm)</strong></td>
+                                        <td>แขนสั้น (p arm) และแขนยาว (q arm)</td>
+                                        <td>บริเวณที่มียีนต่างๆ อยู่</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.1)); border-color: rgba(76, 175, 80, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ชนิดของโครโมโซมตามตำแหน่งเซนโทรเมียร์</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--chromosome);">
+                                    <h5><i class="bi bi-dot"></i> เมทาเซนทริก (Metacentric)</h5>
+                                    <ul>
+                                        <li>เซนโทรเมียร์อยู่กลางโครโมโซม</li>
+                                        <li>แขน p และ q ยาวเท่ากัน</li>
+                                        <li>รูปร่างคล้ายตัว V</li>
+                                        <li>ตัวอย่าง: โครโมโซมคู่ที่ 1, 3 ในมนุษย์</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--chromosome);">
+                                    <h5><i class="bi bi-dash"></i> ซับเมทาเซนทริก (Submetacentric)</h5>
+                                    <ul>
+                                        <li>เซนโทรเมียร์อยู่ค่อนไปทางด้านใดด้านหนึ่ง</li>
+                                        <li>แขน p สั้นกว่าแขน q</li>
+                                        <li>รูปร่างคล้ายตัว L</li>
+                                        <li>ตัวอย่าง: โครโมโซมคู่ที่ 4, 5 ในมนุษย์</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--chromosome);">
+                                    <h5><i class="bi bi-arrow-right"></i> อโครเซนทริก (Acrocentric)</h5>
+                                    <ul>
+                                        <li>เซนโทรเมียร์อยู่ใกล้ปลายมาก</li>
+                                        <li>แขน p สั้นมากจนแทบมองไม่เห็น</li>
+                                        <li>รูปร่างคล้ายตัว J</li>
+                                        <li>ตัวอย่าง: โครโมโซมคู่ที่ 13, 14, 15, 21, 22 ในมนุษย์</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--chromosome);">
+                                    <h5><i class="bi bi-record"></i> เทโลเซนทริก (Telocentric)</h5>
+                                    <ul>
+                                        <li>เซนโทรเมียร์อยู่ที่ปลายสุดของโครโมโซม</li>
+                                        <li>ไม่มีแขน p</li>
+                                        <li>พบในสัตว์บางชนิด เช่น หนู</li>
+                                        <li>ไม่พบในมนุษย์</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>การจัดเรียงโครโมโซมในมนุษย์</h4>
+                        <div class="comparison-grid">
+                            <div class="comparison-card" style="border-left: 4px solid var(--chromosome);">
+                                <h5><i class="bi bi-gender-male"></i> โครโมโซมเพศชาย (XY)</h5>
+                                <ul>
+                                    <li>โครโมโซม X: ขนาดใหญ่ มียีนประมาณ 900-1,400 ยีน</li>
+                                    <li>โครโมโซม Y: ขนาดเล็ก มียีนประมาณ 70-200 ยีน</li>
+                                    <li>มียีน SRY บนโครโมโซม Y กำหนดเพศชาย</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--chromosome);">
+                                <h5><i class="bi bi-gender-female"></i> โครโมโซมเพศหญิง (XX)</h5>
+                                <ul>
+                                    <li>โครโมโซม X สองแท่ง</li>
+                                    <li>มีการกลายพันธุ์เป็น X-inactivation</li>
+                                    <li>มียีนเกี่ยวกับพัฒนาการของรังไข่</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--chromosome);">
+                                <h5><i class="bi bi-23-circle"></i> โครโมโซมร่างกาย (Autosomes)</h5>
+                                <ul>
+                                    <li>โครโมโซมคู่ที่ 1-22</li>
+                                    <li>แต่ละคนได้รับหนึ่งแท่งจากพ่อและหนึ่งแท่งจากแม่</li>
+                                    <li>มียีนควบคุมลักษณะทั่วไปของร่างกาย</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ดีเอ็นเอและอาร์เอ็นเอ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#dnaRna" style="background: linear-gradient(135deg, var(--dna-rna), #1976D2);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-code-slash"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ดีเอ็นเอและอาร์เอ็นเอ</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="dnaRna" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ดีเอ็นเอ (DNA) และอาร์เอ็นเอ (RNA) เป็นกรดนิวคลีอิกที่ทำหน้าที่เก็บและถ่ายทอดข้อมูลทางพันธุกรรม ดีเอ็นเอเป็นโมเลกุลสองสายพันกันเป็นเกลียวคู่ ส่วนอาร์เอ็นเอเป็นโมเลกุลสายเดี่ยว
+                        </p>
+                        
+                        <div class="dna-diagram">
+                            <img src="https://www.genome.gov/sites/default/files/tg/en/illustration/dna_rna.jpg" alt="DNA and RNA Structure" class="genetics-image">
+                            <p class="img-caption">โครงสร้างดีเอ็นเอและอาร์เอ็นเอ (ที่มา: National Human Genome Research Institute)</p>
+                        </div>
+                        
+                        <h4>โครงสร้างดีเอ็นเอ (DNA)</h4>
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.2), rgba(33, 150, 243, 0.1)); border-color: rgba(33, 150, 243, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> การค้นพบโครงสร้างดีเอ็นเอ</h5>
+                            <ul>
+                                <li><strong>1953:</strong> เจมส์ วัตสัน และฟรานซิส คริก เสนอแบบจำลองเกลียวคู่</li>
+                                <li><strong>โรซาลินด์ แฟรงคลิน:</strong> ถ่ายภาพดิฟแฟรคชันรังสีเอกซ์ของดีเอ็นเอ</li>
+                                <li><strong>เออร์วิน ชาร์กาฟ:</strong> กฎ Chargaff's rules (A=T, G=C)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="genetics-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--dna-rna);" colspan="3">องค์ประกอบของนิวคลีโอไทด์</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="background-color: var(--dna-rna);">ส่วนประกอบ</th>
+                                        <th style="background-color: var(--dna-rna);">ดีเอ็นเอ</th>
+                                        <th style="background-color: var(--dna-rna);">อาร์เอ็นเอ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>น้ำตาล (Sugar)</strong></td>
+                                        <td>ดีออกซีไรโบส (Deoxyribose)</td>
+                                        <td>ไรโบส (Ribose)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>หมู่ฟอสเฟต (Phosphate)</strong></td>
+                                        <td>มีหมู่ฟอสเฟต</td>
+                                        <td>มีหมู่ฟอสเฟต</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เบสไนโตรเจน (Nitrogenous Base)</strong></td>
+                                        <td>อะดีนีน (A), ไทมีน (T), กวานีน (G), ไซโตซีน (C)</td>
+                                        <td>อะดีนีน (A), ยูราซิล (U), กวานีน (G), ไซโตซีน (C)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>โครงสร้าง</strong></td>
+                                        <td>เกลียวคู่ (Double Helix)</td>
+                                        <td>เกลียวเดี่ยว (Single Strand)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ตำแหน่ง</strong></td>
+                                        <td>นิวเคลียส, ไมโทคอนเดรีย, คลอโรพลาสต์</td>
+                                        <td>นิวเคลียส, ไซโตพลาซึม, ไรโบโซม</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ความเสถียร</strong></td>
+                                        <td>เสถียรกว่าเนื่องจากไม่มีหมู่ OH ที่ C2</td>
+                                        <td>เสถียรน้อยกว่า</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4>ชนิดของอาร์เอ็นเอ</h4>
+                        <div class="dna-comparison">
+                            <div class="dna-type" style="border-top: 5px solid #2196F3;">
+                                <h5><i class="bi bi-file-earmark-text"></i> อาร์เอ็นเอของหน่วยปฏิบัติการ (mRNA)</h5>
+                                <ul>
+                                    <li>นำข้อมูลพันธุกรรมจากดีเอ็นเอไปยังไรโบโซม</li>
+                                    <li>ประกอบด้วยรหัสพันธุกรรม (codon)</li>
+                                    <li>ผ่านกระบวนการ splicing เพื่อตัดอินตรอนออก</li>
+                                    <li>มีอายุสั้น ถูกย่อยสลายหลังการสังเคราะห์โปรตีน</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="dna-type" style="border-top: 5px solid #2196F3;">
+                                <h5><i class="bi bi-truck"></i> อาร์เอ็นเอของหน่วยขนส่ง (tRNA)</h5>
+                                <ul>
+                                    <li>ขนส่งกรดอะมิโนไปยังไรโบโซม</li>
+                                    <li>มีโครงสร้างคล้ายใบโคลเวอร์</li>
+                                    <li>มี anticodon ที่จับคู่กับ codon บน mRNA</li>
+                                    <li>แต่ละ tRNA จับกับกรดอะมิโนเฉพาะ</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="dna-type" style="border-top: 5px solid #2196F3;">
+                                <h5><i class="bi bi-gear"></i> อาร์เอ็นเอของหน่วยโครงสร้าง (rRNA)</h5>
+                                <ul>
+                                    <li>เป็นส่วนประกอบหลักของไรโบโซม</li>
+                                    <li>ช่วยในการสังเคราะห์โปรตีน</li>
+                                    <li>มีหลายชนิด (เช่น 28S, 18S, 5.8S, 5S)</li>
+                                    <li>เป็นอาร์เอ็นเอที่มีมากที่สุดในเซลล์</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การจำลองดีเอ็นเอ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#dnaReplication" style="background: linear-gradient(135deg, var(--replication), #7B1FA2);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-copy"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การจำลองดีเอ็นเอ</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="dnaReplication" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            การจำลองดีเอ็นเอ (DNA Replication) เป็นกระบวนการที่เซลล์สร้างสำเนาดีเอ็นเอที่เหมือนเดิมทุกประการก่อนการแบ่งเซลล์ กระบวนการนี้เป็นแบบกึ่งอนุรักษ์ (Semi-conservative) โดยแต่ละสายดีเอ็นเอใหม่จะมีสายเดิมเป็นแม่แบบ
+                        </p>
+                        
+                        <div class="replication-diagram">
+                            <img src="https://microbenotes.com/wp-content/uploads/2022/04/DNA-Replication-Process-1536x1077.jpg" alt="DNA Replication" class="genetics-image">
+                            <p class="img-caption">กระบวนการจำลองดีเอ็นเอ (ที่มา: Microbe Notes)</p>
+                        </div>
+                        
+                        <h4>ขั้นตอนการจำลองดีเอ็นเอ</h4>
+                        <div class="process-flow">
+                            <div class="flow-item">
+                                <h6><i class="bi bi-1-circle"></i> การคลายเกลียวดีเอ็นเอ (Initiation)</h6>
+                                <ul>
+                                    <li>เอนไซม์เฮลิเคส (Helicase) คลายเกลียวดีเอ็นเอ</li>
+                                    <li>เกิดจุดเริ่มต้นจำลอง (Origin of Replication)</li>
+                                    <li>โปรตีน SSB จับกับดีเอ็นเอสายเดี่ยวป้องกันไม่ให้กลับมาพันกัน</li>
+                                    <li>เอนไซม์โทโพไอโซเมอเรส (Topoisomerase) คลาย supercoil</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-2-circle"></i> การสร้างไพรเมอร์ (Primer Synthesis)</h6>
+                                <ul>
+                                    <li>เอนไซม์ไพรเมส (Primase) สร้างไพรเมอร์ RNA</li>
+                                    <li>ไพรเมอร์เป็นจุดเริ่มต้นการสร้างสายดีเอ็นเอใหม่</li>
+                                    <li>ประกอบด้วย RNA 10-12 นิวคลีโอไทด์</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-3-circle"></i> การสร้างสายดีเอ็นเอใหม่ (Elongation)</h6>
+                                <ul>
+                                    <li>เอนไซม์ DNA polymerase III ต่อสายดีเอ็นเอใหม่</li>
+                                    <li>เพิ่มนิวคลีโอไทด์ในทิศทาง 5' → 3'</li>
+                                    <li>สายนำ (Leading strand) สร้างต่อเนื่อง</li>
+                                    <li>สายตาม (Lagging strand) สร้างเป็นชิ้นสั้นๆ (Okazaki fragments)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-4-circle"></i> การแก้ไขและเชื่อมต่อ (Termination)</h6>
+                                <ul>
+                                    <li>เอนไซม์ DNA polymerase I เอาสาย RNA ไพรเมอร์ออก</li>
+                                    <li>แทนที่ด้วยดีเอ็นเอ</li>
+                                    <li>เอนไซม์ DNA ligase เชื่อม Okazaki fragments</li>
+                                    <li>ตรวจสอบและแก้ไขข้อผิดพลาดโดย DNA polymerase</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.2), rgba(156, 39, 176, 0.1)); border-color: rgba(156, 39, 176, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> หลักการสำคัญของการจำลองดีเอ็นเอ</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--replication);">
+                                    <h5><i class="bi bi-arrow-repeat"></i> แบบกึ่งอนุรักษ์ (Semi-conservative)</h5>
+                                    <p>แต่ละโมเลกุลดีเอ็นเอใหม่ประกอบด้วยสายเดิม 1 สาย และสายใหม่ 1 สาย</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--replication);">
+                                    <h5><i class="bi bi-arrow-right"></i> ทิศทาง 5' → 3'</h5>
+                                    <p>ดีเอ็นเอโพลีเมอเรสต่อสายใหม่ได้เฉพาะในทิศทาง 5' → 3'</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--replication);">
+                                    <h5><i class="bi bi-clipboard-check"></i> ต้องการไพรเมอร์ (Primer)</h5>
+                                    <p>ต้องมี RNA ไพรเมอร์เป็นจุดเริ่มต้น</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--replication);">
+                                    <h5><i class="bi bi-shuffle"></i> แบบกึ่งไม่ต่อเนื่อง (Semi-discontinuous)</h5>
+                                    <p>สายนำสร้างต่อเนื่อง สายตามสร้างไม่ต่อเนื่องเป็นชิ้นสั้นๆ</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>เอนไซม์สำคัญในการจำลองดีเอ็นเอ</h4>
+                        <div class="genetics-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--replication);">เอนไซม์</th>
+                                        <th style="background-color: var(--replication);">หน้าที่</th>
+                                        <th style="background-color: var(--replication);">คุณสมบัติสำคัญ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>เฮลิเคส (Helicase)</strong></td>
+                                        <td>คลายเกลียวดีเอ็นเอ</td>
+                                        <td>ใช้พลังงาน ATP, สร้าง replication fork</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ไพรเมส (Primase)</strong></td>
+                                        <td>สร้าง RNA ไพรเมอร์</td>
+                                        <td>สังเคราะห์สาย RNA สั้นๆ</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ดีเอ็นเอโพลีเมอเรส III</strong></td>
+                                        <td>ต่อสายดีเอ็นเอใหม่</td>
+                                        <td>ทำงานในทิศทาง 5'→3', มี proofreading activity</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ดีเอ็นเอโพลีเมอเรส I</strong></td>
+                                        <td>เอา RNA ไพรเมอร์ออก</td>
+                                        <td>แทนที่ด้วยดีเอ็นเอ, แก้ไขข้อผิดพลาด</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ดีเอ็นเอลิเกส (DNA Ligase)</strong></td>
+                                        <td>เชื่อมชิ้นดีเอ็นเอ</td>
+                                        <td>เชื่อม Okazaki fragments บนสายตาม</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>โทโพไอโซเมอเรส (Topoisomerase)</strong></td>
+                                        <td>คลาย supercoil</td>
+                                        <td>ป้องกันการบิดตัวของดีเอ็นเอ</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>SSB โปรตีน</strong></td>
+                                        <td>ยึดดีเอ็นเอสายเดี่ยว</td>
+                                        <td>ป้องกันไม่ให้ดีเอ็นเอสายเดี่ยวกลับมาพันกัน</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ยีนและจีโนม -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#geneGenome" style="background: linear-gradient(135deg, var(--gene-genome), #F57C00);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-diagram-3"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ยีนและจีโนม</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="geneGenome" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ยีน (Gene) เป็นหน่วยของข้อมูลทางพันธุกรรมที่กำหนดลักษณะเฉพาะของสิ่งมีชีวิต จีโนม (Genome) คือข้อมูลทางพันธุกรรมทั้งหมดของสิ่งมีชีวิต ซึ่งประกอบด้วยยีนทั้งหมดและดีเอ็นเอที่ไม่ใช่ยีน
+                        </p>
+                        
+                        <div class="dna-diagram">
+                            <img src="https://www.genome.gov/sites/default/files/illustration_human_genome.jpg" alt="Human Genome" class="genetics-image">
+                            <p class="img-caption">จีโนมมนุษย์ (ที่มา: National Human Genome Research Institute)</p>
+                        </div>
+                        
+                        <h4>โครงสร้างของยีน</h4>
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.2), rgba(255, 152, 0, 0.1)); border-color: rgba(255, 152, 0, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ส่วนประกอบของยีนในยูคาริโอต</h5>
+                            <ul>
+                                <li><strong>โปรโมเตอร์ (Promoter):</strong> บริเวณเริ่มต้นการถอดรหัส</li>
+                                <li><strong>เอ็กซอน (Exon):</strong> บริเวณที่เข้ารหัสโปรตีน</li>
+                                <li><strong>อินตรอน (Intron):</strong> บริเวณไม่เข้ารหัสที่ถูกตัดออก</li>
+                                <li><strong>เทอร์มิเนเตอร์ (Terminator):</strong> บริเวณสิ้นสุดการถอดรหัส</li>
+                                <li><strong>รหัสเริ่มต้น (Start codon):</strong> ATG (AUG ใน mRNA)</li>
+                                <li><strong>รหัสหยุด (Stop codon):</strong> TAA, TAG, TGA</li>
+                            </ul>
+                        </div>
+                        
+                        <h4>โครงการจีโนมมนุษย์ (Human Genome Project)</h4>
+                        <div class="comparison-grid">
+                            <div class="comparison-card" style="border-left: 4px solid var(--gene-genome);">
+                                <h5><i class="bi bi-calendar-check"></i> ระยะเวลาและผู้ร่วมโครงการ</h5>
+                                <ul>
+                                    <li>เริ่มปี 1990 เสร็จสมบูรณ์ปี 2003</li>
+                                    <li>ความร่วมมือระหว่างประเทศ</li>
+                                    <li>ใช้งบประมาณ 3 พันล้านดอลลาร์สหรัฐ</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--gene-genome);">
+                                <h5><i class="bi bi-clipboard-data"></i> ผลลัพธ์สำคัญ</h5>
+                                <ul>
+                                    <li>จีโนมมนุษย์มีเบสประมาณ 3.2 พันล้านคู่</li>
+                                    <li>มียีนประมาณ 20,000-25,000 ยีน</li>
+                                    <li>ดีเอ็นเอที่ไม่ใช่ยีนคิดเป็น 98% ของจีโนม</li>
+                                    <li>มนุษย์มีความเหมือนกันทางพันธุกรรม 99.9%</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--gene-genome);">
+                                <h5><i class="bi bi-heart-pulse"></i> ความสำคัญทางการแพทย์</h5>
+                                <ul>
+                                    <li>ระบุยีนที่เกี่ยวข้องกับโรค</li>
+                                    <li>พัฒนาการรักษาเฉพาะบุคคล</li>
+                                    <li>ศึกษาวิวัฒนาการของมนุษย์</li>
+                                    <li>พัฒนายาและวิธีการรักษาใหม่ๆ</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <h4>ประเภทของดีเอ็นเอในจีโนม</h4>
+                        <div class="genetics-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--gene-genome);">ประเภทดีเอ็นเอ</th>
+                                        <th style="background-color: var(--gene-genome);">สัดส่วนในจีโนมมนุษย์</th>
+                                        <th style="background-color: var(--gene-genome);">หน้าที่</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>ดีเอ็นเอที่เข้ารหัสโปรตีน</strong></td>
+                                        <td>~1.5%</td>
+                                        <td>กำหนดโครงสร้างและหน้าที่ของโปรตีน</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ยีน RNA</strong></td>
+                                        <td>~0.5%</td>
+                                        <td>เข้ารหัส rRNA, tRNA, snRNA</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>อินตรอน</strong></td>
+                                        <td>~26%</td>
+                                        <td>บริเวณที่ไม่เข้ารหัสภายในยีน</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>รีพีททิฟดีเอ็นเอ</strong></td>
+                                        <td>~50%</td>
+                                        <td>ลำดับซ้ำต่างๆ (transposons, retrotransposons)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ดีเอ็นเอควบคุม</strong></td>
+                                        <td>~11%</td>
+                                        <td>ควบคุมการแสดงออกของยีน</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ดีเอ็นเอไร้หน้าที่</strong></td>
+                                        <td>~11%</td>
+                                        <td>ไม่ทราบหน้าที่ที่ชัดเจน</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.2), rgba(255, 152, 0, 0.1)); border-color: rgba(255, 152, 0, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> เทคโนโลยีสมัยใหม่ในการศึกษาจีโนม</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card">
+                                    <h5><i class="bi bi-dna"></i> การจัดลำดับจีโนม (Genome Sequencing)</h5>
+                                    <p>ระบุลำดับนิวคลีโอไทด์ทั้งจีโนม</p>
+                                </div>
+                                
+                                <div class="comparison-card">
+                                    <h5><i class="bi bi-clipboard-plus"></i> คริสเปอร์ (CRISPR-Cas9)</h5>
+                                    <p>เทคโนโลยีตัดต่อจีโนมที่แม่นยำ</p>
+                                </div>
+                                
+                                <div class="comparison-card">
+                                    <h5><i class="bi bi-graph-up"></i> จีโนมวิกส์ (Genomics)</h5>
+                                    <p>การศึกษาจีโนมทั้งจีโนม</p>
+                                </div>
+                                
+                                <div class="comparison-card">
+                                    <h5><i class="bi bi-person-heart"></i> เวชศาสตร์แม่นยำ (Precision Medicine)</h5>
+                                    <p>การรักษาเฉพาะบุคคลตามข้อมูลจีโนม</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Make section headers clickable to collapse/expand
+            document.querySelectorAll('.section-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-bs-target');
+                    const target = document.querySelector(targetId);
+                    const collapse = new bootstrap.Collapse(target, {
+                        toggle: true
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
