@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เซลล์ - สอวน. ชีววิทยา</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --biology: #4CAF50;
+            --biology-light: #C8E6C9;
+            --biology-dark: #388E3C;
+            --theory: #4CAF50;
+            --organelles: #2196F3;
+            --communication: #9C27B0;
+            --transport: #FF9800;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,15 C65.464,15 78,27.536 78,43 C78,58.464 65.464,71 50,71 C34.536,71 22,58.464 22,43 C22,27.536 34.536,15 50,15 Z M50,25 C40.058,25 32,33.058 32,43 C32,52.942 40.058,61 50,61 C59.942,61 68,52.942 68,43 C68,33.058 59.942,25 50,25 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3Cpath d='M30,75 C36.627,75 42,80.373 42,87 C42,93.627 36.627,99 30,99 C23.373,99 18,93.627 18,87 C18,80.373 23.373,75 30,75 Z M70,75 C76.627,75 82,80.373 82,87 C82,93.627 76.627,99 70,99 C63.373,99 58,93.627 58,87 C58,80.373 63.373,75 70,75 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='5' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='20' cy='30' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='80' cy='20' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='30' cy='70' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='70' cy='80' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='10' cy='50' r='2' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='90' cy='60' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.2;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.1), rgba(67, 160, 71, 0.1));
+            border-left: 4px solid var(--biology);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+        }
+        
+        .section-header {
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .key-point {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .cell-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .cell-table th {
+            padding: 12px;
+            text-align: center;
+            color: white;
+        }
+        
+        .cell-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .cell-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .cell-diagram {
+            width: 100%;
+            height: 400px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diagram-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .cell-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .img-caption {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .process-flow {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 30px;
+            border-left: 3px solid var(--communication);
+        }
+        
+        .flow-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+        
+        .flow-item::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--communication);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        
+        .organelle-diagram {
+            width: 100%;
+            height: 300px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .cell-comparison {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .cell-type {
+            flex: 1;
+            min-width: 300px;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        @media (max-width: 768px) {
+            .cell-comparison {
+                flex-direction: column;
+            }
+            
+            .cell-type {
+                min-width: 100%;
+                margin: 10px 0;
+            }
+            
+            .header-bg {
+                padding: 2rem 0;
+            }
+            
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .cell-diagram {
+                height: 300px;
+            }
+        }
+        
+        .organelle-card {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+        
+        .organelle-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--biology);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .cell-animation {
+            position: relative;
+            height: 200px;
+            margin: 20px 0;
+            overflow: hidden;
+            background: #E3F2FD;
+            border-radius: 8px;
+        }
+        
+        .moving-vesicle {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #4CAF50;
+            border-radius: 50%;
+            animation: moveVesicle 8s infinite linear;
+        }
+        
+        @keyframes moveVesicle {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(200px, 50px); }
+            50% { transform: translate(400px, 100px); }
+            75% { transform: translate(200px, 150px); }
+            100% { transform: translate(0, 0); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-eyeglasses"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="biology_topics.html">ชีววิทยา</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="biology_topics.html">เนื้อหาชีววิทยาทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">บทที่ 11: เซลล์</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">บทที่ 11: เซลล์</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-green me-2">ทฤษฎีเซลล์</span>
+                <span class="badge bg-light text-green me-2">โครงสร้างและหน้าที่ของออร์แกเนลล์</span>
+                <span class="badge bg-light text-green me-2">การสื่อสารระหว่างเซลล์</span>
+                <span class="badge bg-light text-green">การขนส่งภายในเซลล์</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ทฤษฎีเซลล์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#cellTheory" style="background: linear-gradient(135deg, var(--theory), #2E7D32);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-book"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ทฤษฎีเซลล์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="cellTheory" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ทฤษฎีเซลล์ (Cell Theory) เป็นรากฐานสำคัญของชีววิทยาสมัยใหม่ที่อธิบายเกี่ยวกับหน่วยพื้นฐานของชีวิต มีหลักการสำคัญ 3 ข้อที่พัฒนาขึ้นจากการค้นพบของนักวิทยาศาสตร์หลายท่าน
+                        </p>
+                        
+                        <div class="cell-diagram">
+                            <img src="https://microbenotes.com/wp-content/uploads/2022/04/Animal-Cell-1536x1491.jpg" alt="Animal Cell" class="cell-image">
+                            <p class="img-caption">เซลล์สัตว์ (ที่มา: Microbe Notes)</p>
+                        </div>
+                        
+                        <div class="cell-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--theory);" colspan="3">หลักการสำคัญของทฤษฎีเซลล์</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="background-color: var(--theory);">หลักการ</th>
+                                        <th style="background-color: var(--theory);">คำอธิบาย</th>
+                                        <th style="background-color: var(--theory);">ผู้เสนอ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>เซลล์เป็นหน่วยพื้นฐานของชีวิต</strong></td>
+                                        <td>สิ่งมีชีวิตทั้งหมดประกอบด้วยเซลล์หนึ่งเซลล์หรือมากกว่า</td>
+                                        <td>ธีโอดอร์ ชวานน์ และมัททีอัส ชไลเดน (1839)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เซลล์เป็นหน่วยโครงสร้างและหน้าที่ของสิ่งมีชีวิต</strong></td>
+                                        <td>กระบวนการเมแทบอลิซึมและการทำงานของสิ่งมีชีวิตเกิดขึ้นภายในเซลล์</td>
+                                        <td>ธีโอดอร์ ชวานน์ (1839)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เซลล์เกิดจากเซลล์ที่มีอยู่ก่อน</strong></td>
+                                        <td>เซลล์ใหม่เกิดขึ้นจากการแบ่งเซลล์ของเซลล์เดิม (Omnis cellula e cellula)</td>
+                                        <td>รูดอล์ฟ เวอร์โชว์ (1855)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.1)); border-color: rgba(76, 175, 80, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> การค้นพบที่สำคัญทางประวัติศาสตร์</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--theory);">
+                                    <h5><i class="bi bi-1665"></i> 1665: โรเบิร์ต ฮุก</h5>
+                                    <ul>
+                                        <li>ใช้กล้องจุลทรรศน์สังเกตชิ้นไม้คอร์ก</li>
+                                        <li>พบโครงสร้างคล้ายห้องเล็กๆ เรียกว่า "เซลล์"</li>
+                                        <li>ตีพิมพ์ในหนังสือ Micrographia</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--theory);">
+                                    <h5><i class="bi bi-1674"></i> 1674: อันโตนี ฟัน เลเวนฮุก</h5>
+                                    <ul>
+                                        <li>ค้นพบเซลล์แบคทีเรียและโปรโตซัว</li>
+                                        <li>เรียกสิ่งมีชีวิตเล็กๆ ว่า "แอนิมัลคูล"</li>
+                                        <li>เป็นคนแรกที่สังเกตเซลล์เม็ดเลือดแดง</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--theory);">
+                                    <h5><i class="bi bi-1838"></i> 1838-1839: ชไลเดนและชวานน์</h5>
+                                    <ul>
+                                        <li>ชไลเดนศึกษาพืช: พืชประกอบด้วยเซลล์</li>
+                                        <li>ชวานน์ศึกษาสัตว์: สัตว์ประกอบด้วยเซลล์</li>
+                                        <li>ร่วมกันเสนอทฤษฎีเซลล์</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--theory);">
+                                    <h5><i class="bi bi-1855"></i> 1855: รูดอล์ฟ เวอร์โชว์</h5>
+                                    <ul>
+                                        <li>เสนอว่า "เซลล์ทุกเซลล์เกิดจากเซลล์ที่มีอยู่ก่อน"</li>
+                                        <li>ขยายทฤษฎีเซลล์ให้สมบูรณ์</li>
+                                        <li>ศึกษากระบวนการแบ่งเซลล์</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>ประเภทของเซลล์</h4>
+                        <div class="cell-comparison">
+                            <div class="cell-type" style="border-top: 5px solid var(--theory);">
+                                <h5><i class="bi bi-tree"></i> เซลล์โปรคาริโอต</h5>
+                                <ul>
+                                    <li>ไม่มีเยื่อหุ้มนิวเคลียส</li>
+                                    <li>ไม่มีออร์แกเนลล์ที่มีเยื่อหุ้ม</li>
+                                    <li>ขนาดเล็ก (1-10 ไมโครเมตร)</li>
+                                    <li>ดีเอ็นเอเป็นวงกลมอยู่ในไซโตพลาซึม</li>
+                                    <li>ผนังเซลล์ประกอบด้วยเพปทิโดไกลแคน</li>
+                                    <li>ตัวอย่าง: แบคทีเรีย, อาร์เคีย</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="cell-type" style="border-top: 5px solid var(--theory);">
+                                <h5><i class="bi bi-flower1"></i> เซลล์ยูคาริโอต</h5>
+                                <ul>
+                                    <li>มีเยื่อหุ้มนิวเคลียส</li>
+                                    <li>มีออร์แกเนลล์ที่มีเยื่อหุ้ม</li>
+                                    <li>ขนาดใหญ่ (10-100 ไมโครเมตร)</li>
+                                    <li>ดีเอ็นเออยู่ในนิวเคลียส</li>
+                                    <li>มีโครงร่างเซลล์ (cytoskeleton)</li>
+                                    <li>ตัวอย่าง: พืช, สัตว์, เชื้อรา, โปรโตซัว</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- โครงสร้างและหน้าที่ของออร์แกเนลล์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#organelles" style="background: linear-gradient(135deg, var(--organelles), #1976D2);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-gear"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">โครงสร้างและหน้าที่ของออร์แกเนลล์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="organelles" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ออร์แกเนลล์ (Organelles) เป็นโครงสร้างภายในเซลล์ยูคาริโอตที่ทำหน้าที่เฉพาะเจาะจง คล้ายกับอวัยวะในร่างกายของสิ่งมีชีวิตหลายเซลล์ แต่ละออร์แกเนลล์มีหน้าที่สำคัญในการดำรงชีวิตของเซลล์
+                        </p>
+                        
+                        <div class="cell-diagram">
+                            <img src="https://www.sciencefacts.net/wp-content/uploads/2020/06/Animal-Cell-Structure.jpg" alt="Cell Organelles" class="cell-image">
+                            <p class="img-caption">ออร์แกเนลล์ในเซลล์สัตว์ (ที่มา: Science Facts)</p>
+                        </div>
+                        
+                        <div class="cell-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--organelles);">ออร์แกเนลล์</th>
+                                        <th style="background-color: var(--organelles);">โครงสร้าง</th>
+                                        <th style="background-color: var(--organelles);">หน้าที่</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>นิวเคลียส</strong></td>
+                                        <td>มีเยื่อหุ้มสองชั้น มีรูพรุน, ภายในมีนิวคลีโอลัสและโครมาติน</td>
+                                        <td>ควบคุมกิจกรรมของเซลล์, เก็บข้อมูลพันธุกรรม, สร้างไรโบโซม</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ไมโทคอนเดรีย</strong></td>
+                                        <td>มีเยื่อหุ้มสองชั้น, ชั้นในเป็นครีส, มี DNA ของตัวเอง</td>
+                                        <td>ผลิตพลังงาน (ATP) จากการหายใจระดับเซลล์</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เอนโดพลาสมิกเรติคูลัม (ER)</strong></td>
+                                        <td>ระบบท่อเชื่อมต่อกับเยื่อหุ้มนิวเคลียส, แบบเรียบและแบบขรุขระ</td>
+                                        <td>สังเคราะห์โปรตีน (ER ขรุขระ), สังเคราะห์ลิพิด (ER เรียบ)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>กอลจิคอมเพล็กซ์</strong></td>
+                                        <td>กลุ่มถุงแบนเรียงซ้อนกัน, อยู่ใกล้ ER</td>
+                                        <td>ดัดแปลง แพ็กเกจ และส่งโปรตีนและลิพิด</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ไลโซโซม</strong></td>
+                                        <td>ถุงกลมมีเยื่อหุ้มชั้นเดียว, มีเอนไซม์ย่อยสลาย</td>
+                                        <td>ย่อยสลายสารอาหาร, กำจัดเซลล์ส่วนที่เสียหาย</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ไรโบโซม</strong></td>
+                                        <td>โครงสร้างไร้เยื่อหุ้ม, ประกอบด้วย rRNA และโปรตีน</td>
+                                        <td>สังเคราะห์โปรตีน</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>แวคิวโอล</strong></td>
+                                        <td>ถุงขนาดใหญ่มีเยื่อหุ้มชั้นเดียว</td>
+                                        <td>เก็บน้ำ สารอาหาร และของเสีย, รักษาแรงดันเต่งในเซลล์พืช</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>โครงร่างเซลล์ (Cytoskeleton)</strong></td>
+                                        <td>เส้นใยโปรตีน (ไมโครทิวบูล, ไมโครฟิลาเมนต์, เซนทริโอล)</td>
+                                        <td>ค้ำจุนโครงสร้าง, ช่วยในการเคลื่อนไหว, การแบ่งเซลล์</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.2), rgba(33, 150, 243, 0.1)); border-color: rgba(33, 150, 243, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ออร์แกเนลล์เฉพาะในเซลล์พืช</h5>
+                            <div class="comparison-grid">
+                                <div class="organelle-card">
+                                    <div class="organelle-icon">
+                                        <i class="bi bi-tree"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-1">คลอโรพลาสต์ (Chloroplast)</h5>
+                                        <p class="mb-0">มีเยื่อหุ้มสองชั้น, ภายในมีไทลาคอยด์และสโตรมา, ทำหน้าที่สังเคราะห์ด้วยแสง</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="organelle-card">
+                                    <div class="organelle-icon">
+                                        <i class="bi bi-wallpaper"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-1">ผนังเซลล์ (Cell Wall)</h5>
+                                        <p class="mb-0">ประกอบด้วยเซลลูโลส, ค้ำจุนโครงสร้าง, ป้องกันเซลล์</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="organelle-card">
+                                    <div class="organelle-icon">
+                                        <i class="bi bi-droplet"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-1">แวคิวโอลกลาง (Central Vacuole)</h5>
+                                        <p class="mb-0">ขนาดใหญ่มาก, เก็บน้ำและสารละลาย, รักษาแรงดันเต่ง</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="organelle-card">
+                                    <div class="organelle-icon">
+                                        <i class="bi bi-lightning"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-1">พลาสโมเดสมาตา (Plasmodesmata)</h5>
+                                        <p class="mb-0">ช่องทางเชื่อมต่อระหว่างเซลล์พืช, แลกเปลี่ยนสาร</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การสื่อสารระหว่างเซลล์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#cellCommunication" style="background: linear-gradient(135deg, var(--communication), #7B1FA2);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-chat-dots"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การสื่อสารระหว่างเซลล์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="cellCommunication" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            การสื่อสารระหว่างเซลล์ (Cell Communication) เป็นกระบวนการที่เซลล์ส่งสัญญาณและตอบสนองต่อสัญญาณจากสิ่งแวดล้อมหรือเซลล์อื่น กระบวนการนี้สำคัญต่อการทำงานประสานกันของเซลล์ในสิ่งมีชีวิตหลายเซลล์
+                        </p>
+                        
+                        <div class="organelle-diagram">
+                            <img src="https://www.sciencefacts.net/wp-content/uploads/2021/01/Cell-Signaling.jpg" alt="Cell Communication" class="cell-image">
+                            <p class="img-caption">การสื่อสารระหว่างเซลล์ (ที่มา: Science Facts)</p>
+                        </div>
+                        
+                        <h4>ประเภทของการสื่อสารระหว่างเซลล์</h4>
+                        <div class="cell-comparison">
+                            <div class="cell-type" style="border-top: 5px solid var(--communication);">
+                                <h5><i class="bi bi-arrow-left-right"></i> การสื่อสารแบบเพอราไครน์ (Paracrine Signaling)</h5>
+                                <ul>
+                                    <li>เซลล์ปล่อยสารสื่อสัญญาณ (ligand) เข้าสู่พื้นที่ระหว่างเซลล์</li>
+                                    <li>ส่งผลต่อเซลล์ข้างเคียงที่อยู่ในบริเวณใกล้เคียง</li>
+                                    <li>ตัวอย่าง: การส่งสัญญาณระหว่างเซลล์ประสาท</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="cell-type" style="border-top: 5px solid var(--communication);">
+                                <h5><i class="bi bi-send"></i> การสื่อสารแบบเอนโดไครน์ (Endocrine Signaling)</h5>
+                                <ul>
+                                    <li>เซลล์ต่อมไร้ท่อปล่อยฮอร์โมนเข้าสู่กระแสเลือด</li>
+                                    <li>ส่งผลต่อเซลล์เป้าหมายที่อยู่ห่างไกล</li>
+                                    <li>ตัวอย่าง: ฮอร์โมนอินซูลินจากตับอ่อน</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="cell-type" style="border-top: 5px solid var(--communication);">
+                                <h5><i class="bi bi-activity"></i> การสื่อสารแบบออโตไครน์ (Autocrine Signaling)</h5>
+                                <ul>
+                                    <li>เซลล์ตอบสนองต่อสารสื่อสัญญาณที่ตัวเองผลิต</li>
+                                    <li>พบในระบบภูมิคุ้มกันและการเติบโตของเซลล์</li>
+                                    <li>ตัวอย่าง: เซลล์มะเร็งที่กระตุ้นตัวเองให้แบ่งตัว</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="cell-type" style="border-top: 5px solid var(--communication);">
+                                <h5><i class="bi bi-wifi"></i> การสื่อสารแบบยูแทคครีน (Juxtacrine Signaling)</h5>
+                                <ul>
+                                    <li>เซลล์สื่อสารโดยตรงผ่านเยื่อหุ้มเซลล์ที่สัมผัสกัน</li>
+                                    <li>ใช้โมเลกุลบนผิวเซลล์เป็นตัวรับและตัวส่งสัญญาณ</li>
+                                    <li>ตัวอย่าง: การพัฒนาเอมบริโอ</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <h4>ขั้นตอนการส่งสัญญาณของเซลล์</h4>
+                        <div class="process-flow">
+                            <div class="flow-item">
+                                <h6><i class="bi bi-1-circle"></i> การรับสัญญาณ (Reception)</h6>
+                                <ul>
+                                    <li>สารสื่อสัญญาณจับกับตัวรับบนเยื่อหุ้มเซลล์</li>
+                                    <li>ตัวรับอาจเป็นโปรตีนบนผิวเซลล์หรือภายในเซลล์</li>
+                                    <li>เปลี่ยนรูปร่างตัวรับเมื่อจับกับลิแกนด์</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-2-circle"></i> การส่งต่อสัญญาณ (Transduction)</h6>
+                                <ul>
+                                    <li>สัญญาณถูกขยายและส่งต่อไปยังภายในเซลล์</li>
+                                    <li>ผ่านกระบวนการ phosphorylation cascade</li>
+                                    <li>ใช้โมเลกุลส่งสัญญาณทุติยภูมิ (second messenger)</li>
+                                    <li>ตัวอย่าง: cAMP, Ca²⁺, IP₃</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-3-circle"></i> การตอบสนอง (Response)</h6>
+                                <ul>
+                                    <li>เซลล์แสดงการตอบสนองต่อสัญญาณ</li>
+                                    <li>การเปลี่ยนแปลงการแสดงออกของยีน</li>
+                                    <li>การเปิด/ปิดช่องไอออน</li>
+                                    <li>การกระตุ้นเอนไซม์</li>
+                                    <li>การเคลื่อนไหวของเซลล์</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.2), rgba(156, 39, 176, 0.1)); border-color: rgba(156, 39, 176, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ตัวอย่างการสื่อสารระหว่างเซลล์ที่สำคัญ</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--communication);">
+                                    <h5><i class="bi bi-activity"></i> การตอบสนองต่อฮอร์โมนเอพิเนฟริน</h5>
+                                    <p>สัญญาณ "สู้หรือหนี" ที่กระตุ้นการสลายไกลโคเจนในตับ</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--communication);">
+                                    <h5><i class="bi bi-lightning"></i> การหดตัวของกล้ามเนื้อ</h5>
+                                    <p>สัญญาณจากเซลล์ประสาททำให้กล้ามเนื้อหดตัว</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--communication);">
+                                    <h5><i class="bi bi-arrow-repeat"></i> วัฏจักรเซลล์</h5>
+                                    <p>สัญญาณควบคุมการแบ่งเซลล์ผ่านไซคลินและ CDK</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--communication);">
+                                    <h5><i class="bi bi-shield-plus"></i> การตอบสนองภูมิคุ้มกัน</h5>
+                                    <p>เซลล์ภูมิคุ้มกันสื่อสารกันผ่านซัยโตไคน์</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การขนส่งภายในเซลล์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#intracellularTransport" style="background: linear-gradient(135deg, var(--transport), #F57C00);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-truck"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การขนส่งภายในเซลล์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="intracellularTransport" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            การขนส่งภายในเซลล์ (Intracellular Transport) เป็นกระบวนการเคลื่อนย้ายสารต่างๆ ภายในเซลล์ เช่น โปรตีน ลิพิด และโมเลกุลสำคัญ ไปยังตำแหน่งต่างๆ ที่เซลล์ต้องการ ใช้โครงร่างเซลล์และโมเลกุลมอเตอร์เป็นทางเดิน
+                        </p>
+                        
+                        <div class="cell-diagram">
+                            <img src="https://www.sciencefacts.net/wp-content/uploads/2021/01/Intracellular-Transport.jpg" alt="Intracellular Transport" class="cell-image">
+                            <p class="img-caption">การขนส่งภายในเซลล์ (ที่มา: Science Facts)</p>
+                        </div>
+                        
+                        <h4>ระบบขนส่งภายในเซลล์</h4>
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.2), rgba(255, 152, 0, 0.1)); border-color: rgba(255, 152, 0, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ทางเดินขนส่งหลัก</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--transport);">
+                                    <h5><i class="bi bi-arrow-right"></i> ระบบเอนโดไซโทซิส</h5>
+                                    <ul>
+                                        <li>การนำสารเข้าสู่เซลล์ผ่านถุงลม</li>
+                                        <li>ฟาโกไซโทซิส: นำสารขนาดใหญ่เข้าเซลล์</li>
+                                        <li>พิโนไซโทซิส: นำสารละลายเข้าเซลล์</li>
+                                        <li>รีเซพเตอร์-เมดิเอเทต: นำสารเฉพาะเข้าเซลล์</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--transport);">
+                                    <h5><i class="bi bi-arrow-left"></i> ระบบเอกโซไซโทซิส</h5>
+                                    <ul>
+                                        <li>การส่งสารออกนอกเซลล์ผ่านถุงลม</li>
+                                        <li>หลั่งฮอร์โมนและเอนไซม์</li>
+                                        <li>กำจัดของเสีย</li>
+                                        <li>สร้างผนังเซลล์ใหม่</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--transport);">
+                                    <h5><i class="bi bi-arrow-repeat"></i> ระบบขนส่งผ่านออร์แกเนลล์</h5>
+                                    <ul>
+                                        <li>การขนส่งระหว่าง ER, กอลจิ, ไลโซโซม</li>
+                                        <li>ใช้ถุงขนส่ง (transport vesicles)</li>
+                                        <li>อาศัยโมเลกุล SNARE ในการหลอมรวม</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>การขนส่งตามโครงร่างเซลล์</h4>
+                        <div class="cell-animation">
+                            <div class="moving-vesicle"></div>
+                            <div class="moving-vesicle" style="background-color: #2196F3; animation-delay: 1s;"></div>
+                            <div class="moving-vesicle" style="background-color: #9C27B0; animation-delay: 2s;"></div>
+                        </div>
+                        
+                        <div class="cell-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--transport);">โครงร่างเซลล์</th>
+                                        <th style="background-color: var(--transport);">โมเลกุลมอเตอร์</th>
+                                        <th style="background-color: var(--transport);">ทิศทางการเคลื่อนที่</th>
+                                        <th style="background-color: var(--transport);">สารที่ขนส่ง</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>ไมโครทิวบูล</strong></td>
+                                        <td>ไคเนซิน, ไดนีอิน</td>
+                                        <td>ไคเนซิน: ไปยังปลาย(+) <br> ไดนีอิน: ไปยังปลาย(-)</td>
+                                        <td>ถุงลม, ออร์แกเนลล์, โครโมโซม</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เส้นใยแอกติน</strong></td>
+                                        <td>ไมโอซิน</td>
+                                        <td>ไปยังปลาย(+)</td>
+                                        <td>เวสซิเคิลขนาดเล็ก, โมเลกุลสัญญาณ</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เส้นใยกลาง</strong></td>
+                                        <td>ไม่มี</td>
+                                        <td>ไม่เคลื่อนที่</td>
+                                        <td>ให้การค้ำจุนโครงสร้าง</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.2), rgba(255, 152, 0, 0.1)); border-color: rgba(255, 152, 0, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> กระบวนการขนส่งโปรตีน</h5>
+                            <div class="process-flow">
+                                <div class="flow-item">
+                                    <h6><i class="bi bi-1-circle"></i> การสังเคราะห์โปรตีน</h6>
+                                    <ul>
+                                        <li>ไรโบโซมสังเคราะห์โปรตีนบน ER แบบขรุขระ</li>
+                                        <li>โปรตีนถูกดัดแปลงใน ER</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="flow-item">
+                                    <h6><i class="bi bi-2-circle"></i> การขนส่งไปยังกอลจิ</h6>
+                                    <ul>
+                                        <li>ถุงขนส่งเคลื่อนที่จาก ER ไปยังกอลจิ</li>
+                                        <li>อาศัยไมโครทิวบูลและโมเลกุลมอเตอร์</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="flow-item">
+                                    <h6><i class="bi bi-3-circle"></i> การดัดแปลงในกอลจิ</h6>
+                                    <ul>
+                                        <li>โปรตีนถูกดัดแปลงในซิสเทิร์นของกอลจิ</li>
+                                        <li>เพิ่มคาร์โบไฮเดรต (ไกลโคซิเลชัน)</li>
+                                        <li>ตัดส่วนที่ไม่จำเป็น</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="flow-item">
+                                    <h6><i class="bi bi-4-circle"></i> การส่งไปยังปลายทาง</h6>
+                                    <ul>
+                                        <li>ถุงลมออกจากกอลจิไปยังปลายทาง</li>
+                                        <li>ปลายทาง: เยื่อหุ้มเซลล์, ไลโซโซม, ออร์แกเนลล์อื่น</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Make section headers clickable to collapse/expand
+            document.querySelectorAll('.section-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-bs-target');
+                    const target = document.querySelector(targetId);
+                    const collapse = new bootstrap.Collapse(target, {
+                        toggle: true
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
