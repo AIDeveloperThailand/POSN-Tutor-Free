@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบภูมิคุ้มกัน - สอวน. ชีววิทยา</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --biology: #4CAF50;
+            --biology-light: #C8E6C9;
+            --biology-dark: #388E3C;
+            --innate: #4CAF50;
+            --adaptive: #2196F3;
+            --antigen: #9C27B0;
+            --immunodeficiency: #F44336;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,15 C65.464,15 78,27.536 78,43 C78,58.464 65.464,71 50,71 C34.536,71 22,58.464 22,43 C22,27.536 34.536,15 50,15 Z M50,25 C40.058,25 32,33.058 32,43 C32,52.942 40.058,61 50,61 C59.942,61 68,52.942 68,43 C68,33.058 59.942,25 50,25 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3Cpath d='M30,75 C36.627,75 42,80.373 42,87 C42,93.627 36.627,99 30,99 C23.373,99 18,93.627 18,87 C18,80.373 23.373,75 30,75 Z M70,75 C76.627,75 82,80.373 82,87 C82,93.627 76.627,99 70,99 C63.373,99 58,93.627 58,87 C58,80.373 63.373,75 70,75 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='5' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='20' cy='30' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='80' cy='20' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='30' cy='70' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='70' cy='80' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='10' cy='50' r='2' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='90' cy='60' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.2;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.1), rgba(67, 160, 71, 0.1));
+            border-left: 4px solid var(--biology);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+        }
+        
+        .section-header {
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .key-point {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .immune-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .immune-table th {
+            padding: 12px;
+            text-align: center;
+            color: white;
+        }
+        
+        .immune-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .immune-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .immune-diagram {
+            width: 100%;
+            height: 400px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diagram-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .immune-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .img-caption {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .process-flow {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 30px;
+            border-left: 3px solid var(--adaptive);
+        }
+        
+        .flow-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+        
+        .flow-item::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--adaptive);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        
+        .antibody-diagram {
+            width: 100%;
+            height: 300px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .immune-comparison {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .immune-type {
+            flex: 1;
+            min-width: 300px;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        @media (max-width: 768px) {
+            .immune-comparison {
+                flex-direction: column;
+            }
+            
+            .immune-type {
+                min-width: 100%;
+                margin: 10px 0;
+            }
+            
+            .header-bg {
+                padding: 2rem 0;
+            }
+            
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .immune-diagram {
+                height: 300px;
+            }
+        }
+        
+        .cell-type {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+        
+        .cell-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--biology);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .antibody-structure {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .antibody-part {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-eyeglasses"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="biology_topics.html">ชีววิทยา</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="biology_topics.html">เนื้อหาชีววิทยาทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">บทที่ 10: ระบบภูมิคุ้มกัน</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">บทที่ 10: ระบบภูมิคุ้มกัน</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-green me-2">ระบบภูมิคุ้มกันโดยกำเนิด</span>
+                <span class="badge bg-light text-green me-2">ระบบภูมิคุ้มกันแบบปรับตัว</span>
+                <span class="badge bg-light text-green me-2">แอนติเจนและแอนติบอดี</span>
+                <span class="badge bg-light text-green">โรคภูมิคุ้มกันบกพร่อง</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ระบบภูมิคุ้มกันโดยกำเนิด -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#innateImmunity" style="background: linear-gradient(135deg, var(--innate), #2E7D32);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-shield"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ระบบภูมิคุ้มกันโดยกำเนิด</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="innateImmunity" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ระบบภูมิคุ้มกันโดยกำเนิด (Innate Immune System) เป็นกลไกการป้องกันตัวแรกของร่างกายที่ทำงานอย่างรวดเร็วแต่ไม่เฉพาะเจาะจง ระบบนี้มีมาตั้งแต่กำเนิดและเป็นแนวป้องกันด่านแรกต่อเชื้อโรคต่างๆ
+                        </p>
+                        
+                        <div class="immune-diagram">
+                            <img src="https://www.verywellhealth.com/thmb/6N6kEeA1Y3cRqW1h7n4J3WnU9Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/innate-immune-system-2488621_FINAL-5c3bda0b46e0fb0001e3d0a7.png" alt="Innate Immune System" class="immune-image">
+                            <p class="img-caption">ระบบภูมิคุ้มกันโดยกำเนิด (ที่มา: Verywell Health)</p>
+                        </div>
+                        
+                        <div class="immune-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--innate);" colspan="3">องค์ประกอบของระบบภูมิคุ้มกันโดยกำเนิด</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="background-color: var(--innate);">องค์ประกอบ</th>
+                                        <th style="background-color: var(--innate);">หน้าที่</th>
+                                        <th style="background-color: var(--innate);">ตัวอย่าง</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>อุปสรรคทางกายภาพ</strong></td>
+                                        <td>ป้องกันไม่ให้เชื้อโรคเข้าสู่ร่างกาย</td>
+                                        <td>ผิวหนัง, เยื่อเมือก, ขนจมูก</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>อุปสรรคทางเคมี</strong></td>
+                                        <td>ฆ่าหรือยับยั้งการเจริญเติบโตของเชื้อโรค</td>
+                                        <td>น้ำตา, น้ำลาย, กรดในกระเพาะ</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เซลล์เม็ดเลือดขาว</strong></td>
+                                        <td>จับกินและทำลายเชื้อโรค</td>
+                                        <td>นิวโทรฟิล, แมคโครฟาจ, เดนไดรต์เซลล์</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>โปรตีนในพลาสมา</strong></td>
+                                        <td>เสริมการทำงานของระบบภูมิคุ้มกัน</td>
+                                        <td>คอมพลีเมนต์, ซัยโตไคน์, อินเตอร์เฟอรอน</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>การอักเสบ</strong></td>
+                                        <td>เรียกเซลล์ภูมิคุ้มกันมายังบริเวณติดเชื้อ</td>
+                                        <td>บวม, แดง, ร้อน, เจ็บ</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ไข้</strong></td>
+                                        <td>ยับยั้งการเจริญเติบโตของเชื้อโรค</td>
+                                        <td>อุณหภูมิร่างกายสูงขึ้น</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.1)); border-color: rgba(76, 175, 80, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> เซลล์สำคัญในระบบภูมิคุ้มกันโดยกำเนิด</h5>
+                            <div class="cell-type">
+                                <div class="cell-icon">
+                                    <i class="bi bi-droplet"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">นิวโทรฟิล (Neutrophils)</h5>
+                                    <p class="mb-0">เซลล์เม็ดเลือดขาวที่พบมากที่สุด (50-70%), ฟาโกไซโทซิสเชื้อโรค, หลั่งเอนไซม์ทำลายเชื้อ</p>
+                                </div>
+                            </div>
+                            
+                            <div class="cell-type">
+                                <div class="cell-icon">
+                                    <i class="bi bi-amoeba"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">แมคโครฟาจ (Macrophages)</h5>
+                                    <p class="mb-0">"เซลล์กินใหญ่", ฟาโกไซโทซิสเชื้อโรค, แสดงแอนติเจนให้เซลล์ภูมิคุ้มกัน</p>
+                                </div>
+                            </div>
+                            
+                            <div class="cell-type">
+                                <div class="cell-icon">
+                                    <i class="bi bi-tree"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">เดนไดรต์เซลล์ (Dendritic Cells)</h5>
+                                    <p class="mb-0">จับแอนติเจน, นำเสนอแอนติเจนให้เซลล์ T, เชื่อมต่อระหว่างภูมิคุ้มกันโดยกำเนิดและแบบปรับตัว</p>
+                                </div>
+                            </div>
+                            
+                            <div class="cell-type">
+                                <div class="cell-icon">
+                                    <i class="bi bi-bug"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">เซลล์นักฆ่าตามธรรมชาติ (Natural Killer Cells)</h5>
+                                    <p class="mb-0">ฆ่าเซลล์ติดเชื้อไวรัสและเซลล์มะเร็ง, หลั่งสารเพอร์ฟอรินและแกรนไซม์</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ระบบภูมิคุ้มกันแบบปรับตัว -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#adaptiveImmunity" style="background: linear-gradient(135deg, var(--adaptive), #1976D2);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ระบบภูมิคุ้มกันแบบปรับตัว</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="adaptiveImmunity" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ระบบภูมิคุ้มกันแบบปรับตัว (Adaptive Immune System) เป็นระบบป้องกันที่เฉพาะเจาะจงและมีหน่วยความจำ ทำงานช้ากว่าระบบโดยกำเนิด แต่มีประสิทธิภาพสูงในการต่อสู้กับเชื้อโรคที่เคยพบมาก่อน
+                        </p>
+                        
+                        <div class="immune-diagram">
+                            <img src="https://www.verywellhealth.com/thmb/9VkZQ8j9Qf7VQ7XZ7y6Y6QY0W3Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/adaptive-immune-system-2488622_FINAL-5c3bda1046e0fb0001e3d0a8.png" alt="Adaptive Immune System" class="immune-image">
+                            <p class="img-caption">ระบบภูมิคุ้มกันแบบปรับตัว (ที่มา: Verywell Health)</p>
+                        </div>
+                        
+                        <h4>เซลล์สำคัญในระบบภูมิคุ้มกันแบบปรับตัว</h4>
+                        <div class="immune-comparison">
+                            <div class="immune-type" style="border-top: 5px solid var(--adaptive);">
+                                <h5><i class="bi bi-t-cell"></i> เซลล์ T (T Lymphocytes)</h5>
+                                <ul>
+                                    <li>เจริญเติบโตในไทมัส</li>
+                                    <li>แบ่งเป็นหลายชนิด: Helper T, Cytotoxic T, Regulatory T</li>
+                                    <li>รู้จักแอนติเจนผ่าน TCR (T Cell Receptor)</li>
+                                    <li>ทำงานในภูมิคุ้มกันแบบเซลล์ (Cell-mediated Immunity)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="immune-type" style="border-top: 5px solid var(--adaptive);">
+                                <h5><i class="bi bi-b-cell"></i> เซลล์ B (B Lymphocytes)</h5>
+                                <ul>
+                                    <li>เจริญเติบโตในไขกระดูก</li>
+                                    <li>ผลิตแอนติบอดี</li>
+                                    <li>เปลี่ยนเป็นพลาสมาเซลล์เมื่อถูกกระตุ้น</li>
+                                    <li>ทำงานในภูมิคุ้มกันแบบฮิวเมอรอล (Humoral Immunity)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <h4>กลไกการทำงาน</h4>
+                        <div class="process-flow">
+                            <div class="flow-item">
+                                <h6><i class="bi bi-1-circle"></i> การรู้จักแอนติเจน</h6>
+                                <ul>
+                                    <li>APC (Antigen Presenting Cells) แสดงแอนติเจนให้เซลล์ T</li>
+                                    <li>ใช้ MHC (Major Histocompatibility Complex) แสดงแอนติเจน</li>
+                                    <li>เซลล์ T helper ถูกกระตุ้นด้วย MHC class II</li>
+                                    <li>เซลล์ T cytotoxic ถูกกระตุ้นด้วย MHC class I</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-2-circle"></i> การกระตุ้นและการเพิ่มจำนวน</h6>
+                                <ul>
+                                    <li>เซลล์ T helper หลั่งซัยโตไคน์กระตุ้นเซลล์อื่น</li>
+                                    <li>เซลล์ B ถูกกระตุ้นโดยแอนติเจนและ T helper cells</li>
+                                    <li>เกิดกระบวนการโคลนนอลเอกซ์แพนชัน (Clonal Expansion)</li>
+                                    <li>เซลล์แบ่งตัวเพิ่มจำนวนอย่างรวดเร็ว</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-3-circle"></i> การตอบสนองทางภูมิคุ้มกัน</h6>
+                                <ul>
+                                    <li><strong>ภูมิคุ้มกันแบบเซลล์:</strong> เซลล์ T cytotoxic ฆ่าเซลล์ติดเชื้อ</li>
+                                    <li><strong>ภูมิคุ้มกันแบบฮิวเมอรอล:</strong> เซลล์ B ผลิตแอนติบอดี</li>
+                                    <li>แอนติบอดีจับกับแอนติเจนทำให้เชื้อถูกทำลาย</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-4-circle"></i> การสร้างหน่วยความจำ</h6>
+                                <ul>
+                                    <li>เกิดเซลล์ความจำ (Memory Cells)</li>
+                                    <li>เซลล์ B memory และ T memory</li>
+                                    <li>อยู่ได้นานหลายปีหรือตลอดชีวิต</li>
+                                    <li>ตอบสนองเร็วและรุนแรงเมื่อพบเชื้อเดิมอีกครั้ง</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.2), rgba(33, 150, 243, 0.1)); border-color: rgba(33, 150, 243, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ภูมิคุ้มกันแบบแอกทีฟและพาสซีฟ</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--adaptive);">
+                                    <h5><i class="bi bi-shield-plus"></i> ภูมิคุ้มกันแบบแอกทีฟ (Active Immunity)</h5>
+                                    <ul>
+                                        <li>ร่างกายสร้างภูมิคุ้มกันเอง</li>
+                                        <li>อยู่ได้นาน</li>
+                                        <li>ตัวอย่าง: หลังติดเชื้อหรือฉีดวัคซีน</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--adaptive);">
+                                    <h5><i class="bi bi-shield-shaded"></i> ภูมิคุ้มกันแบบพาสซีฟ (Passive Immunity)</h5>
+                                    <ul>
+                                        <li>ได้รับแอนติบอดีจากภายนอก</li>
+                                        <li>อยู่ได้ไม่นาน</li>
+                                        <li>ตัวอย่าง: แอนติบอดีจากแม่สู่ลูก, เซรุ่ม</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- แอนติเจนและแอนติบอดี -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#antigenAntibody" style="background: linear-gradient(135deg, var(--antigen), #7B1FA2);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-lock"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">แอนติเจนและแอนติบอดี</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="antigenAntibody" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            แอนติเจน (Antigen) คือสารแปลกปลอมที่กระตุ้นการตอบสนองของระบบภูมิคุ้มกัน แอนติบอดี (Antibody) คือโปรตีนรูปตัว Y ที่ผลิตโดยเซลล์ B เพื่อจับกับแอนติเจนเฉพาะ
+                        </p>
+                        
+                        <div class="antibody-diagram">
+                            <img src="https://microbenotes.com/wp-content/uploads/2022/05/Antibody-Structure-1536x1121.jpg" alt="Antibody Structure" class="immune-image">
+                            <p class="img-caption">โครงสร้างแอนติบอดี (ที่มา: Microbe Notes)</p>
+                        </div>
+                        
+                        <div class="immune-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--antigen);" colspan="2">คุณสมบัติของแอนติเจน</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>ความแปลกปลอม (Foreignness)</strong></td>
+                                        <td>ต้องไม่ใช่สารของร่างกายเอง</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ขนาด (Size)</strong></td>
+                                        <td>มักมีน้ำหนักโมเลกุลมากกว่า 10,000 ดาลตัน</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ความซับซ้อน (Complexity)</strong></td>
+                                        <td>โปรตีนและพอลิแซ็กคาไรด์มีประสิทธิภาพมาก</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ความสามารถในการย่อยสลาย (Degradability)</strong></td>
+                                        <td>ต้องถูกย่อยและนำเสนอโดย APC ได้</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เอพิโทป (Epitope)</strong></td>
+                                        <td>บริเวณบนแอนติเจนที่แอนติบอดีหรือ TCR จับ</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4>คลาสของแอนติบอดี (Immunoglobulin Classes)</h4>
+                        <div class="immune-comparison">
+                            <div class="immune-type" style="border-top: 5px solid var(--antigen);">
+                                <h5><i class="bi bi-igg"></i> IgG</h5>
+                                <ul>
+                                    <li>พบมากที่สุดในเลือด (75-80%)</li>
+                                    <li>ผ่านรกไปยังทารกในครรภ์</li>
+                                    <li>ทำหน้าที่หลักในการป้องกันทุติยภูมิ</li>
+                                    <li>กระตุ้นระบบคอมพลีเมนต์</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="immune-type" style="border-top: 5px solid var(--antigen);">
+                                <h5><i class="bi bi-igm"></i> IgM</h5>
+                                <ul>
+                                    <li>ผลิตเป็นลำดับแรกเมื่อพบแอนติเจน</li>
+                                    <li>มีโครงสร้าง pentamer (5 หน่วย)</li>
+                                    <li>ประสิทธิภาพสูงในการเกาะกลุ่มแอนติเจน</li>
+                                    <li>ไม่ผ่านรก</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="immune-type" style="border-top: 5px solid var(--antigen);">
+                                <h5><i class="bi bi-iga"></i> IgA</h5>
+                                <ul>
+                                    <li>พบในน้ำลาย น้ำตา น้ำนมแม่</li>
+                                    <li>ป้องกันเยื่อบุต่างๆ</li>
+                                    <li>มีโครงสร้าง dimer (2 หน่วย)</li>
+                                    <li>ป้องกันไม่ให้เชื้อเกาะติดเยื่อบุ</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="immune-type" style="border-top: 5px solid var(--antigen);">
+                                <h5><i class="bi bi-ige"></i> IgE</h5>
+                                <ul>
+                                    <li>เกี่ยวข้องกับการแพ้และภูมิคุ้มกันต่อปรสิต</li>
+                                    <li>จับกับ mast cells และ basophils</li>
+                                    <li>กระตุ้นการหลั่งฮิสตามีน</li>
+                                    <li>พบในปริมาณน้อยในเลือด</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="immune-type" style="border-top: 5px solid var(--antigen);">
+                                <h5><i class="bi bi-igd"></i> IgD</h5>
+                                <ul>
+                                    <li>พบบนผิวเซลล์ B</li>
+                                    <li>ทำหน้าที่เป็นตัวรับแอนติเจน</li>
+                                    <li>เกี่ยวข้องกับการกระตุ้นเซลล์ B</li>
+                                    <li>พบในปริมาณน้อยมากในเลือด</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.2), rgba(156, 39, 176, 0.1)); border-color: rgba(156, 39, 176, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> กลไกการทำลายเชื้อโรคของแอนติบอดี</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--antigen);">
+                                    <h5><i class="bi bi-link-45deg"></i> การเกาะกลุ่ม (Agglutination)</h5>
+                                    <p>แอนติบอดีจับแอนติเจนหลายตัวเข้าด้วยกัน ทำให้ตกตะกอน</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--antigen);">
+                                    <h5><i class="bi bi-droplet"></i> การตกตะกอน (Precipitation)</h5>
+                                    <p>แอนติบอดีจับกับแอนติเจนที่ละลายน้ำได้ ทำให้ตกตะกอน</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--antigen);">
+                                    <h5><i class="bi bi-bandaid"></i> การปูพื้น (Opsonization)</h5>
+                                    <p>แอนติบอดีจับกับเชื้อโรค ทำให้ฟาโกไซโทซิสง่ายขึ้น</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--antigen);">
+                                    <h5><i class="bi bi-shield-exclamation"></i> การกระตุ้นคอมพลีเมนต์ (Complement Activation)</h5>
+                                    <p>แอนติบอดีกระตุ้นระบบคอมพลีเมนต์ให้ทำลายเชื้อโรค</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--antigen);">
+                                    <h5><i class="bi bi-virus"></i> การทำลายล้างโดยตรง (Direct Neutralization)</h5>
+                                    <p>แอนติบอดีปิดกั้นบริเวณสำคัญของเชื้อโรค</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- โรคภูมิคุ้มกันบกพร่อง -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#immunodeficiency" style="background: linear-gradient(135deg, var(--immunodeficiency), #D32F2F);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-virus"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">โรคภูมิคุ้มกันบกพร่อง</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="immunodeficiency" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            โรคภูมิคุ้มกันบกพร่อง (Immunodeficiency Diseases) เกิดจากความผิดปกติของระบบภูมิคุ้มกัน ทำให้ร่างกายไม่สามารถต่อสู้กับการติดเชื้อได้อย่างมีประสิทธิภาพ แบ่งเป็นสองประเภทหลัก: ภูมิคุ้มกันบกพร่องปฐมภูมิ (Primary) และทุติยภูมิ (Secondary)
+                        </p>
+                        
+                        <div class="immune-diagram">
+                            <img src="https://www.verywellhealth.com/thmb/7wZ9J9fQ8Z7Z9X9X9X9X9X9X9X9=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/immunodeficiency-2488659_FINAL-5c3bda0c46e0fb0001e3d0a6.png" alt="Immunodeficiency" class="immune-image">
+                            <p class="img-caption">โรคภูมิคุ้มกันบกพร่อง (ที่มา: Verywell Health)</p>
+                        </div>
+                        
+                        <h4>ภูมิคุ้มกันบกพร่องปฐมภูมิ (Primary Immunodeficiency)</h4>
+                        <div class="immune-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--immunodeficiency);">โรค</th>
+                                        <th style="background-color: var(--immunodeficiency);">ความผิดปกติ</th>
+                                        <th style="background-color: var(--immunodeficiency);">อาการสำคัญ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>X-linked Agammaglobulinemia (Bruton's Disease)</strong></td>
+                                        <td>ขาดเซลล์ B และแอนติบอดี</td>
+                                        <td>ติดเชื้อแบคทีเรียซ้ำ, เริ่มอาการหลัง 6 เดือน</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Severe Combined Immunodeficiency (SCID)</strong></td>
+                                        <td>ขาดทั้งเซลล์ T และ B</td>
+                                        <td>ติดเชื้อรุนแรง, อายุสั้นหากไม่รักษา</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>DiGeorge Syndrome</strong></td>
+                                        <td>ความผิดปกติของการพัฒนาหลอดเลือด</td>
+                                        <td>ขาดไทมัส, ระดับแคลเซียมต่ำ, ลักษณะใบหน้าเฉพาะ</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Chronic Granulomatous Disease (CGD)</strong></td>
+                                        <td>นิวโทรฟิลไม่สามารถผลิต ROS ฆ่าเชื้อ</td>
+                                        <td>ติดเชื้อแบคทีเรียและเชื้อราซ้ำ, เป็นฝี</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Wiskott-Aldrich Syndrome</strong></td>
+                                        <td>ความผิดปกติของโครงร่างเซลล์เม็ดเลือด</td>
+                                        <td>เกล็ดเลือดต่ำ, กลาก, ติดเชื้อซ้ำ</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4>ภูมิคุ้มกันบกพร่องทุติยภูมิ (Secondary Immunodeficiency)</h4>
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.2), rgba(244, 67, 54, 0.1)); border-color: rgba(244, 67, 54, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> สาเหตุสำคัญ</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--immunodeficiency);">
+                                    <h5><i class="bi bi-virus"></i> การติดเชื้อ</h5>
+                                    <ul>
+                                        <li>HIV/AIDS</li>
+                                        <li>หัด</li>
+                                        <li>ไวรัสตับอักเสบ</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--immunodeficiency);">
+                                    <h5><i class="bi bi-capsule"></i> ยาและการรักษา</h5>
+                                    <ul>
+                                        <li>เคมีบำบัด</li>
+                                        <li>สเตียรอยด์</li>
+                                        <li>ยากดภูมิคุ้มกัน</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--immunodeficiency);">
+                                    <h5><i class="bi bi-activity"></i> ภาวะทุพโภชนาการ</h5>
+                                    <ul>
+                                        <li>ขาดโปรตีน</li>
+                                        <li>ขาดวิตามินและแร่ธาตุ</li>
+                                        <li>โรคขาดสารอาหาร</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--immunodeficiency);">
+                                    <h5><i class="bi bi-heart-pulse"></i> โรคเรื้อรัง</h5>
+                                    <ul>
+                                        <li>โรคไต</li>
+                                        <li>โรคตับ</li>
+                                        <li>โรคเบาหวาน</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>เอชไอวี/เอดส์ (HIV/AIDS)</h4>
+                        <div class="process-flow">
+                            <div class="flow-item">
+                                <h6><i class="bi bi-1-circle"></i> การติดเชื้อและฟักตัว</h6>
+                                <ul>
+                                    <li>เชื้อ HIV เข้าสู่ร่างกายผ่านเลือดหรือสารคัดหลั่ง</li>
+                                    <li>เชื้อเจาะจงทำลายเซลล์ CD4+ T</li>
+                                    <li>ระยะฟักตัว 2-4 สัปดาห์</li>
+                                    <li>อาจมีอาการคล้ายไข้หวัดใหญ่</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-2-circle"></i> ระยะไม่แสดงอาการ</h6>
+                                <ul>
+                                    <li>อาจนาน 8-10 ปี</li>
+                                    <li>จำนวน CD4+ T ลดลงช้าๆ</li>
+                                    <li>ไวรัสเพิ่มจำนวนอย่างต่อเนื่อง</li>
+                                    <li>ผู้ติดเชื้ออาจไม่แสดงอาการ</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-3-circle"></i> ระยะแสดงอาการ</h6>
+                                <ul>
+                                    <li>CD4+ T ต่ำกว่า 500 เซลล์/ไมโครลิตร</li>
+                                    <li>ต่อมน้ำเหลืองโต, น้ำหนักลด, มีไข้</li>
+                                    <li>ติดเชื้อฉวยโอกาสบ่อยครั้ง</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-4-circle"></i> ระยะเอดส์ (AIDS)</h6>
+                                <ul>
+                                    <li>CD4+ T ต่ำกว่า 200 เซลล์/ไมโครลิตร</li>
+                                    <li>ติดเชื้อฉวยโอกาสรุนแรง</li>
+                                    <li>มะเร็งบางชนิดเช่น Kaposi's sarcoma</li>
+                                    <li>โรคทางระบบประสาท</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.2), rgba(244, 67, 54, 0.1)); border-color: rgba(244, 67, 54, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> การป้องกันและรักษาโรคภูมิคุ้มกันบกพร่อง</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card">
+                                    <h5><i class="bi bi-shield-plus"></i> การปลูกถ่ายไขกระดูก</h5>
+                                    <p>รักษา SCID และโรคภูมิคุ้มกันบกพร่องรุนแรง</p>
+                                </div>
+                                
+                                <div class="comparison-card">
+                                    <h5><i class="bi bi-capsule"></i> การบำบัดด้วยแอนติบอดี</h5>
+                                    <p>ให้ IVIG ในผู้ป่วยขาดแอนติบอดี</p>
+                                </div>
+                                
+                                <div class="comparison-card">
+                                    <h5><i class="bi bi-gene"></i> ยาต้านไวรัส</h5>
+                                    <p>ART สำหรับผู้ติดเชื้อ HIV</p>
+                                </div>
+                                
+                                <div class="comparison-card">
+                                    <h5><i class="bi bi-shield-exclamation"></i> การป้องกันการติดเชื้อ</h5>
+                                    <p>วัคซีน, สุขอนามัย, หลีกเลี่ยงปัจจัยเสี่ยง</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Make section headers clickable to collapse/expand
+            document.querySelectorAll('.section-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-bs-target');
+                    const target = document.querySelector(targetId);
+                    const collapse = new bootstrap.Collapse(target, {
+                        toggle: true
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
