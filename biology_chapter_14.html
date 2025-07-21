@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เทคโนโลยีทางดีเอ็นเอ - สอวน. ชีววิทยา</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --biology: #4CAF50;
+            --biology-light: #C8E6C9;
+            --biology-dark: #388E3C;
+            --gene-splicing: #4CAF50;
+            --pcr: #2E7D32;
+            --cloning: #8BC34A;
+            --biomedical: #388E3C;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,15 C65.464,15 78,27.536 78,43 C78,58.464 65.464,71 50,71 C34.536,71 22,58.464 22,43 C22,27.536 34.536,15 50,15 Z M50,25 C40.058,25 32,33.058 32,43 C32,52.942 40.058,61 50,61 C59.942,61 68,52.942 68,43 C68,33.058 59.942,25 50,25 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3Cpath d='M30,75 C36.627,75 42,80.373 42,87 C42,93.627 36.627,99 30,99 C23.373,99 18,93.627 18,87 C18,80.373 23.373,75 30,75 Z M70,75 C76.627,75 82,80.373 82,87 C82,93.627 76.627,99 70,99 C63.373,99 58,93.627 58,87 C58,80.373 63.373,75 70,75 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='5' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='20' cy='30' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='80' cy='20' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='30' cy='70' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='70' cy='80' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='10' cy='50' r='2' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='90' cy='60' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.2;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.1), rgba(67, 160, 71, 0.1));
+            border-left: 4px solid var(--biology);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+        }
+        
+        .section-header {
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .key-point {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .genetics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .genetics-table th {
+            padding: 12px;
+            text-align: center;
+            color: white;
+        }
+        
+        .genetics-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .genetics-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .genetics-diagram {
+            width: 100%;
+            height: 400px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diagram-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .genetics-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .img-caption {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .process-flow {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 30px;
+            border-left: 3px solid var(--biology);
+        }
+        
+        .flow-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+        
+        .flow-item::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--biology);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        
+        .punnett-square {
+            width: 100%;
+            height: 300px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+        }
+        
+        .punnett-row {
+            display: flex;
+            flex: 1;
+        }
+        
+        .punnett-cell {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .punnett-header {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        
+        .genetics-comparison {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .genetics-type {
+            flex: 1;
+            min-width: 300px;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        @media (max-width: 768px) {
+            .genetics-comparison {
+                flex-direction: column;
+            }
+            
+            .genetics-type {
+                min-width: 100%;
+                margin: 10px 0;
+            }
+            
+            .header-bg {
+                padding: 2rem 0;
+            }
+            
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .genetics-diagram {
+                height: 300px;
+            }
+        }
+        
+        .dna-strand {
+            position: relative;
+            height: 150px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .dna-base {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        
+        .tech-process {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.05));
+        }
+        
+        .tech-step {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .tech-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--biology);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .application-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .application-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
+        }
+        
+        .application-header {
+            padding: 15px;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .application-body {
+            padding: 15px;
+            background: white;
+        }
+        
+        .cloning-timeline {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 30px;
+            border-left: 3px solid var(--cloning);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-eyeglasses"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="biology_topics.html">ชีววิทยา</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="biology_topics.html">เนื้อหาชีววิทยาทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">บทที่ 14: เทคโนโลยีทางดีเอ็นเอ</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">บทที่ 14: เทคโนโลยีทางดีเอ็นเอ</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-green me-2">การตัดต่อยีน</span>
+                <span class="badge bg-light text-green me-2">PCR และ DNA sequencing</span>
+                <span class="badge bg-light text-green me-2">โคลนนิ่ง</span>
+                <span class="badge bg-light text-green">การประยุกต์ใช้ทางชีวการแพทย์</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การตัดต่อยีน -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#geneSplicing" style="background: linear-gradient(135deg, var(--gene-splicing), #2E7D32);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-scissors"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การตัดต่อยีน</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="geneSplicing" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            การตัดต่อยีน (Gene Splicing) หรือพันธุวิศวกรรม เป็นกระบวนการที่นักวิทยาศาสตร์สามารถตัดต่อและปรับเปลี่ยน DNA ของสิ่งมีชีวิตเพื่อสร้างสิ่งมีชีวิตใหม่ที่มีลักษณะตามต้องการ
+                        </p>
+                        
+                        <div class="genetics-diagram">
+                            <img src="https://www.genome.gov/sites/default/files/tg/en/illustration/recombinant_dna.jpg" alt="Gene Splicing Process" class="genetics-image">
+                            <p class="img-caption">กระบวนการตัดต่อยีน (ที่มา: National Human Genome Research Institute)</p>
+                        </div>
+                        
+                        <h4>องค์ประกอบสำคัญในการตัดต่อยีน</h4>
+                        <div class="comparison-grid">
+                            <div class="comparison-card" style="border-left: 4px solid var(--gene-splicing);">
+                                <h5><i class="bi bi-droplet"></i> เอนไซม์ตัดจำเพาะ (Restriction Enzymes)</h5>
+                                <p>เอนไซม์ที่ตัด DNA ในตำแหน่งเฉพาะ เรียกว่า "ไซต์จำเพาะ"</p>
+                                <ul>
+                                    <li>ตัดเป็นปลายเหนียว (Sticky ends)</li>
+                                    <li>ตัดเป็นปลายทู่ (Blunt ends)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--gene-splicing);">
+                                <h5><i class="bi bi-link"></i> เอนไซม์เชื่อมต่อ (DNA Ligase)</h5>
+                                <p>เชื่อมต่อ DNA สองชิ้นเข้าด้วยกันโดยสร้างพันธะฟอสโฟไดเอสเตอร์</p>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--gene-splicing);">
+                                <h5><i class="bi bi-truck"></i> พาหะ (Vector)</h5>
+                                <p>DNA ที่นำยีนเข้าสู่เซลล์เป้าหมาย</p>
+                                <ul>
+                                    <li>พลาสมิด (Plasmid)</li>
+                                    <li>ไวรัส (Virus)</li>
+                                    <li>แบคทีเรียฟาจ (Bacteriophage)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--gene-splicing);">
+                                <h5><i class="bi bi-house"></i> เซลล์เจ้าบ้าน (Host Cell)</h5>
+                                <p>เซลล์ที่นำ DNA ใหม่เข้าไปเพื่อให้แสดงออก</p>
+                                <ul>
+                                    <li>แบคทีเรีย (E. coli)</li>
+                                    <li>ยีสต์ (Yeast)</li>
+                                    <li>เซลล์สัตว์เลี้ยงลูกด้วยนม</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <h4>กระบวนการตัดต่อยีน</h4>
+                        <div class="tech-process">
+                            <div class="tech-step">
+                                <div class="tech-icon">
+                                    <i class="bi bi-1-circle"></i>
+                                </div>
+                                <h6>แยกยีน</h6>
+                                <p>แยกยีนที่ต้องการโดยใช้ restriction enzymes</p>
+                            </div>
+                            
+                            <div class="tech-step">
+                                <div class="tech-icon">
+                                    <i class="bi bi-2-circle"></i>
+                                </div>
+                                <h6>เตรียมพาหะ</h6>
+                                <p>ตัดพลาสมิดด้วยเอนไซม์เดียวกัน</p>
+                            </div>
+                            
+                            <div class="tech-step">
+                                <div class="tech-icon">
+                                    <i class="bi bi-3-circle"></i>
+                                </div>
+                                <h6>เชื่อมต่อ</h6>
+                                <p>เชื่อมต่อยีนกับพาหะด้วย DNA ligase</p>
+                            </div>
+                            
+                            <div class="tech-step">
+                                <div class="tech-icon">
+                                    <i class="bi bi-4-circle"></i>
+                                </div>
+                                <h6>ถ่ายฝาก</h6>
+                                <p>นำพาหะเข้าสู่เซลล์เจ้าบ้าน</p>
+                            </div>
+                            
+                            <div class="tech-step">
+                                <div class="tech-icon">
+                                    <i class="bi bi-5-circle"></i>
+                                </div>
+                                <h6>คัดเลือก</h6>
+                                <p>คัดเลือกเซลล์ที่มี DNA ใหม่</p>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.1)); border-color: rgba(76, 175, 80, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> การประยุกต์ใช้การตัดต่อยีน</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--gene-splicing);">
+                                    <h5><i class="bi bi-capsule"></i> การผลิตยา</h5>
+                                    <p>อินซูลินมนุษย์, ฮอร์โมนการเจริญเติบโต</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--gene-splicing);">
+                                    <h5><i class="bi bi-tree"></i> พืชตัดต่อยีน</h5>
+                                    <p>พืชต้านทานศัตรูพืช, พืชทนเค็ม</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--gene-splicing);">
+                                    <h5><i class="bi bi-virus"></i> วัคซีน</h5>
+                                    <p>วัคซีนตับอักเสบบี, วัคซีน HPV</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--gene-splicing);">
+                                    <h5><i class="bi bi-flower1"></i> สิ่งมีชีวิตดัดแปลง</h5>
+                                    <p>แบคทีเรียผลิตพลาสติกย่อยสลายได้</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PCR และ DNA sequencing -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#pcrSequencing" style="background: linear-gradient(135deg, var(--pcr), #1B5E20);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-thermometer-high"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">PCR และ DNA sequencing</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="pcrSequencing" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            PCR (Polymerase Chain Reaction) เป็นเทคนิคการเพิ่มปริมาณ DNA ส่วนที่สนใจในหลอดทดลอง ส่วน DNA sequencing เป็นกระบวนการหาลำดับเบสใน DNA
+                        </p>
+                        
+                        <div class="dna-strand">
+                            <div class="dna-base" style="left: 10%; top: 30px; background: #FF5252;">A</div>
+                            <div class="dna-base" style="left: 20%; top: 30px; background: #4CAF50;">T</div>
+                            <div class="dna-base" style="left: 30%; top: 30px; background: #2196F3;">C</div>
+                            <div class="dna-base" style="left: 40%; top: 30px; background: #FF9800;">G</div>
+                            <div class="dna-base" style="left: 50%; top: 30px; background: #FF5252;">A</div>
+                            <div class="dna-base" style="left: 60%; top: 30px; background: #4CAF50;">T</div>
+                            <div class="dna-base" style="left: 70%; top: 30px; background: #2196F3;">C</div>
+                            <div class="dna-base" style="left: 80%; top: 30px; background: #FF9800;">G</div>
+                            <div class="dna-base" style="left: 90%; top: 30px; background: #FF5252;">A</div>
+                            
+                            <div class="dna-base" style="left: 10%; top: 80px; background: #FF9800;">G</div>
+                            <div class="dna-base" style="left: 20%; top: 80px; background: #4CAF50;">T</div>
+                            <div class="dna-base" style="left: 30%; top: 80px; background: #2196F3;">C</div>
+                            <div class="dna-base" style="left: 40%; top: 80px; background: #FF5252;">A</div>
+                            <div class="dna-base" style="left: 50%; top: 80px; background: #FF9800;">G</div>
+                            <div class="dna-base" style="left: 60%; top: 80px; background: #4CAF50;">T</div>
+                            <div class="dna-base" style="left: 70%; top: 80px; background: #2196F3;">C</div>
+                            <div class="dna-base" style="left: 80%; top: 80px; background: #FF5252;">A</div>
+                            <div class="dna-base" style="left: 90%; top: 80px; background: #FF9800;">G</div>
+                            
+                            <div class="position-absolute w-100 text-center" style="bottom: 10px;">ตัวอย่างลำดับ DNA ที่ใช้ในการหาลำดับเบส</div>
+                        </div>
+                        
+                        <h4>กระบวนการ PCR</h4>
+                        <div class="tech-process">
+                            <div class="tech-step">
+                                <div class="tech-icon">
+                                    <i class="bi bi-thermometer-high"></i>
+                                </div>
+                                <h6>Denaturation</h6>
+                                <p>95°C แยก DNA สายคู่เป็นสายเดี่ยว</p>
+                            </div>
+                            
+                            <div class="tech-step">
+                                <div class="tech-icon">
+                                    <i class="bi bi-thermometer-low"></i>
+                                </div>
+                                <h6>Annealing</h6>
+                                <p>55-65°C ไพรเมอร์จับกับ DNA เป้าหมาย</p>
+                            </div>
+                            
+                            <div class="tech-step">
+                                <div class="tech-icon">
+                                    <i class="bi bi-arrow-repeat"></i>
+                                </div>
+                                <h6>Extension</h6>
+                                <p>72°C DNA polymerase สร้าง DNA สายใหม่</p>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(46, 125, 50, 0.2), rgba(46, 125, 50, 0.1)); border-color: rgba(46, 125, 50, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ส่วนประกอบสำคัญของ PCR</h5>
+                            <ul>
+                                <li><strong>DNA template:</strong> DNA ต้นแบบที่ต้องการเพิ่มปริมาณ</li>
+                                <li><strong>ไพรเมอร์ (Primers):</strong> สาย oligonucleotide สั้นๆ ที่จับเฉพาะส่วน</li>
+                                <li><strong>DNA polymerase:</strong> เอนไซม์สร้าง DNA สายใหม่ (เช่น Taq polymerase)</li>
+                                <li><strong>นิวคลีโอไทด์:</strong> หน่วยสร้าง DNA (dATP, dCTP, dGTP, dTTP)</li>
+                                <li><strong>บัฟเฟอร์:</strong> สภาวะที่เหมาะสมสำหรับปฏิกิริยา</li>
+                            </ul>
+                        </div>
+                        
+                        <h4>เทคนิคการหาลำดับเบส DNA</h4>
+                        <div class="genetics-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--pcr);">เทคนิค</th>
+                                        <th style="background-color: var(--pcr);">หลักการ</th>
+                                        <th style="background-color: var(--pcr);">ข้อดี</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Sanger sequencing</strong></td>
+                                        <td>ใช้ dideoxynucleotides (ddNTPs) ที่ทำให้สาย DNA หยุดการเจริญ</td>
+                                        <td>แม่นยำสูง เหมาะสำหรับลำดับสั้น</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Next-generation sequencing (NGS)</strong></td>
+                                        <td>หาลำดับ DNA พร้อมกันจำนวนมากในคราวเดียว</td>
+                                        <td>รวดเร็ว ราคาต่อตัวอย่างต่ำ</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Third-generation sequencing</strong></td>
+                                        <td>หาลำดับ DNA สายเดี่ยวแบบเรียลไทม์</td>
+                                        <td>อ่านลำดับยาวได้ ไม่ต้องผ่าน PCR</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(46, 125, 50, 0.2), rgba(46, 125, 50, 0.1)); border-color: rgba(46, 125, 50, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> การประยุกต์ใช้ PCR และ DNA sequencing</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--pcr);">
+                                    <h5><i class="bi bi-heart-pulse"></i> การวินิจฉัยโรค</h5>
+                                    <p>ตรวจหาเชื้อโรค, ตรวจความผิดปกติทางพันธุกรรม</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--pcr);">
+                                    <h5><i class="bi bi-person-badge"></i> นิติวิทยาศาสตร์</h5>
+                                    <p>ตรวจพิสูจน์บุคคลจาก DNA, ตรวจหาความสัมพันธ์ทางครอบครัว</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--pcr);">
+                                    <h5><i class="bi bi-tree"></i> พันธุศาสตร์วิวัฒนาการ</h5>
+                                    <p>ศึกษาความสัมพันธ์ระหว่างสิ่งมีชีวิต, วิวัฒนาการ</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--pcr);">
+                                    <h5><i class="bi bi-database"></i> โครงการจีโนม</h5>
+                                    <p>โครงการจีโนมมนุษย์, จีโนมพืชเศรษฐกิจ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- โคลนนิ่ง -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#cloning" style="background: linear-gradient(135deg, var(--cloning), #689F38);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-copy"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">โคลนนิ่ง</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="cloning" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            โคลนนิ่ง (Cloning) หมายถึงกระบวนการสร้างสิ่งมีชีวิตที่มียีนเหมือนกันทุกประการกับสิ่งมีชีวิตต้นแบบ มีหลายรูปแบบทั้งการโคลนยีน การโคลนเซลล์ และการโคลนสิ่งมีชีวิตทั้งตัว
+                        </p>
+                        
+                        <div class="genetics-diagram">
+                            <img src="https://www.genome.gov/sites/default/files/tg/en/illustration/cloning.jpg" alt="Cloning Process" class="genetics-image">
+                            <p class="img-caption">กระบวนการโคลนนิ่ง (ที่มา: National Human Genome Research Institute)</p>
+                        </div>
+                        
+                        <h4>ประเภทของโคลนนิ่ง</h4>
+                        <div class="genetics-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--cloning);">ประเภท</th>
+                                        <th style="background-color: var(--cloning);">คำอธิบาย</th>
+                                        <th style="background-color: var(--cloning);">ตัวอย่าง</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>การโคลนยีน (Gene cloning)</strong></td>
+                                        <td>การสร้างสำเนายีนจำนวนมากในเซลล์เจ้าบ้าน</td>
+                                        <td>การผลิตอินซูลินด้วยแบคทีเรีย</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>การโคลนเซลล์ (Cell cloning)</strong></td>
+                                        <td>การสร้างเซลล์ที่เหมือนกันจากเซลล์ต้นแบบเดียว</td>
+                                        <td>การสร้างเซลล์ต้นกำเนิด</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>การโคลนสิ่งมีชีวิต (Organism cloning)</strong></td>
+                                        <td>การสร้างสิ่งมีชีวิตใหม่ที่มี DNA เหมือนต้นแบบ</td>
+                                        <td>ดอลลี่ แกะโคลนตัวแรก</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>การโคลนเพื่อการรักษา (Therapeutic cloning)</strong></td>
+                                        <td>การสร้างเซลล์หรือเนื้อเยื่อเพื่อการรักษาโรค</td>
+                                        <td>การสร้างเซลล์ตับอ่อนผลิตอินซูลิน</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4>ขั้นตอนการโคลนนิ่งสิ่งมีชีวิต</h4>
+                        <div class="cloning-timeline">
+                            <div class="flow-item">
+                                <h6><i class="bi bi-1-circle"></i> เตรียมเซลล์ไข่</h6>
+                                <p>นำไข่จากสัตว์เพศเมียและนำนิวเคลียสออก</p>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-2-circle"></i> เตรียมเซลล์ร่างกาย</h6>
+                                <p>นำเซลล์ร่างกายจากสัตว์ที่จะโคลน (เช่น เซลล์ผิวหนัง)</p>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-3-circle"></i> ถ่ายฝากนิวเคลียส</h6>
+                                <p>นำนิวเคลียสจากเซลล์ร่างกายใส่ในเซลล์ไข่ที่ดึงนิวเคลียสออกแล้ว</p>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-4-circle"></i> กระตุ้นการแบ่งเซลล์</h6>
+                                <p>ใช้กระแสไฟฟ้าหรือสารเคมีกระตุ้นให้เซลล์แบ่งตัว</p>
+                            </div>
+                            
+                            <div class="flow-item">
+                                <h6><i class="bi bi-5-circle"></i> ย้ายตัวอ่อน</h6>
+                                <p>ย้ายตัวอ่อนที่ได้เข้าไปในมดลูกของสัตว์รับตัวอ่อน</p>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(139, 195, 74, 0.2), rgba(139, 195, 74, 0.1)); border-color: rgba(139, 195, 74, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> จริยธรรมและข้อถกเถียงเรื่องโคลนนิ่ง</h5>
+                            <ul>
+                                <li>ความกังวลเกี่ยวกับการโคลนมนุษย์</li>
+                                <li>ปัญหาสุขภาพในสัตว์โคลน (อายุสั้น ป่วยง่าย)</li>
+                                <li>ความหลากหลายทางพันธุกรรมลดลง</li>
+                                <li>การนำไปใช้ในทางที่ผิด</li>
+                                <li>ประโยชน์ทางการแพทย์และการอนุรักษ์พันธุ์</li>
+                            </ul>
+                        </div>
+                        
+                        <h4>ความสำเร็จสำคัญในการโคลนนิ่ง</h4>
+                        <div class="genetics-comparison">
+                            <div class="genetics-type" style="border-top: 5px solid var(--cloning);">
+                                <h5><i class="bi bi-flower1"></i> 1996 - ดอลลี่ แกะ</h5>
+                                <p>สัตว์เลี้ยงลูกด้วยนมตัวแรกที่โคลนจากเซลล์ร่างกาย</p>
+                                <p>สถาบัน Roslin, สกอตแลนด์</p>
+                            </div>
+                            
+                            <div class="genetics-type" style="border-top: 5px solid var(--cloning);">
+                                <h5><i class="bi bi-flower2"></i> 2000 - หมู</h5>
+                                <p>โคลนนิ่งหมูเพื่อการวิจัยอวัยวะปลูกถ่าย</p>
+                            </div>
+                            
+                            <div class="genetics-type" style="border-top: 5px solid var(--cloning);">
+                                <h5><i class="bi bi-flower3"></i> 2003 - กระต่าย</h5>
+                                <p>กระต่ายโคลนตัวแรกในฝรั่งเศส</p>
+                            </div>
+                            
+                            <div class="genetics-type" style="border-top: 5px solid var(--cloning);">
+                                <h5><i class="bi bi-tree"></i> 2020 - ม้าลาย</h5>
+                                <p>ม้าลายโคลนตัวแรกในเคนยา</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การประยุกต์ใช้ทางชีวการแพทย์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#biomedical" style="background: linear-gradient(135deg, var(--biomedical), #1B5E20);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-heart-pulse"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การประยุกต์ใช้ทางชีวการแพทย์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="biomedical" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            เทคโนโลยีทาง DNA มีการประยุกต์ใช้อย่างกว้างขวางในทางการแพทย์ ตั้งแต่การวินิจฉัยโรค การรักษา ไปจนถึงการพัฒนายาใหม่ๆ และการรักษาแบบเฉพาะบุคคล
+                        </p>
+                        
+                        <div class="comparison-grid">
+                            <div class="application-card">
+                                <div class="application-header" style="background: linear-gradient(135deg, #4CAF50, #2E7D32);">
+                                    <h5><i class="bi bi-heart"></i> การบำบัดด้วยยีน (Gene Therapy)</h5>
+                                </div>
+                                <div class="application-body">
+                                    <p>การนำยีนปกติเข้าไปในเซลล์ของผู้ป่วยเพื่อทดแทนยีนที่บกพร่อง</p>
+                                    <ul>
+                                        <li>รักษาโรคทางพันธุกรรม เช่น ซีสติกไฟโบรซิส</li>
+                                        <li>รักษามะเร็งโดยการเพิ่มภูมิคุ้มกัน</li>
+                                        <li>รักษาโรคเลือด เช่น ธาลัสซีเมีย</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="application-card">
+                                <div class="application-header" style="background: linear-gradient(135deg, #388E3C, #1B5E20);">
+                                    <h5><i class="bi bi-prescription"></i> การแพทย์เฉพาะบุคคล (Personalized Medicine)</h5>
+                                </div>
+                                <div class="application-body">
+                                    <p>การใช้ข้อมูลทางพันธุกรรมเพื่อออกแบบการรักษาที่เหมาะกับแต่ละบุคคล</p>
+                                    <ul>
+                                        <li>การคัดเลือกยาที่เหมาะสม</li>
+                                        <li>การประเมินความเสี่ยงโรค</li>
+                                        <li>การกำหนดขนาดยาที่ถูกต้อง</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="application-card">
+                                <div class="application-header" style="background: linear-gradient(135deg, #8BC34A, #689F38);">
+                                    <h5><i class="bi bi-virus"></i> การวินิจฉัยโรค</h5>
+                                </div>
+                                <div class="application-body">
+                                    <p>การใช้เทคโนโลยี DNA ในการตรวจหาโรค</p>
+                                    <ul>
+                                        <li>PCR ตรวจหาเชื้อโรค</li>
+                                        <li>DNA microarray ตรวจการแสดงออกของยีน</li>
+                                        <li>NGS ตรวจหาการกลายพันธุ์ที่เกี่ยวข้องกับมะเร็ง</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="application-card">
+                                <div class="application-header" style="background: linear-gradient(135deg, #4CAF50, #2E7D32);">
+                                    <h5><i class="bi bi-capsule"></i> การพัฒนายา</h5>
+                                </div>
+                                <div class="application-body">
+                                    <p>การใช้เทคโนโลยี DNA ในการค้นหาและพัฒนายาใหม่</p>
+                                    <ul>
+                                        <li>การผลิตยาโปรตีนด้วยแบคทีเรียดัดแปลง</li>
+                                        <li>การสร้างแบบจำลองโรคด้วยเซลล์ดัดแปลง</li>
+                                        <li>การพัฒนาวัคซีน DNA</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>อนาคตของเทคโนโลยี DNA ในทางการแพทย์</h4>
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(56, 142, 60, 0.2), rgba(56, 142, 60, 0.1)); border-color: rgba(56, 142, 60, 0.2);">
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--biomedical);">
+                                    <h5><i class="bi bi-pencil"></i> CRISPR-Cas9</h5>
+                                    <p>เทคโนโลยีตัดต่อยีนที่แม่นยำสูงสำหรับการแก้ไขยีนบกพร่อง</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--biomedical);">
+                                    <h5><i class="bi bi-droplet"></i> การบำบัดด้วยเซลล์ CAR-T</h5>
+                                    <p>การดัดแปลงเซลล์ภูมิคุ้มกันของผู้ป่วยให้โจมตีเซลล์มะเร็ง</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--biomedical);">
+                                    <h5><i class="bi bi-database"></i> Big Data ทางการแพทย์</h5>
+                                    <p>การวิเคราะห์ข้อมูลจีโนมจำนวนมหาศาลเพื่อค้นหายารักษาโรค</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--biomedical);">
+                                    <h5><i class="bi bi-printer"></i> การพิมพ์อวัยวะ 3 มิติ</h5>
+                                    <p>การใช้เซลล์ของผู้ป่วยสร้างอวัยวะสำหรับปลูกถ่าย</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>การประยุกต์ใช้ในสาขาอื่นๆ</h4>
+                        <div class="genetics-comparison">
+                            <div class="genetics-type" style="border-top: 5px solid var(--biomedical);">
+                                <h5><i class="bi bi-tree"></i> เกษตรกรรม</h5>
+                                <ul>
+                                    <li>พืชดัดแปลงพันธุกรรมต้านทานศัตรูพืช</li>
+                                    <li>สัตว์ดัดแปลงพันธุกรรมให้เติบโตเร็ว</li>
+                                    <li>การตรวจสอบสายพันธุ์พืชและสัตว์</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="genetics-type" style="border-top: 5px solid var(--biomedical);">
+                                <h5><i class="bi bi-droplet"></i> สิ่งแวดล้อม</h5>
+                                <ul>
+                                    <li>แบคทีเรียดัดแปลงสำหรับบำบัดน้ำเสีย</li>
+                                    <li>การตรวจสอบมลพิษทางน้ำด้วย DNA</li>
+                                    <li>การอนุรักษ์ความหลากหลายทางชีวภาพ</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="genetics-type" style="border-top: 5px solid var(--biomedical);">
+                                <h5><i class="bi bi-person-badge"></i> นิติวิทยาศาสตร์</h5>
+                                <ul>
+                                    <li>การพิสูจน์บุคคลจาก DNA</li>
+                                    <li>การตรวจหาความสัมพันธ์ทางครอบครัว</li>
+                                    <li>การระบุตัวตนจากหลักฐานทางชีวภาพ</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Make section headers clickable to collapse/expand
+            document.querySelectorAll('.section-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-bs-target');
+                    const target = document.querySelector(targetId);
+                    const collapse = new bootstrap.Collapse(target, {
+                        toggle: true
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
