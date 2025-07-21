@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>พันธุศาสตร์ 2 - สอวน. ชีววิทยา</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --biology: #4CAF50;
+            --biology-light: #C8E6C9;
+            --biology-dark: #388E3C;
+            --non-mendel: #4CAF50;
+            --sex-chromosome: #2E7D32;
+            --mutations: #8BC34A;
+            --disorders: #388E3C;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,15 C65.464,15 78,27.536 78,43 C78,58.464 65.464,71 50,71 C34.536,71 22,58.464 22,43 C22,27.536 34.536,15 50,15 Z M50,25 C40.058,25 32,33.058 32,43 C32,52.942 40.058,61 50,61 C59.942,61 68,52.942 68,43 C68,33.058 59.942,25 50,25 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3Cpath d='M30,75 C36.627,75 42,80.373 42,87 C42,93.627 36.627,99 30,99 C23.373,99 18,93.627 18,87 C18,80.373 23.373,75 30,75 Z M70,75 C76.627,75 82,80.373 82,87 C82,93.627 76.627,99 70,99 C63.373,99 58,93.627 58,87 C58,80.373 63.373,75 70,75 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='5' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='20' cy='30' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='80' cy='20' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='30' cy='70' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='70' cy='80' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='10' cy='50' r='2' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='90' cy='60' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.2;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.1), rgba(67, 160, 71, 0.1));
+            border-left: 4px solid var(--biology);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+        }
+        
+        .section-header {
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .key-point {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .genetics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .genetics-table th {
+            padding: 12px;
+            text-align: center;
+            color: white;
+        }
+        
+        .genetics-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .genetics-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .genetics-diagram {
+            width: 100%;
+            height: 400px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diagram-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .genetics-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .img-caption {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .process-flow {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 30px;
+            border-left: 3px solid var(--dihybrid);
+        }
+        
+        .flow-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+        
+        .flow-item::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--dihybrid);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        
+        .punnett-square {
+            width: 100%;
+            height: 300px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+        }
+        
+        .punnett-row {
+            display: flex;
+            flex: 1;
+        }
+        
+        .punnett-cell {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .punnett-header {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        
+        .genetics-comparison {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .genetics-type {
+            flex: 1;
+            min-width: 300px;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        @media (max-width: 768px) {
+            .genetics-comparison {
+                flex-direction: column;
+            }
+            
+            .genetics-type {
+                min-width: 100%;
+                margin: 10px 0;
+            }
+            
+            .header-bg {
+                padding: 2rem 0;
+            }
+            
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .genetics-diagram {
+                height: 300px;
+            }
+        }
+        
+        .chromosome-diagram {
+            position: relative;
+            height: 200px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .chromosome {
+            position: absolute;
+            width: 20px;
+            background: #4CAF50;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+        
+        .allele-card {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+        
+        .allele-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--biology);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .dna-strand {
+            position: relative;
+            height: 150px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .dna-base {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-eyeglasses"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="biology_topics.html">ชีววิทยา</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="biology_topics.html">เนื้อหาชีววิทยาทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">บทที่ 13: พันธุศาสตร์ 2</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">บทที่ 13: พันธุศาสตร์ 2</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-green me-2">พันธุกรรมนอกเหนือกฎเมนเดล</span>
+                <span class="badge bg-light text-green me-2">การถ่ายทอดโครโมโซมเพศ</span>
+                <span class="badge bg-light text-green me-2">การกลายพันธุ์</span>
+                <span class="badge bg-light text-green">ความผิดปกติทางพันธุกรรม</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- พันธุกรรมนอกเหนือกฎเมนเดล -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#nonMendelian" style="background: linear-gradient(135deg, var(--non-mendel), #2E7D32);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-flower1"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">พันธุกรรมนอกเหนือกฎเมนเดล</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="nonMendelian" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            การถ่ายทอดลักษณะทางพันธุกรรมบางอย่างไม่ได้เป็นไปตามกฎของเมนเดล เนื่องจากมีกลไกการถ่ายทอดที่ซับซ้อนกว่าที่เมนเดลศึกษา โดยมีรูปแบบหลักๆ ดังนี้
+                        </p>
+                        
+                        <div class="genetics-diagram">
+                            <img src="https://www.thoughtco.com/thmb/0bY9e9h7u7f0U8Q1F0L8J3XbT0k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/codominance-5b0a0d1246e0fb0037d0d7c7.jpg" alt="Non-Mendelian Inheritance" class="genetics-image">
+                            <p class="img-caption">รูปแบบการถ่ายทอดนอกเหนือกฎเมนเดล (ที่มา: ThoughtCo)</p>
+                        </div>
+                        
+                        <div class="genetics-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--non-mendel);">รูปแบบ</th>
+                                        <th style="background-color: var(--non-mendel);">คำอธิบาย</th>
+                                        <th style="background-color: var(--non-mendel);">ตัวอย่าง</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>การเด่นไม่สมบูรณ์ (Incomplete Dominance)</strong></td>
+                                        <td>เมื่อยีนเด่นไม่สามารถข่มยีนด้อยได้อย่างสมบูรณ์ ทำให้เกิดฟีโนไทป์ระดับกลางในรุ่น F1</td>
+                                        <td>ดอกไม้สีชมพูจากการผสมดอกสีขาวกับสีแดง</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>การข่มร่วม (Codominance)</strong></td>
+                                        <td>ยีนทั้งสองแสดงออกพร้อมกันในฟีโนไทป์ของสิ่งมีชีวิต</td>
+                                        <td>กลุ่มเลือด AB ในมนุษย์</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ยีนหลายอัลลีล (Multiple Alleles)</strong></td>
+                                        <td>ยีนหนึ่งตำแหน่งมีอัลลีลมากกว่า 2 แบบ</td>
+                                        <td>ระบบกลุ่มเลือด ABO ในมนุษย์</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ยีนบนโครโมโซมเดียวกัน (Gene Linkage)</strong></td>
+                                        <td>ยีนที่อยู่บนโครโมโซมเดียวกันมักถูกถ่ายทอดไปด้วยกัน</td>
+                                        <td>สีตาและสีผมในแมลงหวี่</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ยีนที่ได้รับอิทธิพลจากเพศ (Sex-influenced Traits)</strong></td>
+                                        <td>ลักษณะที่แสดงออกต่างกันในเพศชายและหญิงแม้มีจีโนไทป์เดียวกัน</td>
+                                        <td>ศีรษะล้านแบบเพศชาย</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.1)); border-color: rgba(76, 175, 80, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> การเด่นไม่สมบูรณ์ vs การข่มร่วม</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--non-mendel);">
+                                    <h5><i class="bi bi-flower3"></i> การเด่นไม่สมบูรณ์</h5>
+                                    <ul>
+                                        <li>ฟีโนไทป์ระดับกลาง</li>
+                                        <li>แสดงออกเพียงลักษณะเดียว</li>
+                                        <li>ตัวอย่าง: ดอก snapdragon</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--non-mendel);">
+                                    <h5><i class="bi bi-droplet-half"></i> การข่มร่วม</h5>
+                                    <ul>
+                                        <li>แสดงออกทั้งสองลักษณะพร้อมกัน</li>
+                                        <li>ไม่มีฟีโนไทป์ระดับกลาง</li>
+                                        <li>ตัวอย่าง: กลุ่มเลือด AB, ลายวัว</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>ระบบกลุ่มเลือด ABO</h4>
+                        <div class="punnett-square">
+                            <div class="punnett-row">
+                                <div class="punnett-cell punnett-header"></div>
+                                <div class="punnett-cell punnett-header">I<sup>A</sup></div>
+                                <div class="punnett-cell punnett-header">I<sup>B</sup></div>
+                                <div class="punnett-cell punnett-header">i</div>
+                            </div>
+                            <div class="punnett-row">
+                                <div class="punnett-cell punnett-header">I<sup>A</sup></div>
+                                <div class="punnett-cell" style="background-color: #FFCDD2;">I<sup>A</sup>I<sup>A</sup> (A)</div>
+                                <div class="punnett-cell" style="background-color: #F8BBD0;">I<sup>A</sup>I<sup>B</sup> (AB)</div>
+                                <div class="punnett-cell" style="background-color: #FFCDD2;">I<sup>A</sup>i (A)</div>
+                            </div>
+                            <div class="punnett-row">
+                                <div class="punnett-cell punnett-header">I<sup>B</sup></div>
+                                <div class="punnett-cell" style="background-color: #F8BBD0;">I<sup>A</sup>I<sup>B</sup> (AB)</div>
+                                <div class="punnett-cell" style="background-color: #C5E1A5;">I<sup>B</sup>I<sup>B</sup> (B)</div>
+                                <div class="punnett-cell" style="background-color: #C5E1A5;">I<sup>B</sup>i (B)</div>
+                            </div>
+                            <div class="punnett-row">
+                                <div class="punnett-cell punnett-header">i</div>
+                                <div class="punnett-cell" style="background-color: #FFCDD2;">I<sup>A</sup>i (A)</div>
+                                <div class="punnett-cell" style="background-color: #C5E1A5;">I<sup>B</sup>i (B)</div>
+                                <div class="punnett-cell" style="background-color: #B3E5FC;">ii (O)</div>
+                            </div>
+                            <div class="text-center mt-2">ระบบกลุ่มเลือด ABO: ยีนหลายอัลลีลและการข่มร่วม</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การถ่ายทอดโครโมโซมเพศ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#sexChromosome" style="background: linear-gradient(135deg, var(--sex-chromosome), #1B5E20);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-gender-ambiguous"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การถ่ายทอดโครโมโซมเพศ</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="sexChromosome" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            โครโมโซมเพศเป็นตัวกำหนดเพศของสิ่งมีชีวิตและมียีนที่ควบคุมลักษณะเฉพาะบางอย่าง การถ่ายทอดลักษณะที่อยู่บนโครโมโซมเพศมีรูปแบบแตกต่างจากการถ่ายทอดบนโครโมโซมร่างกาย
+                        </p>
+                        
+                        <div class="chromosome-diagram">
+                            <div class="chromosome" style="height: 150px; left: 30%; top: 20px; background: #4CAF50;">X</div>
+                            <div class="chromosome" style="height: 100px; left: 50%; top: 40px; background: #2E7D32;">Y</div>
+                            <div class="chromosome" style="height: 150px; left: 70%; top: 20px; background: #4CAF50;">X</div>
+                            <div class="text-center position-absolute w-100" style="bottom: 10px;">โครโมโซมเพศในมนุษย์: XX (เพศหญิง), XY (เพศชาย)</div>
+                        </div>
+                        
+                        <h4>ระบบการกำหนดเพศ</h4>
+                        <div class="genetics-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--sex-chromosome);">ระบบ</th>
+                                        <th style="background-color: var(--sex-chromosome);">คำอธิบาย</th>
+                                        <th style="background-color: var(--sex-chromosome);">ตัวอย่าง</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>XX-XY</strong></td>
+                                        <td>เพศหญิง: XX, เพศชาย: XY</td>
+                                        <td>มนุษย์, สัตว์เลี้ยงลูกด้วยนม, แมลงหวี่</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>XX-XO</strong></td>
+                                        <td>เพศหญิง: XX, เพศชาย: XO</td>
+                                        <td>ตั๊กแตน, จิ้งหรีด</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ZZ-ZW</strong></td>
+                                        <td>เพศชาย: ZZ, เพศหญิง: ZW</td>
+                                        <td>นก, ผีเสื้อ, งู</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Haplodiploidy</strong></td>
+                                        <td>เพศหญิง: Diploid, เพศชาย: Haploid</td>
+                                        <td>ผึ้ง, มด</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(46, 125, 50, 0.2), rgba(46, 125, 50, 0.1)); border-color: rgba(46, 125, 50, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ลักษณะที่ถ่ายทอดทางโครโมโซมเพศ</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--sex-chromosome);">
+                                    <h5><i class="bi bi-gender-male"></i> X-linked Recessive</h5>
+                                    <ul>
+                                        <li>พบในเพศชายมากกว่าเพศหญิง</li>
+                                        <li>ชายได้รับ X จากแม่เท่านั้น</li>
+                                        <li>ตัวอย่าง: ตาบอดสี, ฮีโมฟีเลีย</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--sex-chromosome);">
+                                    <h5><i class="bi bi-gender-female"></i> X-linked Dominant</h5>
+                                    <ul>
+                                        <li>ชายหรือหญิงที่มี X เด่นจะแสดงลักษณะ</li>
+                                        <li>พบในเพศหญิงมากกว่า</li>
+                                        <li>ตัวอย่าง: กระดูกเปราะบางบางชนิด</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--sex-chromosome);">
+                                    <h5><i class="bi bi-dna"></i> Y-linked</h5>
+                                    <ul>
+                                        <li>ถ่ายทอดจากพ่อสู่ลูกชายเท่านั้น</li>
+                                        <li>พบเฉพาะในเพศชาย</li>
+                                        <li>ตัวอย่าง: ขนหูมีขน</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>ตัวอย่าง: การถ่ายทอดโรคตาบอดสี</h4>
+                        <div class="genetics-comparison">
+                            <div class="genetics-type" style="border-top: 5px solid var(--sex-chromosome);">
+                                <h5><i class="bi bi-eye-slash"></i> ตาบอดสี (X-linked recessive)</h5>
+                                <ul>
+                                    <li>ยีนควบคุมตาบอดสีอยู่บนโครโมโซม X</li>
+                                    <li>ชาย: X<sup>c</sup>Y (ตาบอดสี), XY (ปกติ)</li>
+                                    <li>หญิง: X<sup>C</sup>X<sup>C</sup> (ปกติ), X<sup>C</sup>X<sup>c</sup> (พาหะ), X<sup>c</sup>X<sup>c</sup> (ตาบอดสี)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="genetics-type" style="border-top: 5px solid var(--sex-chromosome);">
+                                <div class="punnett-square" style="height: 200px;">
+                                    <div class="punnett-row">
+                                        <div class="punnett-cell punnett-header"></div>
+                                        <div class="punnett-cell punnett-header">X<sup>C</sup></div>
+                                        <div class="punnett-cell punnett-header">X<sup>c</sup></div>
+                                    </div>
+                                    <div class="punnett-row">
+                                        <div class="punnett-cell punnett-header">X<sup>C</sup></div>
+                                        <div class="punnett-cell">X<sup>C</sup>X<sup>C</sup> (ปกติ)</div>
+                                        <div class="punnett-cell">X<sup>C</sup>X<sup>c</sup> (พาหะ)</div>
+                                    </div>
+                                    <div class="punnett-row">
+                                        <div class="punnett-cell punnett-header">Y</div>
+                                        <div class="punnett-cell">X<sup>C</sup>Y (ปกติ)</div>
+                                        <div class="punnett-cell">X<sup>c</sup>Y (ตาบอดสี)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การกลายพันธุ์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#mutations" style="background: linear-gradient(135deg, var(--mutations), #689F38);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-bug"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การกลายพันธุ์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="mutations" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            การกลายพันธุ์ (Mutation) คือการเปลี่ยนแปลงลำดับนิวคลีโอไทด์ใน DNA ซึ่งอาจส่งผลต่อฟีโนไทป์ของสิ่งมีชีวิต การกลายพันธุ์เป็นแหล่งสำคัญของความหลากหลายทางพันธุกรรมและเป็นกลไกสำคัญในการวิวัฒนาการ
+                        </p>
+                        
+                        <div class="dna-strand">
+                            <div class="dna-base" style="left: 10%; top: 30px; background: #FF5252;">A</div>
+                            <div class="dna-base" style="left: 20%; top: 30px; background: #4CAF50;">T</div>
+                            <div class="dna-base" style="left: 30%; top: 30px; background: #2196F3;">C</div>
+                            <div class="dna-base" style="left: 40%; top: 30px; background: #FF9800;">G</div>
+                            <div class="dna-base" style="left: 50%; top: 30px; background: #FF5252;">A</div>
+                            <div class="dna-base" style="left: 60%; top: 30px; background: #4CAF50;">T</div>
+                            <div class="dna-base" style="left: 70%; top: 30px; background: #FF5252;">A →</div>
+                            <div class="dna-base" style="left: 80%; top: 30px; background: #FF9800;">G</div>
+                            <div class="dna-base" style="left: 90%; top: 30px; background: #2196F3;">C</div>
+                            
+                            <div class="dna-base" style="left: 10%; top: 80px; background: #FF9800;">G</div>
+                            <div class="dna-base" style="left: 20%; top: 80px; background: #4CAF50;">T</div>
+                            <div class="dna-base" style="left: 30%; top: 80px; background: #2196F3;">C</div>
+                            <div class="dna-base" style="left: 40%; top: 80px; background: #FF5252;">A</div>
+                            <div class="dna-base" style="left: 50%; top: 80px; background: #FF9800;">G</div>
+                            <div class="dna-base" style="left: 60%; top: 80px; background: #4CAF50;">T</div>
+                            <div class="dna-base" style="left: 70%; top: 80px; background: #4CAF50;">T →</div>
+                            <div class="dna-base" style="left: 80%; top: 80px; background: #FF5252;">A</div>
+                            <div class="dna-base" style="left: 90%; top: 80px; background: #2196F3;">C</div>
+                            
+                            <div class="position-absolute w-100 text-center" style="bottom: 10px;">การกลายพันธุ์แบบจุด (Point Mutation) ในลำดับ DNA</div>
+                        </div>
+                        
+                        <h4>ประเภทของการกลายพันธุ์</h4>
+                        <div class="genetics-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--mutations);">ประเภท</th>
+                                        <th style="background-color: var(--mutations);">คำอธิบาย</th>
+                                        <th style="background-color: var(--mutations);">ผลกระทบ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>การกลายพันธุ์แบบจุด (Point Mutation)</strong></td>
+                                        <td>การเปลี่ยนแปลงเบสคู่เดียวใน DNA</td>
+                                        <td>อาจไม่เกิดผล, เปลี่ยนกรดอะมิโน, สร้างรหัสหยุด</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>การกลายพันธุ์แบบกรอบการอ่าน (Frameshift Mutation)</strong></td>
+                                        <td>การเพิ่มหรือลดจำนวนเบสที่ไม่ใช่ 3 เท่า</td>
+                                        <td>เปลี่ยนแปลงกรดอะมิโนทั้งหมดหลังจุดกลายพันธุ์</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>การกลายพันธุ์ระดับโครโมโซม (Chromosomal Mutation)</strong></td>
+                                        <td>การเปลี่ยนแปลงโครงสร้างหรือจำนวนโครโมโซม</td>
+                                        <td>รุนแรง, มักทำให้เสียชีวิตหรือความผิดปกติ</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(139, 195, 74, 0.2), rgba(139, 195, 74, 0.1)); border-color: rgba(139, 195, 74, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> การกลายพันธุ์แบบจุด</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--mutations);">
+                                    <h5><i class="bi bi-arrow-right"></i> การแทนที่ (Substitution)</h5>
+                                    <ul>
+                                        <li>Silent: ไม่เปลี่ยนกรดอะมิโน</li>
+                                        <li>Missense: เปลี่ยนกรดอะมิโนหนึ่งตัว</li>
+                                        <li>Nonsense: เปลี่ยนเป็นรหัสหยุด</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--mutations);">
+                                    <h5><i class="bi bi-plus"></i> การเพิ่ม (Insertion)</h5>
+                                    <ul>
+                                        <li>เพิ่มนิวคลีโอไทด์เข้าไป</li>
+                                        <li>ทำให้เกิด frameshift</li>
+                                        <li>ผลกระทบรุนแรง</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--mutations);">
+                                    <h5><i class="bi bi-dash"></i> การสูญหาย (Deletion)</h5>
+                                    <ul>
+                                        <li>สูญเสียนิวคลีโอไทด์</li>
+                                        <li>ทำให้เกิด frameshift</li>
+                                        <li>ผลกระทบรุนแรง</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>ตัวอย่าง: โรคโลหิตจางซิกเคิลเซลล์</h4>
+                        <div class="genetics-comparison">
+                            <div class="genetics-type" style="border-top: 5px solid var(--mutations);">
+                                <h5><i class="bi bi-droplet"></i> สาเหตุ</h5>
+                                <ul>
+                                    <li>เกิดจากการกลายพันธุ์แบบจุด</li>
+                                    <li>เปลี่ยนจาก GAG → GTG ในยีนเบตาโกลบิน</li>
+                                    <li>กรดอะมิโนเปลี่ยนจากกรดกลูตามิก → วาลีน</li>
+                                    <li>เฮโมโกลบินผิดปกติ → เม็ดเลือดแดงรูปเคียว</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="genetics-type" style="border-top: 5px solid var(--mutations);">
+                                <h5><i class="bi bi-heart-pulse"></i> ลักษณะทางพันธุกรรม</h5>
+                                <ul>
+                                    <li>Autosomal recessive disorder</li>
+                                    <li>จีโนไทป์: Hb<sup>A</sup>Hb<sup>A</sup> (ปกติ), Hb<sup>A</sup>Hb<sup>S</sup> (พาหะ), Hb<sup>S</sup>Hb<sup>S</sup> (เป็นโรค)</li>
+                                    <li>พาหะมีความต้านทานต่อโรคมาลาเรีย</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ความผิดปกติทางพันธุกรรม -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#geneticDisorders" style="background: linear-gradient(135deg, var(--disorders), #1B5E20);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-heart-pulse"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">ความผิดปกติทางพันธุกรรม</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="geneticDisorders" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ความผิดปกติทางพันธุกรรมเกิดจากความผิดปกติในจีโนมหรือยีนเฉพาะ อาจถ่ายทอดทางพันธุกรรมหรือเกิดใหม่จากการกลายพันธุ์ ความผิดปกติเหล่านี้มีตั้งแต่ระดับโมเลกุลจนถึงระดับโครโมโซม
+                        </p>
+                        
+                        <div class="genetics-diagram">
+                            <img src="https://www.genome.gov/sites/default/files/tg/en/illustration/chromosome.jpg" alt="Chromosomal Abnormalities" class="genetics-image">
+                            <p class="img-caption">ความผิดปกติของโครโมโซม (ที่มา: National Human Genome Research Institute)</p>
+                        </div>
+                        
+                        <h4>ความผิดปกติระดับโครโมโซม</h4>
+                        <div class="genetics-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--disorders);">ความผิดปกติ</th>
+                                        <th style="background-color: var(--disorders);">สาเหตุ</th>
+                                        <th style="background-color: var(--disorders);">ลักษณะสำคัญ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>ดาวน์ซินโดรม (Down Syndrome)</strong></td>
+                                        <td>โครโมโซมคู่ที่ 21 เกินมา 1 แท่ง (Trisomy 21)</td>
+                                        <td>หน้าตาเฉพาะ, พัฒนาการช้า, โรคหัวใจ</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เทอร์เนอร์ซินโดรม (Turner Syndrome)</strong></td>
+                                        <td>เพศหญิงขาดโครโมโซม X (45,X)</td>
+                                        <td>รูปร่างเตี้ย, ไม่มีประจำเดือน, คอมีพังผืด</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ไคลน์เฟลเตอร์ซินโดรม (Klinefelter Syndrome)</strong></td>
+                                        <td>เพศชายมีโครโมโซม X เกิน (47,XXY)</td>
+                                        <td>มีหน้าอก, อัณฑะเล็ก, มีบุตรยาก</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เอ็ดเวิร์ดซินโดรม (Edward Syndrome)</strong></td>
+                                        <td>โครโมโซมคู่ที่ 18 เกินมา 1 แท่ง (Trisomy 18)</td>
+                                        <td>หัวใจพิการ, ไตผิดปกติ, มักเสียชีวิตเร็ว</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(56, 142, 60, 0.2), rgba(56, 142, 60, 0.1)); border-color: rgba(56, 142, 60, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> การตรวจวินิจฉัยก่อนคลอด</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--disorders);">
+                                    <h5><i class="bi bi-ultrasound"></i> อัลตราซาวนด์</h5>
+                                    <p>ตรวจความผิดปกติทางโครงสร้างของทารก</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--disorders);">
+                                    <h5><i class="bi bi-droplet"></i> การเจาะน้ำคร่ำ (Amniocentesis)</h5>
+                                    <p>ตรวจโครโมโซมจากเซลล์ทารกในน้ำคร่ำ</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--disorders);">
+                                    <h5><i class="bi bi-virus"></i> การตรวจ CVS (Chorionic Villus Sampling)</h5>
+                                    <p>ตรวจชิ้นเนื้อรกเพื่อวิเคราะห์โครโมโซม</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--disorders);">
+                                    <h5><i class="bi bi-dna"></i> NIPT (Non-Invasive Prenatal Testing)</h5>
+                                    <p>ตรวจ DNA ทารกจากเลือดแม่</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>ความผิดปกติระดับยีน</h4>
+                        <div class="genetics-comparison">
+                            <div class="genetics-type" style="border-top: 5px solid var(--disorders);">
+                                <h5><i class="bi bi-lungs"></i> ซีสติกไฟโบรซิส (Cystic Fibrosis)</h5>
+                                <ul>
+                                    <li>Autosomal recessive</li>
+                                    <li>ยีน CFTR บนโครโมโซมคู่ที่ 7</li>
+                                    <li>เสมหะเหนียว, ปัญหาการย่อยอาหาร</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="genetics-type" style="border-top: 5px solid var(--disorders);">
+                                <h5><i class="bi bi-muscle"></i> โรคกล้ามเนื้อเสื่อมดูเชน (Duchenne Muscular Dystrophy)</h5>
+                                <ul>
+                                    <li>X-linked recessive</li>
+                                    <li>ยีน dystrophin บนโครโมโซม X</li>
+                                    <li>กล้ามเนื้ออ่อนแรง, พบในเพศชาย</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="genetics-type" style="border-top: 5px solid var(--disorders);">
+                                <h5><i class="bi bi-brain"></i> โรคฮันติงตัน (Huntington's Disease)</h5>
+                                <ul>
+                                    <li>Autosomal dominant</li>
+                                    <li>ยีน huntingtin บนโครโมโซมคู่ที่ 4</li>
+                                    <li>อาการทางระบบประสาท, พบในวัยกลางคน</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Make section headers clickable to collapse/expand
+            document.querySelectorAll('.section-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-bs-target');
+                    const target = document.querySelector(targetId);
+                    const collapse = new bootstrap.Collapse(target, {
+                        toggle: true
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
