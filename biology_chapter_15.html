@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วิวัฒนาการ - สอวน. ชีววิทยา</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --biology: #4CAF50;
+            --biology-light: #C8E6C9;
+            --biology-dark: #388E3C;
+            --evidence: #4CAF50;
+            --selection: #2E7D32;
+            --speciation: #8BC34A;
+            --human: #388E3C;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,15 C65.464,15 78,27.536 78,43 C78,58.464 65.464,71 50,71 C34.536,71 22,58.464 22,43 C22,27.536 34.536,15 50,15 Z M50,25 C40.058,25 32,33.058 32,43 C32,52.942 40.058,61 50,61 C59.942,61 68,52.942 68,43 C68,33.058 59.942,25 50,25 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3Cpath d='M30,75 C36.627,75 42,80.373 42,87 C42,93.627 36.627,99 30,99 C23.373,99 18,93.627 18,87 C18,80.373 23.373,75 30,75 Z M70,75 C76.627,75 82,80.373 82,87 C82,93.627 76.627,99 70,99 C63.373,99 58,93.627 58,87 C58,80.373 63.373,75 70,75 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='5' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='20' cy='30' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='80' cy='20' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='30' cy='70' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='70' cy='80' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='10' cy='50' r='2' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='90' cy='60' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.2;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.1), rgba(67, 160, 71, 0.1));
+            border-left: 4px solid var(--biology);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+        }
+        
+        .section-header {
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .key-point {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .genetics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .genetics-table th {
+            padding: 12px;
+            text-align: center;
+            color: white;
+        }
+        
+        .genetics-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .genetics-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .genetics-diagram {
+            width: 100%;
+            height: 400px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diagram-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .genetics-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .img-caption {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .process-flow {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 30px;
+            border-left: 3px solid var(--biology);
+        }
+        
+        .flow-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+        
+        .flow-item::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--biology);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 30px;
+            border-left: 3px solid var(--human);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+        
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--human);
+        }
+        
+        .evolution-tree {
+            position: relative;
+            height: 300px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .tree-branch {
+            position: absolute;
+            height: 2px;
+            background: #795548;
+            transform-origin: left center;
+        }
+        
+        .tree-node {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4CAF50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+            z-index: 2;
+        }
+        
+        .species-label {
+            position: absolute;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .selection-graphic {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .selection-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 15px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .selection-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .header-bg {
+                padding: 2rem 0;
+            }
+            
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .genetics-diagram {
+                height: 300px;
+            }
+            
+            .selection-graphic {
+                flex-wrap: wrap;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-eyeglasses"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="biology_topics.html">ชีววิทยา</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="biology_topics.html">เนื้อหาชีววิทยาทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">บทที่ 15: วิวัฒนาการ</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">บทที่ 15: วิวัฒนาการ</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-green me-2">หลักฐานวิวัฒนาการ</span>
+                <span class="badge bg-light text-green me-2">กลไกการคัดเลือกโดยธรรมชาติ</span>
+                <span class="badge bg-light text-green me-2">การเกิดสปีชีส์ใหม่</span>
+                <span class="badge bg-light text-green">วิวัฒนาการของมนุษย์</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- หลักฐานวิวัฒนาการ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#evidence" style="background: linear-gradient(135deg, var(--evidence), #2E7D32);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-search"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">หลักฐานวิวัฒนาการ</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="evidence" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            หลักฐานทางวิทยาศาสตร์หลายด้านสนับสนุนทฤษฎีวิวัฒนาการ ซึ่งแสดงให้เห็นว่าสิ่งมีชีวิตมีการเปลี่ยนแปลงอย่างช้าๆ ตลอดเวลาจากบรรพบุรุษร่วมกัน
+                        </p>
+                        
+                        <div class="genetics-diagram">
+                            <img src="https://evolution.berkeley.edu/wp-content/uploads/2020/08/homology_eng.jpg" alt="Evidence of Evolution" class="genetics-image">
+                            <p class="img-caption">หลักฐานวิวัฒนาการจากโครงสร้าง homologous (ที่มา: Understanding Evolution)</p>
+                        </div>
+                        
+                        <div class="genetics-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--evidence);">หลักฐาน</th>
+                                        <th style="background-color: var(--evidence);">คำอธิบาย</th>
+                                        <th style="background-color: var(--evidence);">ตัวอย่าง</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>ซากดึกดำบรรพ์ (Fossils)</strong></td>
+                                        <td>ร่องรอยของสิ่งมีชีวิตในอดีตที่ถูกเก็บรักษาไว้ในชั้นหิน</td>
+                                        <td>ไดโนเสาร์, อาร์คีออปเทอริกซ์ (เชื่อมโยงระหว่างไดโนเสาร์กับนก)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>กายวิภาคเปรียบเทียบ (Comparative Anatomy)</strong></td>
+                                        <td>การศึกษาความคล้ายคลึงและความแตกต่างของโครงสร้างร่างกาย</td>
+                                        <td>แขนคน, ปีกนก, ขาหน้าสุนัข, ครีบปลาวาฬ (โครงสร้าง homologous)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เอ็มบริโอเปรียบเทียบ (Comparative Embryology)</strong></td>
+                                        <td>การศึกษาความคล้ายคลึงกันในระยะเอ็มบริโอ</td>
+                                        <td>เอ็มบริโอของสัตว์มีกระดูกสันหลังมีความคล้ายคลึงกันในระยะเริ่มต้น</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ชีวเคมีเปรียบเทียบ (Comparative Biochemistry)</strong></td>
+                                        <td>ความคล้ายคลึงกันของสารเคมีในเซลล์และกระบวนการเมแทบอลิซึม</td>
+                                        <td>DNA, โปรตีน (ไซโตโครม C), กระบวนการเมแทบอลิซึม</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ชีวภูมิศาสตร์ (Biogeography)</strong></td>
+                                        <td>การกระจายตัวของสิ่งมีชีวิตในพื้นที่ต่างๆ ของโลก</td>
+                                        <td>สัตว์มีกระเป๋าหน้าท้องในออสเตรเลีย, นกฟินช์ของดาร์วินในหมู่เกาะกาลาปากอส</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.1)); border-color: rgba(76, 175, 80, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ประเภทของโครงสร้างเปรียบเทียบ</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--evidence);">
+                                    <h5><i class="bi bi-bounding-box"></i> Homologous Structures</h5>
+                                    <p>โครงสร้างที่มีต้นกำเนิดเดียวกันแต่ทำหน้าที่ต่างกัน</p>
+                                    <p>แสดงวิวัฒนาการจากบรรพบุรุษร่วมกัน</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--evidence);">
+                                    <h5><i class="bi bi-bounding-box-circles"></i> Analogous Structures</h5>
+                                    <p>โครงสร้างที่มีหน้าที่คล้ายกันแต่ต้นกำเนิดต่างกัน</p>
+                                    <p>เกิดจากการคัดเลือกแบบ convergent evolution</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--evidence);">
+                                    <h5><i class="bi bi-x-circle"></i> Vestigial Structures</h5>
+                                    <p>โครงสร้างที่เหลือตกทอดจากบรรพบุรุษแต่ไม่มีหน้าที่แล้ว</p>
+                                    <p>เช่น กระดูกเชิงกรานในวาฬ, ติ่งหูในมนุษย์</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>ลำดับเวลาซากดึกดำบรรพ์ที่สำคัญ</h4>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h6>3.5 พันล้านปีก่อน</h6>
+                                <p>สิ่งมีชีวิตเซลล์เดียวแรกเริ่ม (โพรคาริโอต)</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h6>2.1 พันล้านปีก่อน</h6>
+                                <p>สิ่งมีชีวิตยูคาริโอตแรกเริ่ม</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h6>540 ล้านปีก่อน</h6>
+                                <p>การระเบิดแคมเบรียน - สิ่งมีชีวิตหลายเซลล์หลากหลายรูปแบบ</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h6>360 ล้านปีก่อน</h6>
+                                <p>สัตว์สะเทินน้ำสะเทินบกขึ้นบก</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h6>250 ล้านปีก่อน</h6>
+                                <p>ไดโนเสาร์ปรากฏตัว</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h6>65 ล้านปีก่อน</h6>
+                                <p>การสูญพันธุ์ครั้งใหญ่ - ไดโนเสาร์สูญพันธุ์</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h6>6-7 ล้านปีก่อน</h6>
+                                <p>มนุษย์และเอปแยกสายวิวัฒนาการ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- กลไกการคัดเลือกโดยธรรมชาติ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#naturalSelection" style="background: linear-gradient(135deg, var(--selection), #1B5E20);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">กลไกการคัดเลือกโดยธรรมชาติ</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="naturalSelection" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            ชาร์ลส์ ดาร์วิน เสนอทฤษฎีการคัดเลือกโดยธรรมชาติ ซึ่งเป็นกลไกสำคัญที่ขับเคลื่อนวิวัฒนาการ โดยสิ่งมีชีวิตที่มีลักษณะเหมาะสมกับสิ่งแวดล้อมจะมีโอกาสรอดและสืบพันธุ์มากกว่า
+                        </p>
+                        
+                        <div class="selection-graphic">
+                            <div class="selection-item">
+                                <div class="selection-icon" style="background: #4CAF50;">
+                                    <i class="bi bi-1-circle"></i>
+                                </div>
+                                <div>การกลายพันธุ์<br>และการรวมกลุ่มใหม่</div>
+                            </div>
+                            
+                            <div class="selection-item">
+                                <div class="selection-icon" style="background: #2196F3;">
+                                    <i class="bi bi-arrow-right"></i>
+                                </div>
+                                <div>ความแปรผัน<br>ทางพันธุกรรม</div>
+                            </div>
+                            
+                            <div class="selection-item">
+                                <div class="selection-icon" style="background: #FF9800;">
+                                    <i class="bi bi-arrow-down-right"></i>
+                                </div>
+                                <div>การแข่งขัน<br>เพื่อการอยู่รอด</div>
+                            </div>
+                            
+                            <div class="selection-item">
+                                <div class="selection-icon" style="background: #F44336;">
+                                    <i class="bi bi-heart"></i>
+                                </div>
+                                <div>ความเหมาะสม<br>กับสิ่งแวดล้อม</div>
+                            </div>
+                            
+                            <div class="selection-item">
+                                <div class="selection-icon" style="background: #9C27B0;">
+                                    <i class="bi bi-arrow-repeat"></i>
+                                </div>
+                                <div>การถ่ายทอด<br>ลักษณะสู่รุ่นลูก</div>
+                            </div>
+                        </div>
+                        
+                        <h4>องค์ประกอบหลักของการคัดเลือกโดยธรรมชาติ</h4>
+                        <div class="genetics-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--selection);">องค์ประกอบ</th>
+                                        <th style="background-color: var(--selection);">คำอธิบาย</th>
+                                        <th style="background-color: var(--selection);">ตัวอย่าง</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>การสืบพันธุ์มากเกิน (Overproduction)</strong></td>
+                                        <td>สิ่งมีชีวิตผลิตลูกได้มากกว่าจำนวนที่สิ่งแวดล้อมจะรองรับได้</td>
+                                        <td>ปลาวางไข่ครั้งละหลายพันฟอง</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>การแปรผัน (Variation)</strong></td>
+                                        <td>ความแตกต่างระหว่างบุคคลในประชากร</td>
+                                        <td>สีปีกผีเสื้อ, ขนาดจะงอยปากนก</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>การแข่งขัน (Competition)</strong></td>
+                                        <td>การแข่งขันเพื่อทรัพยากรที่จำกัด</td>
+                                        <td>อาหาร, ที่อยู่อาศัย, คู่ผสมพันธุ์</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>การอยู่รอดของสิ่งที่เหมาะสมที่สุด (Survival of the Fittest)</strong></td>
+                                        <td>บุคคลที่มีลักษณะเหมาะสมจะอยู่รอดและสืบพันธุ์</td>
+                                        <td>นกฟินช์ที่มีจะงอยปากเหมาะสมกับอาหารที่มี</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>การถ่ายทอดลักษณะ (Inheritance)</strong></td>
+                                        <td>ลักษณะที่เหมาะสมถูกถ่ายทอดสู่รุ่นต่อไป</td>
+                                        <td>การถ่ายทอดลักษณะต้านทานยาฆ่าแมลง</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(46, 125, 50, 0.2), rgba(46, 125, 50, 0.1)); border-color: rgba(46, 125, 50, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> รูปแบบการคัดเลือกโดยธรรมชาติ</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--selection);">
+                                    <h5><i class="bi bi-arrow-down"></i> Directional Selection</h5>
+                                    <p>คัดเลือกบุคคลที่มีลักษณะสุดขั้วด้านหนึ่ง</p>
+                                    <p>เช่น ขนาดตัวใหญ่ขึ้นในม้า</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--selection);">
+                                    <h5><i class="bi bi-arrows-collapse"></i> Stabilizing Selection</h5>
+                                    <p>คัดเลือกบุคคลที่มีลักษณะปานกลาง</p>
+                                    <p>เช่น น้ำหนักเด็กแรกเกิด</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--selection);">
+                                    <h5><i class="bi bi-arrows-expand"></i> Disruptive Selection</h5>
+                                    <p>คัดเลือกบุคคลที่มีลักษณะสุดขั้วทั้งสองด้าน</p>
+                                    <p>เช่น สีเปลือกหอย</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>ตัวอย่างการคัดเลือกโดยธรรมชาติ</h4>
+                        <div class="genetics-comparison">
+                            <div class="comparison-card" style="border-left: 4px solid var(--selection);">
+                                <h5><i class="bi bi-bug"></i> ผีเสื้อกลางคืนเปปเปอร์ดมอธ</h5>
+                                <p>ก่อนการปฏิวัติอุตสาหกรรม: ผีเสื้อสีขาวมากกว่าสีดำ</p>
+                                <p>หลังการปฏิวัติอุตสาหกรรม: ต้นไม้เขม่า → ผีเสื้อสีดำถูกคัดเลือก</p>
+                                <p>การควบคุมมลพิษ: ผีเสื้อสีขาวเพิ่มจำนวนอีกครั้ง</p>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--selection);">
+                                <h5><i class="bi bi-droplet"></i> ยุงต้านทานยาฆ่าแมลง</h5>
+                                <p>การใช้ยาฆ่าแมลง → ยุงส่วนใหญ่ตาย</p>
+                                <p>ยุงที่มีความต้านทานตามธรรมชาติรอดชีวิต</p>
+                                <p>ถ่ายทอดยีนต้านทานสู่รุ่นลูก → ประชากรยุงต้านทานเพิ่มขึ้น</p>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--selection);">
+                                <h5><i class="bi bi-tree"></i> นกฟินช์ของดาร์วิน</h5>
+                                <p>นกฟินช์ในหมู่เกาะกาลาปากอสมีจะงอยปากต่างกัน</p>
+                                <p>รูปแบบจะงอยปากสัมพันธ์กับอาหารในแต่ละเกาะ</p>
+                                <p>การแปรผันทางพันธุกรรม → การคัดเลือกตามอาหารที่มี</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การเกิดสปีชีส์ใหม่ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#speciation" style="background: linear-gradient(135deg, var(--speciation), #689F38);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-diagram-3"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การเกิดสปีชีส์ใหม่</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="speciation" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            การเกิดสปีชีส์ใหม่ (Speciation) คือกระบวนการที่ประชากรของสิ่งมีชีวิตแยกออกเป็นสปีชีส์ใหม่ที่ไม่สามารถผสมพันธุ์กันได้ ซึ่งเป็นผลจากกลไกการแยกตัว (Isolation Mechanisms)
+                        </p>
+                        
+                        <div class="evolution-tree">
+                            <!-- Tree visualization -->
+                            <div class="tree-branch" style="width: 200px; top: 150px; left: 100px; transform: rotate(0deg);"></div>
+                            <div class="tree-branch" style="width: 150px; top: 130px; left: 300px; transform: rotate(-20deg);"></div>
+                            <div class="tree-branch" style="width: 150px; top: 170px; left: 300px; transform: rotate(20deg);"></div>
+                            
+                            <div class="tree-node" style="top: 145px; left: 100px;">A</div>
+                            <div class="tree-node" style="top: 125px; left: 300px;">B1</div>
+                            <div class="tree-node" style="top: 165px; left: 300px;">B2</div>
+                            
+                            <div class="species-label" style="top: 140px; left: 80px;">บรรพบุรุษร่วม</div>
+                            <div class="species-label" style="top: 110px; left: 320px;">สปีชีส์ใหม่ 1</div>
+                            <div class="species-label" style="top: 180px; left: 320px;">สปีชีส์ใหม่ 2</div>
+                        </div>
+                        
+                        <h4>กลไกการแยกตัว (Isolation Mechanisms)</h4>
+                        <div class="genetics-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--speciation);">ประเภท</th>
+                                        <th style="background-color: var(--speciation);">คำอธิบาย</th>
+                                        <th style="background-color: var(--speciation);">ตัวอย่าง</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>การแยกตัวก่อนการผสมพันธุ์ (Prezygotic)</strong></td>
+                                        <td>ป้องกันไม่ให้เกิดการปฏิสนธิ</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>- แยกตามถิ่นที่อยู่ (Habitat)</td>
+                                        <td>อาศัยในสิ่งแวดล้อมต่างกัน</td>
+                                        <td>กบในป่ากับกบในสวน</td>
+                                    </tr>
+                                    <tr>
+                                        <td>- แยกตามเวลา (Temporal)</td>
+                                        <td>ออกดอกหรือผสมพันธุ์ต่างเวลา</td>
+                                        <td>ต้นไม้ที่ออกดอกคนละฤดู</td>
+                                    </tr>
+                                    <tr>
+                                        <td>- แยกตามพฤติกรรม (Behavioral)</td>
+                                        <td>พิธีกรรมการผสมพันธุ์ต่างกัน</td>
+                                        <td>นกร้องเพลงต่างกัน</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>การแยกตัวหลังการผสมพันธุ์ (Postzygotic)</strong></td>
+                                        <td>ป้องกันไม่ให้ลูกที่เกิดมามีชีวิตรอดหรือสืบพันธุ์</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>- ลูกผสมตาย (Hybrid inviability)</td>
+                                        <td>ตัวอ่อนตายก่อนเกิด</td>
+                                        <td>ลูกผสมแกะกับแพะ</td>
+                                    </tr>
+                                    <tr>
+                                        <td>- ลูกผสมเป็นหมัน (Hybrid sterility)</td>
+                                        <td>ลูกผสมมีชีวิตรอดแต่เป็นหมัน</td>
+                                        <td>ล่อ (ลา+ม้า)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(139, 195, 74, 0.2), rgba(139, 195, 74, 0.1)); border-color: rgba(139, 195, 74, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> รูปแบบการเกิดสปีชีส์ใหม่</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--speciation);">
+                                    <h5><i class="bi bi-arrow-right"></i> Allopatric Speciation</h5>
+                                    <p>การแยกตัวทางภูมิศาสตร์ (ภูเขา, แม่น้ำ, เกาะ)</p>
+                                    <p>ตัวอย่าง: นกฟินช์ในหมู่เกาะกาลาปากอส</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--speciation);">
+                                    <h5><i class="bi bi-arrow-left-right"></i> Sympatric Speciation</h5>
+                                    <p>เกิดสปีชีส์ใหม่ในพื้นที่เดียวกัน</p>
+                                    <p>ตัวอย่าง: การกลายพันธุ์, polyploidy ในพืช</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--speciation);">
+                                    <h5><i class="bi bi-arrow-clockwise"></i> Parapatric Speciation</h5>
+                                    <p>ประชากรต่อเนื่องกันแต่มีสภาพแวดล้อมต่างกัน</p>
+                                    <p>ตัวอย่าง: ต้นหญ้าในพื้นที่เหมืองกับพื้นที่ปกติ</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>ตัวอย่างการเกิดสปีชีส์ใหม่</h4>
+                        <div class="genetics-comparison">
+                            <div class="comparison-card" style="border-left: 4px solid var(--speciation);">
+                                <h5><i class="bi bi-tree"></i> ปลาหมอสีในทะเลสาบวิกตอเรีย</h5>
+                                <p>ทะเลสาบวิกตอเรียในแอฟริกามีปลาหมอสีกว่า 500 สปีชีส์</p>
+                                <p>วิวัฒนาการมาจากบรรพบุรุษร่วมกันเมื่อ 15,000 ปีก่อน</p>
+                                <p>เกิดจากการแยกตัวทางภูมิศาสตร์และพฤติกรรม</p>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--speciation);">
+                                <h5><i class="bi bi-flower1"></i> พืช polyploid</h5>
+                                <p>การเพิ่มจำนวนชุดโครโมโซม (polyploidy)</p>
+                                <p>พืชใหม่ไม่สามารถผสมพันธุ์กับพืชเดิมได้</p>
+                                <p>ตัวอย่าง: ข้าวสาลี, ฝ้าย</p>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--speciation);">
+                                <h5><i class="bi bi-bug"></i> แมลงวันผลไม้</h5>
+                                <p>ประชากรที่กินอาหารต่างกัน (แอปเปิ้ล vs ลูกฮอว์ธอร์น)</p>
+                                <p>พัฒนาพฤติกรรมผสมพันธุ์ต่างกัน</p>
+                                <p>แยกเป็นสปีชีส์ใหม่ในพื้นที่เดียวกัน</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- วิวัฒนาการของมนุษย์ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#humanEvolution" style="background: linear-gradient(135deg, var(--human), #1B5E20);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">วิวัฒนาการของมนุษย์</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="humanEvolution" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            มนุษย์สมัยใหม่ (Homo sapiens) เป็นผลจากกระบวนการวิวัฒนาการยาวนานกว่า 6-7 ล้านปี โดยมีบรรพบุรุษร่วมกับเอปในปัจจุบัน เช่น ชิมแปนซีและกอริลลา
+                        </p>
+                        
+                        <div class="genetics-diagram">
+                            <img src="https://humanorigins.si.edu/sites/default/files/styles/full_width/public/images/Human-Evolution-Timeline.jpg" alt="Human Evolution Timeline" class="genetics-image">
+                            <p class="img-caption">เส้นเวลาวิวัฒนาการมนุษย์ (ที่มา: Smithsonian Institution)</p>
+                        </div>
+                        
+                        <h4>ลำดับวิวัฒนาการมนุษย์</h4>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h6>7-6 ล้านปีก่อน: Sahelanthropus tchadensis</h6>
+                                <p>เดินสองขาได้แต่สมองเล็ก (350cc)</p>
+                                <p>พบในชาด</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h6>4.4 ล้านปีก่อน: Ardipithecus ramidus</h6>
+                                <p>โครงสร้างเท้าแสดงการเดินสองขา</p>
+                                <p>อาศัยในป่า</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h6>3.9-2.9 ล้านปีก่อน: Australopithecus afarensis</h6>
+                                <p>ตัวอย่างชื่อดัง "ลูซี่"</p>
+                                <p>สมอง 400-500cc, เดินสองขาได้ดี</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h6>2.3-1.4 ล้านปีก่อน: Homo habilis</h6>
+                                <p>มนุษย์สกุล Homo ตัวแรก</p>
+                                <p>สมอง 600cc, สร้างเครื่องมือหิน</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h6>1.9-0.14 ล้านปีก่อน: Homo erectus</h6>
+                                <p>สมอง 900cc, รู้จักใช้ไฟ</p>
+                                <p>กระจายจากแอฟริกาไปเอเชีย</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h6>0.7-0.2 ล้านปีก่อน: Homo heidelbergensis</h6>
+                                <p>บรรพบุรุษของมนุษย์นีแอนเดอร์ทัลและมนุษย์สมัยใหม่</p>
+                                <p>สมอง 1200cc</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h6>0.4-0.04 ล้านปีก่อน: Homo neanderthalensis</h6>
+                                <p>อาศัยในยุโรปและเอเชียตะวันตก</p>
+                                <p>วัฒนธรรมการฝังศพ, เครื่องมือซับซ้อน</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h6>0.3 ล้านปีก่อน-ปัจจุบัน: Homo sapiens</h6>
+                                <p>มนุษย์สมัยใหม่ กำเนิดในแอฟริกา</p>
+                                <p>สมอง 1350cc, วัฒนธรรมที่ซับซ้อน</p>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(56, 142, 60, 0.2), rgba(56, 142, 60, 0.1)); border-color: rgba(56, 142, 60, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ลักษณะสำคัญในวิวัฒนาการมนุษย์</h5>
+                            <ul>
+                                <li><strong>การเดินสองขา:</strong> ปลดปล่อยมือให้ใช้เครื่องมือได้</li>
+                                <li><strong>สมองขนาดใหญ่:</strong> เพิ่มความสามารถทางสติปัญญา</li>
+                                <li><strong>การใช้เครื่องมือ:</strong> จากเครื่องมือหินสู่เทคโนโลยีสมัยใหม่</li>
+                                <li><strong>ภาษาและการสื่อสาร:</strong> การพัฒนาระบบสัญลักษณ์</li>
+                                <li><strong>วัฒนธรรมที่ซับซ้อน:</strong> ศิลปะ ศาสนา สังคม</li>
+                            </ul>
+                        </div>
+                        
+                        <h4>หลักฐานวิวัฒนาการมนุษย์</h4>
+                        <div class="comparison-grid">
+                            <div class="comparison-card" style="border-left: 4px solid var(--human);">
+                                <h5><i class="bi bi-bone"></i> ซากดึกดำบรรพ์</h5>
+                                <p>โครงกระดูกโบราณแสดงการเปลี่ยนแปลงรูปร่าง</p>
+                                <p>ตัวอย่าง: ลูซี่ (A. afarensis), Turkana Boy (H. erectus)</p>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--human);">
+                                <h5><i class="bi bi-dna"></i> ดีเอ็นเอโบราณ</h5>
+                                <p>การวิเคราะห์ DNA จากซากโบราณ</p>
+                                <p>พบการผสมข้ามพันธุ์ระหว่างมนุษย์กับนีแอนเดอร์ทัล</p>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--human);">
+                                <h5><i class="bi bi-geo-alt"></i> เครื่องมือหินโบราณ</h5>
+                                <p>แสดงพัฒนาการทางเทคโนโลยี</p>
+                                <p>Oldowan (H. habilis), Acheulean (H. erectus)</p>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--human);">
+                                <h5><i class="bi bi-brush"></i> ศิลปะถ้ำ</h5>
+                                <p>หลักฐานความสามารถทางสติปัญญาและวัฒนธรรม</p>
+                                <p>เช่น ถ้ำลาสโกในฝรั่งเศส</p>
+                            </div>
+                        </div>
+                        
+                        <h4>แบบจำลองกำเนิดมนุษย์สมัยใหม่</h4>
+                        <div class="genetics-comparison">
+                            <div class="comparison-card" style="border-left: 4px solid var(--human);">
+                                <h5><i class="bi bi-arrow-90deg-right"></i> Out of Africa (Recent African Origin)</h5>
+                                <p>มนุษย์สมัยใหม่วิวัฒนาการในแอฟริกาเมื่อ 300,000 ปีก่อน</p>
+                                <p>อพยพออกจากแอฟริกาเมื่อ 70,000-50,000 ปีก่อน</p>
+                                <p>แทนที่มนุษย์โบราณอื่นๆ เช่น นีแอนเดอร์ทัล</p>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--human);">
+                                <h5><i class="bi bi-arrows-angle-expand"></i> Multiregional</h5>
+                                <p>มนุษย์วิวัฒนาการในหลายภูมิภาคพร้อมกัน</p>
+                                <p>การไหลของยีนระหว่างประชากร</p>
+                                <p>หลักฐานจากลักษณะกระดูกต่อเนื่องในแต่ละภูมิภาค</p>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--human);">
+                                <h5><i class="bi bi-arrows-angle-contract"></i> Assimilation</h5>
+                                <p>แบบจำลองผสมผสาน</p>
+                                <p>มนุษย์สมัยใหม่วิวัฒนาการในแอฟริกา</p>
+                                <p>แต่ผสมข้ามพันธุ์กับมนุษย์โบราณในภูมิภาคอื่น</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Make section headers clickable to collapse/expand
+            document.querySelectorAll('.section-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-bs-target');
+                    const target = document.querySelector(targetId);
+                    const collapse = new bootstrap.Collapse(target, {
+                        toggle: true
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
