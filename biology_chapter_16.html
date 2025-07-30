@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โครงสร้างพืชดอก - สอวน. ชีววิทยา</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --biology: #4CAF50;
+            --biology-light: #C8E6C9;
+            --biology-dark: #388E3C;
+            --structures: #4CAF50;
+            --tissues: #2E7D32;
+            --growth: #8BC34A;
+            --adaptations: #388E3C;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,15 C65.464,15 78,27.536 78,43 C78,58.464 65.464,71 50,71 C34.536,71 22,58.464 22,43 C22,27.536 34.536,15 50,15 Z M50,25 C40.058,25 32,33.058 32,43 C32,52.942 40.058,61 50,61 C59.942,61 68,52.942 68,43 C68,33.058 59.942,25 50,25 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3Cpath d='M30,75 C36.627,75 42,80.373 42,87 C42,93.627 36.627,99 30,99 C23.373,99 18,93.627 18,87 C18,80.373 23.373,75 30,75 Z M70,75 C76.627,75 82,80.373 82,87 C82,93.627 76.627,99 70,99 C63.373,99 58,93.627 58,87 C58,80.373 63.373,75 70,75 Z' fill='%234CAF50' fill-opacity='0.05'/%3E%3C/svg%3E");
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--biology), #43a047);
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='5' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='20' cy='30' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='80' cy='20' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='30' cy='70' r='4' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='70' cy='80' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='10' cy='50' r='2' fill='%23ffffff' fill-opacity='0.1'/%3E%3Ccircle cx='90' cy='60' r='3' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.2;
+        }
+        
+        .chapter-banner {
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.1), rgba(67, 160, 71, 0.1));
+            border-left: 4px solid var(--biology);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        .section-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+        }
+        
+        .section-header {
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .section-body {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .key-point {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .topic-list {
+            padding-left: 20px;
+        }
+        
+        .topic-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .plant-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .plant-table th {
+            padding: 12px;
+            text-align: center;
+            color: white;
+        }
+        
+        .plant-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .plant-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .plant-diagram {
+            width: 100%;
+            height: 400px;
+            background-color: white;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diagram-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .plant-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .img-caption {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .process-flow {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 30px;
+            border-left: 3px solid var(--biology);
+        }
+        
+        .flow-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+        
+        .flow-item::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--biology);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        
+        .plant-anatomy {
+            position: relative;
+            height: 500px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .root-structure {
+            position: absolute;
+            width: 100px;
+            height: 300px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, #8D6E63, #5D4037);
+            border-radius: 50% 50% 0 0;
+        }
+        
+        .root-hair {
+            position: absolute;
+            width: 5px;
+            height: 30px;
+            background: #5D4037;
+            border-radius: 50%;
+        }
+        
+        .stem-structure {
+            position: absolute;
+            width: 50px;
+            height: 200px;
+            background: #4CAF50;
+            bottom: 300px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 20px;
+        }
+        
+        .leaf-structure {
+            position: absolute;
+            width: 150px;
+            height: 100px;
+            background: #388E3C;
+            border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .leaf-vein {
+            position: absolute;
+            width: 5px;
+            height: 80px;
+            background: #1B5E20;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .leaf-vein-branch {
+            position: absolute;
+            width: 3px;
+            height: 40px;
+            background: #1B5E20;
+            transform-origin: top center;
+        }
+        
+        .tissue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .tissue-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            background: white;
+        }
+        
+        .tissue-header {
+            padding: 15px;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .tissue-body {
+            padding: 15px;
+        }
+        
+        .growth-chart {
+            display: flex;
+            height: 300px;
+            align-items: flex-end;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .growth-bar {
+            flex: 1;
+            margin: 0 5px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .bar {
+            width: 80%;
+            background: #4CAF50;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .bar-label {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .header-bg {
+                padding: 2rem 0;
+            }
+            
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .plant-diagram {
+                height: 300px;
+            }
+            
+            .plant-anatomy {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-eyeglasses"></i> สอวน. Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="biology_topics.html">ชีววิทยา</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="darkModeToggle" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bg">
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="biology_topics.html">เนื้อหาชีววิทยาทั้งหมด</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">บทที่ 16: โครงสร้างพืชดอก</li>
+                </ol>
+            </nav>
+            <h1 class="display-6 mb-3 text-center">บทที่ 16: โครงสร้างพืชดอก</h1>
+            <div class="text-center mb-3">
+                <span class="badge bg-light text-green me-2">โครงสร้างราก ลำต้น ใบ</span>
+                <span class="badge bg-light text-green me-2">เนื้อเยื่อพืช</span>
+                <span class="badge bg-light text-green me-2">การเจริญเติบโตของพืช</span>
+                <span class="badge bg-light text-green">การปรับตัวของพืช</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-3">
+        <div class="container">
+            <div class="chapter-banner">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h4 class="mb-1">บทนี้เสร็จสมบูรณ์แล้ว!</h4>
+                        <p class="mb-0">เนื้อหาพร้อมให้คุณศึกษาได้ทันที</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- โครงสร้างราก ลำต้น ใบ -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#plantStructures" style="background: linear-gradient(135deg, var(--structures), #2E7D32);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-tree"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">โครงสร้างราก ลำต้น ใบ</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="plantStructures" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            พืชดอกประกอบด้วยอวัยวะหลักสามส่วนคือ ราก (root) ลำต้น (stem) และใบ (leaf) ซึ่งแต่ละส่วนมีโครงสร้างและหน้าที่เฉพาะที่ช่วยให้พืชดำรงชีวิตได้
+                        </p>
+                        
+                        <div class="plant-anatomy">
+                            <div class="root-structure">
+                                <!-- Root hairs -->
+                                <div class="root-hair" style="left: 10px; top: 50px;"></div>
+                                <div class="root-hair" style="left: 30px; top: 70px;"></div>
+                                <div class="root-hair" style="left: 50px; top: 40px;"></div>
+                                <div class="root-hair" style="left: 70px; top: 60px;"></div>
+                                <div class="root-hair" style="left: 90px; top: 30px;"></div>
+                            </div>
+                            <div class="stem-structure"></div>
+                            <div class="leaf-structure">
+                                <div class="leaf-vein">
+                                    <div class="leaf-vein-branch" style="left: 20px; transform: rotate(-30deg);"></div>
+                                    <div class="leaf-vein-branch" style="left: -20px; transform: rotate(30deg);"></div>
+                                    <div class="leaf-vein-branch" style="left: 40px; top: 20px; transform: rotate(-45deg); height: 30px;"></div>
+                                    <div class="leaf-vein-branch" style="left: -40px; top: 20px; transform: rotate(45deg); height: 30px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>โครงสร้างและหน้าที่ของอวัยวะพืช</h4>
+                        <div class="plant-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--structures);">อวัยวะ</th>
+                                        <th style="background-color: var(--structures);">โครงสร้าง</th>
+                                        <th style="background-color: var(--structures);">หน้าที่สำคัญ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>ราก (Root)</strong></td>
+                                        <td>รากแก้ว, รากแขนง, รากฝอย, ขนราก, ปลายราก, หมวกราก</td>
+                                        <td>ดูดซึมน้ำและแร่ธาตุ, ยึดลำต้น, สะสมอาหาร</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ลำต้น (Stem)</strong></td>
+                                        <td>ลำต้นเหนือดิน, ลำต้นใต้ดิน, ข้อ, ปล้อง, ตา</td>
+                                        <td>ค้ำจุนใบดอกผล, ลำเลียงสาร, สะสมอาหาร</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ใบ (Leaf)</strong></td>
+                                        <td>ก้านใบ, แผ่นใบ, เส้นใบ, ท่อน้ำท่ออาหาร</td>
+                                        <td>สังเคราะห์ด้วยแสง, คายน้ำ, หายใจ</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.1)); border-color: rgba(76, 175, 80, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ส่วนประกอบของใบ</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--structures);">
+                                    <h5><i class="bi bi-layers"></i> เอพิเดอร์มิส (Epidermis)</h5>
+                                    <p>ชั้นเซลล์ด้านนอก ปกป้องใบ</p>
+                                    <p>มีปากใบสำหรับแลกเปลี่ยนแก๊ส</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--structures);">
+                                    <h5><i class="bi bi-grid-3x3"></i> มีโซฟิลล์ (Mesophyll)</h5>
+                                    <p>เนื้อเยื่อกลางใบสำหรับสังเคราะห์แสง</p>
+                                    <p>ประกอบด้วยพาลิเซดและสปอนจี</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--structures);">
+                                    <h5><i class="bi bi-diagram-3"></i> เส้นใบ (Veins)</h5>
+                                    <p>ท่อลำเลียงน้ำและอาหาร</p>
+                                    <p>ประกอบด้วยไซเล็มและโฟลเอ็ม</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>ประเภทของรากและลำต้น</h4>
+                        <div class="genetics-comparison">
+                            <div class="comparison-card" style="border-left: 4px solid var(--structures);">
+                                <h5><i class="bi bi-tree"></i> ประเภทของราก</h5>
+                                <ul>
+                                    <li><strong>รากแก้ว (Taproot):</strong> รากหลักใหญ่ (แครอท, ผักกาด)</li>
+                                    <li><strong>รากฝอย (Fibrous root):</strong> รากขนาดเล็กจำนวนมาก (หญ้า, ข้าว)</li>
+                                    <li><strong>รากพิเศษ:</strong> รากค้ำจุน (ข้าวโพด), รากยึดเกาะ (พลูด่าง)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--structures);">
+                                <h5><i class="bi bi-arrow-up"></i> ประเภทของลำต้น</h5>
+                                <ul>
+                                    <li><strong>ลำต้นเหนือดิน (Aerial stem):</strong> ไม้ยืนต้น, ไม้ล้มลุก</li>
+                                    <li><strong>ลำต้นใต้ดิน (Underground stem):</strong> เหง้า (ขิง), หัว (มันฝรั่ง)</li>
+                                    <li><strong>ลำต้นพิเศษ:</strong> ลำต้นเลื้อย (ตำลึง), ลำต้นอวบน้ำ (กระบองเพชร)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- เนื้อเยื่อพืช -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#plantTissues" style="background: linear-gradient(135deg, var(--tissues), #1B5E20);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-grid"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">เนื้อเยื่อพืช</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="plantTissues" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            เนื้อเยื่อพืชแบ่งออกเป็น 3 ประเภทหลักคือ เนื้อเยื่อเจริญ (meristematic tissue) เนื้อเยื่อถาวร (permanent tissue) และเนื้อเยื่อลำเลียง (vascular tissue) ซึ่งแต่ละประเภทมีโครงสร้างและหน้าที่เฉพาะ
+                        </p>
+                        
+                        <div class="plant-diagram">
+                            <img src="https://microbenotes.com/wp-content/uploads/2022/05/Plant-Tissues.jpg" alt="Plant Tissues" class="plant-image">
+                            <p class="img-caption">เนื้อเยื่อพืช (ที่มา: Microbe Notes)</p>
+                        </div>
+                        
+                        <h4>เนื้อเยื่อพืชประเภทต่างๆ</h4>
+                        <div class="tissue-grid">
+                            <div class="tissue-card">
+                                <div class="tissue-header" style="background: linear-gradient(135deg, #4CAF50, #2E7D32);">
+                                    <h5>เนื้อเยื่อเจริญ (Meristematic Tissue)</h5>
+                                </div>
+                                <div class="tissue-body">
+                                    <ul>
+                                        <li>เซลล์แบ่งตัวได้ตลอดเวลา</li>
+                                        <li>พบที่ปลายยอด ปลายราก และด้านข้างลำต้น</li>
+                                        <li>แบ่งเป็นเนื้อเยื่อเจริญส่วนปลายและเนื้อเยื่อเจริญด้านข้าง</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="tissue-card">
+                                <div class="tissue-header" style="background: linear-gradient(135deg, #388E3C, #1B5E20);">
+                                    <h5>เนื้อเยื่อถาวร (Permanent Tissue)</h5>
+                                </div>
+                                <div class="tissue-body">
+                                    <ul>
+                                        <li>เนื้อเยื่อผิว (Epidermis): ชั้นนอกสุด ป้องกัน</li>
+                                        <li>เนื้อเยื่อพื้น (Ground tissue): เก็บอาหาร สังเคราะห์แสง</li>
+                                        <li>เนื้อเยื่อค้ำจุน (Supporting tissue): ให้ความแข็งแรง</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="tissue-card">
+                                <div class="tissue-header" style="background: linear-gradient(135deg, #8BC34A, #689F38);">
+                                    <h5>เนื้อเยื่อลำเลียง (Vascular Tissue)</h5>
+                                </div>
+                                <div class="tissue-body">
+                                    <ul>
+                                        <li>ไซเล็ม (Xylem): ลำเลียงน้ำและแร่ธาตุจากรากสู่ใบ</li>
+                                        <li>โฟลเอ็ม (Phloem): ลำเลียงอาหารจากใบสู่ส่วนต่างๆ</li>
+                                        <li>จัดเรียงเป็นมัดท่อลำเลียงในรากและลำต้น</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(46, 125, 50, 0.2), rgba(46, 125, 50, 0.1)); border-color: rgba(46, 125, 50, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> การจัดเรียงเนื้อเยื่อในรากและลำต้น</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--tissues);">
+                                    <h5><i class="bi bi-arrow-down"></i> โครงสร้างราก</h5>
+                                    <ol>
+                                        <li>หมวกราก (Root cap)</li>
+                                        <li>เนื้อเยื่อเจริญ (Meristem)</li>
+                                        <li>เอพิเดอร์มิส (Epidermis)</li>
+                                        <li>คอร์เทกซ์ (Cortex)</li>
+                                        <li>เอนโดเดอร์มิส (Endodermis)</li>
+                                        <li>สตีล (Stele) - ไซเล็มและโฟลเอ็ม</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--tissues);">
+                                    <h5><i class="bi bi-arrow-up"></i> โครงสร้างลำต้น</h5>
+                                    <ol>
+                                        <li>เอพิเดอร์มิส (Epidermis)</li>
+                                        <li>คอร์เทกซ์ (Cortex)</li>
+                                        <li>มัดท่อลำเลียง (Vascular bundles)</li>
+                                        <li>พิธ (Pith)</li>
+                                        <li>เนื้อเยื่อเจริญข้าง (Lateral meristem)</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>เซลล์พืชที่สำคัญ</h4>
+                        <div class="plant-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--tissues);">เซลล์</th>
+                                        <th style="background-color: var(--tissues);">โครงสร้าง</th>
+                                        <th style="background-color: var(--tissues);">หน้าที่</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>เทรคีด (Tracheid)</strong></td>
+                                        <td>เซลล์ยาวเรียว ปลายแหลม ผนังหนา</td>
+                                        <td>ลำเลียงน้ำในไซเล็ม</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เวสเซล (Vessel)</strong></td>
+                                        <td>เซลล์สั้นต่อกันเป็นท่อ</td>
+                                        <td>ลำเลียงน้ำในไซเล็ม</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ซิฟทิวบ์ (Sieve tube)</strong></td>
+                                        <td>เซลล์ต่อกันเป็นท่อ มีรูพรุน</td>
+                                        <td>ลำเลียงอาหารในโฟลเอ็ม</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>คอมพานีออนเซลล์ (Companion cell)</strong></td>
+                                        <td>เซลล์เล็กติดกับซิฟทิวบ์</td>
+                                        <td>ควบคุมการทำงานของซิฟทิวบ์</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>พาเรงคิมา (Parenchyma)</strong></td>
+                                        <td>เซลล์ทรงกลม ผนังบาง</td>
+                                        <td>เก็บอาหาร สังเคราะห์แสง</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>คอลเลงคิมา (Collenchyma)</strong></td>
+                                        <td>เซลล์ยาว ผนังหนาไม่สม่ำเสมอ</td>
+                                        <td>ค้ำจุนในส่วนที่กำลังเติบโต</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>สเกลอเรงคิมา (Sclerenchyma)</strong></td>
+                                        <td>เซลล์ผนังหนา มีลิกนิน</td>
+                                        <td>ค้ำจุนในส่วนที่หยุดเติบโต</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การเจริญเติบโตของพืช -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#plantGrowth" style="background: linear-gradient(135deg, var(--growth), #689F38);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-arrow-up"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การเจริญเติบโตของพืช</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="plantGrowth" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            การเจริญเติบโตของพืชเกิดจากการแบ่งเซลล์ของเนื้อเยื่อเจริญ ซึ่งสามารถแบ่งออกเป็นการเจริญเติบโตขั้นปฐมภูมิ (primary growth) และการเจริญเติบโตขั้นทุติยภูมิ (secondary growth)
+                        </p>
+                        
+                        <div class="growth-chart">
+                            <div class="growth-bar">
+                                <div class="bar" style="height: 80%; background: #4CAF50;"></div>
+                                <div class="bar-label">ระยะงอก</div>
+                            </div>
+                            <div class="growth-bar">
+                                <div class="bar" style="height: 150%; background: #8BC34A;"></div>
+                                <div class="bar-label">ระยะต้นกล้า</div>
+                            </div>
+                            <div class="growth-bar">
+                                <div class="bar" style="height: 250%; background: #CDDC39;"></div>
+                                <div class="bar-label">ระยะเจริญเติบโต</div>
+                            </div>
+                            <div class="growth-bar">
+                                <div class="bar" style="height: 300%; background: #FFEB3B;"></div>
+                                <div class="bar-label">ระยะออกดอก</div>
+                            </div>
+                            <div class="growth-bar">
+                                <div class="bar" style="height: 200%; background: #FFC107;"></div>
+                                <div class="bar-label">ระยะติดผล</div>
+                            </div>
+                            <div class="growth-bar">
+                                <div class="bar" style="height: 100%; background: #FF9800;"></div>
+                                <div class="bar-label">ระยะสุกแก่</div>
+                            </div>
+                        </div>
+                        
+                        <h4>ประเภทการเจริญเติบโต</h4>
+                        <div class="tissue-grid">
+                            <div class="tissue-card">
+                                <div class="tissue-header" style="background: linear-gradient(135deg, #4CAF50, #2E7D32);">
+                                    <h5>การเจริญเติบโตขั้นปฐมภูมิ</h5>
+                                </div>
+                                <div class="tissue-body">
+                                    <ul>
+                                        <li>เกิดจากเนื้อเยื่อเจริญส่วนปลาย (apical meristem)</li>
+                                        <li>ทำให้พืชยืดตัวในแนวยาว</li>
+                                        <li>พบในพืชล้มลุกและส่วนอ่อนของพืชยืนต้น</li>
+                                        <li>สร้างรากและลำต้นขั้นปฐมภูมิ</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="tissue-card">
+                                <div class="tissue-header" style="background: linear-gradient(135deg, #8BC34A, #689F38);">
+                                    <h5>การเจริญเติบโตขั้นทุติยภูมิ</h5>
+                                </div>
+                                <div class="tissue-body">
+                                    <ul>
+                                        <li>เกิดจากเนื้อเยื่อเจริญด้านข้าง (lateral meristem)</li>
+                                        <li>ทำให้พืชขยายตัวในแนวรัศมี</li>
+                                        <li>พบในพืชยืนต้น</li>
+                                        <li>สร้างเนื้อไม้และเปลือกไม้</li>
+                                        <li>เกิดวงปี</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(139, 195, 74, 0.2), rgba(139, 195, 74, 0.1)); border-color: rgba(139, 195, 74, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> ฮอร์โมนพืชที่สำคัญ</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--growth);">
+                                    <h5><i class="bi bi-arrow-up"></i> ออกซิน (Auxin)</h5>
+                                    <p>กระตุ้นการยืดตัวของเซลล์</p>
+                                    <p>ควบคุมการเกิดราก</p>
+                                    <p>เกี่ยวข้องกับการตอบสนองต่อแสง</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--growth);">
+                                    <h5><i class="bi bi-arrow-repeat"></i> จิบเบอเรลลิน (Gibberellin)</h5>
+                                    <p>กระตุ้นการยืดตัวของลำต้น</p>
+                                    <p>กระตุ้นการงอกของเมล็ด</p>
+                                    <p>กระตุ้นการออกดอก</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--growth);">
+                                    <h5><i class="bi bi-tree"></i> ไซโตไคนิน (Cytokinin)</h5>
+                                    <p>กระตุ้นการแบ่งเซลล์</p>
+                                    <p>ชะลอการแก่ของใบ</p>
+                                    <p>กระตุ้นการเจริญของตา</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--growth);">
+                                    <h5><i class="bi bi-flower1"></i> เอทิลีน (Ethylene)</h5>
+                                    <p>กระตุ้นการสุกของผลไม้</p>
+                                    <p>กระตุ้นการร่วงของใบ</p>
+                                    <p>กระตุ้นการแก่ของพืช</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>ปัจจัยที่影響การเจริญเติบโต</h4>
+                        <div class="plant-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--growth);">ปัจจัย</th>
+                                        <th style="background-color: var(--growth);">ผลต่อการเจริญเติบโต</th>
+                                        <th style="background-color: var(--growth);">ตัวอย่าง</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>แสง</strong></td>
+                                        <td>กระตุ้นการสังเคราะห์แสงและออกดอก</td>
+                                        <td>พืชวันยาว (long-day plants) ต้องการแสงนาน</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>อุณหภูมิ</strong></td>
+                                        <td>影響อัตราการหายใจและการสังเคราะห์แสง</td>
+                                        <td>พืชเขตร้อนต้องการอุณหภูมิสูง</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>น้ำ</strong></td>
+                                        <td>媒質ในการลำเลียงสารและสร้างแรงดันเต่ง</td>
+                                        <td>พืชทะเลทรายเก็บน้ำในลำต้น</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>แร่ธาตุ</strong></td>
+                                        <td>เป็นส่วนประกอบของสารสำคัญในพืช</td>
+                                        <td>ไนโตรเจนสำหรับสร้างโปรตีน</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- การปรับตัวของพืช -->
+            <div class="section-card">
+                <div class="section-header" data-bs-toggle="collapse" data-bs-target="#plantAdaptations" style="background: linear-gradient(135deg, var(--adaptations), #1B5E20);">
+                    <div class="d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="bi bi-flower2"></i>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">การปรับตัวของพืช</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="plantAdaptations" class="collapse show">
+                    <div class="section-body">
+                        <p class="lead">
+                            พืชมีการปรับตัวทั้งทางโครงสร้างและสรีรวิทยาเพื่อให้เหมาะสมกับสิ่งแวดล้อมต่างๆ เช่น การปรับตัวในสภาพแห้งแล้ง ชื้นแฉะ หรือที่มีสารอาหารน้อย
+                        </p>
+                        
+                        <div class="plant-diagram">
+                            <img src="https://www.sciencefacts.net/wp-content/uploads/2022/01/Plant-Adaptations.jpg" alt="Plant Adaptations" class="plant-image">
+                            <p class="img-caption">การปรับตัวของพืช (ที่มา: Science Facts)</p>
+                        </div>
+                        
+                        <h4>การปรับตัวในสภาพแวดล้อมต่างๆ</h4>
+                        <div class="tissue-grid">
+                            <div class="tissue-card">
+                                <div class="tissue-header" style="background: linear-gradient(135deg, #4CAF50, #2E7D32);">
+                                    <h5>พืชทะเลทราย</h5>
+                                </div>
+                                <div class="tissue-body">
+                                    <ul>
+                                        <li>ใบเปลี่ยนเป็นหนามลดการคายน้ำ</li>
+                                        <li>ลำต้นอวบน้ำเก็บน้ำ</li>
+                                        <li>รากยาวและแผ่กว้างหาน้ำ</li>
+                                        <li>ปากใบจมลึกในร่องใบ</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="tissue-card">
+                                <div class="tissue-header" style="background: linear-gradient(135deg, #8BC34A, #689F38);">
+                                    <h5>พืชน้ำ</h5>
+                                </div>
+                                <div class="tissue-body">
+                                    <ul>
+                                        <li>มีเนื้อเยื่อแอเรงคิมาสำหรับลอยน้ำ</li>
+                                        <li>ใบบางและแบนเพิ่มพื้นที่ผิว</li>
+                                        <li>ปากใบอยู่บนผิวใบ</li>
+                                        <li>ระบบรากไม่发达</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="tissue-card">
+                                <div class="tissue-header" style="background: linear-gradient(135deg, #388E3C, #1B5E20);">
+                                    <h5>พืชกินแมลง</h5>
+                                </div>
+                                <div class="tissue-body">
+                                    <ul>
+                                        <li>ใบเปลี่ยนเป็น陷阱จับแมลง</li>
+                                        <li>ผลิตเอนไซม์ย่อยแมลง</li>
+                                        <li>ดูดซึมไนโตรเจนจากแมลง</li>
+                                        <li>พบในดินกรดมีไนโตรเจนน้อย</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point" style="background: linear-gradient(135deg, rgba(56, 142, 60, 0.2), rgba(56, 142, 60, 0.1)); border-color: rgba(56, 142, 60, 0.2);">
+                            <h5><i class="bi bi-lightbulb"></i> การปรับตัวต่อการถูกรบกวน</h5>
+                            <div class="comparison-grid">
+                                <div class="comparison-card" style="border-left: 4px solid var(--adaptations);">
+                                    <h5><i class="bi bi-shield"></i> การป้องกันทางกายภาพ</h5>
+                                    <p>หนาม (กุหลาบ), ขน (ตำแย), ยาง (ยางพารา)</p>
+                                    <p>ผิวใบหนาหรือเคลือบขี้ผึ้ง</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--adaptations);">
+                                    <h5><i class="bi bi-droplet"></i> การป้องกันทางเคมี</h5>
+                                    <p>ผลิตสารพิษ (นิโคตินในยาสูบ)</p>
+                                    <p>ผลิตสารไล่แมลง (สารในตะไคร้)</p>
+                                </div>
+                                
+                                <div class="comparison-card" style="border-left: 4px solid var(--adaptations);">
+                                    <h5><i class="bi bi-bug"></i> การดึงดูดผู้ล่า</h5>
+                                    <p>ผลิตน้ำหวานดึงดูดมดให้ปกป้องพืช</p>
+                                    <p>ส่งสัญญาณทางเคมีเรียกนักล่าธรรมชาติ</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>การปรับตัวในการสืบพันธุ์</h4>
+                        <div class="plant-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: var(--adaptations);">วิธีการ</th>
+                                        <th style="background-color: var(--adaptations);">ลักษณะ</th>
+                                        <th style="background-color: var(--adaptations);">ตัวอย่าง</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>การผสมเกสรโดยลม</strong></td>
+                                        <td>เกสรเล็ก เบา จำนวนมาก ไม่มีกลิ่นหรือสี</td>
+                                        <td>หญ้า, ข้าวโพด, สน</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>การผสมเกสรโดยแมลง</strong></td>
+                                        <td>ดอกสีสวย มีกลิ่นหวาน มีน้ำหวาน</td>
+                                        <td>กุหลาบ, กล้วยไม้, ทานตะวัน</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>การกระจายเมล็ดโดยลม</strong></td>
+                                        <td>เมล็ดมีปีกหรือขน</td>
+                                        <td>นุ่น, ระกำ, หว้า</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>การกระจายเมล็ดโดยสัตว์</strong></td>
+                                        <td>เมล็ดมีเนื้อหุ้มหรือตะขอเกาะ</td>
+                                        <td>มะละกอ, ทุเรียน, งิ้ว</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4>การปรับตัวตามระดับความสูง</h4>
+                        <div class="genetics-comparison">
+                            <div class="comparison-card" style="border-left: 4px solid var(--adaptations);">
+                                <h5><i class="bi bi-tree"></i> ป่าดิบชื้น (0-1,000 เมตร)</h5>
+                                <p>พืชสูงใหญ่ ใบกว้าง</p>
+                                <p>มีพูพอน รากหายใจ</p>
+                                <p>พืชอิงอาศัย (epiphyte) จำนวนมาก</p>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--adaptations);">
+                                <h5><i class="bi bi-moisture"></i> ป่าดิบเขา (1,000-2,000 เมตร)</h5>
+                                <p>ไม้ยืนต้นสูงปานกลาง</p>
+                                <p>มอสและเฟิร์นปกคลุม</p>
+                                <p>ใบมีขนปกป้องความหนาว</p>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--adaptations);">
+                                <h5><i class="bi bi-clouds"></i> ป่าสน (2,000-3,000 เมตร)</h5>
+                                <p>ใบเป็นเข็มลดการคายน้ำ</p>
+                                <p>กิ่งลู่ลงรับหิมะ</p>
+                                <p>เรือนยอดรูปกรวย</p>
+                            </div>
+                            
+                            <div class="comparison-card" style="border-left: 4px solid var(--adaptations);">
+                                <h5><i class="bi bi-snow"></i> ทุ่งหญ้าบนที่สูง (3,000 เมตรขึ้นไป)</h5>
+                                <p>พืชล้มลุกเตี้ย</p>
+                                <p>ใบเล็กหนาเคลือบขี้ผึ้ง</p>
+                                <p>มีขนปกป้องความหนาว</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="mb-3">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-line fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+            <p>&copy; 2025 สอวน. Hub. สร้างสรรค์เพื่อการศึกษา.</p>
+            <p class="mb-0">พัฒนาเว็บไซต์และดูแลโดยนักเรียนโรงเรียนบุญวาทย์วิทยาลัย จังหวัดลำปาง</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (body.getAttribute('data-bs-theme') === 'dark') {
+                    body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.querySelector('i').classList.remove('bi-sun-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.querySelector('i').classList.remove('bi-moon-stars-fill');
+                    darkModeToggle.querySelector('i').classList.add('bi-sun-fill');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Make section headers clickable to collapse/expand
+            document.querySelectorAll('.section-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-bs-target');
+                    const target = document.querySelector(targetId);
+                    const collapse = new bootstrap.Collapse(target, {
+                        toggle: true
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
